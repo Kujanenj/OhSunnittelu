@@ -1,5 +1,5 @@
-QT       += core
-QT       += network
+QT       += core network webenginewidgets
+
 QT       -= gui
 
 TARGET = QHttpDownload
@@ -14,3 +14,6 @@ SOURCES += main.cpp \
 
 HEADERS += \
     downloader.h
+
+DISTFILES += \
+    Qml.qml

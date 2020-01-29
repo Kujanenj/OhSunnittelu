@@ -9,6 +9,8 @@
 #include <QDateTime>
 #include <QFile>
 #include <QDebug>
+#include <QWebEngineView>
+#include <QUrlQuery>
 
 class Downloader : public QObject
 {
