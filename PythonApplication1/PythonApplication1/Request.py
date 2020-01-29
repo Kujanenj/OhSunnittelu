@@ -12,11 +12,15 @@ numero = 0
 id = "dnn_ctr1025_Etusivu_dgrTulokset_ctl00__"
 id = id + str(numero)
 time.sleep(1)
-while(driver.find_element_by_id(id)):
-    resultInformation = driver.find_element_by_id(id)
-    print(resultInformation.text)
-    id = "dnn_ctr1025_Etusivu_dgrTulokset_ctl00__"
-    id = id + str(numero)
-    numero += 1
+print(driver.page_source)
+#while(driver.find_element_by_id(id)):
+#    resultinformation = driver.find_element_by_id(id)
+#    print(resultinformation.text)
+#    id = "dnn_ctr1025_etusivu_dgrtulokset_ctl00__"
+#    id = id + str(numero)
+#    numero += 1
 #element = driver.find_element_by_class_name("rgRow")
+f=open("data.txt", "w+", encoding='utf-8')
+f.write(driver.page_source)
+f.close()
 driver.close()
