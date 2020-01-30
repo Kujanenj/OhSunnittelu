@@ -1,2 +1,0 @@
-[0130/105906.141:ERROR:process_reader_win.cc(123)] NtOpenThread: {Käyttö estetty} Prosessi pyysi objektin käyttöä, mutta käyttöoikeuksia ei ole myönnetty. (0xc0000022)
-[0130/105906.142:ERROR:exception_snapshot_win.cc(98)] thread ID 11812 not found in process
