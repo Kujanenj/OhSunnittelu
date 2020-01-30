@@ -9,8 +9,10 @@ int main()
 {
     QStringList arguments {"../../Python_Script/main.py"};
     QProcess p;
-    p.start("../../../../../../python.exe", arguments);
-    p.start("python", arguments);
+
+    p.start("python.exe", arguments); // WINDOWS VERSIO
+    //p.start("python", arguments); // LINUX VERSIO
+
     QString p_stdout = p.readAllStandardOutput();
 
     p.waitForFinished();
@@ -20,10 +22,9 @@ int main()
         QFile file(filename);
         if (file.open(QIODevice::ReadWrite)) {
             QTextStream stream(&file);
-            stream<<"Exit code "<<p.exitCode()<<endl
-            <<p.readAllStandardError();
+            stream << "Exit code " << p.exitCode() << endl
+            << p.readAllStandardError();
             qDebug() << p.readAllStandardError() << p.readAllStandardOutput();
-
         }
         qDebug()<<"Done";
 
