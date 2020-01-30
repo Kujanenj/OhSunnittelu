@@ -2,3 +2,5 @@
 build-*
 venv
 .idea
+*.log
+*.user

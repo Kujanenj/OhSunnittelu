@@ -4,26 +4,14 @@ from selenium import webdriver
 
 # import time
 
-driver = webdriver.PhantomJS()
-driver.get("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto")
-print(driver.title)
-search_bar = driver.find_element_by_id("dnn_ctr1025_Etusivu_cmdHaeTulokset").click()
+driver = webdriver.PhantomJS("D:/Git Veikko/OhSunnittelu/Python_Script/phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
+# driver = webdriver.PhantomJS() # LINUX VERSIO
 
-# time.sleep(2)
-# numero = 0
-# id = "dnn_ctr1025_Etusivu_dgrTulokset_ctl00__"
-# id = id + str(numero)
-# time.sleep(1)
-# print(driver.page_source)
-# while(driver.find_element_by_id(id)):
-#     resultinformation = driver.find_element_by_id(id)
-#     print(resultinformation.text)
-#     id = "dnn_ctr1025_etusivu_dgrtulokset_ctl00__"
-#     id = id + str(numero)
-#     numero += 1
-# element = driver.find_element_by_class_name("rgRow")
+driver.get("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto") # Etsii tulosarkiston
+search_bar = driver.find_element_by_id("dnn_ctr1025_Etusivu_cmdHaeTulokset").click() # Clickkaa hae kuvaketta ilman filttereitä
 
-f = open("data.txt", "w+", encoding='utf-8')
+f = open("data.txt", "w+", encoding='utf-8') # Avaa ja kirjoittaa data.txt filuun
 f.write(driver.page_source)
 f.close()
 driver.close()
+print("Done")
