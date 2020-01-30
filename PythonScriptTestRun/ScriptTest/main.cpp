@@ -9,7 +9,7 @@ int main()
 {
     QStringList arguments {"../../PythonApplication1/PythonApplication1/Request.py"};
     QProcess p;
-    p.start("./../../../../../../python.exe", arguments);
+    p.start("../../../../../../python.exe", arguments);
      QString p_stdout = p.readAllStandardOutput();
 
     p.waitForFinished();

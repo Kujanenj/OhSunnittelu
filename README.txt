@@ -1,2 +1,2 @@
-Tänne kaikki asiat ktz
-Syö Ja oksenna
+Veikko saa sitten tehä sen parserin. 
+Heti
