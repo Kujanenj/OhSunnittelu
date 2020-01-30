@@ -1,7 +1,7 @@
 Veikko saa sitten tehä sen parserin. 
 Heti
 
-OHJEET MONNEILLE
+# OHJEET MONNEILLE
 - Ladatkaa python 3.X versio ja laittakaa asennuksessa "Add python 3.X to PATH", jotta Qt löytää .exen automaattisesti
 - Ladatkaa get-pip.py täältä: https://bootstrap.pypa.io/get-pip.py
 - Avatkaa cmd get-pip.py polusta ja kirjottakaa pip install selenium
