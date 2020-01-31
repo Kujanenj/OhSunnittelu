@@ -4,7 +4,7 @@ from selenium import webdriver
 
 # import time
 
-driver = webdriver.PhantomJS("D:/Git Veikko/OhSunnittelu/Python_Script/phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
+driver = webdriver.PhantomJS("E:\Gitin repo\ohSuunnittelu\OhSunnittelu\Python_Script\phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
 # driver = webdriver.PhantomJS() # LINUX VERSIO
 
 driver.get("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto") # Etsii tulosarkiston
