@@ -17,7 +17,7 @@ public:
      * \param filename of the file to parse
      * \return TODO
      */
-    bool fullParse();
+    QString fullParse();
 
 private:
     /*!

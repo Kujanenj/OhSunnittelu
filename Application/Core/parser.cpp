@@ -7,16 +7,22 @@ Parser::Parser(QMap<QString, QString> config)
 config_=config;
 }
 
-bool Parser::fullParse()
+QString Parser::fullParse()
 {
-    readFile();
-    parseToTable();
-    parseTable();
-    return true;
+    try {
+        readFile();
+        parseToTable();
+        parseTable();
+    } catch (const char* msg) {
+        return  QString::fromUtf8(msg);
+    }
+
+    return "parse complete";
 }
 
 bool Parser::parseToTable()
 {
+    int fileSizeStart=unparsedDataTotal_.size();
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
     int tableStartIndex=unparsedDataTotal_.indexOf(config_["tableStart"]);
     unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
@@ -24,6 +30,9 @@ bool Parser::parseToTable()
        int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
     unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
+    if(fileSizeStart==unparsedDataTotal_.size()){
+        throw "unable to find table";
+    }
     return true;
 }
 
@@ -35,6 +44,9 @@ bool Parser::parseTable()
        left=unparsedDataTotal_.indexOf(config_["tableCellLeft"],right);
        right=unparsedDataTotal_.indexOf("tableCellRight",left);
        parsedData=parsedData.append(unparsedDataTotal_.mid(left+5,(right-left)));
+   }
+   if(left == 0 || right ==0){
+       throw "error parsing the table";
    }
    parsedData.replace("</td>>",";"); //replace delimeter
    parsedData.remove(0,1); //extra char at start
@@ -54,8 +66,7 @@ bool Parser::readFile()
 {
     QFile file(config_["fileToRead"]);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qDebug()<<"Error message";
-            return false;
+        throw "file to read not found";
     }
 
     while (!file.atEnd()) {
