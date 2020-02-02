@@ -2,7 +2,7 @@
 #define PARSER_H
 #include <QFile>
 #include <QDebug>
-
+#include <QMap>
 /*!
  * \brief The Parser class parses the finlandiahiihtoSivu. Writes parsed table data a txt file.
  * TODO: kommenttia. Kaikki turvacheckit puuttuu ihan kokonaan. Jos kusee jotenki niin ei saada ikinä tietää.
@@ -11,13 +11,13 @@
 class Parser
 {
 public:
-    Parser();
+    Parser(QMap<QString,QString> config);
     /*!
      * \brief fullParse calls all other private methods
      * \param filename of the file to parse
      * \return TODO
      */
-    bool fullParse(QString filename);
+    bool fullParse();
 
 private:
     /*!
@@ -25,7 +25,7 @@ private:
      * \param filename ;)
      * \return TODO
      */
-    bool readFile(QString filename);
+    bool readFile();
     /*!
      * \brief parseToTable parses the file down to just the table elements.
      * \return TODO
@@ -38,6 +38,7 @@ private:
     bool parseTable();
   QString unparsedDataTotal_="";
   QString parsedData="";
+  QMap <QString, QString> config_;
 
 };
 
