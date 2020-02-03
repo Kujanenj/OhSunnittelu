@@ -13,30 +13,36 @@ QString Parser::fullParse()
         readFile();
         parseToTable();
         parseTable();
-    } catch (const char* msg) {
-        return  QString::fromUtf8(msg);
+    } catch (QString msg) {
+         std::move(msg);
     }
 
-    return "parse complete";
+    return returnMessage_;
 }
 
-bool Parser::parseToTable()
+void Parser::parseToTable()
 {
-    int fileSizeStart=unparsedDataTotal_.size();
+
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
     int tableStartIndex=unparsedDataTotal_.indexOf(config_["tableStart"]);
     unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
-       int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
+        int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
+
     unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
-    if(fileSizeStart==unparsedDataTotal_.size()){
-        throw "unable to find table";
+
+
+    if(tableEndindex ==-1 || tableStartIndex ==-1){
+        returnMessage_="I am unable to find table. Tried to search for" + config_["tableStart"]+"(start of table)" +
+                " and "+ config_["tableEnd"] + "(end of table)";
+
+        throw returnMessage_;
     }
-    return true;
+    return;
 }
 
-bool Parser::parseTable()
+void Parser::parseTable()
 {
    int left=0;
    int right=0;
@@ -59,14 +65,16 @@ bool Parser::parseTable()
         QTextStream stream(&file);
         stream<<parsedData;
     }
-    return true;
+    return;
 }
 
-bool Parser::readFile()
+void Parser::readFile()
 {
     QFile file(config_["fileToRead"]);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        throw "file to read not found";
+        returnMessage_="file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
+    qDebug()<<returnMessage_;
+        throw returnMessage_;
     }
 
     while (!file.atEnd()) {
@@ -75,5 +83,5 @@ bool Parser::readFile()
           unparsedDataTotal_.append(line);
         }
 
-    return true;
+    return;
 }

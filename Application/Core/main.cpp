@@ -13,7 +13,7 @@ int main()
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","<"}};
 Parser test = Parser(example);
-test.fullParse();
+qDebug()<<test.fullParse();
 }
 
 void func ()
