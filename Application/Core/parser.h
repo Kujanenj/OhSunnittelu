@@ -21,7 +21,7 @@ public:
      {"tableCellLeft", "7pt;\">"},
      {"tableCellRight","<"}};
      */
-    Parser(QMap<QString,QString> config);
+    Parser(QMap<QString,QString> config, QString dataToParse);
     /*!
      * \brief fullParse calls all other private methods
 
@@ -46,7 +46,7 @@ private:
   QString unparsedDataTotal_="";
   QString parsedData="";
   QMap <QString, QString> config_;
-  QString returnMessage_="parse complete";
+  QString returnMessage_=";)";
 
 };
 

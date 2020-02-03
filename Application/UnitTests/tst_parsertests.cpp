@@ -40,24 +40,23 @@ parserTests::~parserTests()
 void parserTests::test_fullParse()
 {
 
-    testParser=std::make_shared<Parser>(example);
+    testParser=std::make_shared<Parser>(example,"false");
 
-    QVERIFY(testParser->fullParse()=="parse complete");
+    QVERIFY(testParser->fullParse().left(5)!="ERROR");
 }
 void parserTests::test_failToRead(){
 
     failexample["fileToRead"]="NOT A REAL FFASDSADASD";
-    testParser=std::make_shared<Parser>(failexample);
+    testParser=std::make_shared<Parser>(failexample,"false");
 
-
-    QVERIFY(testParser->fullParse().at(1)=="i");
+    QVERIFY(testParser->fullParse().left(5)=="ERROR");
 }
 
 void parserTests::test_failToFindTable(){
     failexample=example;
     failexample["tableStart"]="Does not exist";
     failexample["tableEnd"]="This does also not exist";
-    testParser=std::make_shared<Parser>(failexample);
+    testParser=std::make_shared<Parser>(failexample,"false");
 
     QVERIFY(testParser->fullParse().endsWith(")")==true);
 }

@@ -2,14 +2,16 @@
 
 
 
-Parser::Parser(QMap<QString, QString> config)
+Parser::Parser(QMap<QString, QString> config, QString dataToParse)
 {
 config_=config;
+unparsedDataTotal_=dataToParse;
 }
 
 QString Parser::fullParse()
 {
     try {
+
         readFile();
         parseToTable();
         parseTable();
@@ -34,7 +36,7 @@ void Parser::parseToTable()
 
 
     if(tableEndindex ==-1 || tableStartIndex ==-1){
-        returnMessage_="I am unable to find table. Tried to search for" + config_["tableStart"]+"(start of table)" +
+        returnMessage_="ERROR I am unable to find table. Tried to search for" + config_["tableStart"]+"(start of table)" +
                 " and "+ config_["tableEnd"] + "(end of table)";
 
         throw returnMessage_;
@@ -52,13 +54,13 @@ void Parser::parseTable()
        parsedData=parsedData.append(unparsedDataTotal_.mid(left+5,(right-left)));
    }
    if(left == 0 || right ==0){
-       throw "error parsing the table";
+       throw "ERROR parsing the table";
    }
    parsedData.replace("</td>>",";"); //replace delimeter
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
 
-
+   returnMessage_=parsedData;
 
     QFile file("fileToWrite");
     if(file.open(QIODevice::WriteOnly)){
@@ -70,10 +72,13 @@ void Parser::parseTable()
 
 void Parser::readFile()
 {
+    if(config_["fileToRead"]=="false"){
+        return;
+    }
     QFile file(config_["fileToRead"]);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        returnMessage_="file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
-    qDebug()<<returnMessage_;
+        returnMessage_="ERROR file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
+
         throw returnMessage_;
     }
 
@@ -85,3 +90,4 @@ void Parser::readFile()
 
     return;
 }
+

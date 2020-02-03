@@ -12,11 +12,7 @@ int main()
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","<"}};
-Parser test = Parser(example);
+Parser test = Parser(example,"false");
 qDebug()<<test.fullParse();
 }
 
-void func ()
-{
-
-}
