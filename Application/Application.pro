@@ -1,11 +1,5 @@
-TEMPLATE = app
-CONFIG += console c++11
-CONFIG -= app_bundle
-CONFIG += qt
-QT += core
+TEMPLATE = subdirs
+SUBDIRS += Core \
+    UnitTests
 
-HEADERS += \
-        parser.h
-SOURCES += \
-        main.cpp \
-        parser.cpp
+Core.subdir = Core
