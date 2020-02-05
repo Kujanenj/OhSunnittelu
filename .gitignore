@@ -5,3 +5,6 @@ venv
 *.log
 *.user
 *.txt
+*.qmake.stash
+*.o
+Makefile
