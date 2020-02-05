@@ -5,7 +5,9 @@ CONFIG += qt
 QT += core
 
 HEADERS += \
-        parser.h
+        Controller/parser.h
 SOURCES += \
         main.cpp \
-        parser.cpp
+        Controller/parser.cpp
+
+INCLUDEPATH += Controller/

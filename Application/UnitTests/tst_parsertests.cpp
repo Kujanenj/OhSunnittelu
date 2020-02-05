@@ -17,8 +17,8 @@ private slots:
     void test_failToFindTable();
 
 private:
-    QMap<QString,QString> example = {{"fileToRead", "../../Data/data.txt"},
-                                     {"fileToWrite", "../../Data/dataOut"},
+    QMap<QString,QString> example = {{"fileToRead", "../../Application/Data/data.txt"},
+                                     {"fileToWrite", "../../Application/Data/dataOut"},
                                      {"tableStart", "</thead><tbody>"},
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
@@ -41,8 +41,12 @@ void parserTests::test_fullParse()
 {
 
     testParser=std::make_shared<Parser>(example,"false");
+    QString returnValue=testParser->fullParse();
+    if(returnValue.left(5)=="ERROR"){
+        qDebug()<<returnValue;
+    }
+    QVERIFY(returnValue.left(5)!="ERROR");
 
-    QVERIFY(testParser->fullParse().left(5)!="ERROR");
 }
 void parserTests::test_failToRead(){
 
