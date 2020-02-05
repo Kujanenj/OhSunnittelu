@@ -9,7 +9,7 @@ from selenium import webdriver
 import json
 
 # Phantomjs.exe tulee olla C++ build kansiossa kun yrität buildata requesteriä
-driver = webdriver.PhantomJS("phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
+driver = webdriver.PhantomJS("../../Application/Core/Python_Script/phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
 #driver = webdriver.PhantomJS() # LINUX VERSIO
 
 driver.get("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto") # Etsii tulosarkiston
@@ -28,7 +28,7 @@ for x in range(0, 8):
 search_bar = driver.find_element_by_id("dnn_ctr1025_Etusivu_cmdHaeTulokset").click()
 
 # Avaa ja kirjoittaa data.txt filuun
-f = open("data.txt", "w+", encoding='utf-8')
+f = open("../../Application/Data/data.txt", "w+", encoding='utf-8')
 f.write(driver.page_source)
 f.close()
 driver.close()

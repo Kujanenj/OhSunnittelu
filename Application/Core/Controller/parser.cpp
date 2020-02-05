@@ -46,11 +46,13 @@ void Parser::parseToTable()
 
 void Parser::parseTable()
 {
+
    int left=0;
    int right=0;
    for(int i = 0; i<=unparsedDataTotal_.length();i++){ //search for these occurencses, and save the stuff in between.
        left=unparsedDataTotal_.indexOf(config_["tableCellLeft"],right);
-       right=unparsedDataTotal_.indexOf("tableCellRight",left);
+
+       right=unparsedDataTotal_.indexOf(config_["tableCellRight"],left);
        parsedData=parsedData.append(unparsedDataTotal_.mid(left+5,(right-left)));
    }
    if(left == 0 || right ==0){
@@ -62,7 +64,7 @@ void Parser::parseTable()
 
    returnMessage_=parsedData;
 
-    QFile file("fileToWrite");
+    QFile file("../../Application/Data/DataOut.txt");
     if(file.open(QIODevice::WriteOnly)){
         QTextStream stream(&file);
         stream<<parsedData;
