@@ -4,36 +4,41 @@
 #include <QDebug>
 #include <QFile>
 
-#include <fstream>
-#include <map>
+#include <QJsonDocument>
 #include <string>
+
 using namespace std;
 
 int main()
 {
 
-    // Luo mapin ja kirjoittaa filuun python scriptiä varten
-    std::map<std::string, std::string> parameters;
+    QMap<QString, QString> parameters;
+    QVariantMap vmap;
 
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$ddlVuosi2x", "2019"));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$ddlMatka2x", "P50"));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$ddlIkaluokka2", "kaikki"));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$ddlKansalaisuus2x", ""));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$chkLstSukupuoli2", "kaikki"));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$txtHakuEtunimi2", "Jussi"));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$txtHakuSukunimi2", ""));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$txtHakuPaikkakunta2", ""));
-    parameters.insert(std::pair<std::string, std::string>("dnn$ctr1025$Etusivu$txtHakuJoukkue2", ""));
+    parameters.insert("dnn$ctr1025$Etusivu$ddlVuosi2x", "2019");
+    parameters.insert("dnn$ctr1025$Etusivu$ddlMatka2x", "P50");
+    parameters.insert("dnn$ctr1025$Etusivu$ddlIkaluokka2", "kaikki");
+    parameters.insert("dnn$ctr1025$Etusivu$ddlKansalaisuus2x", "");
+    parameters.insert("dnn$ctr1025$Etusivu$chkLstSukupuoli2", "kaikki");
+    parameters.insert("dnn$ctr1025$Etusivu$txtHakuEtunimi2", "Veikko");
+    parameters.insert("dnn$ctr1025$Etusivu$txtHakuSukunimi2", "");
+    parameters.insert("dnn$ctr1025$Etusivu$txtHakuPaikkakunta2", "");
+    parameters.insert("dnn$ctr1025$Etusivu$txtHakuJoukkue2", "");
 
-    std::ofstream parameterfile;
-    parameterfile.open("../../Python_Script/parameters.txt");
-
-    for(auto const& parameter : parameters) {
-        parameterfile << parameter.first << ":" << parameter.second << "\n";
+    QMapIterator<QString, QString> i(parameters);
+    while (i.hasNext()) {
+        i.next();
+        vmap.insert(i.key(), i.value());
     }
 
-    parameterfile.close();
+    QJsonDocument json = QJsonDocument::fromVariant(vmap);
 
+    QString jsonfile = "params.json";
+    QFile file1(jsonfile);
+    if(file1.open(QIODevice::ReadWrite)) {
+        file1.write(json.toJson());
+        file1.close();
+    }
 
     QStringList arguments {"../../Python_Script/main.py"};
     QProcess p;
