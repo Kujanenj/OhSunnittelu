@@ -2,7 +2,7 @@
 
 from selenium import webdriver
 
-# import time
+import json
 
 # Veikon polku: D:\Git Veikko\OhSunnittelu\Python_Script\phantomjs.exe
 # Jonkun polku: E:\Gitin repo\ohSuunnittelu\OhSunnittelu\Python_Script\phantomjs.exe
@@ -19,10 +19,8 @@ driver.get("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto") # Etsii tulos
 #               P30, P44, P60, P62, P25, P32, P35, P45, P52, P53, P75, V30, V45, V53, V75
 # Vuosi valuet: kaikki, 2019-1974 yksittäin
 
-
-
 # Dictissä 4 ensimmäistä drop down valikkoja, loput inputteja
-dict = {
+exampledict = {
     "dnn$ctr1025$Etusivu$ddlVuosi2x" : "2019",
     "dnn$ctr1025$Etusivu$ddlMatka2x" : "P50",
     "dnn$ctr1025$Etusivu$ddlIkaluokka2" : "kaikki",
@@ -34,7 +32,15 @@ dict = {
     "dnn$ctr1025$Etusivu$txtHakuJoukkue2" : ""
 }
 
-# 8 Elementtiä
+dict = {}
+
+# Lukee json filun ja muodostaa, siitä dictin
+with open('D:\Git Veikko\OhSunnittelu\Python_Script\parameters.txt', 'r') as f:
+    for line in f:
+        key, value = line.split(":")
+        dict[key] = value
+
+# Asettaa elementeille valuet dictin avulla
 for x in range(0, 8):
     driver.find_element_by_name(list(dict.keys())[x]).send_keys(list(dict.values())[x])
 
