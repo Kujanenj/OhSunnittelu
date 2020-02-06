@@ -41,8 +41,8 @@ void Requester::startPScript()
     QStringList arguments {"../../Application/Core/Python_Script/main.py"};
     QProcess p;
 
-    p.start("python.exe", arguments); // WINDOWS VERSIO
-    //p.start("python", arguments); // LINUX VERSIO
+    //p.start("python.exe", arguments); // WINDOWS VERSIO
+    p.start("python", arguments); // LINUX VERSIO
 
     QString p_stdout = p.readAllStandardOutput();
 
@@ -58,7 +58,6 @@ void Requester::startPScript()
             qDebug() << p.readAllStandardError() << p.readAllStandardOutput();
         }
         qDebug()<<"Done";
-
 }
 
 void Requester::parseData()

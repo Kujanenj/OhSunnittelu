@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 SUBDIRS += Core \
-    UnitTests
+    #UnitTests
 
 
 Core.subdir = Core

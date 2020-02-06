@@ -1,3 +1,23 @@
 Exit code 0
-C:\Users\Veikko\AppData\Local\Programs\Python\Python35\lib\site-packages\selenium\webdriver\phantomjs\webdriver.py:49: UserWarning: Selenium support for PhantomJS has been deprecated, please use headless versions of Chrome or Firefox instead
+/usr/lib/python3.8/site-packages/selenium/webdriver/phantomjs/webdriver.py:49: UserWarning: Selenium support for PhantomJS has been deprecated, please use headless versions of Chrome or Firefox instead
   warnings.warn('Selenium support for PhantomJS has been deprecated, please use headless '
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/selenium/webdriver/common/service.py", line 72, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+  File "/usr/lib/python3.8/subprocess.py", line 854, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.8/subprocess.py", line 1702, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+PermissionError: [Errno 13] Permission denied: '../../Application/Core/Python_Script/phantomjs.exe'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "../../Application/Core/Python_Script/main.py", line 12, in <module>
+    driver = webdriver.PhantomJS("../../Application/Core/Python_Script/phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
+  File "/usr/lib/python3.8/site-packages/selenium/webdriver/phantomjs/webdriver.py", line 56, in __init__
+    self.service.start()
+  File "/usr/lib/python3.8/site-packages/selenium/webdriver/common/service.py", line 86, in start
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: 'phantomjs.exe' executable may have wrong permissions. 
+

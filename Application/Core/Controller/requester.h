@@ -13,12 +13,28 @@ class Requester
 public:
     Requester();
 
+    /**
+     * @brief createMap
+     * Inserts parameters to the map
+     */
     void createMap();
 
+    /**
+     * @brief createJSON
+     * Generates JSON file from C++ map
+     */
     void createJSON();
 
+    /**
+     * @brief startPScript
+     * Starts python script to request data
+     */
     void startPScript();
 
+    /**
+     * @brief parseData
+     *
+     */
     void parseData();
 
 private:
