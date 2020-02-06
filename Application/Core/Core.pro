@@ -13,3 +13,6 @@ SOURCES += \
         Controller/parser.cpp
 
 INCLUDEPATH += Controller/
+
+DISTFILES += \
+    Ui.qml
