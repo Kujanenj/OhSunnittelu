@@ -9,8 +9,8 @@ from selenium import webdriver
 import json
 
 # Phantomjs.exe tulee olla C++ build kansiossa kun yrität buildata requesteriä
-driver = webdriver.PhantomJS("../../Application/Core/Python_Script/phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
-#driver = webdriver.PhantomJS() # LINUX VERSIO
+#driver = webdriver.PhantomJS("../../Application/Core/Python_Script/phantomjs.exe") # WINDOWS VERSIO - Laita polku phantomjs.exe filuun
+driver = webdriver.PhantomJS() # LINUX VERSIO
 
 driver.get("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto") # Etsii tulosarkiston
 
