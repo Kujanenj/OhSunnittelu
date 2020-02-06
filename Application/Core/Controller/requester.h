@@ -13,11 +13,13 @@ class Requester
 public:
     Requester();
 
-    /**
-     * @brief createMap
-     * Inserts parameters to the map
-     */
-    void createMap();
+
+    QString DoRequest(QMap<QString,QString>);
+
+
+
+private:
+
 
     /**
      * @brief createJSON
@@ -31,15 +33,13 @@ public:
      */
     void startPScript();
 
-    /**
-     * @brief parseData
-     *
-     */
-    void parseData();
 
-private:
-    QMap<QString, QString> parameters;
-    QVariantMap vmap;
+
+
+
+
+    QMap<QString, QString> parameters_;
+    QVariantMap vmap_;
 };
 
 #endif // REQUESTER_H

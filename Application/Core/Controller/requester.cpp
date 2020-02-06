@@ -5,28 +5,26 @@ Requester::Requester()
 
 }
 
-void Requester::createMap()
+QString Requester::DoRequest(QMap<QString, QString> config)
 {
-    parameters.insert("dnn$ctr1025$Etusivu$ddlVuosi2x", "2019");
-    parameters.insert("dnn$ctr1025$Etusivu$ddlMatka2x", "P50");
-    parameters.insert("dnn$ctr1025$Etusivu$ddlIkaluokka2", "kaikki");
-    parameters.insert("dnn$ctr1025$Etusivu$ddlKansalaisuus2x", "");
-    parameters.insert("dnn$ctr1025$Etusivu$chkLstSukupuoli2", "kaikki");
-    parameters.insert("dnn$ctr1025$Etusivu$txtHakuEtunimi2", "Veikko");
-    parameters.insert("dnn$ctr1025$Etusivu$txtHakuSukunimi2", "");
-    parameters.insert("dnn$ctr1025$Etusivu$txtHakuPaikkakunta2", "");
-    parameters.insert("dnn$ctr1025$Etusivu$txtHakuJoukkue2", "");
+
+    parameters_=config;
+    createJSON();
+    startPScript();
+    return "";
 }
+
+
 
 void Requester::createJSON()
 {
-    QMapIterator<QString, QString> i(parameters);
+    QMapIterator<QString, QString> i(parameters_);
     while (i.hasNext()) {
         i.next();
-        vmap.insert(i.key(), i.value());
+        vmap_.insert(i.key(), i.value());
     }
 
-    QJsonDocument json = QJsonDocument::fromVariant(vmap);
+    QJsonDocument json = QJsonDocument::fromVariant(vmap_);
 
     QString jsonfile = "params.json";
     QFile file1(jsonfile);
@@ -60,15 +58,3 @@ void Requester::startPScript()
         qDebug()<<"Done";
 }
 
-void Requester::parseData()
-{
-    QMap<QString,QString> example = {{"fileToRead", "../../Application/Data/data.txt"},
-                                     {"fileToWrite", "../../Application/Data/dataOut"},
-                                     {"tableStart", "</thead><tbody>"},
-                                     {"tableEnd", "</table><div"},
-                                     {"tableCellLeft", "7pt;\">"},
-                                     {"tableCellRight","</td>"}};
-    Parser test = Parser(example,"false");
-    qDebug()<<test.fullParse();
-    qDebug()<<"Super done";
-}
