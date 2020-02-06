@@ -9,7 +9,7 @@
   ### View:
   - QML tehty UI, jonka avulla voi filtteröidä ja tarkastella tulosdataa
   ### Controller:
-  - Parsiminen, datan vieminen QML, ...)
+  - Parsiminen, datan vieminen QML, ...
   ### Data:
   - Voidaan tallentaa SQL/mySQL, jos halutaan / Json? / Txt, josta mappiin tai muuhun C++ tietorakenteeseen
     - SQL rakenteen avulla helpompi käyttää QML?
@@ -42,3 +42,11 @@ tulleen ajat ja keskinopeudet jokaiselta matkalta.
 - Näytetään urheilijoiden jakauma maittain
 - Näytetään kymmenen parasta joukkuetta
   - Joukkue saadaan laskemalla 4 samassa seurassa olevan ajat yhteen
+  
+## QML
+### Perustietoa
+- Halutaan käyttää samoja filttereitä, mitä alkuperäinen sivu käyttää aluksi
+- 9 eri hakukenttää
+  - Joista 4 dropdown kenttää (hiihtomatka, ikäluokka, etc..)
+  - 1 Radio button kenttä (sukupuolivaihtoehdot)
+  - 4 input kenttää
