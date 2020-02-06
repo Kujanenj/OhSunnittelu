@@ -42,6 +42,10 @@ void Requester::startPScript()
     //p.start("python.exe", arguments); // WINDOWS VERSIO
     p.start("python", arguments); // LINUX VERSIO
 
+    if(p.FailedToStart) {
+        throw QString("Your python path is probably wrong. Your current path is: " + QDir::currentPath());
+    }
+
     QString p_stdout = p.readAllStandardOutput();
 
     p.waitForFinished();
