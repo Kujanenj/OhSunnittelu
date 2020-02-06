@@ -9,8 +9,14 @@ QString Requester::DoRequest(QMap<QString, QString> config)
 {
 
     parameters_=config;
-    createJSON();
-    startPScript();
+    try {
+        createJSON();
+        startPScript();
+    }  catch (QString msg) {
+            qDebug()<<msg;
+            std::move(msg);
+    }
+
     return "";
 }
 

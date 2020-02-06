@@ -6,5 +6,6 @@ venv
 *.user
 *.txt
 *.qmake.stash
+*.moc
 *.o
 Makefile
