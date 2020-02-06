@@ -42,7 +42,7 @@ void Requester::createJSON()
 
 void Requester::startPScript()
 {
-    QStringList arguments {"../../Apaplication/Core/Python_Script/main.py"};
+    QStringList arguments {"../../Application/Core/Python_Script/main.py"};
     QProcess p;
 
     //p.start("python.exe", arguments); // WINDOWS VERSIO
@@ -58,6 +58,10 @@ void Requester::startPScript()
     if(p.exitCode() == 2) {
         throw QString("Your arguments path is wrong. ");
     }
+    if(p.exitCode() == 1) {
+        throw QString("Your phantomJS path is wrong in python script");
+    }
+
     QString filename = "../../Application/Data/errors.txt";
     QFile file(filename);
     if (file.open(QIODevice::ReadWrite)) {
