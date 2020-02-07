@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>TestButton.qml</file>
+        <file>InputFields.qml</file>
+        <file>images/skiing.jpg</file>
     </qresource>
 </RCC>
