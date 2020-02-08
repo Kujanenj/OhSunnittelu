@@ -3,26 +3,22 @@
 Requester::Requester(QObject *parent)
     : QObject(parent),
       manager(new QNetworkAccessManager)
-      //manager(new QNetworkAccessManager)
 {
 }
 
 Requester::~Requester()
 {
-    qDebug()<<"REquester poistettu";
+    qDebug() << "Requester poistettu";
 }
 
 QString Requester::DoRequest(QMap<QString, QString> config)
 {
-
     parameters_ = config;
+
     try {
-        //createJSON();
-        //startPScript();
-        qDebug() << "Json created";
         requestData();
     }  catch (QString msg) {
-            qDebug()<<msg;
+            qDebug() << msg;
             std::move(msg);
     }
 
@@ -70,26 +66,6 @@ void Requester::replyFinished(QNetworkReply *reply)
     //delete this;
 }
 
-
-
-void Requester::createJSON()
-{
-    QMapIterator<QString, QString> i(parameters_);
-    while (i.hasNext()) {
-        i.next();
-        vmap_.insert(i.key(), i.value());
-    }
-
-    QJsonDocument json = QJsonDocument::fromVariant(vmap_);
-
-    QString jsonfile = "params.json";
-    QFile file1(jsonfile);
-    if(file1.open(QIODevice::ReadWrite)) {
-        file1.write(json.toJson());
-        file1.close();
-    }
-}
-
 //Tänne vois kans vähä noita kommentteja :D ja try catchia
 void Requester::requestData()
 {
@@ -131,7 +107,6 @@ void Requester::requestData()
     QHttpPart param5;
     param5.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlVuosi2x\"");
     param5.setBody(parameters_.value("Vuosi").toUtf8());
-
     QHttpPart param6;
     param6.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlMatka2x\"");
     param6.setBody(parameters_.value("Matka").toUtf8());

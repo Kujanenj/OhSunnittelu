@@ -17,10 +17,11 @@
 #include <QFile>
 #include <QDebug>
 #include <QHttpMultiPart>
-/**
- * @brief The Requester class Kommentoikaa nyt perkele. Kaikkiin metodeihin kommentoinnit. Ja laittakaa sinne koodin sekaanki vähä niin tajuaas jotai5
- */
 
+/**
+ * @brief The Requester class
+ * Used to gather data from website and send it to parser
+ */
 class Requester : public QObject
 {
     Q_OBJECT
@@ -29,25 +30,33 @@ public:
 
     ~Requester();
 
+    /**
+     * @brief DoRequest
+     * Tries to start request if there are no errors
+     * @return
+     */
     QString DoRequest(QMap<QString,QString>);
 
 public slots:
+
+    /**
+     * @brief replyFinished
+     * Writes reply to file if reply is successful
+     * and calls parser to parse file
+     * @param reply
+     */
     void replyFinished (QNetworkReply *reply);
 
 private:
 
     /**
-     * @brief createJSON
-     * Generates JSON file from C++ map
+     * @brief requestData
+     * Uses QNetworkAccessManager to make post request to website
      */
-    void createJSON();
-
-
     void requestData();
 
     QNetworkAccessManager *manager;
     QMap<QString, QString> parameters_;
-    QVariantMap vmap_;
 };
 
 #endif // REQUESTER_H
