@@ -4,8 +4,8 @@
 
 Parser::Parser(QMap<QString, QString> config, QString dataToParse)
 {
-config_=config;
-unparsedDataTotal_=dataToParse;
+    config_ = config;
+    unparsedDataTotal_ = dataToParse;
 }
 
 QString Parser::fullParse()
@@ -41,7 +41,6 @@ void Parser::parseToTable()
 
         throw returnMessage_;
     }
-    return;
 }
 
 void Parser::parseTable()
@@ -62,14 +61,13 @@ void Parser::parseTable()
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
 
-   returnMessage_=parsedData;
+   returnMessage_ = parsedData;
 
     QFile file("../../Application/Data/DataOut.txt");
     if(file.open(QIODevice::WriteOnly)){
         QTextStream stream(&file);
         stream<<parsedData;
     }
-    return;
 }
 
 void Parser::readFile()
@@ -91,7 +89,5 @@ void Parser::readFile()
            QString line = file.readLine();
           unparsedDataTotal_.append(line);
         }
-
-    return;
 }
 

@@ -1,7 +1,8 @@
 #include "requester.h"
 
 Requester::Requester(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      manager(new QNetworkAccessManager)
       //manager(new QNetworkAccessManager)
 {
 }
@@ -14,7 +15,7 @@ Requester::~Requester()
 QString Requester::DoRequest(QMap<QString, QString> config)
 {
 
-    parameters_=config;
+    parameters_ = config;
     try {
         createJSON();
         //startPScript();
@@ -66,7 +67,7 @@ void Requester::replyFinished(QNetworkReply *reply)
     Parser test = Parser(example,"false");
     test.fullParse();
     qDebug() << "Parsing completed";
-    delete this;
+    //delete this;
 }
 
 
@@ -92,8 +93,6 @@ void Requester::createJSON()
 //Tänne vois kans vähä noita kommentteja :D ja try catchia
 void Requester::requestData()
 {
-    manager = new QNetworkAccessManager(this);
-
     manager->setStrictTransportSecurityEnabled(true);
 
     connect(manager, SIGNAL(finished(QNetworkReply*)),
