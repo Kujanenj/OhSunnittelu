@@ -1,3 +1,20 @@
+# TODO
+
+**yleiset**
+
+- Requesteriin ja backendii jää nyt  olioita roikkumaan. New:llä luodut oliot on ok, mutta pitää kattoa että ne poistuu.
+- Vaihtaa kaikki new:llä luodut smart pointteriksi? 
+- UNIT TESTIT :D
+- kommentoinnit (Ainakin requester ja bäckend"
+- Nimetä bäckend uudestaan. Esim manager?
+- Oma namespace tässä vaiheessa aika must, myöhemmin ei enää jaksa
+
+**toiminnalisuus**
+- Yhteys qml:n ja bäckendin välis, eli siis saa ne tekstikenttien datat ulos.
+- Joku tulkki valmiille datalle. (Uus clässi)
+
+
+
 # OHJEET MONNEILLE
 - Ladatkaa python 3.X versio ja laittakaa asennuksessa "Add python 3.X to PATH", jotta Qt löytää .exen automaattisesti
 - Ladatkaa get-pip.py täältä: https://bootstrap.pypa.io/get-pip.py
