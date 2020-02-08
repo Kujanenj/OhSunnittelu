@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 SUBDIRS += \
- \    #UnitTests
-    App
+    App \
+    UnitTests
 
 
-Core.subdir = Core
+
