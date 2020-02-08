@@ -13,7 +13,7 @@ ApplicationWindow {
         id: rectInputBackground
         color: "whitesmoke"
         height: parent.height
-        width: 300
+        width: 360
         anchors.left: parent.left
     }
 

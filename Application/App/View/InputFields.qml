@@ -8,12 +8,13 @@ Item {
     //YEAR FIELD
     ComboBox {
         id: fieldYear
+
         background: Rectangle {
             color: control.enabled ? "transparent" : "#353637"
             border.color: control.enabled ? "#21be2b" : "transparent"
         }
         //YEAR OPTIONS
-        model: ["2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010",
+        model: ["Vuosi", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010",
                     "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000",
                     "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990",
                     "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980",
@@ -31,7 +32,7 @@ Item {
             border.color: control.enabled ? "#21be2b" : "transparent"
         }
         //DISTANCE OPTIONS
-        model: ["P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V42", "V32",
+        model: ["Matka", "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V42", "V32",
                     "P20", "P30", "P44", "P60", "P62", "P25", "P32", "P35", "P45", "P52",
                     "P53", "P75", "V30", "V45", "V53", "V75"]
 
@@ -87,7 +88,7 @@ Item {
             border.color: control.enabled ? "#21be2b" : "transparent"
         }
         //DISTANCE OPTIONS
-        model: ["Kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
+        model: ["Ikäsarja", "Kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
                     ">80",]
 
         font.pointSize: 12
@@ -106,7 +107,7 @@ Item {
         font.pointSize: 12
         width: 200
         anchors.top: fieldAge.bottom
-        placeholderText: "Your text here"
+        placeholderText: "Etunimi"
         renderType: Text.QtRendering
         onTextChanged: backend.text = text
     }
@@ -122,7 +123,7 @@ Item {
         font.pointSize: 12
         width: 200
         anchors.top: fieldFirstName.bottom
-        placeholderText: "Your text here"
+        placeholderText: "Sukunimi"
         renderType: Text.QtRendering
         onTextChanged: backend.text = text
     }
@@ -139,7 +140,7 @@ Item {
         font.pointSize: 12
         width: 200
         anchors.top: fieldLastName.bottom
-        placeholderText: "Your text here"
+        placeholderText: "Paikkakunta"
         renderType: Text.QtRendering
         onTextChanged: backend.text = text
     }
@@ -155,7 +156,7 @@ Item {
         font.pointSize: 12
         width: 200
         anchors.top: fieldPlace.bottom
-        placeholderText: "Your text here"
+        placeholderText: "Joukkue"
         renderType: Text.QtRendering
         onTextChanged: backend.text = text
     }
@@ -164,7 +165,7 @@ Item {
     Button {
         id: buttonSearch
         font.pointSize: 12
-        text: "Etsi"
+        text: "Hae"
         anchors.top: fieldTeam.bottom
         onClicked: {
             //välitä hakukriteerit C++ puolelle
