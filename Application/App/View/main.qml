@@ -9,6 +9,14 @@ ApplicationWindow {
     height: screen.height/1.5
     title: qsTr("Finlandia Skiing Database")
 
+    Rectangle {
+        id: rectInputBackground
+        color: "whitesmoke"
+        height: parent.height
+        width: 300
+        anchors.left: parent.left
+    }
+
     background: BorderImage {
         id: backgroundImage
         source: "images/skiing.jpg"
@@ -17,9 +25,9 @@ ApplicationWindow {
         border.right: 5; border.bottom: 5
     }
 
+
     // Input fields for user to do a search
     InputFields {
-
     }
 
 }
