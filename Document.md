@@ -6,10 +6,11 @@
     - Halutaanko, että requester postaa suoraan datan C++ parserille vai jonkun tiedostomuodon kautta hitaampi
   ### API:
   ### Model:
+  - Objectmanager, jonka avulla käynnistetään requestit, viedään dataa viewille ja viedään dataa muokkaukseen
   ### View:
   - QML tehty UI, jonka avulla voi filtteröidä ja tarkastella tulosdataa
   ### Controller:
-  - Parsiminen, datan vieminen QML, ...
+  - Parsiminen, datan requestaus
   ### Data:
   - Voidaan tallentaa SQL/mySQL, jos halutaan / Json? / Txt, josta mappiin tai muuhun C++ tietorakenteeseen
     - SQL rakenteen avulla helpompi käyttää QML?
@@ -50,3 +51,4 @@ tulleen ajat ja keskinopeudet jokaiselta matkalta.
   - Joista 4 dropdown kenttää (hiihtomatka, ikäluokka, etc..)
   - 1 Radio button kenttä (sukupuolivaihtoehdot)
   - 4 input kenttää
+- Seuraavaksi tarvitaan textfieldien key ja valuet, jotta voidaan työntää inputit mappiin hakua varten
