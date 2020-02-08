@@ -18,7 +18,7 @@ QString Parser::fullParse()
     } catch (QString msg) {
          std::move(msg);
     }
-
+    qDebug()<<returnMessage_;
     return returnMessage_;
 }
 

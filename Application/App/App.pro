@@ -17,12 +17,12 @@ SOURCES += \
         View/main.cpp \
         Controller/parser.cpp \
         Controller/requester.cpp \
-        backend.cpp
+        Model/backend.cpp
 
 HEADERS += \
         Controller/requester.h \
         Controller/parser.h \
-        backend.h
+        Model/backend.h
 
 RESOURCES += \
         View/qml.qrc

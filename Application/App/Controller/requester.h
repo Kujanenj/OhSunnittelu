@@ -17,7 +17,9 @@
 #include <QFile>
 #include <QDebug>
 #include <QHttpMultiPart>
-
+/**
+ * @brief The Requester class Kommentoikaa nyt perkele. Kaikkiin metodeihin kommentoinnit. Ja laittakaa sinne koodin sekaanki vähä niin tajuaas jotai5
+ */
 
 class Requester : public QObject
 {
@@ -40,11 +42,6 @@ private:
      */
     void createJSON();
 
-    /**
-     * @brief startPScript
-     * Starts python script to request data
-     */
-    //void startPScript();
 
     void requestData();
 

@@ -4,5 +4,6 @@
         <file>TestButton.qml</file>
         <file>InputFields.qml</file>
         <file>images/skiing.jpg</file>
+        <file>images/riku.jpg</file>
     </qresource>
 </RCC>
