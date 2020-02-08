@@ -16,11 +16,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         View/main.cpp \
         Controller/parser.cpp \
-        Controller/requester.cpp
+        Controller/requester.cpp \
+        backend.cpp
 
 HEADERS += \
         Controller/requester.h \
-        Controller/parser.h
+        Controller/parser.h \
+        backend.h
 
 RESOURCES += \
         View/qml.qrc

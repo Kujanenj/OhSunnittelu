@@ -2,6 +2,7 @@
 #define BACKEND_H
 #include <QString>
 #include <QObject>
+#include "Controller/requester.h"
 
 class Backend : public QObject
 {
@@ -10,6 +11,8 @@ class Backend : public QObject
 
 public:
     explicit Backend(QObject *parent = nullptr);
+
+    ~Backend();
 
     //QML Accessible methods:
     Q_INVOKABLE void searchButtonClicked();
@@ -27,6 +30,8 @@ private:
     //void setFieldText(QString value);
 
     QString fieldText;
+
+    Requester *req;
 };
 
 #endif // BACKEND_H

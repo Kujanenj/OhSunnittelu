@@ -1,5 +1,17 @@
 #include "requester.h"
 
+Requester::Requester(QObject *parent)
+    : QObject(parent)
+      //manager(new QNetworkAccessManager)
+{
+}
+
+Requester::~Requester()
+{
+    qDebug() << "Manager deleted";
+    delete manager;
+}
+
 QString Requester::DoRequest(QMap<QString, QString> config)
 {
 
@@ -7,6 +19,7 @@ QString Requester::DoRequest(QMap<QString, QString> config)
     try {
         createJSON();
         //startPScript();
+        qDebug() << "Json created";
         requestData();
     }  catch (QString msg) {
             qDebug()<<msg;
@@ -18,6 +31,7 @@ QString Requester::DoRequest(QMap<QString, QString> config)
 
 void Requester::replyFinished(QNetworkReply *reply)
 {
+    qDebug() << "Reply saatu";
     if(reply->error())
     {
         qDebug() << "ERROR!";
@@ -32,6 +46,8 @@ void Requester::replyFinished(QNetworkReply *reply)
         qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
     }
 
+    qDebug() << "Kirjoitetaan data.txt filu";
+
     QFile *file = new QFile("../../Application/Data/data.txt");
     if(file->open(QIODevice::ReadWrite)){
         file->write(reply->readAll());
@@ -41,6 +57,16 @@ void Requester::replyFinished(QNetworkReply *reply)
     file->deleteLater();
 
     reply->deleteLater();
+
+    QMap<QString,QString> example = {{"fileToRead", "../../Application/Data/data.txt"},
+                                     {"fileToWrite", "../../Application/Data/dataOut"},
+                                     {"tableStart", "</thead><tbody>"},
+                                     {"tableEnd", "</table><div"},
+                                     {"tableCellLeft", "7pt;\">"},
+                                     {"tableCellRight","</td>"}};
+    Parser test = Parser(example,"false");
+    test.fullParse();
+    qDebug() << "Parsing completed";
 }
 
 
@@ -100,7 +126,9 @@ void Requester::startPScript()
 void Requester::requestData()
 {
     manager = new QNetworkAccessManager(this);
+
     manager->setStrictTransportSecurityEnabled(true);
+
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
 
@@ -169,6 +197,8 @@ void Requester::requestData()
     multiPart->append(param9);
     multiPart->append(param10);
 
+
+    qDebug() << "Post request suoritettu";
     // Post requestin kutsu
     manager->post(request, multiPart);
 }

@@ -25,6 +25,8 @@ class Requester : public QObject
 public:
     explicit Requester(QObject *parent = 0);
 
+    ~Requester();
+
     QString DoRequest(QMap<QString,QString>);
 
 public slots:

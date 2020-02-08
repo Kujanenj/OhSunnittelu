@@ -15,8 +15,8 @@ public:
     /**
      * \brief Parser default constructor
      * \param config  a map containing all the required configs to make a parse
-     * {{"fileToRead", "../../Data/data.txt"},
-     {"fileToWrite", "../../Data/dataOut"},
+     * {{"fileToRead", "../../Application/Data/data.txt"},
+     {"fileToWrite", "../../Application/Data/dataOut,txt"},
      {"tableStart", "</thead><tbody>"},
      {"tableEnd", "</table><div"},
      {"tableCellLeft", "7pt;\">"},

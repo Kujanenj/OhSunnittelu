@@ -74,6 +74,8 @@ void Parser::parseTable()
 
 void Parser::readFile()
 {
+    qDebug() << "Aletaan lukemaan data.txt filua";
+
     if(config_["fileToRead"]=="false"){
         return;
     }
