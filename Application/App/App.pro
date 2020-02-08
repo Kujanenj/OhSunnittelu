@@ -1,4 +1,4 @@
-QT += quick
+QT += quick network
 
 CONFIG += c++11
 
@@ -15,12 +15,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         View/main.cpp \
-        Controller/parser.h \
-        Controller/requester.h
+        Controller/parser.cpp \
+        Controller/requester.cpp
 
 HEADERS += \
-        Controller/requester.cpp \
-        Controller/parser.cpp
+        Controller/requester.h \
+        Controller/parser.h
 
 RESOURCES += \
         View/qml.qrc
