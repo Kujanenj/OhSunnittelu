@@ -17,8 +17,8 @@ private slots:
     void test_failToFindTable();
 
 private:
-    QMap<QString,QString> example = {{"fileToRead", "../../Application/Data/data.txt"},
-                                     {"fileToWrite", "../../Application/Data/dataOut"},
+    QMap<QString,QString> example = {{"fileToRead", "../../../Application/Data/data.txt"},
+                                     {"fileToWrite", "../../../Application/Data/dataOut"},
                                      {"tableStart", "</thead><tbody>"},
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
