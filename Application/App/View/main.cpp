@@ -1,13 +1,17 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <backend.h>
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+
+    //Creating backend and exposing data to the QML components instantiated by the QML engine
+    Backend backend;
+    engine.rootContext()->setContextProperty("backend", &backend);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

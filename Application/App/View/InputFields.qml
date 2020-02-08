@@ -10,8 +10,7 @@ Item {
         id: fieldYear
 
         background: Rectangle {
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         //YEAR OPTIONS
         model: ["Vuosi", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010",
@@ -28,8 +27,7 @@ Item {
         id: fieldDistance
 
         background: Rectangle {
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         //DISTANCE OPTIONS
         model: ["Matka", "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V42", "V32",
@@ -84,8 +82,7 @@ Item {
         id: fieldAge
 
         background: Rectangle {
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         //DISTANCE OPTIONS
         model: ["Ikäsarja", "Kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
@@ -101,8 +98,7 @@ Item {
         id: fieldFirstName
 
         background: Rectangle {
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         font.pointSize: 12
         width: 200
@@ -117,8 +113,7 @@ Item {
         id: fieldLastName
 
         background: Rectangle {
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         font.pointSize: 12
         width: 200
@@ -133,9 +128,7 @@ Item {
         id: fieldPlace
 
         background: Rectangle {
-
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         font.pointSize: 12
         width: 200
@@ -150,8 +143,7 @@ Item {
         id: fieldTeam
 
         background: Rectangle {
-            color: control.enabled ? "transparent" : "#353637"
-            border.color: control.enabled ? "#21be2b" : "transparent"
+            border.color:"#21be2b"
         }
         font.pointSize: 12
         width: 200
@@ -169,6 +161,7 @@ Item {
         anchors.top: fieldTeam.bottom
         onClicked: {
             //välitä hakukriteerit C++ puolelle
+            backend.searchButtonClicked();
         }
     }
 }
