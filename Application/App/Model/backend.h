@@ -24,7 +24,7 @@ public:
 
 
     //Mikä "text"? Parempi nimi tähän plz
-    const QString text();
+    QString text();
     void setText(const QString &text);
 
 signals:

@@ -33,7 +33,7 @@ void Backend::searchButtonClicked()
 
 }
 
-const QString Backend::text(){
+QString Backend::text(){
     return mText;
 }
 
