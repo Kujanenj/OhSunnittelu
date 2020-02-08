@@ -39,6 +39,8 @@ private:
     QString fieldText;
 
     Requester *req;
+
+    std::shared_ptr<Requester> *requester;
 };
 
 #endif // BACKEND_H

@@ -14,15 +14,15 @@ Backend::~Backend()
 void Backend::searchButtonClicked()
 {
     QMap<QString,QString> parameters;
-     parameters.insert("dnn$ctr1025$Etusivu$ddlVuosi2x", "2019");
-     parameters.insert("dnn$ctr1025$Etusivu$ddlMatka2x", "P50");
-     parameters.insert("dnn$ctr1025$Etusivu$ddlIkaluokka2", "kaikki");
-     parameters.insert("dnn$ctr1025$Etusivu$ddlKansalaisuus2x", "");
-     parameters.insert("dnn$ctr1025$Etusivu$chkLstSukupuoli2", "kaikki");
-     parameters.insert("dnn$ctr1025$Etusivu$txtHakuEtunimi2", "Veikko");
-     parameters.insert("dnn$ctr1025$Etusivu$txtHakuSukunimi2", "");
-     parameters.insert("dnn$ctr1025$Etusivu$txtHakuPaikkakunta2", "");
-     parameters.insert("dnn$ctr1025$Etusivu$txtHakuJoukkue2", "");
+     parameters.insert("Vuosi", "2015");
+     parameters.insert("Matka", "P50");
+     parameters.insert("Ikaluokka", "kaikki");
+     parameters.insert("Kansalaisuus", "0");
+     parameters.insert("Sukupuoli", "kaikki");
+     parameters.insert("Etunimi", "Ville");
+     parameters.insert("Sukunimi", "");
+     parameters.insert("Paikkakunta", "");
+     parameters.insert("Joukkue", "");
     qDebug()<< req->DoRequest(parameters);
 
      qDebug() << "Request done";
