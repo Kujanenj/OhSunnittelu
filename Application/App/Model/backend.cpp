@@ -12,35 +12,42 @@ Backend::~Backend()
 }
 
 void Backend::searchButtonClicked(QString startYear, QString endYear,
-                                  QString distance, QString gender,
+                                  QString distance, QString gender, QString ageSeries,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,
                                   QString team)
 {
 
-
-
-    //Debugs for QML user inputs
-    qDebug()<<"vuosi/vuodet: " + startYear + " <-- >" + endYear;
-    qDebug()<<"matka: " + distance;
-    qDebug()<<"sukupuoli: " + gender;
-    qDebug()<<"etunimi: " + firstName;
-    qDebug()<<"sukunimi: " + lastName;
-    qDebug()<<"paikkakunta: " + place;
-    qDebug()<<"kansallisuus: " + nationality.left(2);
-    qDebug()<<"joukkue: " + team;
+    //Condition checks that take out invalid inputs
+    if(gender == ""){
+        gender = "kaikki";
+    }
+    if(ageSeries == "Ikäsarja"){
+        ageSeries = "kaikki";
+    }
+    nationality = nationality.left(2);
+    if(nationality != "Kansallisuus"){
+        nationality = "0";
+    }
 
     QMap<QString,QString> parameters;
-     parameters.insert("Vuosi", "2015");
-     parameters.insert("Matka", "P50");
-     parameters.insert("Ikaluokka", "kaikki");
-     parameters.insert("Kansalaisuus", "0");
-     parameters.insert("Sukupuoli", "kaikki");
-     parameters.insert("Etunimi", "Ville");
-     parameters.insert("Sukunimi", "");
-     parameters.insert("Paikkakunta", "");
-     parameters.insert("Joukkue", "");
-    qDebug()<< req->DoRequest(parameters);
 
+    qDebug()<< startYear + " " + distance + " "
+                    + ageSeries + " " + nationality + " "
+                    +  gender + " " + firstName + " "
+                    + lastName + " " + place + " " + team;
+
+     //Using user input parameters:
+     parameters.insert("Vuosi", startYear);
+     parameters.insert("Matka", distance);
+     parameters.insert("Ikaluokka", ageSeries);
+     parameters.insert("Kansalaisuus", nationality);
+     parameters.insert("Sukupuoli", gender);
+     parameters.insert("Etunimi", firstName);
+     parameters.insert("Sukunimi", lastName);
+     parameters.insert("Paikkakunta", place);
+     parameters.insert("Joukkue", team);
+
+     qDebug()<< req->DoRequest(parameters);
      qDebug() << "Request done";
 }

@@ -22,7 +22,7 @@ public:
 
     //QML Accessible methods:
     Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
-                                         QString distance, QString gender,
+                                         QString distance, QString gender, QString ageSeries,
                                          QString firstName, QString lastName,
                                          QString place, QString nationality,
                                          QString team);
@@ -32,8 +32,6 @@ signals:
 public slots:
 
 private:
-
-    QString fieldText;
     Requester *req;
     std::shared_ptr<Requester> *requester;
 };

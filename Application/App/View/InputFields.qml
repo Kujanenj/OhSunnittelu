@@ -6,25 +6,6 @@ import QtQml 2.3
 
 Item {
 
-    /*
-    //YEAR FIELD
-    ComboBox {
-        id: fieldYear
-
-        background: Rectangle {
-            border.color:"white"
-        }
-        //YEAR OPTIONS
-        model: ["Vuosi", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010",
-                    "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000",
-                    "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990",
-                    "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980",
-                    "1979", "1978", "1977", "1976", "1975", "1974"]
-        font.pointSize: 12
-        width: 200
-    }
-    */
-
     //YEAR FIELD RANGE SLIDER VERSION
     RangeSlider {
 
@@ -113,7 +94,7 @@ Item {
             text: qsTr("Molemmat")
 
             onClicked: {
-                parent: selected.text = "Molemmat"
+                parent: selected.text = "kaikki"
                 checkBoxFemale.checked = false
                 checkBoxMale.checked = false
             }
@@ -124,7 +105,7 @@ Item {
             text: qsTr("Mies")
 
             onClicked: {
-                parent: selected.text = "Mies"
+                parent: selected.text = "M"
                 checkBoxFemale.checked = false
                 checkBoxBoth.checked = false
             }
@@ -135,7 +116,7 @@ Item {
             text: qsTr("Nainen")
 
             onClicked: {
-                parent: selected.text = "Nainen"
+                parent: selected.text = "N"
                 checkBoxBoth.checked = false
                 checkBoxMale.checked = false
             }
@@ -151,7 +132,7 @@ Item {
             border.color:"white"
         }
         //DISTANCE OPTIONS
-        model: ["Ikäsarja", "Kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
+        model: ["Ikäsarja", "kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
                     ">80",]
 
         font.pointSize: 11
@@ -205,11 +186,12 @@ Item {
     ComboBox {
         id: fieldNationality
 
+
         background: Rectangle {
             border.color:"white"
         }
         //YEAR OPTIONS
-        model: ["Kansallisuus", "", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
+        model: ["Kansallisuus", "0", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
                       "DZ - ALGERIA", "AS - AMERICAN SAMOA", "AD - ANDORRA", "AO - ANGOLA",
                       "AI - ANGUILLA", "AQ - ANTARCTICA", "AG - ANTIGUA AND BARBUDA",
                         "AR - ARGENTINA", "AM - ARMENIA", "AW - ARUBA", "AU - AUSTRALIA",
@@ -308,7 +290,7 @@ Item {
             //välitä hakukriteerit C++ puolelle
 
             backend.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
-                                        distances.get(fieldDistance.currentIndex).value, selected.text,
+                                        distances.get(fieldDistance.currentIndex).value, selected.text, fieldAge.currentText,
                                         fieldFirstName.text, fieldLastName.text,
                                         fieldPlace.text, fieldNationality.currentText,
                                         fieldTeam.text);
