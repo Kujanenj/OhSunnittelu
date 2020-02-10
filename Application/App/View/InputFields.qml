@@ -5,12 +5,13 @@ import QtQuick.Layouts 1.3
 
 Item {
 
+    /*
     //YEAR FIELD
     ComboBox {
         id: fieldYear
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         //YEAR OPTIONS
         model: ["Vuosi", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010",
@@ -21,13 +22,40 @@ Item {
         font.pointSize: 12
         width: 200
     }
+    */
+
+    //YEAR FIELD RANGE SLIDER VERSION
+    RangeSlider {
+        y:20
+
+        id:fieldYear
+        from: 1974
+        to: 2019
+        first.value:1974
+        second.value: 2019
+        stepSize: 1
+        snapMode: "SnapAlways"
+
+        Text {
+            id: lowText
+            text: parent.first.value
+            anchors.left: parent.left
+            anchors.bottom: parent.top
+        }
+        Text {
+            id: hiText
+            text: parent.second.value
+            anchors.right: parent.right
+            anchors.bottom: parent.top
+        }
+    }
 
     //DISTANCE FIELD
     ComboBox {
         id: fieldDistance
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         //DISTANCE OPTIONS
         model: ["Matka", "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V42", "V32",
@@ -82,7 +110,7 @@ Item {
         id: fieldAge
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         //DISTANCE OPTIONS
         model: ["Ikäsarja", "Kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
@@ -98,7 +126,7 @@ Item {
         id: fieldFirstName
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         font.pointSize: 12
         width: 200
@@ -113,7 +141,7 @@ Item {
         id: fieldLastName
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         font.pointSize: 12
         width: 200
@@ -128,7 +156,7 @@ Item {
         id: fieldPlace
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         font.pointSize: 12
         width: 200
@@ -138,16 +166,30 @@ Item {
         onTextChanged: backend.text = text
     }
 
+    //NATIONALITY FIELD
+    ComboBox {
+        id: fieldNationality
+
+        background: Rectangle {
+            border.color:"white"
+        }
+        //YEAR OPTIONS
+        model: ["Kansallisuus", "Kaikki"]
+        font.pointSize: 12
+        width: 200
+        anchors.top: fieldPlace.bottom
+    }
+
     //TEAM NAME FIELD
     TextField {
         id: fieldTeam
 
         background: Rectangle {
-            border.color:"#21be2b"
+            border.color:"white"
         }
         font.pointSize: 12
         width: 200
-        anchors.top: fieldPlace.bottom
+        anchors.top: fieldNationality.bottom
         placeholderText: "Joukkue"
         renderType: Text.QtRendering
         onTextChanged: backend.text = text

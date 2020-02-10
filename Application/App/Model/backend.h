@@ -3,6 +3,7 @@
 #include <QString>
 #include <QObject>
 #include "Controller/requester.h"
+#include <QMap>
 
 /**
  * @brief The Backend class Kommentoikaa kaikki metodit. Laittakaa myös kommentteja tonne koodin puolelle tärkeisiin kohtiin. Jos siis tarvii
@@ -33,6 +34,7 @@ signals:
 public slots:
 
 private:
+
     QString mText;
     //void setFieldText(QString value);
 
