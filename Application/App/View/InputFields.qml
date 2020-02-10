@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
+import QtQml 2.3
 
 Item {
 
@@ -69,6 +70,11 @@ Item {
 
     //GENDER FIELD
     RowLayout {
+        Text {
+            id: selected
+            text: ""
+        }
+
         id: fieldGender
         anchors.top: fieldDistance.bottom
 
@@ -78,6 +84,7 @@ Item {
             text: qsTr("Molemmat")
 
             onClicked: {
+                parent: selected.text = "Molemmat"
                 checkBoxFemale.checked = false
                 checkBoxMale.checked = false
             }
@@ -88,11 +95,13 @@ Item {
             text: qsTr("Mies")
 
             onClicked: {
+                parent: selected.text = "Mies"
                 checkBoxFemale.checked = false
                 checkBoxBoth.checked = false
             }
         }
         CheckBox {
+            parent: selected.text = "Nainen"
             id: checkBoxFemale
             checked: false
             text: qsTr("Nainen")
@@ -203,7 +212,12 @@ Item {
         anchors.top: fieldTeam.bottom
         onClicked: {
             //välitä hakukriteerit C++ puolelle
-            backend.searchButtonClicked();
+
+            backend.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
+                                        fieldDistance.currentValue, selected.text,
+                                        fieldFirstName.text, fieldLastName.text,
+                                        fieldPlace.text, fieldNationality.currentValue,
+                                        fieldTeam.text);
         }
     }
 }

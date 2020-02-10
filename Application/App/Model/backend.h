@@ -21,7 +21,11 @@ public:
     ~Backend();
 
     //QML Accessible methods:
-    Q_INVOKABLE void searchButtonClicked();
+    Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
+                                         QString distance, QString gender,
+                                         QString firstName, QString lastName,
+                                         QString place, QString nationality,
+                                         QString team);
 
 
     //Mikä "text"? Parempi nimi tähän plz

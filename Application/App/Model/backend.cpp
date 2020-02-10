@@ -11,8 +11,21 @@ Backend::~Backend()
     qDebug()<<"back end poistettu";
 }
 
-void Backend::searchButtonClicked()
+void Backend::searchButtonClicked(QString startYear, QString endYear,
+                                  QString distance, QString gender,
+                                  QString firstName, QString lastName,
+                                  QString place, QString nationality,
+                                  QString team)
 {
+    QString year = startYear + endYear;
+    qDebug()<<"vuosi: " + year;
+    qDebug()<<"matka: " + distance;
+    qDebug()<<"sukupuoli: " + gender;
+    qDebug()<<"etunimi: " + firstName;
+    qDebug()<<"sukunimi: " + lastName;
+    qDebug()<<"paikkakunta: " + place;
+    qDebug()<<"kansallisuus: " + nationality;
+    qDebug()<<"joukkue: " + team;
     QMap<QString,QString> parameters;
      parameters.insert("Vuosi", "2015");
      parameters.insert("Matka", "P50");
