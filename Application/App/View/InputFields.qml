@@ -73,6 +73,8 @@ Item {
         Text {
             id: selected
             text: ""
+            visible: false
+            anchors.left: parent.right
         }
 
         id: fieldGender
@@ -101,12 +103,12 @@ Item {
             }
         }
         CheckBox {
-            parent: selected.text = "Nainen"
             id: checkBoxFemale
             checked: false
             text: qsTr("Nainen")
 
             onClicked: {
+                parent: selected.text = "Nainen"
                 checkBoxBoth.checked = false
                 checkBoxMale.checked = false
             }
