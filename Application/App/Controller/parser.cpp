@@ -2,10 +2,10 @@
 
 
 
-Parser::Parser(QMap<QString, QString> config, QString dataToParse)
+Parser::Parser(QMap<QString, QString> config, QString& dataToParse) : unparsedDataTotal_(dataToParse)
 {
     config_ = config;
-    unparsedDataTotal_ = dataToParse;
+
 }
 
 QString Parser::fullParse()
@@ -45,7 +45,7 @@ void Parser::parseToTable()
 
 void Parser::parseTable()
 {
-
+   QString parsedData = "";
    int left=0;
    int right=0;
    for(int i = 0; i<=unparsedDataTotal_.length();i++){ //search for these occurencses, and save the stuff in between.
@@ -61,20 +61,23 @@ void Parser::parseTable()
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
 
-   returnMessage_ = parsedData;
+   unparsedDataTotal_=parsedData;
 
+
+    if(config_["fileToWrite"]!="false"){
     QFile file("../../Application/Data/DataOut.txt");
     if(file.open(QIODevice::WriteOnly)){
         QTextStream stream(&file);
         stream<<parsedData;
-    }
+    }}
 }
 
 void Parser::readFile()
 {
-    qDebug() << "Aletaan lukemaan data.txt filua";
+    qDebug() << "Aletaan lukemaan data.txt filua t parseri";
 
     if(config_["fileToRead"]=="false"){
+        qDebug()<<"Häähää ei luettukaa";
         return;
     }
     QFile file(config_["fileToRead"]);

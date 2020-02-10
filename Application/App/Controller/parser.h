@@ -5,7 +5,7 @@
 #include <QMap>
 #include <QDir>
 /*!
- * \brief The Parser class parses the finlandiahiihtoSivu. Writes parsed table data a txt file.
+ * \brief The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt file if nessecary
  *
  */
 class Parser
@@ -22,7 +22,7 @@ public:
      {"tableCellLeft", "7pt;\">"},
      {"tableCellRight","<"}};
      */
-    Parser(QMap<QString,QString> config, QString dataToParse);
+    Parser(QMap<QString,QString> config, QString& dataToParse);
 
     /**
      * \brief fullParse calls all other private methods
@@ -34,7 +34,7 @@ public:
 private:
 
     /**
-     * \brief readFile saves filedata to unparsedDataTotal
+     * \brief optionally reads a txt file containing the data
 
      */
    void readFile();
@@ -45,14 +45,14 @@ private:
     void parseToTable();
 
     /**
-     * \brief parseTable does the final parsing, and writes the complete data to a txt file.
+     * \brief parseTable does the final parsing, and writes the complete data to a txt file if requested.
      */
     void parseTable();
 
-    QString unparsedDataTotal_ = "";
-    QString parsedData = "";
+    QString &unparsedDataTotal_;
+
     QMap <QString, QString> config_;
-    QString returnMessage_ = ";)";
+    QString returnMessage_ = "Parse onnistui";
 
 };
 

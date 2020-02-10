@@ -1,4 +1,5 @@
 #include "requester.h"
+#include "QTextCodec"
 
 Requester::Requester(QObject *parent)
     : QObject(parent),
@@ -42,7 +43,15 @@ void Requester::replyFinished(QNetworkReply *reply)
         qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
     }
 
-    qDebug() << "Kirjoitetaan data.txt filu";
+
+       QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
+
+/*
+       QFile file2("../../Application/Data/DataString.txt");
+       if(file2.open(QIODevice::WriteOnly)){
+           QTextStream stream(&file2);
+           stream<<DataAsString;
+       }
 
     QFile *file = new QFile("../../Application/Data/data.txt");
     if(file->open(QIODevice::ReadWrite)){
@@ -50,18 +59,21 @@ void Requester::replyFinished(QNetworkReply *reply)
         file->close();
     }
 
-    file->deleteLater();
+    */
+
+
 
     reply->deleteLater();
 
-    QMap<QString,QString> example = {{"fileToRead", "../../Application/Data/data.txt"},
-                                     {"fileToWrite", "../../Application/Data/dataOut"},
+    QMap<QString,QString> example = {{"fileToRead", "false"}, //false = "älä lue mitää"
+                                     {"fileToWrite", "false"},//false = "älä kirjota mitää"
                                      {"tableStart", "</thead><tbody>"},
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","</td>"}};
-    Parser test = Parser(example,"false");
-    test.fullParse();
+    Parser test = Parser(example,DataAsString);
+    test.fullParse(); //
+
     qDebug() << "Parsing completed";
     //delete this;
 }
