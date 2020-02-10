@@ -2,14 +2,16 @@
 
 
 
-Parser::Parser(QMap<QString, QString> config, QString& dataToParse) : unparsedDataTotal_(dataToParse)
+Parser::Parser()
 {
-    config_ = config;
+
 
 }
 
-QString Parser::fullParse()
+QString Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
 {
+    config_=config;
+    unparsedDataTotal_=dataToParse;
     try {
 
         readFile();
@@ -19,7 +21,9 @@ QString Parser::fullParse()
          std::move(msg);
     }
     qDebug()<<returnMessage_;
+    dataToParse=unparsedDataTotal_;
     return returnMessage_;
+
 }
 
 void Parser::parseToTable()
@@ -70,6 +74,7 @@ void Parser::parseTable()
         QTextStream stream(&file);
         stream<<parsedData;
     }}
+
 }
 
 void Parser::readFile()

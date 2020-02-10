@@ -22,14 +22,14 @@ public:
      {"tableCellLeft", "7pt;\">"},
      {"tableCellRight","<"}};
      */
-    Parser(QMap<QString,QString> config, QString& dataToParse);
+    Parser();
 
     /**
      * \brief fullParse calls all other private methods
 
      * \return The return msg of the parse. Success or fail
      */
-    QString fullParse();
+    QString fullParse(QMap<QString,QString> config, QString& dataToParse);
 
 private:
 
@@ -49,7 +49,7 @@ private:
      */
     void parseTable();
 
-    QString &unparsedDataTotal_;
+    QString unparsedDataTotal_;
 
     QMap <QString, QString> config_;
     QString returnMessage_ = "Parse onnistui";

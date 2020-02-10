@@ -71,9 +71,9 @@ void Requester::replyFinished(QNetworkReply *reply)
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","</td>"}};
-    Parser test = Parser(example,DataAsString);
-    test.fullParse(); //
-
+    Parser test = Parser();
+    test.fullParse(example,DataAsString);
+    qDebug()<<"DATA AS STRING"<<DataAsString;
     qDebug() << "Parsing completed";
     //delete this;
 }
