@@ -216,9 +216,9 @@ Item {
             //välitä hakukriteerit C++ puolelle
 
             backend.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
-                                        fieldDistance.currentValue, selected.text,
+                                        fieldDistance.currentText, selected.text,
                                         fieldFirstName.text, fieldLastName.text,
-                                        fieldPlace.text, fieldNationality.currentValue,
+                                        fieldPlace.text, fieldNationality.currentText,
                                         fieldTeam.text);
         }
     }

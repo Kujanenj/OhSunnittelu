@@ -4,6 +4,7 @@
 #include <QObject>
 #include "Controller/requester.h"
 #include <QMap>
+#include <memory>
 
 /**
  * @brief The Backend class Kommentoikaa kaikki metodit. Laittakaa myös kommentteja tonne koodin puolelle tärkeisiin kohtiin. Jos siis tarvii
