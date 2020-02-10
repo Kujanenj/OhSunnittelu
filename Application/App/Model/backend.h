@@ -14,7 +14,6 @@
 class Backend : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
 
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -28,25 +27,14 @@ public:
                                          QString place, QString nationality,
                                          QString team);
 
-
-    //Mikä "text"? Parempi nimi tähän plz
-    QString text();
-    void setText(const QString &text);
-
 signals:
-    void textChanged(const QString & text);
 
 public slots:
 
 private:
 
-    QString mText;
-    //void setFieldText(QString value);
-
     QString fieldText;
-
     Requester *req;
-
     std::shared_ptr<Requester> *requester;
 };
 
