@@ -74,6 +74,7 @@ void Requester::replyFinished(QNetworkReply *reply)
     Parser test = Parser();
     test.fullParse(example,DataAsString);
     qDebug()<<"DATA AS STRING"<<DataAsString;
+    qDebug() << DataAsString;
     qDebug() << "Parsing completed";
     //delete this;
 }
@@ -129,11 +130,20 @@ void Requester::requestData()
     param8.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlIkaluokka2\"");
     param8.setBody(parameters_.value("Ikaluokka").toUtf8());
     QHttpPart param9;
-    param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlKansalaisuus2x\"");
-    param9.setBody(parameters_.value("Kansalaisuus").toUtf8());
+    param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuEtunimi2\"");
+    param9.setBody(parameters_.value("Etunimi").toUtf8());
     QHttpPart param10;
-    param10.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuEtunimi2\"");
-    param10.setBody(parameters_.value("Etunimi").toUtf8());
+    param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuSukunimi2\"");
+    param9.setBody(parameters_.value("Sukunimi").toUtf8());
+    QHttpPart param11;
+    param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuPaikkakunta2\"");
+    param9.setBody(parameters_.value("Paikkakunta").toUtf8());
+    QHttpPart param12;
+    param12.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlKansalaisuus2x\"");
+    param12.setBody(parameters_.value("Kansalaisuus").toUtf8());
+    QHttpPart param13;
+    param13.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuJoukkue2\"");
+    param13.setBody(parameters_.value("Joukkue").toUtf8());
 
     // Parametrien lisäys multiparttiin
     multiPart->append(referer);
@@ -150,7 +160,9 @@ void Requester::requestData()
     multiPart->append(param8);
     multiPart->append(param9);
     multiPart->append(param10);
-
+    multiPart->append(param11);
+    multiPart->append(param12);
+    multiPart->append(param13);
 
     qDebug() << "Post request suoritettu";
     // Post requestin kutsu

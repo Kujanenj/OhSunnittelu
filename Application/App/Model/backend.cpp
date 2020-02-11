@@ -32,10 +32,15 @@ void Backend::searchButtonClicked(QString startYear, QString endYear,
 
     QMap<QString,QString> parameters;
 
-    qDebug()<< startYear + " " + distance + " "
-                    + ageSeries + " " + nationality + " "
-                    +  gender + " " + firstName + " "
-                    + lastName + " " + place + " " + team;
+    qDebug() << " Vuosi: " << startYear << "\n"
+             << "Matka: " << distance << "\n"
+             << "Sukupuoli: " << gender << "\n"
+             << "Ikäsarja: " << ageSeries << "\n"
+             << "Etunimi: " << firstName << "\n"
+             << "Sukunimi: " << lastName << "\n"
+             << "Paikkakunta: " << place << "\n"
+             << "Kansallisuus: " << nationality << "\n"
+             << "Joukkue: " << team << "\n";
 
      //Using user input parameters:
      parameters.insert("Vuosi", startYear);

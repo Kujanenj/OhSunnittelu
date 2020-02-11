@@ -14,7 +14,7 @@ Item {
         id:fieldYear
         from: 1974
         to: 2019
-        first.value:1974
+        first.value: 2019
         second.value: 2019
         stepSize: 1
         snapMode: "SnapAlways"
@@ -88,9 +88,9 @@ Item {
         id: fieldGender
         anchors.top: fieldDistance.bottom
 
-        CheckBox {
+        RadioButton {
             id: checkBoxBoth
-            checked: false
+            checked: true
             text: qsTr("Molemmat")
 
             onClicked: {
@@ -99,7 +99,7 @@ Item {
                 checkBoxMale.checked = false
             }
         }
-        CheckBox {
+        RadioButton {
             id: checkBoxMale
             checked: false
             text: qsTr("Mies")
@@ -110,7 +110,7 @@ Item {
                 checkBoxBoth.checked = false
             }
         }
-        CheckBox {
+        RadioButton {
             id: checkBoxFemale
             checked: false
             text: qsTr("Nainen")
