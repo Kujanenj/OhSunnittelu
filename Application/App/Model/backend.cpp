@@ -17,7 +17,6 @@ void Backend::searchButtonClicked(QString startYear, QString endYear,
                                   QString place, QString nationality,
                                   QString team)
 {
-
     //Condition checks that take out invalid inputs
     if(gender == ""){
         gender = "kaikki";
@@ -25,10 +24,11 @@ void Backend::searchButtonClicked(QString startYear, QString endYear,
     if(ageSeries == "Ikäsarja"){
         ageSeries = "kaikki";
     }
-    nationality = nationality.left(2);
-    if(nationality != "Kansallisuus"){
+
+    if(nationality == "Kansallisuus"){
         nationality = "0";
     }
+    nationality = nationality.left(2);
 
     QMap<QString,QString> parameters;
 
