@@ -133,11 +133,11 @@ void Requester::requestData()
     param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuEtunimi2\"");
     param9.setBody(parameters_.value("Etunimi").toUtf8());
     QHttpPart param10;
-    param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuSukunimi2\"");
-    param9.setBody(parameters_.value("Sukunimi").toUtf8());
+    param10.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuSukunimi2\"");
+    param10.setBody(parameters_.value("Sukunimi").toUtf8());
     QHttpPart param11;
-    param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuPaikkakunta2\"");
-    param9.setBody(parameters_.value("Paikkakunta").toUtf8());
+    param11.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuPaikkakunta2\"");
+    param11.setBody(parameters_.value("Paikkakunta").toUtf8());
     QHttpPart param12;
     param12.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlKansalaisuus2x\"");
     param12.setBody(parameters_.value("Kansalaisuus").toUtf8());
