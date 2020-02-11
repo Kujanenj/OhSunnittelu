@@ -17,6 +17,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QHttpMultiPart>
+#include "memory"
 
 /**
  * @brief The Requester class
@@ -57,6 +58,8 @@ private:
 
     QNetworkAccessManager *manager;
     QMap<QString, QString> parameters_;
+    std::shared_ptr<Parser> parser=nullptr;
+    std::shared_ptr<QNetworkRequest> request=nullptr;
 };
 
 #endif // REQUESTER_H

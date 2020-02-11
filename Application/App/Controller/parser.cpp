@@ -8,7 +8,7 @@ Parser::Parser()
 
 }
 
-QString Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
+void Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
 {
     config_=config;
     unparsedDataTotal_=dataToParse;
@@ -18,11 +18,12 @@ QString Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
         parseToTable();
         parseTable();
     } catch (QString msg) {
-         std::move(msg);
+         qDebug()<<msg;
+         return;
     }
-    qDebug()<<returnMessage_;
+
     dataToParse=unparsedDataTotal_;
-    return returnMessage_;
+
 
 }
 

@@ -29,7 +29,7 @@ public:
 
      * \return The return msg of the parse. Success or fail
      */
-    QString fullParse(QMap<QString,QString> config, QString& dataToParse);
+   void fullParse(QMap<QString,QString> config, QString& dataToParse);
 
 private:
 
