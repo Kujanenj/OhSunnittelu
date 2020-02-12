@@ -289,7 +289,7 @@ Item {
         onClicked: {
             //välitä hakukriteerit C++ puolelle
 
-            backend.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
+            datamanager.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
                                         distances.get(fieldDistance.currentIndex).value, selected.text, fieldAge.currentText,
                                         fieldFirstName.text, fieldLastName.text,
                                         fieldPlace.text, fieldNationality.currentText,

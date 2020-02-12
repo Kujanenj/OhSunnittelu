@@ -27,6 +27,12 @@ class Requester : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Requester
+     * Initializes manager, parser and requester objects
+     * and makes connection between manager and reply
+     * @param parent
+     */
     explicit Requester(QObject *parent = 0);
 
     ~Requester();
@@ -58,8 +64,9 @@ private:
 
     QNetworkAccessManager *manager;
     QMap<QString, QString> parameters_;
-    std::shared_ptr<Parser> parser=nullptr;
-    std::shared_ptr<QNetworkRequest> request=nullptr;
+    std::shared_ptr<Parser> parser = nullptr;
+    std::shared_ptr<QNetworkRequest> request = nullptr;
+    std::shared_ptr<QHttpMultiPart> multiPart = nullptr;
 };
 
 #endif // REQUESTER_H

@@ -1,17 +1,18 @@
-#include "backend.h"
+#include "datamanager.h"
 #include <QDebug>
 
-Backend::Backend(QObject *parent) : QObject(parent)
+Datamanager::Datamanager(QObject *parent) : QObject(parent)
 {
-    req = new Requester;
+    req = std::make_shared<Requester>();
+    qDebug() << "Datamanager luotu";
 }
 
-Backend::~Backend()
+Datamanager::~Datamanager()
 {
-    qDebug()<<"back end poistettu";
+    qDebug()<<"Datamanager poistettu";
 }
 
-void Backend::searchButtonClicked(QString startYear, QString endYear,
+void Datamanager::searchButtonClicked(QString startYear, QString endYear,
                                   QString distance, QString gender, QString ageSeries,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,

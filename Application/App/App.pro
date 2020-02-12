@@ -14,15 +14,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Model/datamanager.cpp \
         View/main.cpp \
         Controller/parser.cpp \
-        Controller/requester.cpp \
-        Model/backend.cpp
+        Controller/requester.cpp
 
 HEADERS += \
         Controller/requester.h \
         Controller/parser.h \
-        Model/backend.h
+        Model/datamanager.h
 
 RESOURCES += \
         View/qml.qrc

@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <Model/backend.h>
+#include <Model/datamanager.h>
 #include <QQmlContext>
 
 int main(int argc, char *argv[])
@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     //Creating backend and exposing data to the QML components instantiated by the QML engine
-    Backend backend;
-    engine.rootContext()->setContextProperty("backend", &backend);
+    Datamanager datamanager;
+    engine.rootContext()->setContextProperty("datamanager", &datamanager);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

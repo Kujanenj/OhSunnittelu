@@ -1,5 +1,5 @@
-#ifndef BACKEND_H
-#define BACKEND_H
+#ifndef DATAMANAGER_H
+#define DATAMANAGER_H
 #include <QString>
 #include <QObject>
 #include "Controller/requester.h"
@@ -7,18 +7,19 @@
 #include <memory>
 
 /**
- * @brief The Backend class Kommentoikaa kaikki metodit. Laittakaa myös kommentteja tonne koodin puolelle tärkeisiin kohtiin. Jos siis tarvii
+ * @brief The Datamanager class
+ * Kommentoikaa kaikki metodit. Laittakaa myös kommentteja tonne koodin puolelle tärkeisiin kohtiin. Jos siis tarvii
  * Try catchit myös mahdollisiin kohtiin mihi voi tulla virheitä
  */
 
-class Backend : public QObject
+class Datamanager : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit Backend(QObject *parent = nullptr);
+    explicit Datamanager(QObject *parent = nullptr);
 
-    ~Backend();
+    ~Datamanager();
 
     //QML Accessible methods:
     Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
@@ -32,8 +33,8 @@ signals:
 public slots:
 
 private:
-    Requester *req;
-    std::shared_ptr<Requester> *requester;
+    //Requester *req;
+    std::shared_ptr<Requester> req;
 };
 
-#endif // BACKEND_H
+#endif // DATAMANAGER_H

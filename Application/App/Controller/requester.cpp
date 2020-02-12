@@ -5,15 +5,20 @@ Requester::Requester(QObject *parent)
     : QObject(parent),
       manager(new QNetworkAccessManager)
 {
-    parser=std::make_shared<Parser>();
+    parser = std::make_shared<Parser>();
+
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
+
     QUrl url("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto");
-     request=std::make_shared<QNetworkRequest>(url);
+    request = std::make_shared<QNetworkRequest>(url);
+
+    qDebug() << "Requester luotu";
 }
 
 Requester::~Requester()
 {
+    delete manager;
     qDebug() << "Requester poistettu";
 }
 
@@ -49,14 +54,14 @@ void Requester::replyFinished(QNetworkReply *reply)
     }
 
 
-       QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
+    QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
 
-/*
-       QFile file2("../../Application/Data/DataString.txt");
-       if(file2.open(QIODevice::WriteOnly)){
-           QTextStream stream(&file2);
-           stream<<DataAsString;
-       }
+    /*
+    QFile file2("../../Application/Data/DataString.txt");
+    if(file2.open(QIODevice::WriteOnly)){
+        QTextStream stream(&file2);
+        stream<<DataAsString;
+    }
 
     QFile *file = new QFile("../../Application/Data/data.txt");
     if(file->open(QIODevice::ReadWrite)){
@@ -65,8 +70,6 @@ void Requester::replyFinished(QNetworkReply *reply)
     }
 
     */
-
-
 
     reply->deleteLater();
 
@@ -81,21 +84,17 @@ void Requester::replyFinished(QNetworkReply *reply)
 
     qDebug() << DataAsString;
     qDebug() << "Parsing completed";
-    //delete this;
 }
 
-//Tänne vois kans vähä noita kommentteja :D ja try catchia
 void Requester::requestData()
 {
+    // Korvaa http pyynnöt https
     manager->setStrictTransportSecurityEnabled(true);
 
+    multiPart = std::make_shared<QHttpMultiPart>();
 
-
-
-
-    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
-    multiPart->setBoundary("---------------------------2585936866077");
-    request->setHeader(QNetworkRequest::ContentTypeHeader, "multipart/form-data; boundary=" + multiPart->boundary());
+    // Asettaa multipartin käyttämään form-dataa
+    multiPart->setContentType(QHttpMultiPart::FormDataType);
 
     // Response headers
     QHttpPart referer;
@@ -123,30 +122,24 @@ void Requester::requestData()
     QHttpPart param5;
     param5.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlVuosi2x\"");
     param5.setBody(parameters_.value("Vuosi").toUtf8());
-    qDebug()<<parameters_.value("Vuosi").toUtf8();
     QHttpPart param6;
     param6.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlMatka2x\"");
     param6.setBody(parameters_.value("Matka").toUtf8());
     QHttpPart param7;
-     qDebug()<<parameters_.value("Matka").toUtf8();
     param7.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$chkLstSukupuoli2\"");
     param7.setBody(parameters_.value("Sukupuoli").toUtf8());
     QHttpPart param8;
-     qDebug()<<parameters_.value("Sukupuoli").toUtf8();
     param8.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlIkaluokka2\"");
     param8.setBody(parameters_.value("Ikaluokka").toUtf8());
     QHttpPart param9;
-     qDebug()<<parameters_.value("Ikaluokka").toUtf8();
     param9.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuEtunimi2\"");
     param9.setBody(parameters_.value("Etunimi").toUtf8());
     QHttpPart param10;
-
     param10.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuSukunimi2\"");
     param10.setBody(parameters_.value("Sukunimi").toUtf8());
     QHttpPart param11;
     param11.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuPaikkakunta2\"");
     param11.setBody(parameters_.value("Paikkakunta").toUtf8());
-
     QHttpPart param12;
     param12.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$ddlKansalaisuus2x\"");
     param12.setBody(parameters_.value("Kansalaisuus").toUtf8());
@@ -173,8 +166,9 @@ void Requester::requestData()
     multiPart->append(param12);
     multiPart->append(param13);
 
+    // Post request
+    manager->post(*request, multiPart.get());
+
     qDebug() << "Post request suoritettu";
-    // Post requestin kutsu
-    manager->post(*request, multiPart);
 }
 
