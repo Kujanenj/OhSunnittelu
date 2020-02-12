@@ -29,7 +29,8 @@ simpleTests::~simpleTests()
 void simpleTests::test_case1()
 {
     testHandler=std::make_shared<DataHandler>();
-    testHandler->formMap();
+    QString empty="";
+    testHandler->formMap(empty);
 
 }
 

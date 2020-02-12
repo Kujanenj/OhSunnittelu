@@ -1,17 +1,20 @@
 #include "datahandler.h"
 #include <QDebug>
+#include <QStringList>
 DataHandler::DataHandler()
 {
 
 }
 
-bool DataHandler::formMap()
+bool DataHandler::formMap(QString& data)
 {
-    QString datatest="";
- return simpleRead(datatest);
+   data_=data;
+  simpleRead();
+  Dissasemply();
+  return true;
 }
 
-bool DataHandler::simpleRead(QString data)
+bool DataHandler::simpleRead()
 {
 
     QFile file("testDataParsed.txt");
@@ -24,8 +27,37 @@ bool DataHandler::simpleRead(QString data)
     while (!file.atEnd()) {
 
            QString line = file.readLine();
-          data.append(line);
+          data_.append(line);
         }
-    qDebug()<<data;
+
     return true;
+}
+
+void DataHandler::Dissasemply()
+{
+
+
+    QVector<QString> insertionVector;
+    QStringList lista=data_.split("$");
+    for(int i=0; i<lista.size(); i++){
+
+        insertionVector.append(lista.at(i));
+        if(i%12==11 ){
+
+         initialVector_.append(insertionVector);
+         insertionVector.clear();
+        }
+
+    }
+    qDebug()<<initialVector_;
+
+
+
+
+
+}
+
+void DataHandler::assembleMap(QString config)
+{
+
 }

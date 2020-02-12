@@ -18,7 +18,7 @@ private slots:
 
 private:
     QMap<QString,QString> example = {{"fileToRead", "testDataUnParsed.txt"},
-                                     {"fileToWrite", "false"},
+                                     {"fileToWrite", "testDataParsed.txt"},
                                      {"tableStart", "</thead><tbody>"},
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},

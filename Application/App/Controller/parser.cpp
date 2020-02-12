@@ -62,7 +62,8 @@ void Parser::parseTable()
    if(left == 0 || right ==0){
        throw "ERROR parsing the table";
    }
-   parsedData.replace("</td>>",";"); //replace delimeter
+
+   parsedData.replace("</td>>","$"); //replace delimeter
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
 
