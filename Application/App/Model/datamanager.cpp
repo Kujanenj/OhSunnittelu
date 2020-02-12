@@ -70,7 +70,7 @@ QString Datamanager::getNumber()
 
            int x = 7;
            while(x > 6)
-               x = 1 + std::rand()/((RAND_MAX + 1u)/2);  // Note: 1+rand()%6 is biased
+               x = 1 + std::rand()/((RAND_MAX + 1u)/6);  // Note: 1+rand()%6 is biased
 
     QString string="images/";
     string=string+QString::number(x)+".jpg";

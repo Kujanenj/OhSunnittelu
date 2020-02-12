@@ -6,5 +6,8 @@
         <file>images/1.jpg</file>
         <file>images/3.jpg</file>
         <file>images/2.jpg</file>
+        <file>images/4.png</file>
+        <file>images/5.jpg</file>
+        <file>images/6.jpg</file>
     </qresource>
 </RCC>
