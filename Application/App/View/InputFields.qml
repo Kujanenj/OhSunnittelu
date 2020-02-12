@@ -5,12 +5,14 @@ import QtQuick.Layouts 1.3
 import QtQml 2.3
 
 Item {
+    id: element
 
     //YEAR FIELD RANGE SLIDER VERSION
     RangeSlider {
 
         y:20
         width: 250
+        visible: true
         id:fieldYear
         from: 1974
         to: 2019
@@ -74,6 +76,7 @@ Item {
 
         font.pointSize: 11
         width: 250
+        visible: true
         anchors.top: fieldYear.bottom
     }
 
@@ -82,10 +85,11 @@ Item {
         Text {
             id: selected
             text: ""
-            visible: false
+            visible: true
         }
 
         id: fieldGender
+        visible: true
         anchors.top: fieldDistance.bottom
 
         RadioButton {
@@ -133,10 +137,11 @@ Item {
         }
         //DISTANCE OPTIONS
         model: ["Ikäsarja", "kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
-                    ">80",]
+            ">80",]
 
         font.pointSize: 11
         width: 250
+        visible: true
         anchors.top: fieldGender.bottom
     }
 
@@ -163,6 +168,7 @@ Item {
         }
         font.pointSize: 11
         width: 250
+        visible: true
         anchors.top: fieldFirstName.bottom
         placeholderText: "Sukunimi"
         renderType: Text.QtRendering
@@ -192,75 +198,75 @@ Item {
         }
         //YEAR OPTIONS
         model: ["Kansallisuus", "0", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
-                      "DZ - ALGERIA", "AS - AMERICAN SAMOA", "AD - ANDORRA", "AO - ANGOLA",
-                      "AI - ANGUILLA", "AQ - ANTARCTICA", "AG - ANTIGUA AND BARBUDA",
-                        "AR - ARGENTINA", "AM - ARMENIA", "AW - ARUBA", "AU - AUSTRALIA",
-                        "AT - AUSTRIA", "AZ - AZERBAIJAN", "BS - BAHAMAS", "BH -BAHRAIN",
-                        "BD - BANGLADESH", "BB - BARBADOS", "BY - BELARUS", "BE - BELGIUM",
-                        "BZ - BELIZE", "BJ - BENIN", "BM - BERMUDA", "BT - BHUTAN", "BO - BOLIVIA",
-                        "BA - BOSNIA AND HERZEGOVINA", "BW - BOTSWANA", "BV - BOUVET ISLAND",
-                        "BR - BRASIL", "IO - BRITISH INDIAN OCEAN TERRITORY", "BN - BRUNEI DARUSSALAM",
-                        "BG - BULGARIA", "BF - BURKINA FASO", "BI - BURUNDI", "KH - CAMBODIA", "CM - CAMEROON",
-                        "CA - CANADA", "CV - CAPE VERDE", "KY - CAYMAN ISLANDS", "CF - CENTRAL AFRICAN REPUBLIC",
-                        "TD - CHAD", "CL - CHILE", "CN - CHINA", "CX - cHRISTMAS ISLAND", "CC - COCOS (KEELING) ISLANDS",
-                        "CO - COLOMBIA", "KM - COMOROS", "CG - CONGO", "CD - CONGO", "CK - COOK ISLANDS",
-                        "CR - COSTA RICA", "CI - COTE DIVOIRE", "HR - CROATIA", "CU - CUBA", "CY - CYPRUS",
-                        "CZ - CZECH REPUBLIC", "DK - DENMARK", "DJ -DJIBOUTI", "DM - DOMINICA",
-                        "DO - DOMINICAN REPUBLIC", "EC -ECUADOR", "EG - EGYPT", "SV - EL SALVADOR",
-                        "GQ - EQUATORIAL GUINEA", "ER - ERITREA", "EE - ESTONIA", "ET - ETHIOPIA",
-                        "FK - FALKLAND ISLANDS (MALVINAS)", "FO - FAROE ISLANDS", "FJ - FIJI",
-                        "FI - FINLAND", "FR - FRANCE", "GF - FRENCH GUIANA", "PF - FRENCH POLYNESIA",
-                        "TF - FRENCH SOUTHERN TERRITORIES", "GA - GABON", "GM - GAMBIA",
-                        "GE - GEORGIA", "DE - GERMANY", "GH - GHANA", "GI - GIBRALTAR",
-                        "GR - GREECE", "GL - GREENLAND", "GD - GRENADA", "GP - GUADELOUPE",
-                        "GU - GUAM", "GT - GUATEMALA", "GG - GUERNSEY", "GN - GUINEA",
-                        "GW - GUINEA-BISSAU", "GY - GUYANA", "HT - HAITI",
-                        "HM - Heard Island and Mcdonald Islands",
-                        "VA - HOLY SEE (VATICAN CITY STATE)", "HN - HONDURAS",
-                        "HK - HONG KONG", "HU - HUNGARY", "IS - ICELAND", "IN - INDIA",
-                        "ID - INDONESIA", "IR - IRAN", "IQ - IRAQ", "IE - IRELAND",
-                        "IM - ISLE OF MAN", "IL - ISRAEL", "IT - ITALY", "JM - JAMAICA", "JP - JAPAN",
-                        "JE - JERSEY", "JO - JORDAN", "KZ - KAZAKHSTAN", "KE - KENYA",
-                        "KI - KIRIBATI", "KP - KOREA, Democratic People's Republic of",
-                        "KR - KOREA, REPUBLIC OF", "KW - KUWAIT", "KG - KYRGUZSTAN",
-                        "LA - LAO PEOPLE'S DEMOCRATIC REPUBLIC", "LV - LATVIA", "LB - LEBANON",
-                        "LS - LESOTHO", "LR - LIBERIA", "LY - LIBYAN ARAB JAMAHIRIYA",
-                        "LI - LIECHTENSTEIN", "LT - LITHUANIA", "LU - LUXEMBOURG", "MO - MACAO",
-                        "MK - MACEDONIA, The former Yogoslaw republic of", "MG - MADAGASCAR",
-                        "MW - MALAWI", "MY - MALAYSIA", "MV - MALDIVES" ,"ML - MALI", "MT - MALTA",
-                        "MH - MARSHALL ISLANDS", "MQ -MARTINIQUE", "MR - MAURITANIA",
-                        "MU - MAURITIUS", "YT - MAYOTTE", "MX - MEXICO" ,"FM - MICRONESIA, FEDERATED STATES OF ",
-                        "MD - MOLDOVA, REPUBLIC OF", "MC - MONACO", "MN - MONGOLIA", "MS - MONTSERRAT",
-                        "MA - MOROCCO", "MZ - MOZAMBIQUE", "MM - MYANMAR", "NA - NAMIBIA",
-                        "NR - NAURU", "NP - NEPAL", "NL - NETHERLANDS", "AN - NETHERLANDS ANTILLES",
-                        "NC - NEW CALEDONIA", "NZ - NEW ZEALAND", "NI - NICARAGUA", "NE - NIGER",
-                        "NG - NIGERIA", "NU - NIUE", "NF - NORFOLK ISLAND",
-                        "MP - NORTHERN MARIANA ISLANDS", "NO - NORWAY", "OM - OMAN",
-                        "PK - PAKISTAN" ,"PW - PALAU", "PS - PALESTINAN TERRITORY, OCCUPIED",
-                        "PA - PANAMA", "PG - PAPUA NEW GUINEA", "PY - PARAGUAY", "PE - PERU",
-                        "PH - PHILIPPINES", "PN - PITCAIRN", "PL - POLAND", "PT - PORTUGAL",
-                        "PR - PUERTO RICO", "QA - QATAR", "RE - REUNION", "RO - ROMANIA",
-                        "RU - RUSSIAN FEDERATION", "RW - RWANDA", "SH - SAINT HELENA",
-                        "KN - SAINT KITTS AND NEVIS", "LC - SAINT LUCIA", "PM - SAINT PIERRE AND MIQUELON",
-                        "VC - SAINT VINCENT AND THE GRENADINES", "WS - SAMOA", "SM - SAN MARINO",
-                        "ST - SAO TOME AND PRINCIPE", "SA - SAUDI ARABIA", "SN - SENEGAL",
-                        "CS - SERBIA AND MONTENEGRO", "SC- SEYCHELLES", "SL - SIERRA LEONE",
-                        "SG - SINGAPORE", "SK - SLOVAKIA", "SI - SLOVENIA", "SB - SOLOMON ISLANDS",
-                        "SO - SOMALIA", "ZA - SOUTH AFRICA", "GS - South Georgia and the South Sandwich Islands",
-                        "ES - SPAIN", "LK - SRI LANKA", "SD - SUDAN", "SR - SURINAME",
-                        "SJ - SVALBARD AND JAN MAYEN", "SZ - SWAZILAND", "SE - SWEDEN",
-                        "CH - SWITZERLAND", "SY - SYRIAN ARAB REPUBLIC",
-                        "TW - TAIWAN, PROVINCE OF CHINA", "TJ - TAJIKISTAN",
-                        "TZ - TANZANIA, UNITED REPUBLIC OF", "TH - THAILAND", "TL - TIMOR-LESTE",
-                        "TG - TOGO", "TK - TOKELAU", "TO - TONGA", "TT - TRINIDAD AND TOBAGO",
-                        "TN - TUNISIA", "TR - TURKEY", "TM - TURKMENISTAN",
-                        "TC - TURKS AND CAICOS ISLANDS", "TV - TUVALU", "UG - UGANDA", "UA - UKRAINE",
-                        "AE - UNITED ARAB EMIRATES", "GB - UNITED KINGDOM", "US - UNITED STATES",
-                        "UM - United States Minor Outlying Island", "UY - URUGUAY", "UZ -UZBEKISTAN",
-                        "VU - VANUATU", "VA - Vatican City State see HOLY SEE", "VE -VENEZUELA",
-                        "VN - VIET NAM", "VG - VIRGIN ISLANDS, BRITISH", "VI - VIRGIN ISLANDS, U.S",
-                        "WF - WALLIS AND FUTUNA", "EH - WESTERN SAHARA", "YE - YEMEN",
-                        "ZR - ZAIRE see CONGO", "ZM - ZAMBIA", "ZW - ZIMBABWE"]
+            "DZ - ALGERIA", "AS - AMERICAN SAMOA", "AD - ANDORRA", "AO - ANGOLA",
+            "AI - ANGUILLA", "AQ - ANTARCTICA", "AG - ANTIGUA AND BARBUDA",
+            "AR - ARGENTINA", "AM - ARMENIA", "AW - ARUBA", "AU - AUSTRALIA",
+            "AT - AUSTRIA", "AZ - AZERBAIJAN", "BS - BAHAMAS", "BH -BAHRAIN",
+            "BD - BANGLADESH", "BB - BARBADOS", "BY - BELARUS", "BE - BELGIUM",
+            "BZ - BELIZE", "BJ - BENIN", "BM - BERMUDA", "BT - BHUTAN", "BO - BOLIVIA",
+            "BA - BOSNIA AND HERZEGOVINA", "BW - BOTSWANA", "BV - BOUVET ISLAND",
+            "BR - BRASIL", "IO - BRITISH INDIAN OCEAN TERRITORY", "BN - BRUNEI DARUSSALAM",
+            "BG - BULGARIA", "BF - BURKINA FASO", "BI - BURUNDI", "KH - CAMBODIA", "CM - CAMEROON",
+            "CA - CANADA", "CV - CAPE VERDE", "KY - CAYMAN ISLANDS", "CF - CENTRAL AFRICAN REPUBLIC",
+            "TD - CHAD", "CL - CHILE", "CN - CHINA", "CX - cHRISTMAS ISLAND", "CC - COCOS (KEELING) ISLANDS",
+            "CO - COLOMBIA", "KM - COMOROS", "CG - CONGO", "CD - CONGO", "CK - COOK ISLANDS",
+            "CR - COSTA RICA", "CI - COTE DIVOIRE", "HR - CROATIA", "CU - CUBA", "CY - CYPRUS",
+            "CZ - CZECH REPUBLIC", "DK - DENMARK", "DJ -DJIBOUTI", "DM - DOMINICA",
+            "DO - DOMINICAN REPUBLIC", "EC -ECUADOR", "EG - EGYPT", "SV - EL SALVADOR",
+            "GQ - EQUATORIAL GUINEA", "ER - ERITREA", "EE - ESTONIA", "ET - ETHIOPIA",
+            "FK - FALKLAND ISLANDS (MALVINAS)", "FO - FAROE ISLANDS", "FJ - FIJI",
+            "FI - FINLAND", "FR - FRANCE", "GF - FRENCH GUIANA", "PF - FRENCH POLYNESIA",
+            "TF - FRENCH SOUTHERN TERRITORIES", "GA - GABON", "GM - GAMBIA",
+            "GE - GEORGIA", "DE - GERMANY", "GH - GHANA", "GI - GIBRALTAR",
+            "GR - GREECE", "GL - GREENLAND", "GD - GRENADA", "GP - GUADELOUPE",
+            "GU - GUAM", "GT - GUATEMALA", "GG - GUERNSEY", "GN - GUINEA",
+            "GW - GUINEA-BISSAU", "GY - GUYANA", "HT - HAITI",
+            "HM - Heard Island and Mcdonald Islands",
+            "VA - HOLY SEE (VATICAN CITY STATE)", "HN - HONDURAS",
+            "HK - HONG KONG", "HU - HUNGARY", "IS - ICELAND", "IN - INDIA",
+            "ID - INDONESIA", "IR - IRAN", "IQ - IRAQ", "IE - IRELAND",
+            "IM - ISLE OF MAN", "IL - ISRAEL", "IT - ITALY", "JM - JAMAICA", "JP - JAPAN",
+            "JE - JERSEY", "JO - JORDAN", "KZ - KAZAKHSTAN", "KE - KENYA",
+            "KI - KIRIBATI", "KP - KOREA, Democratic People's Republic of",
+            "KR - KOREA, REPUBLIC OF", "KW - KUWAIT", "KG - KYRGUZSTAN",
+            "LA - LAO PEOPLE'S DEMOCRATIC REPUBLIC", "LV - LATVIA", "LB - LEBANON",
+            "LS - LESOTHO", "LR - LIBERIA", "LY - LIBYAN ARAB JAMAHIRIYA",
+            "LI - LIECHTENSTEIN", "LT - LITHUANIA", "LU - LUXEMBOURG", "MO - MACAO",
+            "MK - MACEDONIA, The former Yogoslaw republic of", "MG - MADAGASCAR",
+            "MW - MALAWI", "MY - MALAYSIA", "MV - MALDIVES" ,"ML - MALI", "MT - MALTA",
+            "MH - MARSHALL ISLANDS", "MQ -MARTINIQUE", "MR - MAURITANIA",
+            "MU - MAURITIUS", "YT - MAYOTTE", "MX - MEXICO" ,"FM - MICRONESIA, FEDERATED STATES OF ",
+            "MD - MOLDOVA, REPUBLIC OF", "MC - MONACO", "MN - MONGOLIA", "MS - MONTSERRAT",
+            "MA - MOROCCO", "MZ - MOZAMBIQUE", "MM - MYANMAR", "NA - NAMIBIA",
+            "NR - NAURU", "NP - NEPAL", "NL - NETHERLANDS", "AN - NETHERLANDS ANTILLES",
+            "NC - NEW CALEDONIA", "NZ - NEW ZEALAND", "NI - NICARAGUA", "NE - NIGER",
+            "NG - NIGERIA", "NU - NIUE", "NF - NORFOLK ISLAND",
+            "MP - NORTHERN MARIANA ISLANDS", "NO - NORWAY", "OM - OMAN",
+            "PK - PAKISTAN" ,"PW - PALAU", "PS - PALESTINAN TERRITORY, OCCUPIED",
+            "PA - PANAMA", "PG - PAPUA NEW GUINEA", "PY - PARAGUAY", "PE - PERU",
+            "PH - PHILIPPINES", "PN - PITCAIRN", "PL - POLAND", "PT - PORTUGAL",
+            "PR - PUERTO RICO", "QA - QATAR", "RE - REUNION", "RO - ROMANIA",
+            "RU - RUSSIAN FEDERATION", "RW - RWANDA", "SH - SAINT HELENA",
+            "KN - SAINT KITTS AND NEVIS", "LC - SAINT LUCIA", "PM - SAINT PIERRE AND MIQUELON",
+            "VC - SAINT VINCENT AND THE GRENADINES", "WS - SAMOA", "SM - SAN MARINO",
+            "ST - SAO TOME AND PRINCIPE", "SA - SAUDI ARABIA", "SN - SENEGAL",
+            "CS - SERBIA AND MONTENEGRO", "SC- SEYCHELLES", "SL - SIERRA LEONE",
+            "SG - SINGAPORE", "SK - SLOVAKIA", "SI - SLOVENIA", "SB - SOLOMON ISLANDS",
+            "SO - SOMALIA", "ZA - SOUTH AFRICA", "GS - South Georgia and the South Sandwich Islands",
+            "ES - SPAIN", "LK - SRI LANKA", "SD - SUDAN", "SR - SURINAME",
+            "SJ - SVALBARD AND JAN MAYEN", "SZ - SWAZILAND", "SE - SWEDEN",
+            "CH - SWITZERLAND", "SY - SYRIAN ARAB REPUBLIC",
+            "TW - TAIWAN, PROVINCE OF CHINA", "TJ - TAJIKISTAN",
+            "TZ - TANZANIA, UNITED REPUBLIC OF", "TH - THAILAND", "TL - TIMOR-LESTE",
+            "TG - TOGO", "TK - TOKELAU", "TO - TONGA", "TT - TRINIDAD AND TOBAGO",
+            "TN - TUNISIA", "TR - TURKEY", "TM - TURKMENISTAN",
+            "TC - TURKS AND CAICOS ISLANDS", "TV - TUVALU", "UG - UGANDA", "UA - UKRAINE",
+            "AE - UNITED ARAB EMIRATES", "GB - UNITED KINGDOM", "US - UNITED STATES",
+            "UM - United States Minor Outlying Island", "UY - URUGUAY", "UZ -UZBEKISTAN",
+            "VU - VANUATU", "VA - Vatican City State see HOLY SEE", "VE -VENEZUELA",
+            "VN - VIET NAM", "VG - VIRGIN ISLANDS, BRITISH", "VI - VIRGIN ISLANDS, U.S",
+            "WF - WALLIS AND FUTUNA", "EH - WESTERN SAHARA", "YE - YEMEN",
+            "ZR - ZAIRE see CONGO", "ZM - ZAMBIA", "ZW - ZIMBABWE"]
         font.pointSize: 11
         width: 250
         anchors.top: fieldPlace.bottom
@@ -285,15 +291,229 @@ Item {
         id: buttonSearch
         font.pointSize: 11
         text: "Hae"
+        visible: true
         anchors.top: fieldTeam.bottom
         onClicked: {
             //välitä hakukriteerit C++ puolelle
 
             datamanager.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
-                                        distances.get(fieldDistance.currentIndex).value, selected.text, fieldAge.currentText,
-                                        fieldFirstName.text, fieldLastName.text,
-                                        fieldPlace.text, fieldNationality.currentText,
-                                        fieldTeam.text);
+                                            distances.get(fieldDistance.currentIndex).value, selected.text, fieldAge.currentText,
+                                            fieldFirstName.text, fieldLastName.text,
+                                            fieldPlace.text, fieldNationality.currentText,
+                                            fieldTeam.text);
         }
     }
+
+    GridLayout {
+        id: gridLayout
+        anchors.rightMargin: 300
+        columnSpacing: 5
+        rowSpacing: 5
+        anchors.fill: parent
+
+        ColumnLayout {
+            id: columnLayout
+            width: 100
+            height: 100
+
+            RowLayout {
+                id: rowLayout
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementYear
+                    text: qsTr("Vuosi")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout1
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementDistance
+                    text: qsTr("Matka")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout2
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementGender
+                    text: qsTr("Sukupuoli")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout3
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementAge
+                    text: qsTr("Ikä")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout4
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementFirstName
+                    text: qsTr("Etunimi")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout5
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementLastName
+                    text: qsTr("Sukunimi")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout6
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementPlace
+                    text: qsTr("Paikkakunta")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout7
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementNationality
+                    text: qsTr("Kansalaisuus")
+                    font.pixelSize: 18
+                }
+            }
+
+            RowLayout {
+                id: rowLayout8
+                width: 100
+                height: 100
+
+                Text {
+                    id: elementTeam
+                    text: qsTr("Joukkue")
+                    font.pixelSize: 18
+                }
+            }
+
+        }
+
+        ColumnLayout {
+            id: columnLayout1
+            width: 100
+            height: 100
+
+            RowLayout {
+                id: rowLayout10
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout11
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout12
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout13
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout14
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout15
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout16
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout17
+                width: 100
+                height: 100
+            }
+
+            RowLayout {
+                id: rowLayout18
+                width: 100
+                height: 100
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}D{i:1;invisible:true}D{i:4;invisible:true}
+D{i:32;invisible:true}D{i:37;invisible:true}D{i:39;invisible:true}D{i:41;invisible:true}
+D{i:43;invisible:true}D{i:45;invisible:true}D{i:47;invisible:true}D{i:49;invisible:true}
+D{i:50;anchors_height:100;anchors_width:100}
+}
+##^##*/
