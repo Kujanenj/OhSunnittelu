@@ -1,6 +1,7 @@
 #include "datamanager.h"
 #include <QDebug>
 
+
 Datamanager::Datamanager(QObject *parent) : QObject(parent)
 {
     req = std::make_shared<Requester>();
@@ -56,4 +57,23 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
 
      qDebug()<< req->DoRequest(parameters);
      qDebug() << "Request done";
+     getNumber();
+}
+
+QString Datamanager::getNumber()
+{
+    std::srand(std::time(nullptr)); // use current time as seed for random generator
+       int random_variable = std::rand();
+
+
+       // roll a 6-sided die 20 times
+
+           int x = 7;
+           while(x > 6)
+               x = 1 + std::rand()/((RAND_MAX + 1u)/2);  // Note: 1+rand()%6 is biased
+
+    QString string="images/";
+    string=string+QString::number(x)+".jpg";
+    qDebug()<<string;
+       return string;
 }

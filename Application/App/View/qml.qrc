@@ -3,7 +3,8 @@
         <file>main.qml</file>
         <file>InputFields.qml</file>
         <file>images/skiing.jpg</file>
-        <file>images/riku.jpg</file>
-        <file>images/riku2.jpg</file>
+        <file>images/1.jpg</file>
+        <file>images/3.jpg</file>
+        <file>images/2.jpg</file>
     </qresource>
 </RCC>
