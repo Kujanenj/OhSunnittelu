@@ -57,10 +57,10 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
 
      qDebug()<< req->DoRequest(parameters);
      qDebug() << "Request done";
-     getNumber();
+
 }
 
-QString Datamanager::getNumber()
+QString Datamanager::getMastiff()
 {
     std::srand(std::time(nullptr)); // use current time as seed for random generator
        int random_variable = std::rand();

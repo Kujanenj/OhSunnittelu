@@ -19,7 +19,7 @@ ApplicationWindow {
 
     background: BorderImage {
         id: backgroundImage
-        source: datamanager.getNumber();
+        source: datamanager.getMastiff();
         anchors.fill: parent
         border.left: 5; border.top: 5
         border.right: 5; border.bottom: 5
