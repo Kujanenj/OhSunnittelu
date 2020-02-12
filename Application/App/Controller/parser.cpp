@@ -70,7 +70,7 @@ void Parser::parseTable()
 
 
     if(config_["fileToWrite"]!="false"){
-    QFile file("../../Application/Data/DataOut.txt");
+    QFile file(config_["fileToWrite"]);
     if(file.open(QIODevice::WriteOnly)){
         QTextStream stream(&file);
         stream<<parsedData;

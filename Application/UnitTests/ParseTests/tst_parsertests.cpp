@@ -17,14 +17,15 @@ private slots:
     void test_failToFindTable();
 
 private:
-    QMap<QString,QString> example = {{"fileToRead", "../../../Application/Data/data.txt"},
-                                     {"fileToWrite", "../../../Application/Data/dataOut"},
+    QMap<QString,QString> example = {{"fileToRead", "testDataUnParsed.txt"},
+                                     {"fileToWrite", "false"},
                                      {"tableStart", "</thead><tbody>"},
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","<"}};
     std::shared_ptr<Parser> testParser=nullptr;
     QMap<QString,QString> failexample=example;
+    QString emptyData="";
 };
 
 parserTests::parserTests()
@@ -40,29 +41,28 @@ parserTests::~parserTests()
 void parserTests::test_fullParse()
 {
 
-    testParser=std::make_shared<Parser>(example,"false");
-    QString returnValue=testParser->fullParse();
-    if(returnValue.left(5)=="ERROR"){
-        qDebug()<<returnValue;
-    }
-    QVERIFY(returnValue.left(5)!="ERROR");
+    testParser=std::make_shared<Parser>();
+   testParser->fullParse(example,emptyData);
+
+
+    QVERIFY(emptyData!="");
 
 }
 void parserTests::test_failToRead(){
-
+    emptyData="";
     failexample["fileToRead"]="NOT A REAL FFASDSADASD";
-    testParser=std::make_shared<Parser>(failexample,"false");
 
-    QVERIFY(testParser->fullParse().left(5)=="ERROR");
+    testParser->fullParse(failexample,emptyData);
+    QVERIFY(emptyData=="");
 }
 
 void parserTests::test_failToFindTable(){
     failexample=example;
     failexample["tableStart"]="Does not exist";
     failexample["tableEnd"]="This does also not exist";
-    testParser=std::make_shared<Parser>(failexample,"false");
 
-    QVERIFY(testParser->fullParse().endsWith(")")==true);
+    testParser->fullParse(failexample,emptyData);
+    QVERIFY(emptyData=="");
 }
 QTEST_APPLESS_MAIN(parserTests)
 

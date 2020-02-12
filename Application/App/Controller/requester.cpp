@@ -56,20 +56,17 @@ void Requester::replyFinished(QNetworkReply *reply)
 
     QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
 
-    /*
-    QFile file2("../../Application/Data/DataString.txt");
-    if(file2.open(QIODevice::WriteOnly)){
-        QTextStream stream(&file2);
-        stream<<DataAsString;
-    }
 
-    QFile *file = new QFile("../../Application/Data/data.txt");
+
+
+    /*QFile *file = new QFile("testDataUnParsed.txt");
     if(file->open(QIODevice::ReadWrite)){
-        file->write(reply->readAll());
+        file->write(DataAsString.toUtf8());
         file->close();
-    }
+        qDebug()<<"Wrote";
+    }*/
 
-    */
+
 
     reply->deleteLater();
 
