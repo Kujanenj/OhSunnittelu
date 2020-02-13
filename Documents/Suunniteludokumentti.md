@@ -29,6 +29,8 @@
   - #### Requester:
     - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
     - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
+-###dataHandler:
+-Käsittelee parsettua dataa halutulla tavalla. Mm. Datan järjestäminen aakkosjärjestykseen.
 ### Data:
 - Mahdollisesti lokaali SQL tietokanta, jossa tulokset nähtävillä tableissa 
 - Toinen vaihtoehto tallentaa tulokset mappiin, josta tuloksia voi sortata key arvoilla
