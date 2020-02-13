@@ -13,8 +13,7 @@ Item {
 
     ColumnLayout {
         id: columnLayout
-        width: 100
-        height: 100
+        anchors.fill: parent
 
         RowLayout {
             id: rowLayout
@@ -41,6 +40,7 @@ Item {
             RangeSlider {
 
                 width: 250
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 visible: true
                 id:fieldYear
@@ -90,6 +90,7 @@ Item {
 
             ComboBox {
                 id: fieldDistance
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 clip: false
                 wheelEnabled: false
@@ -181,6 +182,8 @@ Item {
                     id: checkBoxBoth
                     checked: true
                     text: qsTr("Molemmat")
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
 
                     onClicked: {
                         parent: selected.text = "kaikki"
@@ -192,6 +195,8 @@ Item {
                     id: checkBoxMale
                     checked: false
                     text: qsTr("Mies")
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
 
                     onClicked: {
                         parent: selected.text = "M"
@@ -203,6 +208,8 @@ Item {
                     id: checkBoxFemale
                     checked: false
                     text: qsTr("Nainen")
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
                     onClicked: {
                         parent: selected.text = "N"
@@ -218,6 +225,8 @@ Item {
             id: rowLayout3
             width: 100
             height: 100
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             Rectangle {
                 id: rectangle4
                 x: 3
@@ -242,11 +251,12 @@ Item {
                     border.color:"white"
                 }
                 //DISTANCE OPTIONS
-                model: ["Ikäsarja", "kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
+                model: ["kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
                     ">80",]
 
-                font.pointSize: 11
+                font.pointSize: 13
                 width: 250
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
@@ -282,6 +292,7 @@ Item {
                 }
                 font.pointSize: 14
                 width: 250
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 anchors.top: fieldAge.bottom
@@ -318,6 +329,7 @@ Item {
                 }
                 font.pointSize: 14
                 width: 250
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
@@ -355,6 +367,7 @@ Item {
                 }
                 font.pointSize: 14
                 width: 250
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 anchors.top: fieldLastName.bottom
@@ -377,7 +390,7 @@ Item {
                     id: element9
                     x: 0
                     y: 0
-                    text: qsTr("Kansalaisuus")
+                    text: qsTr("Kansallisuus")
                     font.pixelSize: 19
                     anchors.verticalCenter: parent.verticalCenter
                 }
@@ -385,6 +398,7 @@ Item {
 
             ComboBox {
                 id: fieldNationality
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 textRole: qsTr("")
 
@@ -393,7 +407,7 @@ Item {
                     border.color:"white"
                 }
                 //YEAR OPTIONS
-                model: ["Kansallisuus", "0", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
+                model: ["Kaikki", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
                     "DZ - ALGERIA", "AS - AMERICAN SAMOA", "AD - ANDORRA", "AO - ANGOLA",
                     "AI - ANGUILLA", "AQ - ANTARCTICA", "AG - ANTIGUA AND BARBUDA",
                     "AR - ARGENTINA", "AM - ARMENIA", "AW - ARUBA", "AU - AUSTRALIA",
@@ -463,7 +477,7 @@ Item {
                     "VN - VIET NAM", "VG - VIRGIN ISLANDS, BRITISH", "VI - VIRGIN ISLANDS, U.S",
                     "WF - WALLIS AND FUTUNA", "EH - WESTERN SAHARA", "YE - YEMEN",
                     "ZR - ZAIRE see CONGO", "ZM - ZAMBIA", "ZW - ZIMBABWE"]
-                font.pointSize: 18
+                font.pointSize: 15
                 anchors.topMargin: 9
                 anchors.top: fieldPlace.bottom
             }
@@ -498,6 +512,7 @@ Item {
                 font.pointSize: 14
                 width: 250
                 height: 30
+                Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 anchors.top: fieldNationality.bottom
