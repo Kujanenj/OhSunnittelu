@@ -14,35 +14,26 @@ ApplicationWindow {
         id: rectInputBackground
         color: "whitesmoke"
         height: parent.height
-        width: 360
+        width: parent.width
         anchors.left: parent.left
     }
-
-    background: BorderImage {
-        id: backgroundImage
-        source: "images/riku.jpg"
-        anchors.fill: parent
-        border.left: 5; border.top: 5
-        border.right: 5; border.bottom: 5
-    }
-
 
     // Input fields for user to do a search
-    InputFields {
-        anchors.leftMargin: 7
-        anchors.topMargin: 16
-        anchors.bottomMargin: 114
-        anchors.right: parent.right
-        anchors.rightMargin: 26
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.top: parent.top
+
+    Frame {
+        id: frame
+        width: 501
+        height: 777
+
+        InputFields {
+            anchors.leftMargin: 0
+            anchors.topMargin: 0
+            anchors.rightMargin: 40
+            anchors.bottomMargin: 191
+            anchors.fill: parent
+        }
     }
 
 }
 
-/*##^##
-Designer {
-    D{i:3;anchors_height:500;anchors_width:640}
-}
-##^##*/
+

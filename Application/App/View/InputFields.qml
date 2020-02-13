@@ -13,8 +13,6 @@ Item {
 
     ColumnLayout {
         id: columnLayout
-        anchors.rightMargin: 178
-        anchors.bottomMargin: 135
         anchors.fill: parent
 
         RowLayout {
