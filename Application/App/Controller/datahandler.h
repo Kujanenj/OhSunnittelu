@@ -1,6 +1,8 @@
 #ifndef DATAHANDLER_H
 #define DATAHANDLER_H
 #include <QList>
+#include <QMultiMap>
+#include <QVector>
 
 class DataHandler
 {
@@ -23,7 +25,12 @@ private:
      * @brief assembleMap
      * @param config KESKEN
      */
-    void assembleMap(QString config);
+    void assembleMap(QMap<QString, QString> config);
+
+    void sort(int config);
+
+
+
     QList<QString> template_;
     QString data_="";
     QMultiMap <int,QVector<QString>> initialMap_;

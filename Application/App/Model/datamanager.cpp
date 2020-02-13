@@ -6,6 +6,10 @@ Datamanager::Datamanager(QObject *parent) : QObject(parent)
 {
     req = std::make_shared<Requester>();
     qDebug() << "Datamanager luotu";
+    DataHandler testHandler=DataHandler();
+    QString empty="";
+    testHandler.formMap(empty);
+
 }
 
 Datamanager::~Datamanager()

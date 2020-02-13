@@ -3,6 +3,7 @@
 #include <QString>
 #include <QObject>
 #include "Controller/requester.h"
+#include "Controller/datahandler.h"
 #include <QMap>
 #include <memory>
 
