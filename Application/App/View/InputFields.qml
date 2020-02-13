@@ -13,6 +13,8 @@ Item {
 
     ColumnLayout {
         id: columnLayout
+        anchors.rightMargin: 178
+        anchors.bottomMargin: 135
         anchors.fill: parent
 
         RowLayout {
@@ -27,6 +29,7 @@ Item {
                 y: 3
                 width: 130
                 height: 35
+                Layout.fillHeight: true
                 Text {
                     id: element2
                     x: 0
@@ -55,13 +58,11 @@ Item {
                     id: lowText
                     text: parent.first.value
                     anchors.left: parent.left
-                    anchors.bottom: parent.top
                 }
                 Text {
                     id: hiText
                     text: parent.second.value
                     anchors.right: parent.right
-                    anchors.bottom: parent.top
                 }
             }
 
@@ -78,6 +79,8 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
+                Layout.fillWidth: false
                 Text {
                     id: element3
                     x: 0
@@ -141,7 +144,6 @@ Item {
                 //flat: false
                 //anchors.topMargin: 9
                 visible: true
-                anchors.top: fieldYear.bottom
             }
         }
 
@@ -156,6 +158,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element4
                     x: 0
@@ -176,7 +179,6 @@ Item {
                 id: fieldGender
                 anchors.topMargin: 9
                 visible: true
-                anchors.top: fieldDistance.bottom
 
                 RadioButton {
                     id: checkBoxBoth
@@ -234,6 +236,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element5
                     x: 0
@@ -260,7 +263,6 @@ Item {
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
-                anchors.top: fieldGender.bottom
             }
         }
 
@@ -274,6 +276,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element6
                     x: 0
@@ -295,7 +298,6 @@ Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
-                anchors.top: fieldAge.bottom
                 placeholderText: "Etunimi"
                 renderType: Text.QtRendering
             }
@@ -311,6 +313,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element7
                     x: 0
@@ -333,7 +336,6 @@ Item {
                 Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
-                anchors.top: fieldFirstName.bottom
                 placeholderText: "Sukunimi"
                 renderType: Text.QtRendering
             }
@@ -349,6 +351,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element8
                     x: 0
@@ -370,7 +373,6 @@ Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
-                anchors.top: fieldLastName.bottom
                 placeholderText: "Paikkakunta"
                 renderType: Text.QtRendering
             }
@@ -386,6 +388,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element9
                     x: 0
@@ -479,7 +482,6 @@ Item {
                     "ZR - ZAIRE see CONGO", "ZM - ZAMBIA", "ZW - ZIMBABWE"]
                 font.pointSize: 15
                 anchors.topMargin: 9
-                anchors.top: fieldPlace.bottom
             }
         }
 
@@ -493,6 +495,7 @@ Item {
                 width: 130
                 height: 35
                 color: "#ffffff"
+                Layout.fillHeight: true
                 Text {
                     id: element10
                     x: 0
@@ -515,7 +518,6 @@ Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 anchors.topMargin: 9
-                anchors.top: fieldNationality.bottom
                 placeholderText: "Joukkue"
                 renderType: Text.QtRendering
             }
@@ -533,7 +535,6 @@ Item {
                 text: "Hae"
                 anchors.topMargin: 9
                 visible: true
-                anchors.top: fieldTeam.bottom
                 onClicked: {
                     //välitä hakukriteerit C++ puolelle
 

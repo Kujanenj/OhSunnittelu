@@ -4,9 +4,10 @@ import QtQuick.Controls 2.5
 import QtQuick.Controls.Styles 1.4
 
 ApplicationWindow {
+    id: applicationWindow
+    width: 640
+    height: 640
     visible: true
-    width: screen.width/1.5
-    height: screen.height/1.5
     title: qsTr("Finlandia Skiing Database")
 
     Rectangle {
@@ -28,6 +29,20 @@ ApplicationWindow {
 
     // Input fields for user to do a search
     InputFields {
+        anchors.leftMargin: 7
+        anchors.topMargin: 16
+        anchors.bottomMargin: 114
+        anchors.right: parent.right
+        anchors.rightMargin: 26
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.top: parent.top
     }
 
 }
+
+/*##^##
+Designer {
+    D{i:3;anchors_height:500;anchors_width:640}
+}
+##^##*/
