@@ -15,6 +15,14 @@
     - QML avulla voi piirtää grapheja, filtteröidä ja tarkastella tulosdataa, hakea erilaisia
     top-listoja, ja muita erikoisominaisuuksia
     - Jaettu moniin eri QML filuihin
+      - Etusivu (Search tab)
+        - Näyttää perushaku ikkunan, josta voi hakea tietyillä filttereillä dataa
+      - Tulokset
+        - Näyttää hausta saadut tulokset, jonkin tyyppisessä taulukossa
+        - Ei vielä varmuutta taulukon tyypistä
+      - Kaaviot (Charts)
+        - Näyttää erilaisia taulukoita, jotka generoidaan datan avulla
+        
 ### Controller:
   - #### Parser:
     - Parsii HTML datan
