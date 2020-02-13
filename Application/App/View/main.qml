@@ -49,10 +49,31 @@ ApplicationWindow {
             }
         }
         Item {
-            id: filterTab
+            id: resultTab
+
+            Text {
+                id: element
+                text: qsTr("Tulokset tab")
+                font.pixelSize: 33
+            }
         }
         Item {
-            id: graphTab
+            id: chartTab
+
+            Text {
+                id: element1
+                text: qsTr("Kaaviot tab")
+                font.pixelSize: 33
+            }
+        }
+        Item {
+            id: extraTab
+
+            Text {
+                id: element2
+                text: qsTr("Extra tab")
+                font.pixelSize: 33
+            }
         }
     }
 
