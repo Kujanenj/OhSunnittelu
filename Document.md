@@ -10,7 +10,7 @@
   ### View:
   - QML tehty UI, jonka avulla voi filtteröidä ja tarkastella tulosdataa
   ### Controller:
-  - Parsiminen, datan requestaus
+  - Parsiminen, datan requestaus, parsitun datan käsittely.
   ### Data:
   - Voidaan tallentaa SQL/mySQL, jos halutaan / Json? / Txt, josta mappiin tai muuhun C++ tietorakenteeseen
     - SQL rakenteen avulla helpompi käyttää QML?
