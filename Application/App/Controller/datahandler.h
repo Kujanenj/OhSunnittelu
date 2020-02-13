@@ -4,11 +4,19 @@
 #include <QMultiMap>
 #include <QVector>
 
+/**
+ * @brief The DataHandler class forms the parsed data to the required form. This will include sorting the data, for example, alphabeticcaly.
+ * Unfinished
+ */
 class DataHandler
 {
 public:
     DataHandler();
-
+    /**
+     * @brief formMap PLACEHOLDER METHOD
+     * @param data
+     * @return
+     */
     bool formMap(QString &data);
 
 private:

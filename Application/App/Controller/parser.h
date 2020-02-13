@@ -5,7 +5,8 @@
 #include <QMap>
 #include <QDir>
 /*!
- * \brief The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt file if nessecary
+ * \brief The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt file if nessecary.
+ *
  *
  */
 class Parser
@@ -25,10 +26,10 @@ public:
     Parser();
 
     /**
-     * @brief fullParse calls all other private methods
-
-     * @return The return msg of the parse. Success or fail
-     */
+    * @brief fullParse calls the other methods required for parsing the data
+    * @param config contains information about how the parse will be preformed. See above
+    * @param dataToParse duh
+    */
    void fullParse(QMap<QString,QString> config, QString& dataToParse);
 
 private:
