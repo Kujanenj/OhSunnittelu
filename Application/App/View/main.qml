@@ -3,7 +3,6 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.14
-import QtCharts 2.14
 
 ApplicationWindow {
     TabBar {
@@ -31,25 +30,20 @@ ApplicationWindow {
     }
 
     StackLayout {
-        x: 513
-        y: 64
-        width: parent.width
+        anchors.rightMargin: 5
+        anchors.leftMargin: 5
+        anchors.bottomMargin: 5
+        anchors.topMargin: 45
+        anchors.fill: parent
         currentIndex: bar.currentIndex
         Item {
             id: searchTab
 
             Frame {
                 id: frame
-                x: -513
-                y: -18
-                width: 501
-                height: 777
+                anchors.fill: parent
 
                 InputFields {
-                    anchors.leftMargin: 0
-                    anchors.topMargin: 0
-                    anchors.rightMargin: 40
-                    anchors.bottomMargin: 191
                     anchors.fill: parent
                 }
             }
@@ -63,8 +57,8 @@ ApplicationWindow {
     }
 
     id: applicationWindow
-    width: 640
-    height: 640
+    width: 1280
+    height: 720
     visible: true
     title: qsTr("Finlandia Skiing Database")
 
@@ -72,3 +66,9 @@ ApplicationWindow {
 }
 
 
+
+/*##^##
+Designer {
+    D{i:8;anchors_height:666;anchors_width:1261;anchors_x:-502;anchors_y:-18}D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}
+}
+##^##*/
