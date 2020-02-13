@@ -51,28 +51,37 @@ ApplicationWindow {
         Item {
             id: resultTab
 
-            Text {
-                id: element
-                text: qsTr("Tulokset tab")
-                font.pixelSize: 33
+            Frame {
+                id: frame1
+                x: 0
+                y: -2
+                anchors.fill: parent
+
+                Table {
+                    id: table
+                    anchors.fill: parent
+                    anchors.bottom: parent.bottom
+                }
             }
         }
         Item {
             id: chartTab
 
-            Text {
-                id: element1
-                text: qsTr("Kaaviot tab")
-                font.pixelSize: 33
+            Frame {
+                id: frame2
+                x: 0
+                y: -2
+                anchors.fill: parent
             }
         }
         Item {
             id: extraTab
 
-            Text {
-                id: element2
-                text: qsTr("Extra tab")
-                font.pixelSize: 33
+            Frame {
+                id: frame3
+                x: 0
+                y: -2
+                anchors.fill: parent
             }
         }
     }
@@ -90,6 +99,8 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:8;anchors_height:666;anchors_width:1261;anchors_x:-502;anchors_y:-18}D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}
+    D{i:8;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:12;anchors_x:"-12";anchors_y:"-12"}
+D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:14;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
+D{i:16;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}
 }
 ##^##*/
