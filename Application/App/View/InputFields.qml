@@ -13,18 +13,21 @@ Item {
 
     ColumnLayout {
         id: columnLayout
-        anchors.rightMargin: 0
-        anchors.fill: parent
+        width: 100
+        height: 100
 
         RowLayout {
             id: rowLayout
+            x: 2
             width: 100
             height: 100
 
             Rectangle {
                 id: rectangle1
-                width: 150
-                height: 50
+                x: 3
+                y: 3
+                width: 130
+                height: 35
                 Text {
                     id: element2
                     x: 0
@@ -38,6 +41,7 @@ Item {
             RangeSlider {
 
                 width: 250
+                Layout.fillWidth: true
                 visible: true
                 id:fieldYear
                 from: 1974
@@ -69,8 +73,10 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle2
-                width: 200
-                height: 50
+                x: 3
+                y: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element3
@@ -84,6 +90,13 @@ Item {
 
             ComboBox {
                 id: fieldDistance
+                Layout.fillWidth: true
+                clip: false
+                wheelEnabled: false
+                flat: false
+                editable: false
+                currentIndex: 0
+                displayText: qsTr("50km perinteinen")
                 background: Rectangle {
                     border.color:"white"
                 }
@@ -121,8 +134,11 @@ Item {
                 }
 
                 font.pointSize: 11
-                width: 250
-                anchors.topMargin: 9
+                //width: 250
+                enabled: true
+                hoverEnabled: true
+                //flat: false
+                //anchors.topMargin: 9
                 visible: true
                 anchors.top: fieldYear.bottom
             }
@@ -134,8 +150,10 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle3
-                width: 200
-                height: 50
+                x: 3
+                y: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element4
@@ -202,8 +220,10 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle4
-                width: 200
-                height: 50
+                x: 3
+                y: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element5
@@ -227,6 +247,7 @@ Item {
 
                 font.pointSize: 11
                 width: 250
+                Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
                 anchors.top: fieldGender.bottom
@@ -239,8 +260,9 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle5
-                width: 200
-                height: 50
+                x: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element6
@@ -258,8 +280,9 @@ Item {
                 background: Rectangle {
                     border.color:"white"
                 }
-                font.pointSize: 11
+                font.pointSize: 14
                 width: 250
+                Layout.fillWidth: true
                 anchors.topMargin: 9
                 anchors.top: fieldAge.bottom
                 placeholderText: "Etunimi"
@@ -273,8 +296,9 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle6
-                width: 200
-                height: 50
+                x: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element7
@@ -292,8 +316,9 @@ Item {
                 background: Rectangle {
                     border.color:"white"
                 }
-                font.pointSize: 11
+                font.pointSize: 14
                 width: 250
+                Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
                 anchors.top: fieldFirstName.bottom
@@ -308,8 +333,9 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle7
-                width: 200
-                height: 50
+                x: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element8
@@ -327,8 +353,9 @@ Item {
                 background: Rectangle {
                     border.color:"white"
                 }
-                font.pointSize: 11
+                font.pointSize: 14
                 width: 250
+                Layout.fillWidth: true
                 anchors.topMargin: 9
                 anchors.top: fieldLastName.bottom
                 placeholderText: "Paikkakunta"
@@ -342,8 +369,9 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle8
-                width: 200
-                height: 50
+                x: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element9
@@ -357,6 +385,8 @@ Item {
 
             ComboBox {
                 id: fieldNationality
+                Layout.fillWidth: true
+                textRole: qsTr("")
 
 
                 background: Rectangle {
@@ -433,8 +463,7 @@ Item {
                     "VN - VIET NAM", "VG - VIRGIN ISLANDS, BRITISH", "VI - VIRGIN ISLANDS, U.S",
                     "WF - WALLIS AND FUTUNA", "EH - WESTERN SAHARA", "YE - YEMEN",
                     "ZR - ZAIRE see CONGO", "ZM - ZAMBIA", "ZW - ZIMBABWE"]
-                font.pointSize: 11
-                width: 250
+                font.pointSize: 18
                 anchors.topMargin: 9
                 anchors.top: fieldPlace.bottom
             }
@@ -446,8 +475,9 @@ Item {
             height: 100
             Rectangle {
                 id: rectangle9
-                width: 200
-                height: 50
+                x: 3
+                width: 130
+                height: 35
                 color: "#ffffff"
                 Text {
                     id: element10
@@ -465,8 +495,10 @@ Item {
                 background: Rectangle {
                     border.color:"white"
                 }
-                font.pointSize: 11
+                font.pointSize: 14
                 width: 250
+                height: 30
+                Layout.fillWidth: true
                 anchors.topMargin: 9
                 anchors.top: fieldNationality.bottom
                 placeholderText: "Joukkue"
@@ -481,6 +513,7 @@ Item {
 
             Button {
                 id: buttonSearch
+                x: 3
                 font.pointSize: 11
                 text: "Hae"
                 anchors.topMargin: 9
