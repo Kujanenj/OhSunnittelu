@@ -26,7 +26,10 @@ private:
      * @param config KESKEN
      */
     void assembleMap(QMap<QString, QString> config);
-
+    /*!
+     * \brief sort Tällä voi sorttaa sen initial vectorin UTF-8:n mukaan aakkosjärjestyksee configin mukaan. int config=vektorin index. Esim conifg 7 on nimen mukaan.
+     * \param config
+     */
     void sort(int config);
 
 

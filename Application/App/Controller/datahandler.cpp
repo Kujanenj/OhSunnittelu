@@ -11,7 +11,7 @@ bool DataHandler::formMap(QString& data)
    data_=data;
   simpleRead();
   Dissasemply();
-  sort(7);
+  sort(2);
   return true;
 }
 
@@ -77,7 +77,7 @@ void DataHandler::sort(int config)
     QString fieldValue="";
 
     QVector<QVector<QString>> tempVec;
-    for(auto it=initialVector_.begin(); it!=initialVector_.end(); it++ ){
+    for(auto it=initialVector_.begin(); it!=initialVector_.end(); it++ ){ //go trough all the results. (This is n^2 ;C)
         fieldValue=it->at(config);
         insertPos=0;
         inserted=false;
@@ -88,7 +88,7 @@ void DataHandler::sort(int config)
 
         }
         else{
-         for(auto tempIt=tempVec.begin(); tempIt!=tempVec.end(); tempIt++ ){
+         for(auto tempIt=tempVec.begin(); tempIt!=tempVec.end(); tempIt++ ){ //finds the index to place the vector at.
             if(fieldValue>tempIt->at(config))
             {
                 insertPos++;
@@ -109,5 +109,6 @@ void DataHandler::sort(int config)
 
     }
     initialVector_=tempVec;
+    qDebug()<<initialVector_;
 
 }
