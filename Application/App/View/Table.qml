@@ -53,16 +53,25 @@ Item {
     }
     ListModel {
         id: libraryModel
-        ListElement {
-            year: "2019"
-            distance: "P50"
-            gender: "Mies"
-            age: "40"
-            firstName: "Jussi"
-            lastName: "Kujanen"
-            place: "Keskihärmä"
-            nationality: "Suomi"
-            team: "TR3G"
+
+        Component.onCompleted: {
+            for (var i = 0; i < 50; i++) {
+                append(createListElement());
+            }
+        }
+
+        function createListElement() {
+            return {
+                year: "2019",
+                distance: "P50",
+                gender: "Mies",
+                age: "40",
+                firstName: "Jussi",
+                lastName: "Kujanen",
+                place: "Keskihärmä",
+                nationality: "Suomi",
+                team: "TR3G",
+            };
         }
     }
 }
