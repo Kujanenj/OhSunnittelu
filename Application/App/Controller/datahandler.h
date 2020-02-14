@@ -3,6 +3,7 @@
 #include <QList>
 #include <QMultiMap>
 #include <QVector>
+#include <QFile>
 
 class DataHandler
 {
