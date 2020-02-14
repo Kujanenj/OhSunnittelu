@@ -27,11 +27,8 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
     if(gender == ""){
         gender = "kaikki";
     }
-    if(ageSeries == "Ikäsarja"){
-        ageSeries = "kaikki";
-    }
 
-    if(nationality == "Kansallisuus"){
+    if(nationality == "Kaikki"){
         nationality = "0";
     }
     nationality = nationality.left(2);
