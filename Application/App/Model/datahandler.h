@@ -3,6 +3,7 @@
 #include <QList>
 #include <QMultiMap>
 #include <QVector>
+#include <QFile>
 
 /**
  * @brief The DataHandler class forms the parsed data to the required form. This will include sorting the data, for example, alphabeticcaly.

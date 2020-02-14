@@ -3,12 +3,14 @@
 ## Tiedostorakenteet
 
 ### Model:
-  - #### Datamanager
-    - Kontrolloi dataa requesterin, parserin ja ui:n välillä
-    - Toimii myös yhteydessä taulukkojen luomisen kanssa
-  - #### Graphicsmanager
-    - Hoitaa graphien näyttämiseen tarvittavat operaatiot 
-      - Esimerkiksi keskinopeuksien laskeminen, top-listojen luominen
+  - #### Parser:
+    - Parsii HTML datan
+  - #### Requester:
+    - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
+    - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
+  - #### Datahandler:
+    - Käsittelee parsettua dataa halutulla tavalla. 
+      - Esimerkiksi: Datan järjestäminen aakkosjärjestykseen
 
 ### View:
   - #### QML
@@ -24,13 +26,13 @@
         - Näyttää erilaisia taulukoita, jotka generoidaan datan avulla
         
 ### Controller:
-  - #### Parser:
-    - Parsii HTML datan
-  - #### Requester:
-    - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
-    - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
--###dataHandler:
--Käsittelee parsettua dataa halutulla tavalla. Mm. Datan järjestäminen aakkosjärjestykseen.
+  - #### Datamanager
+    - Kontrolloi dataa requesterin, parserin ja ui:n välillä
+    - Toimii myös yhteydessä taulukkojen luomisen kanssa
+  - #### Graphicsmanager
+    - Hoitaa graphien näyttämiseen tarvittavat operaatiot 
+      - Esimerkiksi keskinopeuksien laskeminen, top-listojen luominen
+      
 ### Data:
 - Mahdollisesti lokaali SQL tietokanta, jossa tulokset nähtävillä tableissa 
 - Toinen vaihtoehto tallentaa tulokset mappiin, josta tuloksia voi sortata key arvoilla
@@ -58,3 +60,26 @@
   - Nimi alkaa pienellä alkukirjaimella
   - Tiettynä vuotena ei järjestetty tiettyä matkaa
   - Jne...
+  
+## Työnjako (alustava)
+- Jussi
+  - Parserin teko
+  - Datahandlerin teko
+  - Muut toiminnallisuudet
+    
+- Veikko
+  - Requesterin teko
+  - Yleistä fixailua
+  - QML
+
+- Riku
+  - QML
+  
+- Jemppu
+
+## Muuta
+- Trello
+  - Päivitämme trelloa suunnittelun aikataulutukseen 
+  https://trello.com/invite/b/Wp3kg4Ow/89425dc8c3a6074faefcea4a7d8cfa78/ohjelmistojen-suunnittelu
+  
+    

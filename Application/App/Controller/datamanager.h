@@ -2,8 +2,8 @@
 #define DATAMANAGER_H
 #include <QString>
 #include <QObject>
-#include "Controller/requester.h"
-#include "Controller/datahandler.h"
+#include "Model/requester.h"
+#include "Model/datahandler.h"
 #include <QMap>
 #include <memory>
 

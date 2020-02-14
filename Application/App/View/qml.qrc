@@ -2,12 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>InputFields.qml</file>
-        <file>images/skiing.jpg</file>
-        <file>images/1.jpg</file>
-        <file>images/3.jpg</file>
-        <file>images/2.jpg</file>
-        <file>images/4.png</file>
-        <file>images/5.jpg</file>
-        <file>images/6.jpg</file>
+        <file>Table.qml</file>
     </qresource>
 </RCC>
