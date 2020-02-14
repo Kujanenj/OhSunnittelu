@@ -76,5 +76,10 @@
   - QML
   
 - Jemppu
+
+## Muuta
+- Trello
+  - Päivitämme trelloa suunnittelun aikataulutukseen 
+  https://trello.com/invite/b/Wp3kg4Ow/89425dc8c3a6074faefcea4a7d8cfa78/ohjelmistojen-suunnittelu
   
     
