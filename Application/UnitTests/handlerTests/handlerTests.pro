@@ -10,5 +10,5 @@ TEMPLATE = app
 HEADERS +=  $$PWD/../../App/Controller/datahandler.h
 
 SOURCES +=  tst_simpletests.cpp \
-          $$PWD/../../App/Controller/datahandler.cpp
-INCLUDEPATH += ../../../Application/App/Controller/
+          $$PWD/../../App/Model/datahandler.cpp
+INCLUDEPATH += ../../../Application/App/Model/

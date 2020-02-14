@@ -10,5 +10,5 @@ TEMPLATE = app
 HEADERS +=  $$PWD/../../App/Controller/parser.h
 
 SOURCES +=  tst_parsertests.cpp \
-          $$PWD/../../App/Controller/parser.cpp
-INCLUDEPATH += ../../../Application/App/Controller/
+          $$PWD/../../App/Model/parser.cpp
+INCLUDEPATH += ../../../Application/App/Model/

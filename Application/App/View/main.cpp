@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <Model/datamanager.h>
+#include <Controller/datamanager.h>
 #include <QQmlContext>
 
 int main(int argc, char *argv[])
