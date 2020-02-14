@@ -8,9 +8,7 @@
 #include <memory>
 
 /**
- * @brief The Datamanager class
- * Kommentoikaa kaikki metodit. Laittakaa myös kommentteja tonne koodin puolelle tärkeisiin kohtiin. Jos siis tarvii
- * Try catchit myös mahdollisiin kohtiin mihi voi tulla virheitä
+ * @brief The Datamanager class. Controls data between view and model
  */
 
 class Datamanager : public QObject
@@ -18,11 +16,30 @@ class Datamanager : public QObject
     Q_OBJECT
 
 public:
+    /**
+     * @brief Datamanager constructor
+     * @param parent null pointer to QObject
+     */
     explicit Datamanager(QObject *parent = nullptr);
 
+    /**
+      * @brief Datamanager destructor
+      */
     ~Datamanager();
 
-    //QML Accessible methods:
+    /**
+      * @brief Q_INVOKABLE type function that is called from QML when search button is clicked.
+      * @param startYear search start year option
+      * @param endYear search ending year option
+      * @param distance search distance option
+      * @param gender search gender option
+      * @param ageSeries search ageseries option
+      * @param firstName search first name option
+      * @param lastName search last name option
+      * @param place search place option
+      * @param nationality search nationality option
+      * @param team search team option
+      */
     Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
                                          QString distance, QString gender, QString ageSeries,
                                          QString firstName, QString lastName,
