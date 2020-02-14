@@ -4,3 +4,8 @@ venv
 .idea
 *.log
 *.user
+*.txt
+*.qmake.stash
+*.moc
+*.o
+Makefile

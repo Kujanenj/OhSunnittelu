@@ -1,7 +1,4 @@
 TEMPLATE = subdirs
 SUBDIRS += \
-    App \
-    UnitTests
-
-
-
+ ParseTests \
+ handlerTests
