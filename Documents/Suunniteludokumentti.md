@@ -9,7 +9,8 @@
     - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
     - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
   - #### Datahandler:
-    - Käsittelee parsettua dataa halutulla tavalla. Mm. Datan järjestäminen aakkosjärjestykseen.
+    - Käsittelee parsettua dataa halutulla tavalla. 
+      - Esimerkiksi: Datan järjestäminen aakkosjärjestykseen
 
 ### View:
   - #### QML
@@ -59,3 +60,21 @@
   - Nimi alkaa pienellä alkukirjaimella
   - Tiettynä vuotena ei järjestetty tiettyä matkaa
   - Jne...
+  
+## Työnjako (alustava)
+- Jussi
+  - Parserin teko
+  - Datahandlerin teko
+  - Muut toiminnallisuudet
+    
+- Veikko
+  - Requesterin teko
+  - Yleistä fixailua
+  - QML
+
+- Riku
+  - QML
+  
+- Jemppu
+  
+    
