@@ -3,6 +3,15 @@
 #include <Controller/datamanager.h>
 #include <QQmlContext>
 
+/**
+ * \mainpage Application
+ *
+ * \section Introduction
+ *
+ * This application is used to gather and display data from the finlandiahiihtosivu.
+ *
+ * All documentation is found inside the documents folder
+ */
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,76,108"/>
-<area shape="rect" id="node2" href="$class_datamanager.html" title="The Datamanager class Kommentoikaa kaikki metodit. Laittakaa myös kommentteja tonne koodin puolelle t..." alt="" coords="124,5,223,32"/>
-<area shape="rect" id="node3" href="$classparser_tests.html" title=" " alt="" coords="128,56,219,83"/>
-<area shape="rect" id="node4" href="$class_requester.html" title="The Requester class Used to gather data from website and send it to parser." alt="" coords="133,107,214,133"/>
-<area shape="rect" id="node5" href="$classsimple_tests.html" title=" " alt="" coords="127,157,219,184"/>
-</map>
