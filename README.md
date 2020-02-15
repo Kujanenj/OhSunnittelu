@@ -1,17 +1,12 @@
 # TODO
 
 **yleiset**
-
-- Requesteriin ja backendii jää nyt  olioita roikkumaan. New:llä luodut oliot on ok, mutta pitää kattoa että ne poistuu.
-- Vaihtaa kaikki new:llä luodut smart pointteriksi? 
 - UNIT TESTIT :D
-- kommentoinnit (Ainakin requester ja bäckend"
-- Nimetä bäckend uudestaan. Esim manager?
+- Eikun oikeesti siis. Tehkää tekin niitä testejä.
 - Oma namespace tässä vaiheessa aika must, myöhemmin ei enää jaksa
 
 **toiminnalisuus**
-- Yhteys qml:n ja bäckendin välis, eli siis saa ne tekstikenttien datat ulos.
-- Joku tulkki valmiille datalle. (Uus clässi)
+- valmiin datan käsittely. (Jussi ja jemppu)
 
 
 
