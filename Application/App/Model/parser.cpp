@@ -1,6 +1,6 @@
 #include "parser.h"
 
-
+namespace Model{
 
 Parser::Parser()
 {
@@ -100,4 +100,4 @@ void Parser::readFile()
           unparsedDataTotal_.append(line);
         }
 }
-
+}

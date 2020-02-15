@@ -1,12 +1,15 @@
 #include "datamanager.h"
 #include <QDebug>
 
+namespace Controller
+{
+
 
 Datamanager::Datamanager(QObject *parent) : QObject(parent)
 {
-    req = std::make_shared<Requester>();
+    req = std::make_shared<Model::Requester>();
     qDebug() << "Datamanager luotu";
-    DataHandler testHandler=DataHandler();
+    Model::DataHandler testHandler=Model::DataHandler();
     QString empty="";
     testHandler.formMap(empty);
 
@@ -77,4 +80,4 @@ QString Datamanager::getMastiff()
     string=string+QString::number(x)+".jpg";
     qDebug()<<string;
        return string;
-}
+}}

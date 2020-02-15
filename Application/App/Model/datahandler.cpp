@@ -1,6 +1,7 @@
 #include "datahandler.h"
 #include <QDebug>
 #include <QStringList>
+namespace Model{
 DataHandler::DataHandler()
 {
 
@@ -8,11 +9,19 @@ DataHandler::DataHandler()
 
 bool DataHandler::formMap(QString& data)
 {
-   data_=data;
-  simpleRead();
-  Dissasemply();
-  sort(2);
+    if(data=="testing"){
+      data_=data;
+      simpleRead();
+      Dissasemply();
+      sort(2);
+    }
+
   return true;
+}
+
+QVector<QVector<QString> > DataHandler::getSortedDataVector()
+{
+    return initialVector_;
 }
 
 bool DataHandler::simpleRead()
@@ -111,4 +120,5 @@ void DataHandler::sort(int config)
     initialVector_=tempVec;
     qDebug()<<initialVector_;
 
+}
 }

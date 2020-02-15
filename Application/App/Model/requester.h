@@ -18,7 +18,7 @@
 #include <QDebug>
 #include <QHttpMultiPart>
 #include "memory"
-
+namespace Model{
 /**
  * @brief The Requester class
  * Used to gather data from website and send it to parser
@@ -68,5 +68,5 @@ private:
     std::shared_ptr<QNetworkRequest> request = nullptr;
     std::shared_ptr<QHttpMultiPart> multiPart = nullptr;
 };
-
+}
 #endif // REQUESTER_H

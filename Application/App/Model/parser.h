@@ -9,6 +9,7 @@
  *
  *
  */
+namespace Model{
 class Parser
 {
 public:
@@ -56,5 +57,5 @@ private:
     QString returnMessage_ = "Parse onnistui";
 
 };
-
+}
 #endif // PARSER_H

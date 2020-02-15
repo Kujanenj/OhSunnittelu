@@ -23,7 +23,7 @@ private:
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","<"}};
-    std::shared_ptr<Parser> testParser=nullptr;
+    std::shared_ptr<Model::Parser> testParser=nullptr;
     QMap<QString,QString> failexample=example;
     QString emptyData="";
 };
@@ -41,7 +41,7 @@ parserTests::~parserTests()
 void parserTests::test_fullParse()
 {
 
-    testParser=std::make_shared<Parser>();
+    testParser=std::make_shared<Model::Parser>();
    testParser->fullParse(example,emptyData);
 
 

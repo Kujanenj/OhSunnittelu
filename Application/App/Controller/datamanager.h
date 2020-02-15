@@ -6,6 +6,8 @@
 #include "Model/datahandler.h"
 #include <QMap>
 #include <memory>
+namespace Controller {
+
 
 /**
  * @brief The Datamanager class. Controls data between view and model
@@ -52,7 +54,8 @@ public slots:
 
 private:
     //Requester *req;
-    std::shared_ptr<Requester> req;
+    std::shared_ptr<Model::Requester> req;
 };
+}
 
 #endif // DATAMANAGER_H

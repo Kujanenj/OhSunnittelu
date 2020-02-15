@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     //Creating backend and exposing data to the QML components instantiated by the QML engine
-    Datamanager datamanager;
+    Controller::Datamanager datamanager;
     engine.rootContext()->setContextProperty("datamanager", &datamanager);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

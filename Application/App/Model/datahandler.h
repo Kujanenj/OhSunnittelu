@@ -4,6 +4,8 @@
 #include <QMultiMap>
 #include <QVector>
 #include <QFile>
+namespace Model {
+
 
 /**
  * @brief The DataHandler class forms the parsed data to the required form. This will include sorting the data, for example, alphabeticcaly.
@@ -19,7 +21,7 @@ public:
      * @return
      */
     bool formMap(QString &data);
-
+   QVector<QVector<QString>> getSortedDataVector();
 private:
     /**
      * @brief simpleRead
@@ -48,5 +50,5 @@ private:
     QMultiMap <int,QVector<QString>> initialMap_;
     QVector<QVector<QString>> initialVector_;
 };
-
+}
 #endif // DATAHANDLER_H

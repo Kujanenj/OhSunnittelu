@@ -1,6 +1,6 @@
 #include "requester.h"
 #include "QTextCodec"
-
+namespace Model{
 Requester::Requester(QObject *parent)
     : QObject(parent),
       manager(new QNetworkAccessManager)
@@ -167,5 +167,5 @@ void Requester::requestData()
     manager->post(*request, multiPart.get());
 
     qDebug() << "Post request suoritettu";
-}
+}}
 
