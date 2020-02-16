@@ -15,27 +15,37 @@ Item {
             width: 100
         }
         TableViewColumn {
+            role: "time"
+            title: "Aika"
+            width: 100
+        }
+        TableViewColumn {
+            role: "place"
+            title: "Sija"
+            width: 100
+        }
+        TableViewColumn {
+            role: "placem"
+            title: "Sija/miehet"
+            width: 100
+        }
+        TableViewColumn {
+            role: "placen"
+            title: "Sija/naiset"
+            width: 100
+        }
+        TableViewColumn {
             role: "gender"
             title: "Sukupuoli"
             width: 100
         }
         TableViewColumn {
-            role: "age"
-            title: "Ikäsarja"
+            role: "sfname"
+            title: "Suku- ja etunimi"
             width: 100
         }
         TableViewColumn {
-            role: "firstName"
-            title: "Etunimi"
-            width: 100
-        }
-        TableViewColumn {
-            role: "lastName"
-            title: "Sukunimi"
-            width: 100
-        }
-        TableViewColumn {
-            role: "place"
+            role: "city"
             title: "Paikkakunta"
             width: 100
         }
@@ -45,34 +55,26 @@ Item {
             width: 100
         }
         TableViewColumn {
+            role: "age"
+            title: "Syntymävuosi"
+            width: 100
+        }
+        TableViewColumn {
             role: "team"
             title: "Joukkue"
             width: 100
         }
-        model: libraryModel
-    }
-    ListModel {
-        id: libraryModel
 
-        Component.onCompleted: {
-            for (var i = 0; i < 50; i++) {
-                append(createListElement());
+        Button {
+            id: button
+            x: 265
+            y: -1
+            text: qsTr("Button")
+            onClicked: {
+                myModel.updateModel()
             }
         }
-
-        function createListElement() {
-            return {
-                year: "2019",
-                distance: "P50",
-                gender: "Mies",
-                age: "40",
-                firstName: "Jussi",
-                lastName: "Kujanen",
-                place: "Keskihärmä",
-                nationality: "Suomi",
-                team: "TR3G",
-            };
-        }
+        model: myModel
     }
 }
 
