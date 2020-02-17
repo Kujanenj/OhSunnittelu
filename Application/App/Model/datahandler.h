@@ -20,7 +20,7 @@ public:
      * @param data
      * @return
      */
-    bool formMap(QString &data);
+    bool sortData(QString &data, int fieldToSortBy);
    QVector<QVector<QString>> getSortedDataVector();
 private:
     /**
@@ -32,11 +32,7 @@ private:
      * @brief Dissasemply Dissasembles the given data to be handled later on.
      */
     void Dissasemply();
-    /**
-     * @brief assembleMap
-     * @param config KESKEN
-     */
-    void assembleMap(QMap<QString, QString> config);
+
     /*!
      * \brief sort Tällä voi sorttaa sen initial vectorin UTF-8:n mukaan aakkosjärjestyksee configin mukaan. int config=vektorin index. Esim conifg 7 on nimen mukaan.
      * \param config

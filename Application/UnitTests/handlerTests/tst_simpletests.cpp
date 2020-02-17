@@ -11,7 +11,7 @@ public:
     ~simpleTests();
 
 private slots:
-    void test_case1();
+
     void testSortingTime();
 private:
     std::shared_ptr<Model::DataHandler> testHandler=nullptr;
@@ -27,19 +27,12 @@ simpleTests::~simpleTests()
 
 }
 
-void simpleTests::test_case1()
-{
-
-    QString empty="";
-    testHandler->formMap(empty);
-
-}
 
 
 void simpleTests::testSortingTime(){
 
     QString empty="testing";
-    testHandler->formMap(empty);
+    testHandler->sortData(empty,2);
     QVERIFY(testHandler->getSortedDataVector().back().at(2)=="4:56:13.94");
 
 }

@@ -7,13 +7,19 @@ DataHandler::DataHandler()
 
 }
 
-bool DataHandler::formMap(QString& data)
+bool DataHandler::sortData(QString &data, int fieldToSortBy)
 {
+
+    data_=data;
     if(data=="testing"){
-      data_=data;
+
       simpleRead();
       Dissasemply();
       sort(2);
+    }
+    else{
+       Dissasemply();
+       sort(fieldToSortBy);
     }
 
   return true;
@@ -62,22 +68,9 @@ void DataHandler::Dissasemply()
 
 
 
-
-
-
 }
 
-void DataHandler::assembleMap(QMap<QString,QString> config)
-{
 
-
-
-
-
-
-
-
-}
 
 void DataHandler::sort(int config)
 {
