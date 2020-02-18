@@ -36,7 +36,7 @@ public:
     void connectToDataBase();
 
 public slots:
-    bool inserIntoTable();      // Adding entries to the table
+    bool inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
     bool removeData();
 
 private:

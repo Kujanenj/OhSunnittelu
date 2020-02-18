@@ -3,6 +3,8 @@
 #include <QString>
 #include <QObject>
 #include "Model/requester.h"
+#include "Data/database.h"
+
 
 #include <QMap>
 #include <memory>
@@ -24,7 +26,7 @@ public:
      * @brief Datamanager constructor
      * @param parent null pointer to QObject
      */
-    explicit Datamanager(QObject *parent = nullptr);
+    explicit Datamanager(std::shared_ptr<DataBase> database=nullptr, QObject *parent = nullptr);
 
     /**
       * @brief Datamanager destructor
@@ -56,6 +58,7 @@ public slots:
 
 private:
     //Requester *req;
+    std::shared_ptr<DataBase> database_;
     std::shared_ptr<Model::Requester> req;
     std::shared_ptr<Model::Parser> parser;
     QString data_="contains nothing yet ;)";
@@ -66,6 +69,9 @@ private:
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","</td>"}};
+
+
+    QVector<QVector<QString>> dataVector_;
 };
 }
 

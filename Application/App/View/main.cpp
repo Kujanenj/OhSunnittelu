@@ -21,17 +21,17 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    DataBase database;
-    database.connectToDataBase();
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>();
+    database->connectToDataBase();
 
     ListModel *model = new ListModel();
 
     engine.rootContext()->setContextProperty("myModel", model);
-    engine.rootContext()->setContextProperty("database", &database);
+    engine.rootContext()->setContextProperty("database", &*database);
 
 
     //Creating backend and exposing data to the QML components instantiated by the QML engine
-    Controller::Datamanager datamanager;
+    Controller::Datamanager datamanager(database);
     engine.rootContext()->setContextProperty("datamanager", &datamanager);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

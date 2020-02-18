@@ -17,8 +17,9 @@ void DataBase::connectToDataBase()
     } else {
         qDebug() << "Restored old database";
         this->openDataBase();
-        inserIntoTable();
+
     }
+
 }
 
 bool DataBase::createDataBase()
@@ -71,24 +72,15 @@ bool DataBase::createTable()
         qDebug() << query.lastError().text();
         return false;
     }
-    inserIntoTable();
+
     return true;
 }
 
-bool DataBase::inserIntoTable()
+bool DataBase::inserIntoTable(QVector<QString> toInsert)
 {
-    data.push_back("2019");
-    data.push_back("P50");
-    data.push_back("3:25:56");
-    data.push_back("5");
-    data.push_back("7");
-    data.push_back("");
-    data.push_back("M");
-    data.push_back("Kujanen Jussi");
-    data.push_back("Alahärmä");
-    data.push_back("FI");
-    data.push_back("35");
-    data.push_back("TR3G");
+    data.clear();
+    data=toInsert;
+    qDebug()<<"INSERT INTO TABLE DATA"<<data;
 
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE " ( " TABLE_YEAR ", "

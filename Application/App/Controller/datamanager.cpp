@@ -5,12 +5,12 @@ namespace Controller
 {
 
 
-Datamanager::Datamanager(QObject *parent) : QObject(parent)
+Datamanager::Datamanager(std::shared_ptr<DataBase> database, QObject *parent ) : QObject(parent)
 {
     req = std::make_shared<Model::Requester>();
     parser = std::make_shared<Model::Parser>();
     qDebug() << "Datamanager luotu";
-
+    database_=database;
     QString empty="";
 
 
@@ -18,6 +18,8 @@ Datamanager::Datamanager(QObject *parent) : QObject(parent)
 
 Datamanager::~Datamanager()
 {
+    database_->removeData();
+
     qDebug()<<"Datamanager poistettu";
 }
 
@@ -64,8 +66,14 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      qDebug() << "Request done";
 
      parser->fullParse(parserConfig_,data_);
-     qDebug()<<parser->getListedData();
-     qDebug()<<"There should be a lsit above me";
+     dataVector_=parser->getListedData();
+
+
+     qDebug()<<"Starting the insertion";
+     for(int i=0; i<dataVector_.size(); i++){
+         qDebug()<<"inserting "<<dataVector_.at(i);
+         database_->inserIntoTable(dataVector_.at(i));
+     }
 }
 
 }
