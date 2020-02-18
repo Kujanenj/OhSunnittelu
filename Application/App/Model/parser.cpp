@@ -4,11 +4,16 @@ namespace Model{
 
 Parser::Parser()
 {
-
+    qDebug()<<"pareseri luotu";
 
 }
 
-void Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
+Parser::~Parser()
+{
+ qDebug()<<"parseri tuhottu, BOWHAHWHAWH";
+}
+
+void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
 {
     config_=config;
     unparsedDataTotal_=dataToParse;
@@ -17,16 +22,42 @@ void Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
         readFile();
         parseToTable();
         parseTable();
+        formListedData();
     } catch (QString msg) {
          qDebug()<<msg;
          return;
     }
 
-    dataToParse=unparsedDataTotal_;
+
 
 
 }
 
+QVector<QVector<QString> > Parser::getListedData()
+{
+    return listedData_;
+}
+void Parser::readFile()
+{
+    qDebug() << "Aletaan lukemaan data.txt filua t parseri";
+
+    if(config_["fileToRead"]=="false"){
+        qDebug()<<"Häähää ei luettukaa";
+        return;
+    }
+    QFile file(config_["fileToRead"]);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        returnMessage_="ERROR file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
+
+        throw returnMessage_;
+    }
+
+    while (!file.atEnd()) {
+
+           QString line = file.readLine();
+          unparsedDataTotal_.append(line);
+        }
+}
 void Parser::parseToTable()
 {
 
@@ -79,25 +110,26 @@ void Parser::parseTable()
 
 }
 
-void Parser::readFile()
+
+
+
+void Parser::formListedData()
 {
-    qDebug() << "Aletaan lukemaan data.txt filua t parseri";
 
-    if(config_["fileToRead"]=="false"){
-        qDebug()<<"Häähää ei luettukaa";
-        return;
-    }
-    QFile file(config_["fileToRead"]);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        returnMessage_="ERROR file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
 
-        throw returnMessage_;
-    }
+    QVector<QString> insertionVector;
+    QStringList lista=unparsedDataTotal_.split("$");
 
-    while (!file.atEnd()) {
+    for(int i=0; i<lista.size(); i++){
 
-           QString line = file.readLine();
-          unparsedDataTotal_.append(line);
+        insertionVector.append(lista.at(i));
+        if(i%12==11 ){
+
+         listedData_.append(insertionVector);
+         insertionVector.clear();
         }
+
+    }
+
 }
 }

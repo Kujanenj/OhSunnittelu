@@ -42,7 +42,7 @@ public:
      * Tries to start request if there are no errors
      * @return
      */
-    QString DoRequest(QMap<QString,QString>);
+    QString DoRequest(QMap<QString,QString> config, QString& data);
 
 public slots:
 
@@ -64,7 +64,9 @@ private:
 
     QNetworkAccessManager *manager;
     QMap<QString, QString> parameters_;
-    std::shared_ptr<Parser> parser = nullptr;
+
+    QString htmlData_="";
+
     std::shared_ptr<QNetworkRequest> request = nullptr;
     std::shared_ptr<QHttpMultiPart> multiPart = nullptr;
 };

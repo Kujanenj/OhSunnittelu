@@ -1,11 +1,13 @@
 #include "requester.h"
 #include "QTextCodec"
+#include "QEventLoop"
+#include "QTimer"
 namespace Model{
 Requester::Requester(QObject *parent)
     : QObject(parent),
       manager(new QNetworkAccessManager)
 {
-    parser = std::make_shared<Parser>();
+
 
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
@@ -22,7 +24,7 @@ Requester::~Requester()
     qDebug() << "Requester poistettu";
 }
 
-QString Requester::DoRequest(QMap<QString, QString> config)
+QString Requester::DoRequest(QMap<QString, QString> config, QString& data)
 {
     parameters_ = config;
 
@@ -32,8 +34,8 @@ QString Requester::DoRequest(QMap<QString, QString> config)
             qDebug() << msg;
             std::move(msg);
     }
-
-    return "";
+    data=htmlData_;
+    return "all should be well";
 }
 
 void Requester::replyFinished(QNetworkReply *reply)
@@ -69,18 +71,12 @@ void Requester::replyFinished(QNetworkReply *reply)
 
 
     reply->deleteLater();
+    htmlData_=DataAsString;
 
-    QMap<QString,QString> example = {{"fileToRead", "false"}, //false = "älä lue mitää"
-                                     {"fileToWrite", "false"},//false = "älä kirjota mitää"
-                                     {"tableStart", "</thead><tbody>"},
-                                     {"tableEnd", "</table><div"},
-                                     {"tableCellLeft", "7pt;\">"},
-                                     {"tableCellRight","</td>"}};
 
-    parser->fullParse(example,DataAsString);
 
-    qDebug() << DataAsString;
-    qDebug() << "Parsing completed";
+
+
 }
 
 void Requester::requestData()
@@ -164,8 +160,27 @@ void Requester::requestData()
     multiPart->append(param13);
 
     // Post request
-    manager->post(*request, multiPart.get());
 
-    qDebug() << "Post request suoritettu";
+   QNetworkReply *reply= manager->post(*request, multiPart.get());
+
+
+
+    qDebug() << "Post request suoritettu, odotetaan vastausta";
+
+    QTimer timer;
+    timer.setSingleShot(true);
+
+    QEventLoop loop;
+
+
+    connect(&timer,SIGNAL(timeout()),&loop,SLOT(quit()));
+    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    timer.start(5000);
+    loop.exec();
+
+    if(!reply->isFinished()){
+        throw "Connection timed out";
+    }
+
 }}
 

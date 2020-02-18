@@ -3,9 +3,11 @@
 #include <QString>
 #include <QObject>
 #include "Model/requester.h"
-#include "Model/datahandler.h"
+
 #include <QMap>
 #include <memory>
+
+
 namespace Controller {
 
 
@@ -55,6 +57,15 @@ public slots:
 private:
     //Requester *req;
     std::shared_ptr<Model::Requester> req;
+    std::shared_ptr<Model::Parser> parser;
+    QString data_="contains nothing yet ;)";
+
+    QMap<QString,QString> parserConfig_ = {{"fileToRead", "false"}, //false = "älä lue mitää"
+                                     {"fileToWrite", "false"},//false = "älä kirjota mitää"
+                                     {"tableStart", "</thead><tbody>"},
+                                     {"tableEnd", "</table><div"},
+                                     {"tableCellLeft", "7pt;\">"},
+                                     {"tableCellRight","</td>"}};
 };
 }
 

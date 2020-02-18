@@ -8,6 +8,7 @@ namespace Controller
 Datamanager::Datamanager(QObject *parent) : QObject(parent)
 {
     req = std::make_shared<Model::Requester>();
+    parser = std::make_shared<Model::Parser>();
     qDebug() << "Datamanager luotu";
 
     QString empty="";
@@ -59,9 +60,12 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      parameters.insert("Paikkakunta", place);
      parameters.insert("Joukkue", team);
 
-     qDebug()<< req->DoRequest(parameters);
+     req->DoRequest(parameters,data_);
      qDebug() << "Request done";
 
+     parser->fullParse(parserConfig_,data_);
+     qDebug()<<parser->getListedData();
+     qDebug()<<"There should be a lsit above me";
 }
 
 QString Datamanager::getMastiff()

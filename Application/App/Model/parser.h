@@ -25,13 +25,17 @@ public:
      {"tableCellRight","<"}};
      */
     Parser();
-
+    ~Parser();
     /**
     * @brief fullParse calls the other methods required for parsing the data
     * @param config contains information about how the parse will be preformed. See above
     * @param dataToParse duh
     */
-   void fullParse(QMap<QString,QString> config, QString& dataToParse);
+   void fullParse(QMap<QString,QString> config, QString dataToParse);
+
+
+
+   QVector<QVector<QString>> getListedData();
 
 private:
 
@@ -51,11 +55,17 @@ private:
      */
     void parseTable();
 
+    void formListedData();
+
+
+
     QString unparsedDataTotal_;
 
     QMap <QString, QString> config_;
     QString returnMessage_ = "Parse onnistui";
 
+
+    QVector<QVector<QString>> listedData_;
 };
 }
 #endif // PARSER_H

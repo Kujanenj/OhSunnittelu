@@ -17,14 +17,12 @@ SOURCES += \
         Controller/datamanager.cpp \
         View/main.cpp \
         Model/parser.cpp \
-        Model/requester.cpp \
-        Model/datahandler.cpp
+        Model/requester.cpp
 
 HEADERS += \
         Model/requester.h \
         Model/parser.h \
-        Controller/datamanager.h \
-        Model/datahandler.h
+        Controller/datamanager.h
 
 RESOURCES += \
         View/qml.qrc
