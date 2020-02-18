@@ -68,20 +68,4 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      qDebug()<<"There should be a lsit above me";
 }
 
-QString Datamanager::getMastiff()
-{
-    std::srand(std::time(nullptr)); // use current time as seed for random generator
-       int random_variable = std::rand();
-
-
-       // roll a 6-sided die 20 times
-
-           int x = 7;
-           while(x > 6)
-               x = 1 + std::rand()/((RAND_MAX + 1u)/6);  // Note: 1+rand()%6 is biased
-
-    QString string="images/";
-    string=string+QString::number(x)+".jpg";
-    qDebug()<<string;
-       return string;
-}}
+}

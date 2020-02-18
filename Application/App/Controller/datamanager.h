@@ -49,7 +49,7 @@ public:
                                          QString firstName, QString lastName,
                                          QString place, QString nationality,
                                          QString team);
-    Q_INVOKABLE QString getMastiff();
+
 signals:
 
 public slots:

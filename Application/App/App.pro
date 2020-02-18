@@ -1,4 +1,4 @@
-QT += quick network
+QT += quick network sql
 
 CONFIG += c++11
 
@@ -15,11 +15,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Controller/datamanager.cpp \
+        Data/database.cpp \
+        Model/listmodel.cpp \
         View/main.cpp \
         Model/parser.cpp \
         Model/requester.cpp
 
 HEADERS += \
+        Data/database.h \
+        Model/listmodel.h \
         Model/requester.h \
         Model/parser.h \
         Controller/datamanager.h

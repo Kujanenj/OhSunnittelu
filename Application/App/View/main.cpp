@@ -1,7 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <Controller/datamanager.h>
 #include <QQmlContext>
+
+#include "Controller/datamanager.h"
+#include "Data/database.h"
+#include "Model/listmodel.h"
 
 /**
  * \mainpage Application
@@ -17,6 +20,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+
+    DataBase database;
+    database.connectToDataBase();
+
+    ListModel *model = new ListModel();
+
+    engine.rootContext()->setContextProperty("myModel", model);
+    engine.rootContext()->setContextProperty("database", &database);
+
 
     //Creating backend and exposing data to the QML components instantiated by the QML engine
     Controller::Datamanager datamanager;
