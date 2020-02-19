@@ -541,6 +541,8 @@ Item {
                                                     fieldFirstName.text, fieldLastName.text,
                                                     fieldPlace.text, fieldNationality.currentText,
                                                     fieldTeam.text);
+                    bar.currentIndex = 1
+                    myModel.updateModel()
                 }
             }
         }

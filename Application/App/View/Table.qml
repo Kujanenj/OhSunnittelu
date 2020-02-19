@@ -69,11 +69,23 @@ Item {
             id: button
             x: 265
             y: -1
-            text: qsTr("Button")
+            text: qsTr("Update")
             onClicked: {
                 myModel.updateModel()
             }
         }
+
+        Button {
+            id: button1
+            x: 351
+            y: 0
+            text: qsTr("Reset")
+            onClicked: {
+                database.removeData()
+                myModel.updateModel()
+            }
+        }
+
         model: myModel
     }
 }

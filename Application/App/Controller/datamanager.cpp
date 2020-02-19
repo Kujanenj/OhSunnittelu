@@ -68,12 +68,13 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      parser->fullParse(parserConfig_,data_);
      dataVector_=parser->getListedData();
 
-
-     qDebug()<<"Starting the insertion";
-     for(int i=0; i<dataVector_.size(); i++){
-         qDebug()<<"inserting "<<dataVector_.at(i);
+     // Starts adding to database
+     QSqlDatabase::database().transaction();
+     for(int i=0; i < dataVector_.size(); i++){
          database_->inserIntoTable(dataVector_.at(i));
      }
+     // Stops adding to database
+     QSqlDatabase::database().commit();
 }
 
 }
