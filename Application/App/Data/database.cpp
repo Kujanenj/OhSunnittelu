@@ -35,6 +35,8 @@ bool DataBase::createDataBase()
 
 bool DataBase::openDataBase()
 {
+    qDebug() << "Database avataan";
+
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName(DATABASE_HOSTNAME);
     db.setDatabaseName("../../Application/App/Data/" DATABASE_NAME);
@@ -80,7 +82,6 @@ bool DataBase::inserIntoTable(QVector<QString> toInsert)
 {
     data.clear();
     data=toInsert;
-    qDebug()<<"INSERT INTO TABLE DATA"<<data;
 
     QSqlQuery query;
     query.prepare("INSERT INTO " TABLE " ( " TABLE_YEAR ", "
