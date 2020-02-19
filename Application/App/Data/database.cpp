@@ -81,6 +81,7 @@ bool DataBase::createTable()
 bool DataBase::inserIntoTable(QVector<QString> toInsert)
 {
     data.clear();
+
     data=toInsert;
 
     QSqlQuery query;

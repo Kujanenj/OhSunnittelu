@@ -25,7 +25,9 @@ public:
      {"tableCellRight","<"}};
      */
     Parser();
+
     ~Parser();
+
     /**
     * @brief fullParse calls the other methods required for parsing the data
     * @param config contains information about how the parse will be preformed. See above
@@ -33,9 +35,18 @@ public:
     */
    void fullParse(QMap<QString,QString> config, QString dataToParse);
 
-
-
+   /**
+    * @brief getListedData
+    * @return listedData_ vector that contains all user result
+    * parameters
+    */
    QVector<QVector<QString>> getListedData();
+
+   /**
+    * @brief clearListedData
+    * Used to clear old listedData_ vector
+    */
+   void clearListedData();
 
 private:
 
@@ -61,7 +72,7 @@ private:
 
     QString unparsedDataTotal_;
 
-    QMap <QString, QString> config_;
+    QMap<QString, QString> config_;
     QString returnMessage_ = "Parse onnistui";
 
 

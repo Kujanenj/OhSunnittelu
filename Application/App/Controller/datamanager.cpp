@@ -5,22 +5,20 @@ namespace Controller
 {
 
 
-Datamanager::Datamanager(std::shared_ptr<DataBase> database, QObject *parent ) : QObject(parent)
+Datamanager::Datamanager(std::shared_ptr<DataBase> database, QObject *parent ) :
+    QObject(parent),
+    database_(database)
 {
     req = std::make_shared<Model::Requester>();
     parser = std::make_shared<Model::Parser>();
+    QString empty = "";
     qDebug() << "Datamanager luotu";
-    database_=database;
-    QString empty="";
-
-
 }
 
 Datamanager::~Datamanager()
 {
     database_->removeData();
-
-    qDebug()<<"Datamanager poistettu";
+    qDebug() << "Datamanager poistettu";
 }
 
 void Datamanager::searchButtonClicked(QString startYear, QString endYear,
@@ -30,13 +28,12 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
                                   QString team)
 {
     //Condition checks that take out invalid inputs
-    if(gender == ""){
-        gender = "kaikki";
-    }
 
-    if(nationality == "Kaikki"){
+    qDebug() << nationality;
+    if(nationality == "kaikki"){
         nationality = "0";
     }
+
     nationality = nationality.left(2);
 
     QMap<QString,QString> parameters;
@@ -51,7 +48,7 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
              << "Kansallisuus: " << nationality << "\n"
              << "Joukkue: " << team << "\n";
 
-     //Using user input parameters:
+     // Using user input parameters:
      parameters.insert("Vuosi", startYear);
      parameters.insert("Matka", distance);
      parameters.insert("Ikaluokka", ageSeries);
@@ -65,10 +62,13 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      req->DoRequest(parameters,data_);
      qDebug() << "Request done";
 
+     // Parses data to dataVector_ and clears old listedData_ vector
      parser->fullParse(parserConfig_,data_);
      dataVector_=parser->getListedData();
+     parser->clearListedData();
 
-     // Starts adding to database
+     // Clears database and starts adding to database
+     database_->removeData();
      QSqlDatabase::database().transaction();
      for(int i=0; i < dataVector_.size(); i++){
          database_->inserIntoTable(dataVector_.at(i));
@@ -77,4 +77,4 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      QSqlDatabase::database().commit();
 }
 
-}
+} // Namespace controller

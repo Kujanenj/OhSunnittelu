@@ -98,7 +98,6 @@ Item {
                 flat: false
                 editable: false
                 currentIndex: 0
-                displayText: qsTr("50km perinteinen")
                 background: Rectangle {
                     border.color:"white"
                 }
@@ -107,7 +106,8 @@ Item {
                 textRole: "key"
                 model: ListModel {
                     id: distances
-                    ListElement { key: "50km perinteinen"; value: "P50" }
+                    ListElement { key: "Kaikki matkat"; value: "kaikki"}
+                    ListElement { key: "50km perinteinen"; value: "P50"}
                     ListElement { key: "50km vapaa"; value: "V50"}
                     ListElement { key: "100km perinteinen"; value: "P100"}
                     ListElement { key: "32km perinteinen"; value: "P32"}
@@ -135,7 +135,7 @@ Item {
 
                 }
 
-                font.pointSize: 11
+                font.pointSize: 13
                 //width: 250
                 enabled: true
                 hoverEnabled: true
@@ -180,7 +180,10 @@ Item {
 
                 RadioButton {
                     id: checkBoxBoth
-                    checked: true
+                    checked: {
+                        true
+                        selected.text = "kaikki"
+                    }
                     text: qsTr("Molemmat")
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -247,18 +250,35 @@ Item {
 
             ComboBox {
                 id: fieldAge
-
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                currentIndex: 0
                 background: Rectangle {
                     border.color:"white"
                 }
                 //DISTANCE OPTIONS
-                model: ["kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
-                    ">80",]
+                //model: ["kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
+                    //">80",]
+
+                textRole: "key"
+                model: ListModel {
+                    id: ages
+                    ListElement { key: "Kaikki ikäsarjat"; value: "kaikki" }
+                    ListElement { key: "Alle 35 vuotiaat"; value: "<35" }
+                    ListElement { key: "Ikäsarja | 35"; value: "35" }
+                    ListElement { key: "Ikäsarja | 40"; value: "40" }
+                    ListElement { key: "Ikäsarja | 45"; value: "45" }
+                    ListElement { key: "Ikäsarja | 50"; value: "50" }
+                    ListElement { key: "Ikäsarja | 55"; value: "55" }
+                    ListElement { key: "Ikäsarja | 60"; value: "60" }
+                    ListElement { key: "Ikäsarja | 65"; value: "65" }
+                    ListElement { key: "Ikäsarja | 70"; value: "70" }
+                    ListElement { key: "Yli 80 vuotiaat"; value: ">80" }
+                }
 
                 font.pointSize: 13
+                enabled: true
                 width: 250
-                Layout.fillHeight: true
-                Layout.fillWidth: true
                 anchors.topMargin: 9
                 visible: true
             }
@@ -403,12 +423,11 @@ Item {
                 Layout.fillWidth: true
                 textRole: qsTr("")
 
-
                 background: Rectangle {
                     border.color:"white"
                 }
                 //YEAR OPTIONS
-                model: ["Kaikki", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
+                model: ["kaikki", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
                     "DZ - ALGERIA", "AS - AMERICAN SAMOA", "AD - ANDORRA", "AO - ANGOLA",
                     "AI - ANGUILLA", "AQ - ANTARCTICA", "AG - ANTIGUA AND BARBUDA",
                     "AR - ARGENTINA", "AM - ARMENIA", "AW - ARUBA", "AU - AUSTRALIA",
@@ -537,7 +556,8 @@ Item {
                     //välitä hakukriteerit C++ puolelle
 
                     datamanager.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
-                                                    distances.get(fieldDistance.currentIndex).value, selected.text, fieldAge.currentText,
+                                                    distances.get(fieldDistance.currentIndex).value, selected.text,
+                                                    ages.get(fieldAge.currentIndex).value,
                                                     fieldFirstName.text, fieldLastName.text,
                                                     fieldPlace.text, fieldNationality.currentText,
                                                     fieldTeam.text);

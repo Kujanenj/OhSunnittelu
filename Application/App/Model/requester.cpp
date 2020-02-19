@@ -55,28 +55,10 @@ void Requester::replyFinished(QNetworkReply *reply)
         qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
     }
 
-
     QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
-
-
-
-
-    /*QFile *file = new QFile("testDataUnParsed.txt");
-    if(file->open(QIODevice::ReadWrite)){
-        file->write(DataAsString.toUtf8());
-        file->close();
-        qDebug()<<"Wrote";
-    }*/
-
-
 
     reply->deleteLater();
     htmlData_=DataAsString;
-
-
-
-
-
 }
 
 void Requester::requestData()

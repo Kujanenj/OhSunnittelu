@@ -4,39 +4,40 @@ namespace Model{
 
 Parser::Parser()
 {
-    qDebug()<<"pareseri luotu";
+    qDebug() << "pareseri luotu";
 
 }
 
 Parser::~Parser()
 {
- qDebug()<<"parseri tuhottu, BOWHAHWHAWH";
+    qDebug() << "Parser tuhottu";
 }
 
 void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
 {
-    config_=config;
-    unparsedDataTotal_=dataToParse;
+    config_ = config;
+    unparsedDataTotal_ = dataToParse;
     try {
-
         readFile();
         parseToTable();
         parseTable();
         formListedData();
     } catch (QString msg) {
-         qDebug()<<msg;
+         qDebug() << msg;
          return;
     }
-
-
-
-
 }
 
 QVector<QVector<QString> > Parser::getListedData()
 {
     return listedData_;
 }
+
+void Parser::clearListedData()
+{
+    listedData_.clear();
+}
+
 void Parser::readFile()
 {
     qDebug() << "Aletaan lukemaan data.txt filua t parseri";
