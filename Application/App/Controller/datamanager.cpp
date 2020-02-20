@@ -70,10 +70,23 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
 
 
      qDebug()<<"Starting the insertion";
-     for(int i=0; i<dataVector_.size(); i++){
-         qDebug()<<"inserting "<<dataVector_.at(i);
-         database_->inserIntoTable(dataVector_.at(i));
+     try {
+         for(int i=0; i<dataVector_.size(); i++){
+             qDebug()<<"inserting "<<dataVector_.at(i);
+             database_->inserIntoTable(dataVector_.at(i));
+         }
+     } catch (QString msg) {
+         qDebug()<<msg;
+         try {
+             database_->removeData();
+             qDebug()<<"removed all data from database since an error was thrown. Next error will cause me to destroy this program!";
+         } catch (QString msg_) {
+             qDebug()<<msg_;
+             qDebug()<<"I told you this would happen. I will suicide now, goodbye!";
+             delete this;
+         }
      }
+
 }
 
 }

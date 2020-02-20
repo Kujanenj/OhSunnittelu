@@ -39,10 +39,10 @@ QVector<QVector<QString> > Parser::getListedData()
 }
 void Parser::readFile()
 {
-    qDebug() << "Aletaan lukemaan data.txt filua t parseri";
+
 
     if(config_["fileToRead"]=="false"){
-        qDebug()<<"Häähää ei luettukaa";
+        qDebug()<<"luettiin tiedosto parsesrissa, vissiin testailemassa?? ;)";
         return;
     }
     QFile file(config_["fileToRead"]);

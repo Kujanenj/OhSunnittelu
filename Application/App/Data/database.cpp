@@ -22,14 +22,15 @@ void DataBase::connectToDataBase()
 
 }
 
-bool DataBase::createDataBase()
+void DataBase::createDataBase()
 {
     if(this->openDataBase()){
         qDebug() << "Created new database";
-        return (this->createTable()) ? true : false;
+       this->createTable();
     } else {
-        qDebug() << "Failed to restore the database";
-        return false;
+         errorMessage_="Failed to resotore the database";
+
+        throw errorMessage_;
     }
 }
 
@@ -38,10 +39,11 @@ bool DataBase::openDataBase()
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName(DATABASE_HOSTNAME);
     db.setDatabaseName("../../Application/App/Data/" DATABASE_NAME);
-    if(db.open()){
-        return true;
+    if(!db.open()){
+        qDebug()<<"Error in opening database";
+       return false;
     }
-    return false;
+        return true;
 }
 
 void DataBase::closeDataBase()
@@ -49,7 +51,7 @@ void DataBase::closeDataBase()
     db.close();
 }
 
-bool DataBase::createTable()
+void DataBase::createTable()
 {
     QSqlQuery query;
     if(!query.exec( "CREATE TABLE " TABLE " ("
@@ -68,15 +70,19 @@ bool DataBase::createTable()
                             TABLE_TEAM     " VARCHAR(255)    NOT NULL"
                         " )"
                     )){
+
+
         qDebug() << "DataBase: error of create " << TABLE;
         qDebug() << query.lastError().text();
-        return false;
+        errorMessage_= "DataBase: error in creation of table";
+        throw errorMessage_;
+
     }
 
-    return true;
+
 }
 
-bool DataBase::inserIntoTable(QVector<QString> toInsert)
+void DataBase::inserIntoTable(QVector<QString> toInsert)
 {
     data.clear();
     data=toInsert;
@@ -112,12 +118,13 @@ bool DataBase::inserIntoTable(QVector<QString> toInsert)
     if(!query.exec()){
         qDebug() << "error insert into " << TABLE;
         qDebug() << query.lastError().text();
-        return false;
+        errorMessage_="Error in insertion to table";
+        throw errorMessage_;
     }
-    return true;
+
 }
 
-bool DataBase::removeData()
+void DataBase::removeData()
 {
     QSqlQuery query;
     query.prepare("DELETE FROM " TABLE);
@@ -125,8 +132,9 @@ bool DataBase::removeData()
     if(!query.exec()){
         qDebug() << "error delete row " << TABLE;
         qDebug() << query.lastError().text();
-        return false;
+        errorMessage_="Databse error in deletion";
+        throw errorMessage_;
     }
     qDebug() << "All rows deleted succesfully";
-    return true;
+
 }

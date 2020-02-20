@@ -36,18 +36,19 @@ public:
     void connectToDataBase();
 
 public slots:
-    bool inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
-    bool removeData();
+    void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
+    void removeData();
 
 private:
     QSqlDatabase db;
 
     bool openDataBase();
-    bool createDataBase();
+    void createDataBase();
     void closeDataBase();
-    bool createTable();
+    void createTable();
 
     QVector<QString> data;
+    QString errorMessage_="No errors";
 };
 
 #endif // DATABASE_H

@@ -22,7 +22,13 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     std::shared_ptr<DataBase> database=std::make_shared<DataBase>();
-    database->connectToDataBase();
+    try {
+           database->connectToDataBase();
+    } catch (QString msg) {
+        qDebug()<<msg;
+        return EXIT_FAILURE;
+    }
+
 
     ListModel *model = new ListModel();
 
