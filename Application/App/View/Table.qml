@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 
 Item {
     TableView {
+        id: tableView
         anchors.fill: parent
         TableViewColumn {
             role: "year"
@@ -65,28 +66,41 @@ Item {
             width: 100
         }
 
-        Button {
-            id: button
-            x: 265
-            y: -1
-            text: qsTr("Update")
-            onClicked: {
-                myModel.updateModel()
-            }
-        }
-
-        Button {
-            id: button1
-            x: 351
-            y: 0
-            text: qsTr("Reset")
-            onClicked: {
-                database.removeData()
-                myModel.updateModel()
-            }
-        }
-
         model: myModel
+
+        rowDelegate: Rectangle {
+            anchors.fill: parent
+            color: styleData.selected ? 'skyblue' : (styleData.alternate ? 'whitesmoke' : 'white');
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton | Qt.LeftButton
+                onClicked: {
+                    tableView.selection.clear()
+                    tableView.selection.select(styleData.row)
+                    tableView.currentRow = styleData.row
+                    tableView.focus = true
+
+                    switch(mouse.button) {
+                    case Qt.RightButton:
+                        contextMenu.popup()
+                        break
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    }
+
+    Menu {
+        id: contextMenu
+
+        MenuItem {
+            text: qsTr("Lisätietoa")
+            onTriggered: {
+                bar.currentIndex = 2
+            }
+        }
     }
 }
 

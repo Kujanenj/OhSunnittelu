@@ -14,8 +14,14 @@ ApplicationWindow {
             text: qsTr("Haku")
             checked: true
         }
+
         TabButton {
             text: qsTr("Tulokset")
+            checked: false
+        }
+
+        TabButton {
+            text: qsTr("Tarkemmat tulokset")
             checked: false
         }
 
