@@ -99,6 +99,9 @@ void Parser::parseTable()
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
 
+
+   parsedData.replace("&nbsp;", "-");
+
    unparsedDataTotal_=parsedData;
 
 
