@@ -1,57 +1,41 @@
-#include "datamanager.h"
+#include "datacontroller.h"
 #include <QDebug>
 
 namespace Controller
 {
 
 
-Datamanager::Datamanager(std::shared_ptr<DataBase> database, QObject *parent ) : QObject(parent)
+DataController::DataController(std::shared_ptr<DataBase> database, QObject *parent ) :
+    QObject(parent),
+    database_(database)
 {
     req = std::make_shared<Model::Requester>();
     parser = std::make_shared<Model::Parser>();
-    qDebug() << "Datamanager luotu";
-    database_=database;
-    QString empty="";
-
-
+    qDebug() << "DataController luotu";
 }
 
-Datamanager::~Datamanager()
+DataController::~DataController()
 {
-    database_->removeData();
-
-    qDebug()<<"Datamanager poistettu";
+    qDebug() << "DataController poistettu";
 }
 
-void Datamanager::searchButtonClicked(QString startYear, QString endYear,
+void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QString distance, QString gender, QString ageSeries,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,
                                   QString team)
 {
-    //Condition checks that take out invalid inputs
-    if(gender == ""){
-        gender = "kaikki";
-    }
-
-    if(nationality == "Kaikki"){
+    // Changes nationality text to match with all nationalities
+    if(nationality == "kaikki"){
         nationality = "0";
     }
+
+    // Takes 2 nationality symbol letters
     nationality = nationality.left(2);
 
     QMap<QString,QString> parameters;
 
-    qDebug() << " Vuosi: " << startYear << "\n"
-             << "Matka: " << distance << "\n"
-             << "Sukupuoli: " << gender << "\n"
-             << "Ikäsarja: " << ageSeries << "\n"
-             << "Etunimi: " << firstName << "\n"
-             << "Sukunimi: " << lastName << "\n"
-             << "Paikkakunta: " << place << "\n"
-             << "Kansallisuus: " << nationality << "\n"
-             << "Joukkue: " << team << "\n";
-
-     //Using user input parameters:
+     // Using user input parameters:
      parameters.insert("Vuosi", startYear);
      parameters.insert("Matka", distance);
      parameters.insert("Ikaluokka", ageSeries);
@@ -65,16 +49,22 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
      req->DoRequest(parameters,data_);
      qDebug() << "Request done";
 
+     // Parses data to dataVector_ and clears old listedData_ vector
      parser->fullParse(parserConfig_,data_);
      dataVector_=parser->getListedData();
+     parser->clearListedData();
 
 
+
+             database_->removeData();
+             QSqlDatabase::database().transaction();
      qDebug()<<"Starting the insertion";
      try {
          for(int i=0; i<dataVector_.size(); i++){
              qDebug()<<"inserting "<<dataVector_.at(i);
              database_->inserIntoTable(dataVector_.at(i));
          }
+           QSqlDatabase::database().commit();
      } catch (QString msg) {
          qDebug()<<msg;
          try {
@@ -87,6 +77,9 @@ void Datamanager::searchButtonClicked(QString startYear, QString endYear,
          }
      }
 
-}
+
+
 
 }
+
+} // Namespace controller

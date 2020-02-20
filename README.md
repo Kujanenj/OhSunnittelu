@@ -1,28 +1,28 @@
-# TODO
+## TODO
 
-**yleiset**
+# yleiset
+**Konkreettiset jutut mitä teherää**: 
+- Sorttaus databasee
+- Bugfixit ja testaus ja cleanup. (Rollback erroreis ja käsittely paikallisesti)
+- Riku hoitaa requesteri, jemppu parseri, veikko_kuhtuu_ hoitaa manageri, ja minä (jussi) ottaa sql.
+- uus view Clässi ( ehkä useita?) nämä siis syöttäis dataa qml puolelle, ja olis pääsy modelille. :D
+- Rajapinnat: Controllerin alla model ja view, viewin alla modeli. Suomeksi siis->Controlleri ottaa constructioris model ja view oliot,
+ja view ottaa model olion. (Pointterin tietysti :D) 
+-Keskitetty model clässi, jonka alla muut modelin paskat.
+ja mastiffit
 
-- Requesteriin ja backendii jää nyt  olioita roikkumaan. New:llä luodut oliot on ok, mutta pitää kattoa että ne poistuu.
-- Vaihtaa kaikki new:llä luodut smart pointteriksi? 
+*muut*
 - UNIT TESTIT :D
-- kommentoinnit (Ainakin requester ja bäckend"
-- Nimetä bäckend uudestaan. Esim manager?
-- Oma namespace tässä vaiheessa aika must, myöhemmin ei enää jaksa
+- Graaffit
+- MultiYear (Controlleris) 
+**Rajapinnat**
+- View: käskytys controllerilta, joku configi?
+- yhteys Qpropertyllä qml:ää, mitä se sitten meinaakaan.
+- Model: Annan sulle dataa tiettyjen vaatimusten mukaan.
+- Osaan myös hakea dataa ja tallentaa sen ;)
+- Controller: Nappulat.
 
-**toiminnalisuus**
-- Yhteys qml:n ja bäckendin välis, eli siis saa ne tekstikenttien datat ulos.
-- Joku tulkki valmiille datalle. (Uus clässi)
 
-
-
-# OHJEET MONNEILLE
-- Ladatkaa python 3.X versio ja laittakaa asennuksessa "Add python 3.X to PATH", jotta Qt löytää .exen automaattisesti
-- Ladatkaa get-pip.py täältä: https://bootstrap.pypa.io/get-pip.py
-- Avatkaa cmd get-pip.py polusta ja kirjottakaa "python get-pip.py"
-- Pythonin ja pip:in oikeasta asennuksesta saa varmuuden kun laittaa cmd "python -V / pip -V" - Jos ei palauta mitään jotain väärin
-- Tän jälkee kirjottakaa pip install selenium ja jos kaikki oikein pitäs lataa jotai :D
-- PhantomJS.exe löytyy Python_Script folderista, täyttäkää se polku kuntoon "Python_Script/main.py" filuun
-- Täyttäkää polut kuntoon Requester/Scripts/main.cpp filusta niin, että main.cpp runnatessa saatte data.txt filun. Error.txt filusta näkee maholliset errorit runnatessa.
 
 ## Git tips
 **git remote update origin --prune**

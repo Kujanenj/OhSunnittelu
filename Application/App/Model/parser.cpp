@@ -4,47 +4,49 @@ namespace Model{
 
 Parser::Parser()
 {
-    qDebug()<<"pareseri luotu";
+    qDebug() << "pareseri luotu";
 
 }
 
 Parser::~Parser()
 {
- qDebug()<<"parseri tuhottu, BOWHAHWHAWH";
+    qDebug() << "Parser tuhottu";
 }
 
 void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
 {
-    config_=config;
-    unparsedDataTotal_=dataToParse;
+    config_ = config;
+    unparsedDataTotal_ = dataToParse;
     try {
-
         readFile();
         parseToTable();
         parseTable();
         formListedData();
     } catch (QString msg) {
-         qDebug()<<msg;
+         qDebug() << msg;
          return;
     }
-
-
-
-
 }
 
 QVector<QVector<QString> > Parser::getListedData()
 {
     return listedData_;
 }
+
+void Parser::clearListedData()
+{
+    listedData_.clear();
+}
+
 void Parser::readFile()
 {
 
 
     if(config_["fileToRead"]=="false"){
-        qDebug()<<"luettiin tiedosto parsesrissa, vissiin testailemassa?? ;)";
+
         return;
     }
+    qDebug()<<"luettiin tiedosto parsesrissa, vissiin testailemassa?? ;)";
     QFile file(config_["fileToRead"]);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
         returnMessage_="ERROR file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
@@ -97,6 +99,9 @@ void Parser::parseTable()
    parsedData.replace("</td>>","$"); //replace delimeter
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
+
+
+   parsedData.replace("&nbsp;", "-");
 
    unparsedDataTotal_=parsedData;
 
