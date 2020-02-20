@@ -80,65 +80,123 @@ ApplicationWindow {
                 height: 37
 
                 Button {
-                    id: button
+                    id: sortButton
                     text: qsTr("Lajittele")
                     scale: 0.95
+                    onClicked: {
+                        // Tee datacontrollerii funktio mitä haluut tehä
+                        // kun lajittele buttonia painetaan
+                        // selected.text välittää sulle tekstin mitä sortataan
+                        // Esim. "Vuosi"
+                        // DataController.sortButtonClicked(selected.text);
+                        myModel.updateModel()
+                    }
+                }
+
+                Text {
+                    id: selected
+                    text: ""
+                    visible: false
                 }
 
                 RadioButton {
-                    id: radioButton
+                    id: yearRadioButton
                     text: qsTr("Vuosi")
-                    checked: true
+                    checked: {
+                        true
+                        selected.text = "Vuosi"
+                    }
+                    onClicked: {
+                        parent: selected.text = "Vuosi"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton1
+                    id: distanceRadioButton
                     text: qsTr("Matka")
+                    onClicked: {
+                        parent: selected.text = "Matka"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton2
+                    id: timeRadioButton
                     text: qsTr("Aika")
+                    onClicked: {
+                        parent: selected.text = "Aika"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton3
+                    id: placeRadioButton
+                    text: qsTr("Sija")
+                    onClicked: {
+                        parent: selected.text = "Sija"
+                    }
+                }
+
+                RadioButton {
+                    id: placeMRadioButton
                     text: qsTr("Sija / M")
+                    onClicked: {
+                        parent: selected.text = "SijaM"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton4
+                    id: placeNRadioButton
                     text: qsTr("Sija / N")
+                    onClicked: {
+                        parent: selected.text = "SijaN"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton5
+                    id: genderRadioButton
                     text: qsTr("Sukupuoli")
+                    onClicked: {
+                        parent: selected.text = "Sukupuoli"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton6
+                    id: sfnameRadioButton
                     text: qsTr("Suku- ja etunimi")
+                    onClicked: {
+                        parent: selected.text = "Nimi"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton7
+                    id: cityRadioButton
                     text: qsTr("Paikkakunta")
+                    onClicked: {
+                        parent: selected.text = "Paikkakunta"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton8
+                    id: nationalityRadioButton
                     text: qsTr("Kansallisuus")
+                    onClicked: {
+                        parent: selected.text = "Kansallisuus"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton9
+                    id: ageRadioButton
                     text: qsTr("Syntymävuosi")
+                    onClicked: {
+                        parent: selected.text = "Syntymävuosi"
+                    }
                 }
 
                 RadioButton {
-                    id: radioButton10
+                    id: teamRadioButton
                     text: qsTr("Joukkue")
+                    onClicked: {
+                        parent: selected.text = "Joukkue"
+                    }
                 }
             }
         }
