@@ -555,7 +555,7 @@ Item {
                 onClicked: {
                     //välitä hakukriteerit C++ puolelle
 
-                    datamanager.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
+                    DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
                                                     distances.get(fieldDistance.currentIndex).value, selected.text,
                                                     ages.get(fieldAge.currentIndex).value,
                                                     fieldFirstName.text, fieldLastName.text,

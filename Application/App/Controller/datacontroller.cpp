@@ -1,52 +1,39 @@
-#include "datamanager.h"
+#include "datacontroller.h"
 #include <QDebug>
 
 namespace Controller
 {
 
 
-Datamanager::Datamanager(std::shared_ptr<DataBase> database, QObject *parent ) :
+DataController::DataController(std::shared_ptr<DataBase> database, QObject *parent ) :
     QObject(parent),
     database_(database)
 {
     req = std::make_shared<Model::Requester>();
     parser = std::make_shared<Model::Parser>();
-    QString empty = "";
-    qDebug() << "Datamanager luotu";
+    qDebug() << "DataController luotu";
 }
 
-Datamanager::~Datamanager()
+DataController::~DataController()
 {
-    database_->removeData();
-    qDebug() << "Datamanager poistettu";
+    qDebug() << "DataController poistettu";
 }
 
-void Datamanager::searchButtonClicked(QString startYear, QString endYear,
+void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QString distance, QString gender, QString ageSeries,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,
                                   QString team)
 {
-    //Condition checks that take out invalid inputs
-
-    qDebug() << nationality;
+    // Changes nationality text to match with all nationalities
     if(nationality == "kaikki"){
         nationality = "0";
     }
 
+    // Takes 2 nationality symbol letters
     nationality = nationality.left(2);
 
     QMap<QString,QString> parameters;
-
-    qDebug() << " Vuosi: " << startYear << "\n"
-             << "Matka: " << distance << "\n"
-             << "Sukupuoli: " << gender << "\n"
-             << "Ikäsarja: " << ageSeries << "\n"
-             << "Etunimi: " << firstName << "\n"
-             << "Sukunimi: " << lastName << "\n"
-             << "Paikkakunta: " << place << "\n"
-             << "Kansallisuus: " << nationality << "\n"
-             << "Joukkue: " << team << "\n";
 
      // Using user input parameters:
      parameters.insert("Vuosi", startYear);

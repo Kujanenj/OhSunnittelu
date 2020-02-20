@@ -1,5 +1,5 @@
-#ifndef DATAMANAGER_H
-#define DATAMANAGER_H
+#ifndef DATACONTROLLER_H
+#define DATACONTROLLER_H
 #include <QString>
 #include <QObject>
 #include "Model/requester.h"
@@ -14,24 +14,24 @@ namespace Controller {
 
 
 /**
- * @brief The Datamanager class. Controls data between view and model
+ * @brief The DataController class. Controls data between view and model
  */
 
-class Datamanager : public QObject
+class DataController : public QObject
 {
     Q_OBJECT
 
 public:
     /**
-     * @brief Datamanager constructor
+     * @brief DataController constructor
      * @param parent null pointer to QObject
      */
-    explicit Datamanager(std::shared_ptr<DataBase> database=nullptr, QObject *parent = nullptr);
+    explicit DataController(std::shared_ptr<DataBase> database=nullptr, QObject *parent = nullptr);
 
     /**
-      * @brief Datamanager destructor
+      * @brief DataController destructor
       */
-    ~Datamanager();
+    ~DataController();
 
     /**
       * @brief Q_INVOKABLE type function that is called from QML when search button is clicked.
@@ -75,4 +75,4 @@ private:
 };
 }
 
-#endif // DATAMANAGER_H
+#endif // DATACONTROLLER_H

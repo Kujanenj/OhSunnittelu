@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "Controller/datamanager.h"
+#include "Controller/datacontroller.h"
 #include "Data/database.h"
 #include "Model/listmodel.h"
 
@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 
 
     //Creating backend and exposing data to the QML components instantiated by the QML engine
-    Controller::Datamanager datamanager(database);
-    engine.rootContext()->setContextProperty("datamanager", &datamanager);
+    Controller::DataController DataController(database);
+    engine.rootContext()->setContextProperty("DataController", &DataController);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
