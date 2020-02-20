@@ -61,12 +61,84 @@ ApplicationWindow {
                 id: frame1
                 x: 0
                 y: -2
+                anchors.topMargin: 43
                 anchors.fill: parent
 
                 Table {
                     id: table
+                    anchors.topMargin: 0
                     anchors.fill: parent
                     anchors.bottom: parent.bottom
+                }
+            }
+
+            RowLayout {
+                id: rowLayout
+                x: 0
+                y: 0
+                width: 1270
+                height: 37
+
+                Button {
+                    id: button
+                    text: qsTr("Lajittele")
+                    scale: 0.95
+                }
+
+                RadioButton {
+                    id: radioButton
+                    text: qsTr("Vuosi")
+                    checked: true
+                }
+
+                RadioButton {
+                    id: radioButton1
+                    text: qsTr("Matka")
+                }
+
+                RadioButton {
+                    id: radioButton2
+                    text: qsTr("Aika")
+                }
+
+                RadioButton {
+                    id: radioButton3
+                    text: qsTr("Sija / M")
+                }
+
+                RadioButton {
+                    id: radioButton4
+                    text: qsTr("Sija / N")
+                }
+
+                RadioButton {
+                    id: radioButton5
+                    text: qsTr("Sukupuoli")
+                }
+
+                RadioButton {
+                    id: radioButton6
+                    text: qsTr("Suku- ja etunimi")
+                }
+
+                RadioButton {
+                    id: radioButton7
+                    text: qsTr("Paikkakunta")
+                }
+
+                RadioButton {
+                    id: radioButton8
+                    text: qsTr("Kansallisuus")
+                }
+
+                RadioButton {
+                    id: radioButton9
+                    text: qsTr("Syntymävuosi")
+                }
+
+                RadioButton {
+                    id: radioButton10
+                    text: qsTr("Joukkue")
                 }
             }
         }
@@ -105,8 +177,8 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:8;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:12;anchors_x:"-12";anchors_y:"-12"}
-D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:14;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
-D{i:16;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}
+    D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}D{i:1;anchors_width:1280}D{i:8;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
+D{i:12;anchors_x:"-12";anchors_y:"-12"}D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
+D{i:27;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:29;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
 }
 ##^##*/
