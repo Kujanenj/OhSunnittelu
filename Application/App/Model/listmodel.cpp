@@ -17,6 +17,11 @@ QVariant ListModel::data(const QModelIndex & index, int role) const {
     return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
 }
 
+void ListModel::sortListModel(QString sortBy, QString direction)
+{
+    this->setQuery("SELECT * FROM Results ORDER BY " +sortBy+" "+direction);
+}
+
 QHash<int, QByteArray> ListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -38,7 +43,9 @@ QHash<int, QByteArray> ListModel::roleNames() const
 
 void ListModel::updateModel()
 {
+
     qDebug() << "Updating model";
     // The update is performed SQL-queries to the database
     this->setQuery("SELECT *, " TABLE_YEAR ", " TABLE_DIST ", " TABLE_TIME ", " TABLE_PLACE ", " TABLE_PLACEM ", " TABLE_PLACEN ", " TABLE_GENDER ", " TABLE_SFNAME ", " TABLE_CITY ", " TABLE_NATIONALITY ", " TABLE_AGE ", " TABLE_TEAM "  FROM " TABLE);
 }
+

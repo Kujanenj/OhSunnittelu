@@ -27,7 +27,7 @@ public:
     explicit ListModel(QObject *parent = nullptr);
 
     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
-
+    void sortListModel(QString sortBy, QString direction);
 private:
     QHash<int, QByteArray> roleNames() const;
 

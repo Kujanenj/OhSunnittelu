@@ -84,12 +84,14 @@ ApplicationWindow {
                     text: qsTr("Lajittele")
                     scale: 0.95
                     onClicked: {
+
+                        DataController.sortButtonClicked(selected.text);
                         // Tee datacontrollerii funktio mitä haluut tehä
                         // kun lajittele buttonia painetaan
                         // selected.text välittää sulle tekstin mitä sortataan
                         // Esim. "Vuosi"
                         // DataController.sortButtonClicked(selected.text);
-                        myModel.updateModel()
+
                     }
                 }
 

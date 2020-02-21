@@ -1,8 +1,8 @@
 #include "database.h"
 
-DataBase::DataBase(QObject *parent)
+DataBase::DataBase(std::shared_ptr<ListModel> listmodel, QObject *parent)
 {
-
+    listModel_=listmodel;
 }
 
 DataBase::~DataBase()
@@ -84,6 +84,7 @@ void DataBase::createTable()
 
 }
 
+
 void DataBase::inserIntoTable(QVector<QString> toInsert)
 {
     data.clear();
@@ -140,3 +141,12 @@ void DataBase::removeData()
     qDebug() << "All rows deleted succesfully";
 
 }
+
+void DataBase::sortDataBase(QString sortBy, QString direction)
+{
+
+
+ listModel_->sortListModel(sortBy,direction);
+
+}
+

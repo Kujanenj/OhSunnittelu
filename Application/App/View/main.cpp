@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    std::shared_ptr<DataBase> database=std::make_shared<DataBase>();
+     std::shared_ptr< ListModel > model = std::make_shared<ListModel>();
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(model);
     try {
            database->connectToDataBase();
     } catch (QString msg) {
@@ -30,9 +31,9 @@ int main(int argc, char *argv[])
     }
 
 
-    ListModel *model = new ListModel();
 
-    engine.rootContext()->setContextProperty("myModel", model);
+
+    engine.rootContext()->setContextProperty("myModel", &*model);
     engine.rootContext()->setContextProperty("database", &*database);
 
 

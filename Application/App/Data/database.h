@@ -9,6 +9,9 @@
 #include <QFile>
 #include <QDate>
 #include <QDebug>
+#include <memory>
+
+#include "../Model/listmodel.h"
 
 #define DATABASE_HOSTNAME       "NameDataBase"
 #define DATABASE_NAME           "data.db"
@@ -31,10 +34,10 @@ class DataBase : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataBase(QObject *parent = nullptr);
+    explicit DataBase(std::shared_ptr<ListModel> listModel=nullptr, QObject *parent = nullptr);
     ~DataBase();
     void connectToDataBase();
-
+    void sortDataBase(QString sortBy, QString direction="ASC");
 public slots:
     void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
     void removeData();
@@ -47,8 +50,11 @@ private:
     void closeDataBase();
     void createTable();
 
+
     QVector<QString> data;
     QString errorMessage_="No errors";
+
+    std::shared_ptr<ListModel> listModel_;
 };
 
 #endif // DATABASE_H

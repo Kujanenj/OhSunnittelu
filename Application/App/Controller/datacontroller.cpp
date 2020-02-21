@@ -16,6 +16,8 @@ DataController::DataController(std::shared_ptr<DataBase> database, QObject *pare
 
 DataController::~DataController()
 {
+
+    database_->removeData();
     qDebug() << "DataController poistettu";
 }
 
@@ -80,6 +82,14 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 
 
 
+}
+
+void DataController::sortButtonClicked(QString selectedField)
+{
+
+ //   QSqlDatabase::database().transaction();
+    qDebug()<<selectedField;
+    database_->sortDataBase(selectedField);
 }
 
 } // Namespace controller
