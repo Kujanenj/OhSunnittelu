@@ -19,7 +19,13 @@ QVariant ListModel::data(const QModelIndex & index, int role) const {
 
 void ListModel::sortListModel(QString sortBy, QString direction)
 {
+    if(sortBy=="place" || sortBy=="placem" || sortBy =="placen"){
+
+        this->setQuery("SELECT * FROM Results ORDER BY " + sortBy  + " + 0 " + direction) ;
+    }
+    else{
     this->setQuery("SELECT * FROM Results ORDER BY " +sortBy+" "+direction);
+    }
 }
 
 QHash<int, QByteArray> ListModel::roleNames() const

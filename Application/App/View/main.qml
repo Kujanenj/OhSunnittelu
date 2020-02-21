@@ -106,10 +106,10 @@ ApplicationWindow {
                     text: qsTr("Vuosi")
                     checked: {
                         true
-                        selected.text = "Vuosi"
+                        selected.text = "year"
                     }
                     onClicked: {
-                        parent: selected.text = "Vuosi"
+                        parent: selected.text = "year"
                     }
                 }
 
@@ -117,7 +117,7 @@ ApplicationWindow {
                     id: distanceRadioButton
                     text: qsTr("Matka")
                     onClicked: {
-                        parent: selected.text = "Matka"
+                        parent: selected.text = "distance"
                     }
                 }
 
@@ -125,7 +125,7 @@ ApplicationWindow {
                     id: timeRadioButton
                     text: qsTr("Aika")
                     onClicked: {
-                        parent: selected.text = "Aika"
+                        parent: selected.text = "time"
                     }
                 }
 
@@ -133,7 +133,7 @@ ApplicationWindow {
                     id: placeRadioButton
                     text: qsTr("Sija")
                     onClicked: {
-                        parent: selected.text = "Sija"
+                        parent: selected.text = "place"
                     }
                 }
 
@@ -141,7 +141,7 @@ ApplicationWindow {
                     id: placeMRadioButton
                     text: qsTr("Sija / M")
                     onClicked: {
-                        parent: selected.text = "SijaM"
+                        parent: selected.text = "placem"
                     }
                 }
 
@@ -149,7 +149,7 @@ ApplicationWindow {
                     id: placeNRadioButton
                     text: qsTr("Sija / N")
                     onClicked: {
-                        parent: selected.text = "SijaN"
+                        parent: selected.text = "placen"
                     }
                 }
 
@@ -157,7 +157,7 @@ ApplicationWindow {
                     id: genderRadioButton
                     text: qsTr("Sukupuoli")
                     onClicked: {
-                        parent: selected.text = "Sukupuoli"
+                        parent: selected.text = "gender"
                     }
                 }
 
@@ -165,7 +165,7 @@ ApplicationWindow {
                     id: sfnameRadioButton
                     text: qsTr("Suku- ja etunimi")
                     onClicked: {
-                        parent: selected.text = "Nimi"
+                        parent: selected.text = "sfname"
                     }
                 }
 
@@ -173,7 +173,7 @@ ApplicationWindow {
                     id: cityRadioButton
                     text: qsTr("Paikkakunta")
                     onClicked: {
-                        parent: selected.text = "Paikkakunta"
+                        parent: selected.text = "city"
                     }
                 }
 
@@ -181,7 +181,7 @@ ApplicationWindow {
                     id: nationalityRadioButton
                     text: qsTr("Kansallisuus")
                     onClicked: {
-                        parent: selected.text = "Kansallisuus"
+                        parent: selected.text = "nationality"
                     }
                 }
 
@@ -189,7 +189,7 @@ ApplicationWindow {
                     id: ageRadioButton
                     text: qsTr("Syntymävuosi")
                     onClicked: {
-                        parent: selected.text = "Syntymävuosi"
+                        parent: selected.text = "age"
                     }
                 }
 
@@ -197,7 +197,7 @@ ApplicationWindow {
                     id: teamRadioButton
                     text: qsTr("Joukkue")
                     onClicked: {
-                        parent: selected.text = "Joukkue"
+                        parent: selected.text = "team"
                     }
                 }
             }
