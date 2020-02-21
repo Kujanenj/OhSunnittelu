@@ -15,13 +15,13 @@ Requester::Requester(QObject *parent)
     QUrl url("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto");
     request = std::make_shared<QNetworkRequest>(url);
 
-    qDebug() << "Requester luotu";
+    qDebug() << "Requester created";
 }
 
 Requester::~Requester()
 {
     delete manager;
-    qDebug() << "Requester poistettu";
+    qDebug() << "Requester deleted";
 }
 
 QString Requester::DoRequest(QMap<QString, QString> config, QString& data)
@@ -40,7 +40,6 @@ QString Requester::DoRequest(QMap<QString, QString> config, QString& data)
 
 void Requester::replyFinished(QNetworkReply *reply)
 {
-    qDebug() << "Reply saatu";
     if(reply->error())
     {
         qDebug() << "ERROR!";
@@ -63,12 +62,12 @@ void Requester::replyFinished(QNetworkReply *reply)
 
 void Requester::requestData()
 {
-    // Korvaa http pyynnöt https
+    // Makes http to redirect https
     manager->setStrictTransportSecurityEnabled(true);
 
     multiPart = std::make_shared<QHttpMultiPart>();
 
-    // Asettaa multipartin käyttämään form-dataa
+    // Sets multipart to use form-data
     multiPart->setContentType(QHttpMultiPart::FormDataType);
 
     // Response headers
@@ -122,7 +121,7 @@ void Requester::requestData()
     param13.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuJoukkue2\"");
     param13.setBody(parameters_.value("Joukkue").toUtf8());
 
-    // Parametrien lisäys multiparttiin
+    // Adds parameters to multipart
     multiPart->append(referer);
     multiPart->append(origin);
     multiPart->append(connection);
@@ -141,13 +140,11 @@ void Requester::requestData()
     multiPart->append(param12);
     multiPart->append(param13);
 
-    // Post request
-
    QNetworkReply *reply= manager->post(*request, multiPart.get());
 
 
 
-    qDebug() << "Post request suoritettu, odotetaan vastausta";
+    qDebug() << "Post request completed, waiting for response";
 
     QTimer timer;
     timer.setSingleShot(true);

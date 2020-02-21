@@ -20,62 +20,62 @@ Item {
             anchors.fill: parent
             TableViewColumn {
                 role: "year"
-                title: "Vuosi"
+                title: "Year"
                 width: 100
             }
             TableViewColumn {
                 role: "distance"
-                title: "Matka"
+                title: "Distance"
                 width: 100
             }
             TableViewColumn {
                 role: "time"
-                title: "Aika"
+                title: "Time"
                 width: 100
             }
             TableViewColumn {
                 role: "place"
-                title: "Sija"
+                title: "Rank"
                 width: 100
             }
             TableViewColumn {
                 role: "placem"
-                title: "Sija/miehet"
+                title: "Rank | M"
                 width: 100
             }
             TableViewColumn {
                 role: "placen"
-                title: "Sija/naiset"
+                title: "Rank | W"
                 width: 100
             }
             TableViewColumn {
                 role: "gender"
-                title: "Sukupuoli"
+                title: "Gender"
                 width: 100
             }
             TableViewColumn {
                 role: "sfname"
-                title: "Suku- ja etunimi"
+                title: "Name"
                 width: 100
             }
             TableViewColumn {
                 role: "city"
-                title: "Paikkakunta"
+                title: "City"
                 width: 100
             }
             TableViewColumn {
                 role: "nationality"
-                title: "Kansallisuus"
+                title: "Nationality"
                 width: 100
             }
             TableViewColumn {
                 role: "age"
-                title: "Syntymävuosi"
+                title: "Age"
                 width: 100
             }
             TableViewColumn {
                 role: "team"
-                title: "Joukkue"
+                title: "Team"
                 width: 100
             }
 
@@ -114,7 +114,7 @@ Item {
 
             Button {
                 id: sortButton
-                text: qsTr("Lajittele")
+                text: qsTr("Sort")
                 scale: 0.95
                 onClicked: {
 
@@ -136,7 +136,7 @@ Item {
 
             RadioButton {
                 id: yearRadioButton
-                text: qsTr("Vuosi")
+                text: qsTr("Year")
                 checked: {
                     true
                     selected.text = "year"
@@ -148,7 +148,7 @@ Item {
 
             RadioButton {
                 id: distanceRadioButton
-                text: qsTr("Matka")
+                text: qsTr("Distance")
                 onClicked: {
                     parent: selected.text = "distance"
                 }
@@ -156,7 +156,7 @@ Item {
 
             RadioButton {
                 id: timeRadioButton
-                text: qsTr("Aika")
+                text: qsTr("Time")
                 onClicked: {
                     parent: selected.text = "time"
                 }
@@ -164,7 +164,7 @@ Item {
 
             RadioButton {
                 id: placeRadioButton
-                text: qsTr("Sija")
+                text: qsTr("Rank")
                 onClicked: {
                     parent: selected.text = "place"
                 }
@@ -172,7 +172,7 @@ Item {
 
             RadioButton {
                 id: placeMRadioButton
-                text: qsTr("Sija / M")
+                text: qsTr("Rank | M")
                 onClicked: {
                     parent: selected.text = "placem"
                 }
@@ -180,7 +180,7 @@ Item {
 
             RadioButton {
                 id: placeNRadioButton
-                text: qsTr("Sija / N")
+                text: qsTr("Rank | W")
                 onClicked: {
                     parent: selected.text = "placen"
                 }
@@ -188,7 +188,7 @@ Item {
 
             RadioButton {
                 id: genderRadioButton
-                text: qsTr("Sukupuoli")
+                text: qsTr("Gender")
                 onClicked: {
                     parent: selected.text = "gender"
                 }
@@ -196,7 +196,7 @@ Item {
 
             RadioButton {
                 id: sfnameRadioButton
-                text: qsTr("Suku- ja etunimi")
+                text: qsTr("Name")
                 onClicked: {
                     parent: selected.text = "sfname"
                 }
@@ -204,7 +204,7 @@ Item {
 
             RadioButton {
                 id: cityRadioButton
-                text: qsTr("Paikkakunta")
+                text: qsTr("City")
                 onClicked: {
                     parent: selected.text = "city"
                 }
@@ -212,7 +212,7 @@ Item {
 
             RadioButton {
                 id: nationalityRadioButton
-                text: qsTr("Kansallisuus")
+                text: qsTr("Nationality")
                 onClicked: {
                     parent: selected.text = "nationality"
                 }
@@ -220,7 +220,7 @@ Item {
 
             RadioButton {
                 id: ageRadioButton
-                text: qsTr("Syntymävuosi")
+                text: qsTr("Age")
                 onClicked: {
                     parent: selected.text = "age"
                 }
@@ -228,7 +228,7 @@ Item {
 
             RadioButton {
                 id: teamRadioButton
-                text: qsTr("Joukkue")
+                text: qsTr("Team")
                 onClicked: {
                     parent: selected.text = "team"
                 }
@@ -241,7 +241,7 @@ Item {
         id: contextMenu
 
         MenuItem {
-            text: qsTr("Lisätietoa")
+            text: qsTr("More info")
             onTriggered: {
                 bar.currentIndex = 2
             }

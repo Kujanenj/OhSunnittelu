@@ -30,73 +30,73 @@ Item {
                 }
                 TableViewColumn {
                     width: 80
-                    title: "Vuosi"
+                    title: "Year"
                     role: "year"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Matka"
+                    title: "Distance"
                     role: "distance"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Aika"
+                    title: "Time"
                     role: "time"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Sija"
+                    title: "Rank"
                     role: "place"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Sija/miehet"
+                    title: "Rank | M"
                     role: "placem"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Sija/naiset"
+                    title: "Rank | W"
                     role: "placen"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Sukupuoli"
+                    title: "Gender"
                     role: "gender"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Suku- ja etunimi"
+                    title: "Name"
                     role: "sfname"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Paikkakunta"
+                    title: "City"
                     role: "city"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Kansallisuus"
+                    title: "Nationality"
                     role: "nationality"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Syntymävuosi"
+                    title: "Age"
                     role: "age"
                 }
 
                 TableViewColumn {
                     width: 80
-                    title: "Joukkue"
+                    title: "Team"
                     role: "team"
                 }
             }
@@ -120,7 +120,7 @@ Item {
 
                     Text {
                         id: element
-                        text: qsTr("Urheilijan nimi:")
+                        text: qsTr("Athlete's name: ")
                         font.pixelSize: 20
                     }
 
@@ -137,13 +137,13 @@ Item {
                     height: 100
                     Text {
                         id: element2
-                        text: qsTr("TOP 10 - Sijoituksia")
+                        text: qsTr("TOP 10 - Records: ")
                         font.pixelSize: 20
                     }
 
                     Text {
                         id: element3
-                        text: qsTr("5 kpl")
+                        text: qsTr("5")
                         font.pixelSize: 20
                     }
                 }
@@ -154,13 +154,13 @@ Item {
                     height: 100
                     Text {
                         id: element4
-                        text: qsTr("Kaikki osallistumiskerrat:")
+                        text: qsTr("Participation times: ")
                         font.pixelSize: 20
                     }
 
                     Text {
                         id: element5
-                        text: qsTr("10 osallistumista")
+                        text: qsTr("10")
                         font.pixelSize: 20
                     }
                 }
@@ -171,7 +171,7 @@ Item {
                     height: 100
                     Text {
                         id: element6
-                        text: qsTr("Osallistumisvuodet")
+                        text: qsTr("Participation years: ")
                         font.pixelSize: 20
                     }
 
@@ -188,7 +188,7 @@ Item {
                     height: 100
                     Text {
                         id: element8
-                        text: qsTr("Lista eri hiihtomatkoista:")
+                        text: qsTr("Participation skiing types: ")
                         font.pixelSize: 20
                     }
 
@@ -205,7 +205,7 @@ Item {
                     height: 100
                     Text {
                         id: element10
-                        text: qsTr("Paras aika: ")
+                        text: qsTr("Best time: ")
                         font.pixelSize: 20
                     }
 

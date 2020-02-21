@@ -36,7 +36,7 @@ Item {
                         id: element2
                         x: 0
                         y: 0
-                        text: qsTr("Vuosi")
+                        text: qsTr("Year")
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: 19
                     }
@@ -87,7 +87,7 @@ Item {
                         id: element3
                         x: 0
                         y: 0
-                        text: qsTr("Matka")
+                        text: qsTr("Distance")
                         anchors.verticalCenter: parent.verticalCenter
                         font.pixelSize: 19
                     }
@@ -110,32 +110,32 @@ Item {
                     textRole: "key"
                     model: ListModel {
                         id: distances
-                        ListElement { key: "Kaikki matkat"; value: "kaikki"}
-                        ListElement { key: "50km perinteinen"; value: "P50"}
-                        ListElement { key: "50km vapaa"; value: "V50"}
-                        ListElement { key: "100km perinteinen"; value: "P100"}
-                        ListElement { key: "32km perinteinen"; value: "P32"}
-                        ListElement { key: "20km vapaa"; value: "V20"}
-                        ListElement { key: "32km vapaa"; value: "V32"}
-                        ListElement { key: "20km vapaa, juniorit alle 16v"; value: "V20jun"}
-                        ListElement { key: "42km perinteinen"; value: "P42"}
-                        ListElement { key: "32km vapaa (2014)"; value: "V32"}
-                        ListElement { key: "20km perinteinen (2014)"; value: "P20"}
-                        ListElement { key: "30km perinteinen (2002-2005)"; value: "P30"}
-                        ListElement { key: "44km perinteinen (2002)"; value: "P44"}
-                        ListElement { key: "60km perinteinen (2003-2005)"; value: "P60"}
-                        ListElement { key: "62km perinteinen (2006)"; value: "P62"}
-                        ListElement { key: "25km perinteinen"; value: "P25"}
-                        ListElement { key: "32km perinteinen"; value: "P32"}
-                        ListElement { key: "35km perinteinen"; value: "P35"}
-                        ListElement { key: "45km perinteinen"; value: "P45"}
-                        ListElement { key: "52km perinteinen"; value: "P52"}
-                        ListElement { key: "53km perinteinen"; value: "P53"}
-                        ListElement { key: "75km perinteinen"; value: "P75"}
-                        ListElement { key: "30km vapaa"; value: "V30"}
-                        ListElement { key: "45km vapaa"; value: "V45"}
-                        ListElement { key: "53km vapaa"; value: "V53"}
-                        ListElement { key: "75km vapaa"; value: "V75"}
+                        ListElement { key: "All distances"; value: "kaikki"}
+                        ListElement { key: "50km classic"; value: "P50"}
+                        ListElement { key: "50km skate"; value: "V50"}
+                        ListElement { key: "100km classic"; value: "P100"}
+                        ListElement { key: "32km classic"; value: "P32"}
+                        ListElement { key: "20km skating"; value: "V20"}
+                        ListElement { key: "32km skating"; value: "V32"}
+                        ListElement { key: "20km skating, Juniors under 16"; value: "V20jun"}
+                        ListElement { key: "42km classic"; value: "P42"}
+                        ListElement { key: "32km skating (2014)"; value: "V32"}
+                        ListElement { key: "20km classic (2014)"; value: "P20"}
+                        ListElement { key: "30km classic (2002-2005)"; value: "P30"}
+                        ListElement { key: "44km classic (2002)"; value: "P44"}
+                        ListElement { key: "60km classic (2003-2005)"; value: "P60"}
+                        ListElement { key: "62km classic (2006)"; value: "P62"}
+                        ListElement { key: "25km classic"; value: "P25"}
+                        ListElement { key: "32km classic"; value: "P32"}
+                        ListElement { key: "35km classic"; value: "P35"}
+                        ListElement { key: "45km classic"; value: "P45"}
+                        ListElement { key: "52km classic"; value: "P52"}
+                        ListElement { key: "53km classic"; value: "P53"}
+                        ListElement { key: "75km classic"; value: "P75"}
+                        ListElement { key: "30km skating"; value: "V30"}
+                        ListElement { key: "45km skating"; value: "V45"}
+                        ListElement { key: "53km skating"; value: "V53"}
+                        ListElement { key: "75km skating"; value: "V75"}
 
                     }
 
@@ -165,7 +165,7 @@ Item {
                         id: element4
                         x: 0
                         y: 0
-                        text: qsTr("Sukupuoli")
+                        text: qsTr("Gender")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -175,7 +175,7 @@ Item {
                     Text {
                         id: selected
                         text: ""
-                        visible: true
+                        visible: false
                     }
 
                     id: fieldGender
@@ -188,7 +188,7 @@ Item {
                             true
                             selected.text = "kaikki"
                         }
-                        text: qsTr("Molemmat")
+                        text: qsTr("Both")
                         Layout.fillHeight: true
                         Layout.fillWidth: true
 
@@ -201,7 +201,7 @@ Item {
                     RadioButton {
                         id: checkBoxMale
                         checked: false
-                        text: qsTr("Mies")
+                        text: qsTr("Men")
                         Layout.fillHeight: true
                         Layout.fillWidth: true
 
@@ -214,7 +214,7 @@ Item {
                     RadioButton {
                         id: checkBoxFemale
                         checked: false
-                        text: qsTr("Nainen")
+                        text: qsTr("Women")
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
@@ -246,7 +246,7 @@ Item {
                         id: element5
                         x: 0
                         y: 0
-                        text: qsTr("Ikä")
+                        text: qsTr("Age")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -260,24 +260,21 @@ Item {
                     background: Rectangle {
                         border.color:"white"
                     }
-                    //DISTANCE OPTIONS
-                    //model: ["kaikki", "<35", "35", "40", "45", "50", "55", "60", "65", "70",
-                    //">80",]
 
                     textRole: "key"
                     model: ListModel {
                         id: ages
-                        ListElement { key: "Kaikki ikäsarjat"; value: "kaikki" }
-                        ListElement { key: "Alle 35 vuotiaat"; value: "<35" }
-                        ListElement { key: "Ikäsarja | 35"; value: "35" }
-                        ListElement { key: "Ikäsarja | 40"; value: "40" }
-                        ListElement { key: "Ikäsarja | 45"; value: "45" }
-                        ListElement { key: "Ikäsarja | 50"; value: "50" }
-                        ListElement { key: "Ikäsarja | 55"; value: "55" }
-                        ListElement { key: "Ikäsarja | 60"; value: "60" }
-                        ListElement { key: "Ikäsarja | 65"; value: "65" }
-                        ListElement { key: "Ikäsarja | 70"; value: "70" }
-                        ListElement { key: "Yli 80 vuotiaat"; value: ">80" }
+                        ListElement { key: "All ages"; value: "kaikki" }
+                        ListElement { key: "Under 35 ages"; value: "<35" }
+                        ListElement { key: "Ages | 35"; value: "35" }
+                        ListElement { key: "Ages | 40"; value: "40" }
+                        ListElement { key: "Ages | 45"; value: "45" }
+                        ListElement { key: "Ages | 50"; value: "50" }
+                        ListElement { key: "Ages | 55"; value: "55" }
+                        ListElement { key: "Ages | 60"; value: "60" }
+                        ListElement { key: "Ages | 65"; value: "65" }
+                        ListElement { key: "Ages | 70"; value: "70" }
+                        ListElement { key: "Over 80 ages"; value: ">80" }
                     }
 
                     font.pointSize: 13
@@ -303,7 +300,7 @@ Item {
                         id: element6
                         x: 0
                         y: 0
-                        text: qsTr("Etunimi")
+                        text: qsTr("First name")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -320,7 +317,7 @@ Item {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     anchors.topMargin: 9
-                    placeholderText: "Etunimi"
+                    placeholderText: "First name"
                     renderType: Text.QtRendering
                 }
             }
@@ -340,7 +337,7 @@ Item {
                         id: element7
                         x: 0
                         y: 0
-                        text: qsTr("Sukunimi")
+                        text: qsTr("Surname")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -358,7 +355,7 @@ Item {
                     Layout.fillWidth: true
                     anchors.topMargin: 9
                     visible: true
-                    placeholderText: "Sukunimi"
+                    placeholderText: "Surname"
                     renderType: Text.QtRendering
                 }
             }
@@ -378,7 +375,7 @@ Item {
                         id: element8
                         x: 0
                         y: 0
-                        text: qsTr("Paikkakunta")
+                        text: qsTr("City")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -395,7 +392,7 @@ Item {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     anchors.topMargin: 9
-                    placeholderText: "Paikkakunta"
+                    placeholderText: "City"
                     renderType: Text.QtRendering
                 }
             }
@@ -415,7 +412,7 @@ Item {
                         id: element9
                         x: 0
                         y: 0
-                        text: qsTr("Kansallisuus")
+                        text: qsTr("Nationality")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -431,7 +428,7 @@ Item {
                         border.color:"white"
                     }
                     //YEAR OPTIONS
-                    model: ["kaikki", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
+                    model: ["All", "AF - AFHANISTAN", "AX - ÅLAND ISLANDS", "AL - ALBANIA",
                         "DZ - ALGERIA", "AS - AMERICAN SAMOA", "AD - ANDORRA", "AO - ANGOLA",
                         "AI - ANGUILLA", "AQ - ANTARCTICA", "AG - ANTIGUA AND BARBUDA",
                         "AR - ARGENTINA", "AM - ARMENIA", "AW - ARUBA", "AU - AUSTRALIA",
@@ -521,7 +518,7 @@ Item {
                         id: element10
                         x: 0
                         y: 0
-                        text: qsTr("Joukkue")
+                        text: qsTr("Team")
                         font.pixelSize: 19
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -539,7 +536,7 @@ Item {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     anchors.topMargin: 9
-                    placeholderText: "Joukkue"
+                    placeholderText: "Team"
                     renderType: Text.QtRendering
                 }
             }
@@ -553,7 +550,7 @@ Item {
                     id: buttonSearch
                     x: 3
                     font.pointSize: 11
-                    text: "Hae"
+                    text: "Search"
                     anchors.topMargin: 9
                     visible: true
                     onClicked: {

@@ -11,22 +11,22 @@ ApplicationWindow {
         currentIndex: 0
 
         TabButton {
-            text: qsTr("Haku")
+            text: qsTr("Search")
             checked: true
         }
 
         TabButton {
-            text: qsTr("Tulokset")
+            text: qsTr("Results")
             checked: false
         }
 
         TabButton {
-            text: qsTr("Tarkemmat tulokset")
+            text: qsTr("Athlete results")
             checked: false
         }
 
         TabButton {
-            text: qsTr("Kaaviot")
+            text: qsTr("Charts")
             checked: false
         }
         TabButton {
