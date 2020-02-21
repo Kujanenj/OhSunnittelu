@@ -18,7 +18,9 @@ void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
     config_ = config;
     unparsedDataTotal_ = dataToParse;
     try {
-        readFile();
+        if(config_["fileToRead"]=="true"){
+            readFile();
+        }
         parseToTable();
         parseTable();
         formListedData();
@@ -41,11 +43,6 @@ void Parser::clearListedData()
 void Parser::readFile()
 {
 
-
-    if(config_["fileToRead"]=="false"){
-
-        return;
-    }
     qDebug()<<"luettiin tiedosto parsesrissa, vissiin testailemassa?? ;)";
     QFile file(config_["fileToRead"]);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -65,12 +62,7 @@ void Parser::parseToTable()
 
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
     int tableStartIndex=unparsedDataTotal_.indexOf(config_["tableStart"]);
-    unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
-    qDebug()<<"String Size "<<unparsedDataTotal_.size();
-        int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
-
-    unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
-    qDebug()<<"String Size "<<unparsedDataTotal_.size();
+    int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
 
 
     if(tableEndindex ==-1 || tableStartIndex ==-1){
@@ -79,6 +71,13 @@ void Parser::parseToTable()
 
         throw returnMessage_;
     }
+    else{
+        unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
+        unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
+        qDebug()<<"String Size "<<unparsedDataTotal_.size();
+    }
+
+
 }
 
 void Parser::parseTable()
