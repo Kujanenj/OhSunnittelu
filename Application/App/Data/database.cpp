@@ -36,7 +36,7 @@ void DataBase::createDataBase()
 
 bool DataBase::openDataBase()
 {
-    qDebug() << "Database avataan";
+    qDebug() << "Opening database";
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName(DATABASE_HOSTNAME);

@@ -11,22 +11,22 @@ ApplicationWindow {
         currentIndex: 0
 
         TabButton {
-            text: qsTr("Haku")
+            text: qsTr("Search")
             checked: true
         }
 
         TabButton {
-            text: qsTr("Tulokset")
+            text: qsTr("Results")
             checked: false
         }
 
         TabButton {
-            text: qsTr("Tarkemmat tulokset")
+            text: qsTr("Athlete results")
             checked: false
         }
 
         TabButton {
-            text: qsTr("Kaaviot")
+            text: qsTr("Charts")
             checked: false
         }
         TabButton {
@@ -44,181 +44,35 @@ ApplicationWindow {
         currentIndex: bar.currentIndex
         Item {
             id: searchTab
-
-            Frame {
-                id: frame
+            SearchField {
                 anchors.fill: parent
-
-                InputFields {
-                    anchors.fill: parent
-                }
             }
         }
         Item {
             id: resultTab
-
-            Frame {
-                id: frame1
+            ResultField {
                 x: 0
-                y: -2
-                anchors.topMargin: 43
+                y: 43
+                anchors.topMargin: 0
                 anchors.fill: parent
-
-                Table {
-                    id: table
-                    anchors.topMargin: 0
-                    anchors.fill: parent
-                    anchors.bottom: parent.bottom
-                }
+                anchors.bottom: parent.bottom
             }
-
-            RowLayout {
-                id: rowLayout
-                x: 0
-                y: 0
-                width: 1270
-                height: 37
-
-                Button {
-                    id: sortButton
-                    text: qsTr("Lajittele")
-                    scale: 0.95
-                    onClicked: {
-
-                        DataController.sortButtonClicked(selected.text);
-                        // Tee datacontrollerii funktio mitä haluut tehä
-                        // kun lajittele buttonia painetaan
-                        // selected.text välittää sulle tekstin mitä sortataan
-                        // Esim. "Vuosi"
-                        // DataController.sortButtonClicked(selected.text);
-
-                    }
-                }
-
-                Text {
-                    id: selected
-                    text: ""
-                    visible: false
-                }
-
-                RadioButton {
-                    id: yearRadioButton
-                    text: qsTr("Vuosi")
-                    checked: {
-                        true
-                        selected.text = "year"
-                    }
-                    onClicked: {
-                        parent: selected.text = "year"
-                    }
-                }
-
-                RadioButton {
-                    id: distanceRadioButton
-                    text: qsTr("Matka")
-                    onClicked: {
-                        parent: selected.text = "distance"
-                    }
-                }
-
-                RadioButton {
-                    id: timeRadioButton
-                    text: qsTr("Aika")
-                    onClicked: {
-                        parent: selected.text = "time"
-                    }
-                }
-
-                RadioButton {
-                    id: placeRadioButton
-                    text: qsTr("Sija")
-                    onClicked: {
-                        parent: selected.text = "place"
-                    }
-                }
-
-                RadioButton {
-                    id: placeMRadioButton
-                    text: qsTr("Sija / M")
-                    onClicked: {
-                        parent: selected.text = "placem"
-                    }
-                }
-
-                RadioButton {
-                    id: placeNRadioButton
-                    text: qsTr("Sija / N")
-                    onClicked: {
-                        parent: selected.text = "placen"
-                    }
-                }
-
-                RadioButton {
-                    id: genderRadioButton
-                    text: qsTr("Sukupuoli")
-                    onClicked: {
-                        parent: selected.text = "gender"
-                    }
-                }
-
-                RadioButton {
-                    id: sfnameRadioButton
-                    text: qsTr("Suku- ja etunimi")
-                    onClicked: {
-                        parent: selected.text = "sfname"
-                    }
-                }
-
-                RadioButton {
-                    id: cityRadioButton
-                    text: qsTr("Paikkakunta")
-                    onClicked: {
-                        parent: selected.text = "city"
-                    }
-                }
-
-                RadioButton {
-                    id: nationalityRadioButton
-                    text: qsTr("Kansallisuus")
-                    onClicked: {
-                        parent: selected.text = "nationality"
-                    }
-                }
-
-                RadioButton {
-                    id: ageRadioButton
-                    text: qsTr("Syntymävuosi")
-                    onClicked: {
-                        parent: selected.text = "age"
-                    }
-                }
-
-                RadioButton {
-                    id: teamRadioButton
-                    text: qsTr("Joukkue")
-                    onClicked: {
-                        parent: selected.text = "team"
-                    }
-                }
+        }
+        Item {
+            id: infoTab
+            InfoField {
+                anchors.fill: parent
             }
         }
         Item {
             id: chartTab
-
-            Frame {
-                id: frame2
-                x: 0
-                y: -2
+            ChartField {
                 anchors.fill: parent
             }
         }
         Item {
             id: extraTab
-
-            Frame {
-                id: frame3
-                x: 0
-                y: -2
+            ExtraField {
                 anchors.fill: parent
             }
         }
@@ -238,7 +92,6 @@ ApplicationWindow {
 /*##^##
 Designer {
     D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}D{i:1;anchors_width:1280}D{i:8;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
-D{i:12;anchors_x:"-12";anchors_y:"-12"}D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
-D{i:27;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:29;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
+D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
 }
 ##^##*/

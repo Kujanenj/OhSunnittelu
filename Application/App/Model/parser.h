@@ -73,7 +73,7 @@ private:
     QString unparsedDataTotal_;
 
     QMap<QString, QString> config_;
-    QString returnMessage_ = "Parse onnistui";
+    QString returnMessage_ = "Parse was successful";
 
 
     QVector<QVector<QString>> listedData_;

@@ -57,6 +57,7 @@ void Parser::readFile()
           unparsedDataTotal_.append(line);
         }
 }
+
 void Parser::parseToTable()
 {
 

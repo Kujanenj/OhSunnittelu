@@ -11,14 +11,14 @@ DataController::DataController(std::shared_ptr<DataBase> database, QObject *pare
 {
     req = std::make_shared<Model::Requester>();
     parser = std::make_shared<Model::Parser>();
-    qDebug() << "DataController luotu";
+    qDebug() << "DataController created";
 }
 
 DataController::~DataController()
 {
 
     database_->removeData();
-    qDebug() << "DataController poistettu";
+    qDebug() << "DataController removed";
 }
 
 void DataController::searchButtonClicked(QString startYear, QString endYear,
@@ -28,7 +28,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QString team)
 {
     // Changes nationality text to match with all nationalities
-    if(nationality == "kaikki"){
+    if(nationality == "All"){
         nationality = "0";
     }
 
