@@ -4,7 +4,7 @@
 #include <QObject>
 #include "Model/requester.h"
 #include "Data/database.h"
-
+#include "../Model/datamodel.h"
 
 #include <QMap>
 #include <memory>
@@ -59,9 +59,9 @@ public slots:
 private:
     //Requester *req;
     std::shared_ptr<DataBase> database_;
-    std::shared_ptr<Model::Requester> req;
-    std::shared_ptr<Model::Parser> parser;
-    QString data_="contains nothing yet ;)";
+
+    std::shared_ptr<Model::DataModel> dataModel_;
+
 
     QMap<QString,QString> parserConfig_ = {{"fileToRead", "false"}, //false = "älä lue mitää"
                                      {"fileToWrite", "false"},//false = "älä kirjota mitää"
@@ -71,7 +71,7 @@ private:
                                      {"tableCellRight","</td>"}};
 
 
-    QVector<QVector<QString>> dataVector_;
+
 };
 }
 

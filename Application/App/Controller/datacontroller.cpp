@@ -9,8 +9,8 @@ DataController::DataController(std::shared_ptr<DataBase> database, QObject *pare
     QObject(parent),
     database_(database)
 {
-    req = std::make_shared<Model::Requester>();
-    parser = std::make_shared<Model::Parser>();
+
+    dataModel_=std::make_shared<Model::DataModel>(database);
     qDebug() << "DataController created";
 }
 
@@ -48,38 +48,9 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
      parameters.insert("Paikkakunta", place);
      parameters.insert("Joukkue", team);
 
-     req->DoRequest(parameters,data_);
-     qDebug() << "Request done";
-
-     // Parses data to dataVector_ and clears old listedData_ vector
-     parser->fullParse(parserConfig_,data_);
-     dataVector_=parser->getListedData();
-     parser->clearListedData();
-
-
-
-             database_->removeData();
-             QSqlDatabase::database().transaction();
-     qDebug()<<"Starting the insertion";
-     try {
-         for(int i=0; i<dataVector_.size(); i++){
-             qDebug()<<"inserting "<<dataVector_.at(i);
-             database_->inserIntoTable(dataVector_.at(i));
-         }
-           QSqlDatabase::database().commit();
-     } catch (QString msg) {
-         qDebug()<<msg;
-         try {
-             database_->removeData();
-             qDebug()<<"removed all data from database since an error was thrown. Next error will cause me to destroy this program!";
-         } catch (QString msg_) {
-             qDebug()<<msg_;
-             qDebug()<<"I told you this would happen. I will suicide now, goodbye!";
-             delete this;
-         }
-     }
-
-
+     dataModel_->doRequest(parameters);
+     dataModel_->doParse(parserConfig_);
+     dataModel_->insertData();
 
 
 }
@@ -87,9 +58,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 void DataController::sortButtonClicked(QString selectedField)
 {
 
- //   QSqlDatabase::database().transaction();
-    qDebug()<<selectedField;
-    database_->sortDataBase(selectedField);
+    dataModel_->sortDataBase(selectedField);
 }
 
 } // Namespace controller

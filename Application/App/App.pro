@@ -19,14 +19,18 @@ SOURCES += \
         Model/listmodel.cpp \
         View/main.cpp \
         Model/parser.cpp \
-        Model/requester.cpp
+        Model/requester.cpp \
+        Model/datamodel.cpp \
+        View/dataview.cpp
 
 HEADERS += \
         Controller/datacontroller.h \
         Data/database.h \
         Model/listmodel.h \
         Model/requester.h \
-        Model/parser.h
+        Model/parser.h \
+        Model/datamodel.h \
+        View/dataview.h
 
 RESOURCES += \
         View/qml.qrc
