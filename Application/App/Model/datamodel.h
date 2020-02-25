@@ -15,6 +15,8 @@ public:
     void doParse(QMap<QString,QString> config);
     void insertData();
     void sortDataBase(QString field);
+    QVector<QVector<QString>> searchDataBase(QMap<QString,QString> config);
+
 private:
     std::shared_ptr<Model::Requester> req;
     std::shared_ptr<Model::Parser> parser;

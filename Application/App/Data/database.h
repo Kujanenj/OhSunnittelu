@@ -38,6 +38,7 @@ public:
     ~DataBase();
     void connectToDataBase();
     void sortDataBase(QString sortBy, QString direction="ASC");
+    QVector<QVector<QString>> searchDataBase(QString config);
 public slots:
     void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
     void removeData();
@@ -55,6 +56,8 @@ private:
     QString errorMessage_="No errors";
 
     std::shared_ptr<ListModel> listModel_;
+
+
 };
 
 #endif // DATABASE_H

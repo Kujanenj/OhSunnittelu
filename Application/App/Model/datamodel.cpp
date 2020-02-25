@@ -50,4 +50,12 @@ void DataModel::sortDataBase(QString field)
 {
     database_->sortDataBase(field);
 }
+//tänne voi ja pitää lisätä noita parametrei.. jos haluu esim ettiä kahen jutun perusteella
+QVector<QVector<QString> > DataModel::searchDataBase(QMap<QString, QString> config)
+{
+    QString searchParameter="SELECT "+ config["select"] + " FROM " + config["from"]
+            + " WHERE " + config["where"] + " == " + config["=="];
+    qDebug()<<searchParameter;
+    return database_->searchDataBase(searchParameter);
+}
 }

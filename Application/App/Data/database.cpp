@@ -129,6 +129,8 @@ void DataBase::inserIntoTable(QVector<QString> toInsert)
 
 void DataBase::removeData()
 {
+
+
     QSqlQuery query;
     query.prepare("DELETE FROM " TABLE);
 
@@ -148,5 +150,25 @@ void DataBase::sortDataBase(QString sortBy, QString direction)
 
  listModel_->sortListModel(sortBy,direction);
 
+}
+
+QVector<QVector<QString> > DataBase::searchDataBase(QString config)
+{
+    QSqlQuery query(config);
+
+    QVector<QVector<QString>> sumVector;
+    QVector<QString> insertionVector;
+    QString fieldResult;
+    while (query.next()) {
+        for(int i = 1; i<12; i++){
+
+           insertionVector.append(query.value(i).toString());
+
+    }
+        sumVector.append(insertionVector);
+
+}
+    qDebug()<<sumVector;
+    return sumVector;
 }
 

@@ -64,6 +64,11 @@ void DataController::sortButtonClicked(QString selectedField)
 {
 
     dataModel_->sortDataBase(selectedField);
+    QMap<QString, QString> config = {{"select","*"},
+                                     {"from","Results"},
+                                     {"where","SFname"},
+                                     {"==","'Vahteri Ville'"}};
+    dataModel_->searchDataBase(config);
 }
 
 } // Namespace controller
