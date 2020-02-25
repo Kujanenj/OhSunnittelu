@@ -2,19 +2,20 @@
 
 # yleiset
 **Konkreettiset jutut mitä teherää**: 
-- Sorttaus databasee
 - Bugfixit ja testaus ja cleanup. (Rollback erroreis ja käsittely paikallisesti)
-- Riku hoitaa requesteri, jemppu parseri, veikko_kuhtuu_ hoitaa manageri, ja minä (jussi) ottaa sql.
+- Riku hoitaa requesteri
 - uus view Clässi ( ehkä useita?) nämä siis syöttäis dataa qml puolelle, ja olis pääsy modelille. :D
-- Rajapinnat: Controllerin alla model ja view, viewin alla modeli. Suomeksi siis->Controlleri ottaa constructioris model ja view oliot,
-ja view ottaa model olion. (Pointterin tietysti :D) 
--Keskitetty model clässi, jonka alla muut modelin paskat.
+- Rajapinnat: Luodaan model mainissa -> luodaan view mainissa ja annetaan parametrinä modelin pointteri -> luodaan controller mainissa ja annetaan parametreinä modelin ja viewin pointterit
+- Graaffit alustava
+- Datan ottaminen databasesta ulos
 ja mastiffit
 
 *muut*
 - UNIT TESTIT :D
-- Graaffit
-- MultiYear (Controlleris) 
+- Filteröinti SQL:ssä
+- Whitespacet pois :DDDD
+- (Jos on tylsää ja paljon aikaa nii yli 10 tunnin hiihtojen järjestäminen oikein ja databasen yhtenäistäminen, koska joissakin tuloksissa sadasosia ja kymmenyksiä)
+
 **Rajapinnat**
 - View: käskytys controllerilta, joku configi?
 - yhteys Qpropertyllä qml:ää, mitä se sitten meinaakaan.
