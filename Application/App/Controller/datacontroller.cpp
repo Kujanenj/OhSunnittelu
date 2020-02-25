@@ -27,6 +27,8 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QString place, QString nationality,
                                   QString team)
 {
+    database_->removeData();
+
     // Changes nationality text to match with all nationalities
     if(nationality == "All"){
         nationality = "0";
@@ -37,22 +39,25 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 
     QMap<QString,QString> parameters;
 
-     // Using user input parameters:
-     parameters.insert("Vuosi", startYear);
-     parameters.insert("Matka", distance);
-     parameters.insert("Ikaluokka", ageSeries);
-     parameters.insert("Kansalaisuus", nationality);
-     parameters.insert("Sukupuoli", gender);
-     parameters.insert("Etunimi", firstName);
-     parameters.insert("Sukunimi", lastName);
-     parameters.insert("Paikkakunta", place);
-     parameters.insert("Joukkue", team);
+    int size = endYear.toInt() - startYear.toInt();
 
-     dataModel_->doRequest(parameters);
-     dataModel_->doParse(parserConfig_);
-     dataModel_->insertData();
-
-
+    for(int i = 0; i <= size; i++) {
+        QString s;
+        s = QString::number(startYear.toInt() + i);
+        qDebug() << s;
+        parameters.insert("Vuosi", s);
+        parameters.insert("Matka", distance);
+        parameters.insert("Ikaluokka", ageSeries);
+        parameters.insert("Kansalaisuus", nationality);
+        parameters.insert("Sukupuoli", gender);
+        parameters.insert("Etunimi", firstName);
+        parameters.insert("Sukunimi", lastName);
+        parameters.insert("Paikkakunta", place);
+        parameters.insert("Joukkue", team);
+        dataModel_->doRequest(parameters);
+        dataModel_->doParse(parserConfig_);
+        dataModel_->insertData();
+    }
 }
 
 void DataController::sortButtonClicked(QString selectedField)

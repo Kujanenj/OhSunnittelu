@@ -25,8 +25,6 @@ void DataModel::insertData()
     listedData_=parser->getListedData();
     parser->clearListedData();
 
-
-    database_->removeData();
     QSqlDatabase::database().transaction();
     qDebug()<<"Starting the insertion";
     try {

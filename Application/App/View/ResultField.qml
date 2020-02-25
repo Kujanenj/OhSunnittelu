@@ -18,6 +18,7 @@ Item {
             y: -54
             anchors.topMargin: 43
             anchors.fill: parent
+
             TableViewColumn {
                 role: "year"
                 title: "Year"
