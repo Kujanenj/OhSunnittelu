@@ -124,6 +124,7 @@ void Parser::formListedData()
 
     QVector<QString> insertionVector;
     QStringList lista=unparsedDataTotal_.split("$");
+    int total_results = 0;
 
     for(int i=0; i<lista.size(); i++){
 
@@ -132,9 +133,20 @@ void Parser::formListedData()
 
          listedData_.append(insertionVector);
          insertionVector.clear();
+         total_results += 1;
+
         }
 
     }
 
+    if (lista.size() == 1){
+
+    qDebug()<< "No results found";
+
+    }
+
+    else{
+        qDebug() << "Total results:" << total_results;
+    }
 }
 }
