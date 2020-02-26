@@ -58,7 +58,7 @@ void DataModel::sortDataBase(QString field)
 QVector<QVector<QString> > DataModel::searchDataBase(QMap<QString, QString> config)
 {
     QString searchParameter="SELECT "+ config["select"] + " FROM " + config["from"]
-            + " WHERE " + config["where"] + " == " + config["=="];
+            + " WHERE " + config["where"] +" " +  config["command"] + " " + config["toSearch"];
     qDebug()<<searchParameter;
     return database_->searchDataBase(searchParameter);
 }

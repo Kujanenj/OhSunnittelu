@@ -71,10 +71,13 @@ void DataController::sortButtonClicked(QString selectedField)
 {
 
     dataModel_->sortDataBase(selectedField);
+    //SELECT * FROM Results WHERE SFName LIKE '%Ville%',
+    // eli siis kaikki Villet
     QMap<QString, QString> config = {{"select","*"},
                                      {"from","Results"},
                                      {"where","SFname"},
-                                     {"==","'Vahteri Ville'"}};
+                                     {"command","LIKE"},
+                                     {"toSearch","'%Ville%'"}};
     dataModel_->searchDataBase(config);
 }
 

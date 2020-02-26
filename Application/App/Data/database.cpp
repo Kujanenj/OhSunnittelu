@@ -156,8 +156,8 @@ QVector<QVector<QString> > DataBase::searchDataBase(QString config)
 {
     QSqlQuery query(config);
 
-    QVector<QVector<QString>> sumVector;
-    QVector<QString> insertionVector;
+    QVector<QVector<QString>> sumVector={};
+    QVector<QString> insertionVector={};
     QString fieldResult;
     while (query.next()) {
         for(int i = 1; i<12; i++){
@@ -168,6 +168,7 @@ QVector<QVector<QString> > DataBase::searchDataBase(QString config)
         sumVector.append(insertionVector);
 
 }
+    qDebug()<<sumVector.size();
     qDebug()<<sumVector;
     return sumVector;
 }
