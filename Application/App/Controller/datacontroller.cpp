@@ -75,9 +75,9 @@ void DataController::sortButtonClicked(QString selectedField)
     // eli siis kaikki Villet
     QMap<QString, QString> config = {{"select","*"},
                                      {"from","Results"},
-                                     {"where","SFname"},
-                                     {"command","LIKE"},
-                                     {"toSearch","'%Ville%'"}};
+                                     {"where","place"},
+                                     {"command","<"},
+                                     {"toSearch","10"}};
     dataModel_->searchDataBase(config);
 }
 

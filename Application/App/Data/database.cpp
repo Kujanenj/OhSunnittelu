@@ -58,18 +58,18 @@ void DataBase::createTable()
     QSqlQuery query;
     if(!query.exec( "CREATE TABLE " TABLE " ("
                             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            TABLE_YEAR     " VARCHAR(255)    NOT NULL,"
-                            TABLE_DIST     " VARCHAR(255)    NOT NULL,"
-                            TABLE_TIME       " VARCHAR(255)    NOT NULL,"
-                            TABLE_PLACE     " VARCHAR(255)    NOT NULL,"
-                            TABLE_PLACEM     " VARCHAR(255)    NOT NULL,"
-                            TABLE_PLACEN       " VARCHAR(255)    NOT NULL,"
-                            TABLE_GENDER     " VARCHAR(255)    NOT NULL,"
-                            TABLE_SFNAME     " VARCHAR(255)    NOT NULL,"
-                            TABLE_CITY       " VARCHAR(255)    NOT NULL,"
-                            TABLE_NATIONALITY     " VARCHAR(255)    NOT NULL,"
-                            TABLE_AGE     " VARCHAR(255)    NOT NULL,"
-                            TABLE_TEAM     " VARCHAR(255)    NOT NULL"
+                            TABLE_YEAR              " VARCHAR(255)    NOT NULL,"
+                            TABLE_DIST              " VARCHAR(255)    NOT NULL,"
+                            TABLE_TIME              " VARCHAR(255)    NOT NULL,"
+                            TABLE_PLACE             " INT,"
+                            TABLE_PLACEM            " INT,"
+                            TABLE_PLACEN            " INT,"
+                            TABLE_GENDER            " VARCHAR(255)    NOT NULL,"
+                            TABLE_SFNAME            " VARCHAR(255)    NOT NULL,"
+                            TABLE_CITY              " VARCHAR(255)    NOT NULL,"
+                            TABLE_NATIONALITY       " VARCHAR(255)    NOT NULL,"
+                            TABLE_AGE               " VARCHAR(255)    NOT NULL,"
+                            TABLE_TEAM              " VARCHAR(255)    NOT NULL"
                         " )"
                     )){
 
@@ -92,6 +92,8 @@ void DataBase::inserIntoTable(QVector<QString> toInsert)
     data=toInsert;
 
     QSqlQuery query;
+
+
     query.prepare("INSERT INTO " TABLE " ( " TABLE_YEAR ", "
                                              TABLE_DIST ", "
                                              TABLE_TIME ", "
