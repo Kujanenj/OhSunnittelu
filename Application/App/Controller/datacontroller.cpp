@@ -5,12 +5,11 @@ namespace Controller
 {
 
 
-DataController::DataController(std::shared_ptr<DataBase> database, QObject *parent ) :
-    QObject(parent),
-    database_(database)
+DataController::DataController(std::shared_ptr<Model::DataModel> model, QObject *parent ) :
+    QObject(parent)
 {
 
-    dataModel_=std::make_shared<Model::DataModel>(database);
+    dataModel_=model;
     qDebug() << "DataController created";
 }
 
@@ -41,22 +40,30 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 
     int size = endYear.toInt() - startYear.toInt();
 
+
+
+    parameters.insert("Matka", distance);
+    parameters.insert("Ikaluokka", ageSeries);
+    parameters.insert("Kansalaisuus", nationality);
+    parameters.insert("Sukupuoli", gender);
+    parameters.insert("Etunimi", firstName);
+    parameters.insert("Sukunimi", lastName);
+    parameters.insert("Paikkakunta", place);
+    parameters.insert("Joukkue", team);
     for(int i = 0; i <= size; i++) {
         QString s;
         s = QString::number(startYear.toInt() + i);
         qDebug() << s;
         parameters.insert("Vuosi", s);
-        parameters.insert("Matka", distance);
-        parameters.insert("Ikaluokka", ageSeries);
-        parameters.insert("Kansalaisuus", nationality);
-        parameters.insert("Sukupuoli", gender);
-        parameters.insert("Etunimi", firstName);
-        parameters.insert("Sukunimi", lastName);
-        parameters.insert("Paikkakunta", place);
-        parameters.insert("Joukkue", team);
-        dataModel_->doRequest(parameters);
-        dataModel_->doParse(parserConfig_);
-        dataModel_->insertData();
+
+        try {
+            dataModel_->doRequest(parameters);
+            dataModel_->doParse(parserConfig_);
+            dataModel_->insertData();
+        } catch (QString msg) {
+            qDebug()<<msg<< endl << " continuing search";
+        }
+
     }
 }
 

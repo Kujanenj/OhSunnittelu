@@ -27,11 +27,15 @@ void DataModel::insertData()
 
     QSqlDatabase::database().transaction();
     qDebug()<<"Starting the insertion";
+    if(listedData_.size()==0){
+        qDebug()<<"Nothing to insert";
+        return;
+    }
     try {
         for(int i=0; i<listedData_.size(); i++){
-            qDebug()<<"inserting "<<listedData_.at(i);
             database_->inserIntoTable(listedData_.at(i));
     }
+        qDebug()<<"Inserted some data to database";
         QSqlDatabase::database().commit();
     } catch (QString msg) {
             qDebug()<<msg;

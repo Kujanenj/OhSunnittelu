@@ -26,7 +26,7 @@ public:
      * @brief DataController constructor
      * @param parent null pointer to QObject
      */
-    explicit DataController(std::shared_ptr<DataBase> database=nullptr, QObject *parent = nullptr);
+    explicit DataController(std::shared_ptr<Model::DataModel> model, QObject *parent = nullptr);
 
     /**
       * @brief DataController destructor

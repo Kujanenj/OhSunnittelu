@@ -28,12 +28,9 @@ QString Requester::DoRequest(QMap<QString, QString> config, QString& data)
 {
     parameters_ = config;
 
-    try {
+
         requestData();
-    }  catch (QString msg) {
-            qDebug() << msg;
-            std::move(msg);
-    }
+
     data=htmlData_;
     return "all should be well";
 }
@@ -47,11 +44,7 @@ void Requester::replyFinished(QNetworkReply *reply)
     }
     else
     {
-        qDebug() << reply->header(QNetworkRequest::ContentTypeHeader).toString()<<"response";
-        qDebug() << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString();
-        qDebug() << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
-        qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
+        qDebug()<<"Response recieved from hiihto";
     }
 
     QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
@@ -158,7 +151,8 @@ void Requester::requestData()
     loop.exec();
 
     if(!reply->isFinished()){
-        throw "Connection timed out";
+        QString errormsg="ERROR: Connection timed out";
+        throw errormsg;
     }
 
 }}

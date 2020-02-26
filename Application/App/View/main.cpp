@@ -21,8 +21,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-     std::shared_ptr< ListModel > model = std::make_shared<ListModel>();
-    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(model);
+
+     std::shared_ptr< ListModel > listmodel = std::make_shared<ListModel>();
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(listmodel);
+    std::shared_ptr<Model::DataModel> dataModel = std::make_shared<Model::DataModel>(database);
     try {
            database->connectToDataBase();
     } catch (QString msg) {
@@ -33,12 +35,12 @@ int main(int argc, char *argv[])
 
 
 
-    engine.rootContext()->setContextProperty("myModel", &*model);
+    engine.rootContext()->setContextProperty("myModel", &*listmodel);
     engine.rootContext()->setContextProperty("database", &*database);
 
 
     //Creating backend and exposing data to the QML components instantiated by the QML engine
-    Controller::DataController DataController(database);
+    Controller::DataController DataController(dataModel);
     engine.rootContext()->setContextProperty("DataController", &DataController);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
