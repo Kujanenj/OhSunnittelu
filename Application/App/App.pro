@@ -1,4 +1,5 @@
-QT += quick network sql
+
+QT += quick gui core widgets network sql
 
 CONFIG += c++11
 
