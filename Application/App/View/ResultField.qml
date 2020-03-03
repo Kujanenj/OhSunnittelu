@@ -21,7 +21,7 @@ Item {
 
             TableViewColumn {
                 role: "year"
-                title: "Year"
+                title: "Vuosi"
                 width: 100
             }
             TableViewColumn {

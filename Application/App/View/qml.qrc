@@ -6,5 +6,6 @@
         <file>InfoField.qml</file>
         <file>ChartField.qml</file>
         <file>ExtraField.qml</file>
+        <file>AnalyticsField.qml</file>
     </qresource>
 </RCC>

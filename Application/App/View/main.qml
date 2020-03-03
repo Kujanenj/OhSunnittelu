@@ -21,6 +21,11 @@ ApplicationWindow {
         }
 
         TabButton {
+            text: qsTr("Analytics")
+            checked: false
+        }
+
+        TabButton {
             text: qsTr("Athlete results")
             checked: false
         }
@@ -56,6 +61,12 @@ ApplicationWindow {
                 anchors.topMargin: 0
                 anchors.fill: parent
                 anchors.bottom: parent.bottom
+            }
+        }
+        Item {
+            id: analyticsTab
+            AnalyticsField {
+                anchors.fill: parent
             }
         }
         Item {

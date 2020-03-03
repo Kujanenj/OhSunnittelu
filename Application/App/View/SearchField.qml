@@ -20,7 +20,7 @@ Item {
             anchors.fill: parent
 
             RowLayout {
-                id: rowLayout
+                id: rowYear
                 x: 2
                 width: 100
                 height: 100
@@ -71,13 +71,14 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout1
+                id: rowDistance
                 width: 100
                 height: 100
+                Layout.rowSpan: 1
+                Layout.columnSpan: 1
+
                 Rectangle {
                     id: rectangle2
-                    x: 3
-                    y: 3
                     width: 130
                     height: 35
                     color: "#ffffff"
@@ -93,64 +94,69 @@ Item {
                     }
                 }
 
-                ComboBox {
-                    id: fieldDistance
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    clip: false
-                    wheelEnabled: false
-                    flat: false
-                    editable: false
-                    currentIndex: 0
-                    background: Rectangle {
-                        border.color:"white"
+                ColumnLayout {
+                    id: columnLayout1
+                    width: 100
+                    height: 100
+
+                    ComboBox {
+                        id: fieldDistance
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        clip: false
+                        wheelEnabled: false
+                        flat: false
+                        editable: false
+                        currentIndex: 0
+                        background: Rectangle {
+                            border.color:"white"
+                        }
+
+                        //DISTANCE OPTIONS
+                        textRole: "key"
+                        model: ListModel {
+                            id: distances
+                            ListElement { key: "All distances" ; value: "kaikki"}
+                            ListElement { key: "50km classic"; value: "P50"}
+                            ListElement { key: "50km skate"; value: "V50"}
+                            ListElement { key: "100km classic"; value: "P100"}
+                            ListElement { key: "32km classic"; value: "P32"}
+                            ListElement { key: "20km skating"; value: "V20"}
+                            ListElement { key: "32km skating"; value: "V32"}
+                            ListElement { key: "20km skating, Juniors under 16"; value: "V20jun"}
+                            ListElement { key: "42km classic"; value: "P42"}
+                            ListElement { key: "32km skating (2014)"; value: "V32"}
+                            ListElement { key: "20km classic (2014)"; value: "P20"}
+                            ListElement { key: "30km classic (2002-2005)"; value: "P30"}
+                            ListElement { key: "44km classic (2002)"; value: "P44"}
+                            ListElement { key: "60km classic (2003-2005)"; value: "P60"}
+                            ListElement { key: "62km classic (2006)"; value: "P62"}
+                            ListElement { key: "25km classic"; value: "P25"}
+                            ListElement { key: "32km classic"; value: "P32"}
+                            ListElement { key: "35km classic"; value: "P35"}
+                            ListElement { key: "45km classic"; value: "P45"}
+                            ListElement { key: "52km classic"; value: "P52"}
+                            ListElement { key: "53km classic"; value: "P53"}
+                            ListElement { key: "75km classic"; value: "P75"}
+                            ListElement { key: "30km skating"; value: "V30"}
+                            ListElement { key: "45km skating"; value: "V45"}
+                            ListElement { key: "53km skating"; value: "V53"}
+                            ListElement { key: "75km skating"; value: "V75"}
+                        }
+
+                        font.pointSize: 13
+                        //width: 250
+                        enabled: true
+                        hoverEnabled: true
+                        //flat: false
+                        //anchors.topMargin: 9
+                        visible: true
                     }
-
-                    //DISTANCE OPTIONS
-                    textRole: "key"
-                    model: ListModel {
-                        id: distances
-                        ListElement { key: "All distances"; value: "kaikki"}
-                        ListElement { key: "50km classic"; value: "P50"}
-                        ListElement { key: "50km skate"; value: "V50"}
-                        ListElement { key: "100km classic"; value: "P100"}
-                        ListElement { key: "32km classic"; value: "P32"}
-                        ListElement { key: "20km skating"; value: "V20"}
-                        ListElement { key: "32km skating"; value: "V32"}
-                        ListElement { key: "20km skating, Juniors under 16"; value: "V20jun"}
-                        ListElement { key: "42km classic"; value: "P42"}
-                        ListElement { key: "32km skating (2014)"; value: "V32"}
-                        ListElement { key: "20km classic (2014)"; value: "P20"}
-                        ListElement { key: "30km classic (2002-2005)"; value: "P30"}
-                        ListElement { key: "44km classic (2002)"; value: "P44"}
-                        ListElement { key: "60km classic (2003-2005)"; value: "P60"}
-                        ListElement { key: "62km classic (2006)"; value: "P62"}
-                        ListElement { key: "25km classic"; value: "P25"}
-                        ListElement { key: "32km classic"; value: "P32"}
-                        ListElement { key: "35km classic"; value: "P35"}
-                        ListElement { key: "45km classic"; value: "P45"}
-                        ListElement { key: "52km classic"; value: "P52"}
-                        ListElement { key: "53km classic"; value: "P53"}
-                        ListElement { key: "75km classic"; value: "P75"}
-                        ListElement { key: "30km skating"; value: "V30"}
-                        ListElement { key: "45km skating"; value: "V45"}
-                        ListElement { key: "53km skating"; value: "V53"}
-                        ListElement { key: "75km skating"; value: "V75"}
-
-                    }
-
-                    font.pointSize: 13
-                    //width: 250
-                    enabled: true
-                    hoverEnabled: true
-                    //flat: false
-                    //anchors.topMargin: 9
-                    visible: true
                 }
             }
 
             RowLayout {
-                id: rowLayout2
+                id: rowGender
                 width: 100
                 height: 100
                 Rectangle {
@@ -229,7 +235,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout3
+                id: rowAge
                 width: 100
                 height: 100
                 Layout.fillHeight: true
@@ -286,7 +292,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout4
+                id: rowFirstName
                 width: 100
                 height: 100
                 Rectangle {
@@ -323,7 +329,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout5
+                id: rowLastName
                 width: 100
                 height: 100
                 Rectangle {
@@ -361,7 +367,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout6
+                id: rowPlace
                 width: 100
                 height: 100
                 Rectangle {
@@ -398,7 +404,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout7
+                id: rowNationality
                 width: 100
                 height: 100
                 Rectangle {
@@ -504,7 +510,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout8
+                id: rowTeam
                 width: 100
                 height: 100
                 Rectangle {
@@ -542,7 +548,7 @@ Item {
             }
 
             RowLayout {
-                id: rowLayout9
+                id: rowSearch
                 width: 100
                 height: 100
 
