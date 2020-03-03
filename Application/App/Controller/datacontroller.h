@@ -1,6 +1,7 @@
 #ifndef DATACONTROLLER_H
 #define DATACONTROLLER_H
 #include <QString>
+#include <QVector>
 #include <QObject>
 #include "Model/requester.h"
 #include "Data/database.h"
@@ -47,7 +48,7 @@ public:
       * @param team search team option
       */
     Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
-                                         QString distance, QString gender, QString ageSeries,
+                                         QVector<QString> distance, QString gender, QString ageSeries,
                                          QString firstName, QString lastName,
                                          QString place, QString nationality,
                                          QString team);

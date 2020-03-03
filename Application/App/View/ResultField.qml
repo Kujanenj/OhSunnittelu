@@ -129,7 +129,6 @@ Item {
 
                 }
             }
-
             Text {
                 id: selected
                 text: ""

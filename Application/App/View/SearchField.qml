@@ -6,13 +6,12 @@ import QtQml 2.3
 
 Item {
     id: element
-
-    //YEAR FIELD RANGE SLIDER VERSION
-
-    //DISTANCE FIELD
-
     Frame {
         id: frame
+        anchors.rightMargin: 0
+        anchors.bottomMargin: 0
+        anchors.leftMargin: 0
+        anchors.topMargin: 0
         anchors.fill: parent
 
         ColumnLayout {
@@ -43,7 +42,6 @@ Item {
                 }
 
                 RangeSlider {
-
                     width: 250
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -98,59 +96,68 @@ Item {
                     id: columnLayout1
                     width: 100
                     height: 100
+                    Layout.fillHeight: true
+                    Layout.fillWidth: false
 
-                    ComboBox {
-                        id: fieldDistance
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                        clip: false
-                        wheelEnabled: false
-                        flat: false
-                        editable: false
-                        currentIndex: 0
-                        background: Rectangle {
-                            border.color:"white"
+                    //MODEL FOR DISTANCE OPTIONS INCLUDING THE SELECTED STATE
+                    ListModel {
+                        id: distances
+                        ListElement { key: "All distances" ; value: "kaikki";}
+                        ListElement { key: "50km classic"; value: "P50"; selected: false}
+                        ListElement { key: "50km skate"; value: "V50"; selected: false}
+                        ListElement { key: "100km classic"; value: "P100"; selected: false}
+                        ListElement { key: "32km classic"; value: "P32"; selected: false}
+                        ListElement { key: "20km skating"; value: "V20"; selected: false}
+                        ListElement { key: "32km skating"; value: "V32"; selected: false}
+                        ListElement { key: "20km skating, Juniors under 16"; value: "V20jun"; selected: false}
+                        ListElement { key: "42km classic"; value: "P42"; selected: false}
+                        ListElement { key: "32km skating (2014)"; value: "V32"; selected: false}
+                        ListElement { key: "20km classic (2014)"; value: "P20"; selected: false}
+                        ListElement { key: "30km classic (2002-2005)"; value: "P30"; selected: false}
+                        ListElement { key: "44km classic (2002)"; value: "P44"; selected: false}
+                        ListElement { key: "60km classic (2003-2005)"; value: "P60"; selected: false}
+                        ListElement { key: "62km classic (2006)"; value: "P62"; selected: false}
+                        ListElement { key: "25km classic"; value: "P25"; selected: false}
+                        ListElement { key: "32km classic"; value: "P32"; selected: false}
+                        ListElement { key: "35km classic"; value: "P35"; selected: false}
+                        ListElement { key: "45km classic"; value: "P45"; selected: false}
+                        ListElement { key: "52km classic"; value: "P52"; selected: false}
+                        ListElement { key: "53km classic"; value: "P53"; selected: false}
+                        ListElement { key: "75km classic"; value: "P75"; selected: false}
+                        ListElement { key: "30km skating"; value: "V30"; selected: false}
+                        ListElement { key: "45km skating"; value: "V45"; selected: false}
+                        ListElement { key: "53km skating"; value: "V53"; selected: false}
+                        ListElement { key: "75km skating"; value: "V75"; selected: false}
+                    }
+                    //DISTANCE MENU
+                    MenuBar{
+                        Menu {
+                            id: menuDistance
+                            title: "Distance"
+                            Instantiator {
+                                model: distances
+                                MenuItem {
+                                    width: parent.width
+                                    text: model.key
+                                    checkable: true
+
+                                    onToggled: {
+                                        if(checked === true){
+                                            console.log("checked")
+                                            model.selected = true
+                                        }
+                                        if(checked === false){
+                                            console.log("unchecked")
+                                            model.selected = false
+                                        }
+                                    }
+
+                                }
+                                onObjectAdded: menuDistance.insertItem(index, object)
+                                onObjectRemoved: menuDistance.removeItem(object)
+                            }
+
                         }
-
-                        //DISTANCE OPTIONS
-                        textRole: "key"
-                        model: ListModel {
-                            id: distances
-                            ListElement { key: "All distances" ; value: "kaikki"}
-                            ListElement { key: "50km classic"; value: "P50"}
-                            ListElement { key: "50km skate"; value: "V50"}
-                            ListElement { key: "100km classic"; value: "P100"}
-                            ListElement { key: "32km classic"; value: "P32"}
-                            ListElement { key: "20km skating"; value: "V20"}
-                            ListElement { key: "32km skating"; value: "V32"}
-                            ListElement { key: "20km skating, Juniors under 16"; value: "V20jun"}
-                            ListElement { key: "42km classic"; value: "P42"}
-                            ListElement { key: "32km skating (2014)"; value: "V32"}
-                            ListElement { key: "20km classic (2014)"; value: "P20"}
-                            ListElement { key: "30km classic (2002-2005)"; value: "P30"}
-                            ListElement { key: "44km classic (2002)"; value: "P44"}
-                            ListElement { key: "60km classic (2003-2005)"; value: "P60"}
-                            ListElement { key: "62km classic (2006)"; value: "P62"}
-                            ListElement { key: "25km classic"; value: "P25"}
-                            ListElement { key: "32km classic"; value: "P32"}
-                            ListElement { key: "35km classic"; value: "P35"}
-                            ListElement { key: "45km classic"; value: "P45"}
-                            ListElement { key: "52km classic"; value: "P52"}
-                            ListElement { key: "53km classic"; value: "P53"}
-                            ListElement { key: "75km classic"; value: "P75"}
-                            ListElement { key: "30km skating"; value: "V30"}
-                            ListElement { key: "45km skating"; value: "V45"}
-                            ListElement { key: "53km skating"; value: "V53"}
-                            ListElement { key: "75km skating"; value: "V75"}
-                        }
-
-                        font.pointSize: 13
-                        //width: 250
-                        enabled: true
-                        hoverEnabled: true
-                        //flat: false
-                        //anchors.topMargin: 9
-                        visible: true
                     }
                 }
             }
@@ -559,11 +566,21 @@ Item {
                     text: "Search"
                     anchors.topMargin: 9
                     visible: true
-                    onClicked: {
-                        //välitä hakukriteerit C++ puolelle
 
+                    onClicked: {
+                        //var paramDistances = ""
+                        var distanceParams = []
+                        //25 is the number of possible distances to pick
+                        for (var i = 0; i <= 25; i++)  {
+                            if(distances.get(i).selected === true){
+                                    distanceParams.push(distances.get(i).value)
+                            }
+                        }
+                        console.log(distanceParams)
+
+                        //välitä hakukriteerit C++ puolelle
                         DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
-                                                           distances.get(fieldDistance.currentIndex).value, selected.text,
+                                                           distanceParams, selected.text,
                                                            ages.get(fieldAge.currentIndex).value,
                                                            fieldFirstName.text, fieldLastName.text,
                                                            fieldPlace.text, fieldNationality.currentText,
@@ -573,42 +590,8 @@ Item {
                     }
                 }
             }
-
-
         }
     }
-
-    //GENDER FIELD
-
-    //AGE SERIES FIELD
-
-    //FIRST NAME FIELD
-
-    //LAST NAME FIELD
-
-    //PLACE FIELD
-
-    //NATIONALITY FIELD
-
-    //TEAM NAME FIELD
-
-    //SEARCH BUTTON
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 /*##^##

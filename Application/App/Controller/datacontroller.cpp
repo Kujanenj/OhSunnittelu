@@ -21,7 +21,7 @@ DataController::~DataController()
 }
 
 void DataController::searchButtonClicked(QString startYear, QString endYear,
-                                  QString distance, QString gender, QString ageSeries,
+                                  QVector<QString> distances, QString gender, QString ageSeries,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,
                                   QString team)
@@ -40,9 +40,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 
     int size = endYear.toInt() - startYear.toInt();
 
-
-
-    parameters.insert("Matka", distance);
+    //parameters.insert("Matka", distance);
     parameters.insert("Ikaluokka", ageSeries);
     parameters.insert("Kansalaisuus", nationality);
     parameters.insert("Sukupuoli", gender);
@@ -50,18 +48,28 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     parameters.insert("Sukunimi", lastName);
     parameters.insert("Paikkakunta", place);
     parameters.insert("Joukkue", team);
+
+    //MULTISEARCH FOR YEAR, DISTANCE, AGESERIES
     for(int i = 0; i <= size; i++) {
+
+        //YEAR
         QString s;
         s = QString::number(startYear.toInt() + i);
-        qDebug() << s;
+        qDebug() << s;        
         parameters.insert("Vuosi", s);
 
-        try {
-            dataModel_->doRequest(parameters);
-            dataModel_->doParse(parserConfig_);
-            dataModel_->insertData();
-        } catch (QString msg) {
-            qDebug()<<msg<< endl << " continuing search";
+        //DISTANCES LOOPING
+        for(int i = 0; i < distances.size(); i++){
+            QString distance = distances.at(i);
+            qDebug() << distance;
+            parameters.insert("Matka", distance);
+            try {
+                dataModel_->doRequest(parameters);
+                dataModel_->doParse(parserConfig_);
+                dataModel_->insertData();
+            } catch (QString msg) {
+                qDebug()<<msg<< endl << " continuing search";
+            }
         }
 
     }
@@ -69,7 +77,6 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 
 void DataController::sortButtonClicked(QString selectedField)
 {
-
     dataModel_->sortDataBase(selectedField);
     //SELECT * FROM Results WHERE SFName LIKE '%Ville%',
     // eli siis kaikki Villet
