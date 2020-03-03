@@ -579,7 +579,7 @@ Item {
                                     distanceParams.push(distances.get(i).value)
                             }
                         }
-                        console.log(distanceParams)
+                       console.log("1 - " + distanceParams)
 
                         var ageParams = []
                         //10 is the number of possible ages to pick
@@ -588,7 +588,16 @@ Item {
                                 ageParams.push(ages.get(j).value)
                             }
                         }
-                        console.log(ageParams)
+                        console.log("2 - " + ageParams)
+
+                        //CLEANS THE PARAMETER ARRAYS IN GIVEN CONDITIONS
+                        if(ageParams.includes("kaikki") || ageParams.length === 0)
+                            ageParams = ["kaikki"]
+                        if(distanceParams.includes("kaikki") || distanceParams.length === 0)
+                            distanceParams = ["kaikki"]
+
+                        console.log("2 - " + ageParams)
+                        console.log("2 - " + distanceParams)
 
                         //Give params to C++ DataController class
                         DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
