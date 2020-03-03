@@ -1,16 +1,21 @@
 ## TODO
 
-# yleiset
-**Konkreettiset jutut mitä teherää**: 
-- Bugfixit ja testaus ja cleanup. (Rollback erroreis ja käsittely paikallisesti)
-- Riku hoitaa requesteri
-- uus view Clässi ( ehkä useita?) nämä siis syöttäis dataa qml puolelle, ja olis pääsy modelille. :D
-- Rajapinnat: Luodaan model mainissa -> luodaan view mainissa ja annetaan parametrinä modelin pointteri -> luodaan controller mainissa ja annetaan parametreinä modelin ja viewin pointterit
-- Graaffit alustava
-- Datan ottaminen databasesta ulos
-ja mastiffit
+# YLEISET
+**Konkreettiset jutut mitä teherää**:
 
-*muut*
+  #3.3.2020
+- Radiobuttonit dropdown menuksi, unohdetaan headerien klikkailu
+- Dataviewin yhdistäminen modeliin
+- Dataviewin yhdistäminen QML:ään
+- Matkat ja Ikäsarjat -kentille multisearch (veikko ja riku)
+- Analytics "tab" lisätietoja matkoista sun muista
+- Joukkuetulokset alkuperäiseen taulukkoon ja info joukkuehaun suorittamisesta
+
+- Bugfixit ja testaus ja cleanup. (käsittely paikallisesti)
+- Rajapinnat: Luodaan model mainissa -> luodaan view mainissa ja annetaan parametrinä modelin pointteri -> luodaan controller mainissa     ja annetaan parametreinä modelin ja viewin pointterit
+
+# MUUT
+- Gender tulos N vaihdettava W:ksi
 - UNIT TESTIT :D
 - Filteröinti SQL:ssä
 - Whitespacet pois :DDDD
