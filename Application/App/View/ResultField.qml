@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.12
-
 import QtQuick.Controls 2.10
 
 Item {
@@ -119,7 +118,9 @@ Item {
                 scale: 0.95
                 onClicked: {
 
-                    DataController.sortButtonClicked(selected.text);
+                    DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value);
+                    console.log(sortOptions.get(comboBoxSortOption.currentIndex).value + " syötetty datacontrollerille parametrina")
+                    //DataController.sortButtonClicked(selected.text);
                     // Tee datacontrollerii funktio mitä haluut tehä
                     // kun lajittele buttonia painetaan
                     // selected.text välittää sulle tekstin mitä sortataan
@@ -135,6 +136,29 @@ Item {
                 visible: false
             }
 
+            ComboBox {
+                id: comboBoxSortOption
+                editable: false
+                textRole: "text"
+
+                model: ListModel {
+                    id: sortOptions
+                    ListElement {text: "Year"; value: "year"}
+                    ListElement {text: "Distance"; value: "distance"}
+                    ListElement {text: "Time"; value: "time"}
+                    ListElement {text: "Rank"; value: "place"}
+                    ListElement {text: "Rank | M"; value: "placem"}
+                    ListElement {text: "Rank | W"; value: "placen"}
+                    ListElement {text:"Gender"; value:"gender"}
+                    ListElement {text:"Name"; value:"sfname"}
+                    ListElement {text:"City"; value:"city"}
+                    ListElement {text:"Nationality"; value:"nationality"}
+                    ListElement {text:"Age"; value:"age"}
+                    ListElement {text:"Team"; value:"team"}
+                }
+            }
+
+            /*
             RadioButton {
                 id: yearRadioButton
                 text: qsTr("Year")
@@ -234,8 +258,8 @@ Item {
                     parent: selected.text = "team"
                 }
             }
+            */
         }
-
     }
 
     Menu {
