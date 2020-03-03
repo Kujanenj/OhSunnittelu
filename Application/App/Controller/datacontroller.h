@@ -48,7 +48,7 @@ public:
       * @param team search team option
       */
     Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
-                                         QVector<QString> distance, QString gender, QString ageSeries,
+                                         QVector<QString> distance, QString gender, QVector<QString> ages,
                                          QString firstName, QString lastName,
                                          QString place, QString nationality,
                                          QString team);

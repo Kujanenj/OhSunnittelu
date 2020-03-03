@@ -21,7 +21,7 @@ DataController::~DataController()
 }
 
 void DataController::searchButtonClicked(QString startYear, QString endYear,
-                                  QVector<QString> distances, QString gender, QString ageSeries,
+                                  QVector<QString> distances, QString gender, QVector<QString> ages,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,
                                   QString team)
@@ -41,7 +41,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     int size = endYear.toInt() - startYear.toInt();
 
     //parameters.insert("Matka", distance);
-    parameters.insert("Ikaluokka", ageSeries);
+    //parameters.insert("Ikaluokka", ages);
     parameters.insert("Kansalaisuus", nationality);
     parameters.insert("Sukupuoli", gender);
     parameters.insert("Etunimi", firstName);
@@ -59,19 +59,27 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
         parameters.insert("Vuosi", s);
 
         //DISTANCES LOOPING
-        for(int i = 0; i < distances.size(); i++){
-            QString distance = distances.at(i);
+        for(int j = 0; j < distances.size(); j++){
+            QString distance = distances.at(j);
             qDebug() << distance;
             parameters.insert("Matka", distance);
-            try {
-                dataModel_->doRequest(parameters);
-                dataModel_->doParse(parserConfig_);
-                dataModel_->insertData();
-            } catch (QString msg) {
-                qDebug()<<msg<< endl << " continuing search";
+
+            //AGES LOOPING
+            for(int k = 0; k < ages.size(); k++){
+                QString age = ages.at(k);
+                qDebug() << age;
+                parameters.insert("Ikaluokka", age);
+
+                try{
+                    dataModel_->doRequest(parameters);
+                    dataModel_->doParse(parserConfig_);
+                    dataModel_->insertData();
+                }
+                catch (QString msg){
+                    qDebug()<<msg<< endl << " continuing search";
+                }
             }
         }
-
     }
 }
 

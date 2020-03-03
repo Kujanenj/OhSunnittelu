@@ -91,14 +91,6 @@ Item {
                         font.pixelSize: 19
                     }
                 }
-
-                ColumnLayout {
-                    id: columnLayout1
-                    width: 100
-                    height: 100
-                    Layout.fillHeight: true
-                    Layout.fillWidth: false
-
                     //MODEL FOR DISTANCE OPTIONS INCLUDING THE SELECTED STATE
                     ListModel {
                         id: distances
@@ -156,10 +148,9 @@ Item {
                                 onObjectAdded: menuDistance.insertItem(index, object)
                                 onObjectRemoved: menuDistance.removeItem(object)
                             }
-
                         }
                     }
-                }
+
             }
 
             RowLayout {
@@ -265,36 +256,49 @@ Item {
                     }
                 }
 
-                ComboBox {
-                    id: fieldAge
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    currentIndex: 0
-                    background: Rectangle {
-                        border.color:"white"
-                    }
+                //MODEL FOR AGE OPTIONS INCLUDING THE SELECTED STATE
+                ListModel {
+                    id: ages
+                    ListElement { key: "All ages"; value: "kaikki" }
+                    ListElement { key: "Under 35 ages"; value: "<35"; selected: false}
+                    ListElement { key: "Ages | 35"; value: "35"; selected: false}
+                    ListElement { key: "Ages | 40"; value: "40"; selected: false}
+                    ListElement { key: "Ages | 45"; value: "45"; selected: false}
+                    ListElement { key: "Ages | 50"; value: "50"; selected: false}
+                    ListElement { key: "Ages | 55"; value: "55"; selected: false}
+                    ListElement { key: "Ages | 60"; value: "60"; selected: false}
+                    ListElement { key: "Ages | 65"; value: "65"; selected: false}
+                    ListElement { key: "Ages | 70"; value: "70"; selected: false}
+                    ListElement { key: "Over 80 ages"; value: ">80"; selected: false}
+                }
 
-                    textRole: "key"
-                    model: ListModel {
-                        id: ages
-                        ListElement { key: "All ages"; value: "kaikki" }
-                        ListElement { key: "Under 35 ages"; value: "<35" }
-                        ListElement { key: "Ages | 35"; value: "35" }
-                        ListElement { key: "Ages | 40"; value: "40" }
-                        ListElement { key: "Ages | 45"; value: "45" }
-                        ListElement { key: "Ages | 50"; value: "50" }
-                        ListElement { key: "Ages | 55"; value: "55" }
-                        ListElement { key: "Ages | 60"; value: "60" }
-                        ListElement { key: "Ages | 65"; value: "65" }
-                        ListElement { key: "Ages | 70"; value: "70" }
-                        ListElement { key: "Over 80 ages"; value: ">80" }
-                    }
+                //AGE MENU
+                MenuBar{
+                    Menu {
+                        id: menuAge
+                        title: "Age"
+                        Instantiator {
+                            model: ages
+                            MenuItem {
+                                width: parent.width
+                                text: model.key
+                                checkable: true
 
-                    font.pointSize: 13
-                    enabled: true
-                    width: 250
-                    anchors.topMargin: 9
-                    visible: true
+                                onToggled: {
+                                    if(checked === true){
+                                        console.log("checked")
+                                        model.selected = true
+                                    }
+                                    if(checked === false){
+                                        console.log("unchecked")
+                                        model.selected = false
+                                    }
+                                }
+                            }
+                            onObjectAdded: menuAge.insertItem(index, object)
+                            onObjectRemoved: menuAge.removeItem(object)
+                        }
+                    }
                 }
             }
 
@@ -568,20 +572,28 @@ Item {
                     visible: true
 
                     onClicked: {
-                        //var paramDistances = ""
                         var distanceParams = []
                         //25 is the number of possible distances to pick
-                        for (var i = 0; i <= 25; i++)  {
+                        for(var i = 0; i <= 25; i++)  {
                             if(distances.get(i).selected === true){
                                     distanceParams.push(distances.get(i).value)
                             }
                         }
                         console.log(distanceParams)
 
-                        //välitä hakukriteerit C++ puolelle
+                        var ageParams = []
+                        //10 is the number of possible ages to pick
+                        for(var j = 0; j <= 10; j++){
+                            if(ages.get(j).selected === true){
+                                ageParams.push(ages.get(j).value)
+                            }
+                        }
+                        console.log(ageParams)
+
+                        //Give params to C++ DataController class
                         DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
                                                            distanceParams, selected.text,
-                                                           ages.get(fieldAge.currentIndex).value,
+                                                           ageParams,
                                                            fieldFirstName.text, fieldLastName.text,
                                                            fieldPlace.text, fieldNationality.currentText,
                                                            fieldTeam.text);
