@@ -220,11 +220,7 @@ Item {
                 y: 12
                 width: 55
                 height: 40
-                anchors.verticalCenterOffset: -21
-                anchors.horizontalCenterOffset: -13
                 scale: 0.5
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
 
                 onClicked: {
                     if(rangeSliderTime.enabled === false)
