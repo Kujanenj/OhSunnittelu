@@ -125,7 +125,7 @@ Item {
                     MenuBar{
                         Menu {
                             id: menuDistance
-                            title: "Distance"
+                            title: "Select distance/distances"
                             Instantiator {
                                 model: distances
                                 MenuItem {
@@ -137,10 +137,26 @@ Item {
                                         if(checked === true){
                                             console.log("checked")
                                             model.selected = true
+
+                                            distanceSelectionInfoText.text = "Selected: "
+                                            for(var a = 0; a <= 25; a++)  {
+                                                if(distances.get(a).selected === true){
+                                                        distanceSelectionInfoText.text += distances.get(a).key + ", "
+                                                }
+                                            }
                                         }
+
                                         if(checked === false){
                                             console.log("unchecked")
                                             model.selected = false
+
+                                            distanceSelectionInfoText.text = "Selected: "
+                                            for(var b = 0; b <= 25; b++)  {
+                                                if(distances.get(b).selected === true){
+                                                        distanceSelectionInfoText.text += distances.get(b).key + ", "
+                                                }
+                                            }
+
                                         }
                                     }
 
@@ -151,6 +167,13 @@ Item {
                         }
                     }
 
+                    Text {
+                        id: distanceSelectionInfoText
+                        font.capitalization: AllUppercase
+                        font.pointSize: 10
+                        anchors.left: menuDistance.right
+                        text: qsTr("Selected: ")
+                    }
             }
 
             RowLayout {
@@ -276,7 +299,7 @@ Item {
                 MenuBar{
                     Menu {
                         id: menuAge
-                        title: "Age"
+                        title: "Select age/ages"
                         Instantiator {
                             model: ages
                             MenuItem {
@@ -288,10 +311,24 @@ Item {
                                     if(checked === true){
                                         console.log("checked")
                                         model.selected = true
+
+                                        ageSelectionInfoText.text = "Selected: "
+                                        for(var a = 0; a <= 10; a++)  {
+                                            if(ages.get(a).selected === true){
+                                                    ageSelectionInfoText.text += ages.get(a).key + ", "
+                                            }
+                                        }
                                     }
                                     if(checked === false){
                                         console.log("unchecked")
                                         model.selected = false
+
+                                        ageSelectionInfoText.text = "Selected: "
+                                        for(var b = 0; b <= 10; b++)  {
+                                            if(ages.get(b).selected === true){
+                                                    ageSelectionInfoText.text += ages.get(b).key + ", "
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -299,6 +336,14 @@ Item {
                             onObjectRemoved: menuAge.removeItem(object)
                         }
                     }
+                }
+
+                Text {
+                    id: ageSelectionInfoText
+                    font.capitalization: AllUppercase
+                    font.pointSize: 10
+                    anchors.left: menuDistance.right
+                    text: qsTr("Selected: ")
                 }
             }
 
@@ -579,7 +624,7 @@ Item {
                                     distanceParams.push(distances.get(i).value)
                             }
                         }
-                       console.log("1 - " + distanceParams)
+                       console.log("1dist - " + distanceParams)
 
                         var ageParams = []
                         //10 is the number of possible ages to pick
@@ -588,7 +633,7 @@ Item {
                                 ageParams.push(ages.get(j).value)
                             }
                         }
-                        console.log("2 - " + ageParams)
+                        console.log("1age - " + ageParams)
 
                         //CLEANS THE PARAMETER ARRAYS IN GIVEN CONDITIONS
                         if(ageParams.includes("kaikki") || ageParams.length === 0)
@@ -596,8 +641,8 @@ Item {
                         if(distanceParams.includes("kaikki") || distanceParams.length === 0)
                             distanceParams = ["kaikki"]
 
-                        console.log("2 - " + ageParams)
-                        console.log("2 - " + distanceParams)
+                        console.log("2dist - " + distanceParams)
+                        console.log("2age - " + ageParams)
 
                         //Give params to C++ DataController class
                         DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
