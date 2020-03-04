@@ -169,7 +169,6 @@ Item {
 
                     Text {
                         id: distanceSelectionInfoText
-                        font.capitalization: AllUppercase
                         font.pointSize: 10
                         anchors.left: menuDistance.right
                         text: qsTr("Selected: ")
@@ -340,7 +339,6 @@ Item {
 
                 Text {
                     id: ageSelectionInfoText
-                    font.capitalization: AllUppercase
                     font.pointSize: 10
                     anchors.left: menuDistance.right
                     text: qsTr("Selected: ")

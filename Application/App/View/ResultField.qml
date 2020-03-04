@@ -166,120 +166,10 @@ Item {
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-            /*
-            RadioButton {
-                id: yearRadioButton
-                text: qsTr("Year")
-                checked: {
-                    true
-                    selected.text = "year"
-                }
-                onClicked: {
-                    parent: selected.text = "year"
-                }
-            }
-
-            RadioButton {
-                id: distanceRadioButton
-                text: qsTr("Distance")
-                onClicked: {
-                    parent: selected.text = "distance"
-                }
-            }
-
-            RadioButton {
-                id: timeRadioButton
-                text: qsTr("Time")
-                onClicked: {
-                    parent: selected.text = "time"
-                }
-            }
-
-            RadioButton {
-                id: placeRadioButton
-                text: qsTr("Rank")
-                onClicked: {
-                    parent: selected.text = "place"
-                }
-            }
-
-            RadioButton {
-                id: placeMRadioButton
-                text: qsTr("Rank | M")
-                onClicked: {
-                    parent: selected.text = "placem"
-                }
-            }
-
-            RadioButton {
-                id: placeNRadioButton
-                text: qsTr("Rank | W")
-                onClicked: {
-                    parent: selected.text = "placen"
-                }
-            }
-
-            RadioButton {
-                id: genderRadioButton
-                text: qsTr("Gender")
-                onClicked: {
-                    parent: selected.text = "gender"
-                }
-            }
-
-            RadioButton {
-                id: sfnameRadioButton
-                text: qsTr("Name")
-                onClicked: {
-                    parent: selected.text = "sfname"
-                }
-            }
-
-            RadioButton {
-                id: cityRadioButton
-                text: qsTr("City")
-                onClicked: {
-                    parent: selected.text = "city"
-                }
-            }
-
-            RadioButton {
-                id: nationalityRadioButton
-                text: qsTr("Nationality")
-                onClicked: {
-                    parent: selected.text = "nationality"
-                }
-            }
-
-            RadioButton {
-                id: ageRadioButton
-                text: qsTr("Age")
-                onClicked: {
-                    parent: selected.text = "age"
-                }
-            }
-
-            RadioButton {
-                id: teamRadioButton
-                text: qsTr("Team")
-                onClicked: {
-                    parent: selected.text = "team"
-                }
-            }
-            */
+            //TIME AND AGE FILTER SLIDERS DOWN:
             RangeSlider {
-                id: rangeSlider
-                enabled: true
+                id: rangeSliderTime
+                enabled: false
                 Layout.fillWidth: true
                 from: 1
                 to: 12
@@ -311,7 +201,7 @@ Item {
                 }
 
                 Text {
-                    id: element
+                    id: textTimeRangeInfo
                     x: -73
                     y: 13
                     width: 0
@@ -323,22 +213,32 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 12
                 }
+            }
+            CheckBox {
+                id: checkBoxTimeRange
+                x: 182
+                y: 12
+                width: 55
+                height: 40
+                anchors.verticalCenterOffset: -21
+                anchors.horizontalCenterOffset: -13
+                scale: 0.5
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
 
-                CheckBox {
-                    id: checkBox1
-                    x: 182
-                    y: 12
-                    width: 55
-                    height: 40
-                    anchors.verticalCenterOffset: -21
-                    anchors.horizontalCenterOffset: -13
-                    scale: 0.5
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
+                onClicked: {
+                    if(rangeSliderTime.enabled === false)
+                        rangeSliderTime.enabled = true
+                    else{
+                        rangeSliderTime.enabled = false
+                        rangeSliderTime.first.value = 1
+                        rangeSliderTime.second.value = 12
+                    }
                 }
             }
 
             Slider {
+                enabled: false
                 id: rankSlider
                 value: 1500
                 stepSize: 10
@@ -346,7 +246,7 @@ Item {
                 from: 10
 
                 Text {
-                    id: element1
+                    id: rankTextInfo
                     x: 30
                     y: -4
                     width: 99
@@ -358,9 +258,8 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     font.pixelSize: 12
                 }
-
                 Text {
-                    id: rankText
+                    id: rankTextValue
                     x: -820
                     y: -5
                     text: "Top " + rankSlider.value
@@ -369,14 +268,22 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
                 }
+            }
+            CheckBox {
+                id: checkBoxRankRange
+                x: -4
+                y: -20
+                width: 47
+                height: 40
+                scale: 0.5
 
-                CheckBox {
-                    id: checkBox
-                    x: -4
-                    y: -20
-                    width: 47
-                    height: 40
-                    scale: 0.5
+                onClicked: {
+                    if(rankSlider.enabled === false)
+                        rankSlider.enabled = true
+                    else{
+                        rankSlider.enabled = false
+                        rankSlider.value = 1500
+                    }
                 }
             }
         }
