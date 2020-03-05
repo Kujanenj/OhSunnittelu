@@ -6,6 +6,7 @@ DataModel::DataModel(std::shared_ptr<DataBase> database)
 {
     req = std::make_shared<Model::Requester>();
     parser = std::make_shared<Model::Parser>();
+    calc_=std::make_shared<Calculator>();
     database_=database;
     qDebug()<<"Datamodel created";
 }
@@ -23,14 +24,18 @@ void DataModel::doParse(QMap<QString, QString> config)
 void DataModel::insertData()
 {
     listedData_=parser->getListedData();
-    parser->clearListedData();
-
-    QSqlDatabase::database().transaction();
-    qDebug()<<"Starting the insertion";
     if(listedData_.size()==0){
         qDebug()<<"Nothing to insert";
         return;
     }
+
+    calc_->getMinMaxResults(listedData_);
+    parser->clearListedData();
+
+    QSqlDatabase::database().transaction();
+    qDebug()<<"Starting the insertion";
+
+
     try {
         for(int i=0; i<listedData_.size(); i++){
             database_->inserIntoTable(listedData_.at(i));
@@ -54,6 +59,8 @@ void DataModel::sortDataBase(QString field)
 {
     database_->sortDataBase(field);
 }
+
+
 //tänne voi ja pitää lisätä noita parametrei.. jos haluu esim ettiä kahen jutun perusteella
 QVector<QVector<QString> > DataModel::searchDataBase(QMap<QString, QString> config)
 {

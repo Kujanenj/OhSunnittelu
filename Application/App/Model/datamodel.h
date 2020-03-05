@@ -4,6 +4,7 @@
 #include <QDebug>
 #include "requester.h"
 #include "../Data/database.h"
+#include "calculator.h"
 namespace Model {
 
 
@@ -15,12 +16,14 @@ public:
     void doParse(QMap<QString,QString> config);
     void insertData();
     void sortDataBase(QString field);
+
     QVector<QVector<QString>> searchDataBase(QMap<QString,QString> config);
 
 private:
     std::shared_ptr<Model::Requester> req;
     std::shared_ptr<Model::Parser> parser;
     std::shared_ptr<DataBase> database_;
+    std::shared_ptr<Calculator> calc_;
 
     QString data_="";
     QVector<QVector<QString>> listedData_;
