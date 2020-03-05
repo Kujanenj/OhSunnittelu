@@ -13,7 +13,7 @@ public:
     QString calcAverageTime(QVector<QVector<QString>>results);
     float TimeStringToInt(QString time);
     QString IntTimeToString(float time);
-
+    std::pair<QVector<QString>,QVector<QString>> getMinMaxResults(QVector<QVector<QString>> results);
 private:
 
 };

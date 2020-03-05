@@ -64,6 +64,23 @@ QString Calculator::IntTimeToString(float time)
 
 }
 
+std::pair<QVector<QString>, QVector<QString> > Calculator::getMinMaxResults(QVector<QVector<QString> > results)
+{
+
+    std::pair<QVector<QString>,QVector<QString>> returnValues = {results.at(0),results.at(0)};
+
+    for(auto it: results){
+        if(TimeStringToInt(it.at(2)) < TimeStringToInt(returnValues.first.at(2))){
+            returnValues.first=it;
+        }
+        if(TimeStringToInt(it.at(2)) > TimeStringToInt(returnValues.second.at(2))){
+            returnValues.second=it;
+        }
+
+    }
+    return returnValues;
+}
+
 
 
 
