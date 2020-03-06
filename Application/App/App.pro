@@ -22,7 +22,8 @@ SOURCES += \
         Model/parser.cpp \
         Model/requester.cpp \
         Model/datamodel.cpp \
-        View/dataview.cpp
+        View/dataview.cpp \
+        Model/calculator.cpp
 
 HEADERS += \
         Controller/datacontroller.h \
@@ -31,7 +32,8 @@ HEADERS += \
         Model/requester.h \
         Model/parser.h \
         Model/datamodel.h \
-        View/dataview.h
+        View/dataview.h \
+        Model/calculator.h
 
 RESOURCES += \
         View/qml.qrc

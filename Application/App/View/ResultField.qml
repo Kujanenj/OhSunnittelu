@@ -112,26 +112,6 @@ Item {
             width: 1256
             height: 48
 
-            Button {
-                id: sortButton
-                text: qsTr("Sort")
-                Layout.fillHeight: false
-                Layout.fillWidth: false
-                scale: 0.95
-                onClicked: {
-
-                    DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value);
-                    console.log(sortOptions.get(comboBoxSortOption.currentIndex).value + " syötetty datacontrollerille parametrina")
-                    //DataController.sortButtonClicked(selected.text);
-                    // Tee datacontrollerii funktio mitä haluut tehä
-                    // kun lajittele buttonia painetaan
-                    // selected.text välittää sulle tekstin mitä sortataan
-                    // Esim. "Vuosi"
-                    // DataController.sortButtonClicked(selected.text);
-
-                }
-            }
-
             /*
             Text {
                 id: selected
@@ -148,6 +128,11 @@ Item {
                 scale: 1
                 editable: false
                 textRole: "text"
+
+                onActivated:  {
+                    DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value);
+                    console.log(sortOptions.get(comboBoxSortOption.currentIndex).value + " syötetty datacontrollerille parametrina")
+                }
 
                 model: ListModel {
                     id: sortOptions
@@ -169,7 +154,7 @@ Item {
             //TIME AND AGE FILTER SLIDERS DOWN:
             RangeSlider {
                 id: rangeSliderTime
-                enabled: false
+                enabled: true
                 Layout.fillWidth: true
                 from: 1
                 to: 12
@@ -177,6 +162,23 @@ Item {
                 first.value: 1
                 second.value: 12
                 snapMode: "SnapAlways"
+
+                first.onPressedChanged: {
+                    if(!first.pressed) {
+                        console.log("Time range left changed update on SQL");
+                        console.log("Alaraja: " + rangeSliderTime.first.value + " Yläraja: " + rangeSliderTime.second.value);
+                    }
+                }
+
+                second.onPressedChanged: {
+                    if(!second.pressed) {
+                        console.log("Time range right changed update on SQL");
+                        console.log("Alaraja: " + rangeSliderTime.first.value + " Yläraja: " + rangeSliderTime.second.value);
+                        // Eli ajan alarajan saat rangeSliderTime.first.value
+                        // ja ajan ylärajan saat rangeSliderTime.second.value
+                        // Eli noi kaks parametrii ja DataControlleriin funktiokutsu
+                    }
+                }
 
                 Text {
                     id: hiText
@@ -214,6 +216,7 @@ Item {
                     font.pixelSize: 12
                 }
             }
+            /*
             CheckBox {
                 id: checkBoxTimeRange
                 x: 182
@@ -232,14 +235,25 @@ Item {
                     }
                 }
             }
+            */
 
             Slider {
-                enabled: false
+                enabled: true
                 id: rankSlider
                 value: 1500
                 stepSize: 10
                 to: 1500
                 from: 10
+
+                onPressedChanged: {
+                    if(!pressed) {
+                        console.log("Rank range changed update on SQL");
+                        console.log("Top: " + rankSlider.value);
+                        // Tässä saat rankkien yläarvon rankSlider.value
+                        // Ja sit vaan kutsut funktioo missä sulla suurin
+                        // mahdollinen rankki
+                    }
+                }
 
                 Text {
                     id: rankTextInfo
@@ -265,6 +279,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                 }
             }
+            /*
             CheckBox {
                 id: checkBoxRankRange
                 x: -4
@@ -282,6 +297,7 @@ Item {
                     }
                 }
             }
+            */
         }
     }
 
