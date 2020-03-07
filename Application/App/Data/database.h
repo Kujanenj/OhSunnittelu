@@ -30,6 +30,16 @@
 #define TABLE_AGE               "age"
 #define TABLE_TEAM              "team"
 
+#define TABLE_2                 "Analytics"
+#define TABLE_2_DIST            "distance"
+#define TABLE_2_AVGSPEED        "avgspeed"
+#define TABLE_2_PARTICIPANTS    "participants"
+#define TABLE_2_FASTESTTIME     "fastesttime"
+#define TABLE_2_SLOWESTTIME     "slowesttime"
+#define TABLE_2_WINNER          "winner"
+#define TABLE_2_SECOND          "second"
+#define TABLE_2_THIRD           "third"
+
 class DataBase : public QObject
 {
     Q_OBJECT
@@ -40,6 +50,7 @@ public:
     void sortDataBase(QString command);
     QVector<QVector<QString>> searchDataBase(QString config);
 public slots:
+
     void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
     void removeData();
 
@@ -50,7 +61,6 @@ private:
     void createDataBase();
     void closeDataBase();
     void createTable();
-
 
     QVector<QString> data;
     QString errorMessage_="No errors";

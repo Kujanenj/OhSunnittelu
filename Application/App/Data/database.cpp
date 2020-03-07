@@ -26,7 +26,7 @@ void DataBase::createDataBase()
 {
     if(this->openDataBase()){
         qDebug() << "Created new database";
-       this->createTable();
+        this->createTable();
     } else {
          errorMessage_="Failed to resotore the database";
 
@@ -71,19 +71,26 @@ void DataBase::createTable()
                             TABLE_AGE               " VARCHAR(255)    NOT NULL,"
                             TABLE_TEAM              " VARCHAR(255)    NOT NULL"
                         " )"
-                    )){
-
-
+                    ) ||
+            !query.exec("CREATE TABLE " TABLE_2 " ("
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        TABLE_2_DIST              " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_AVGSPEED          " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_PARTICIPANTS      " INT,"
+                        TABLE_2_FASTESTTIME       " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_SLOWESTTIME       " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_WINNER            " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_SECOND            " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_THIRD             " VARCHAR(255)    NOT NULL"
+                        " )"
+                        ))
+    {
         qDebug() << "DataBase: error of create " << TABLE;
         qDebug() << query.lastError().text();
         errorMessage_= "DataBase: error in creation of table";
         throw errorMessage_;
-
     }
-
-
 }
-
 
 void DataBase::inserIntoTable(QVector<QString> toInsert)
 {
