@@ -17,10 +17,10 @@ QVariant ListModel::data(const QModelIndex & index, int role) const {
     return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
 }
 
-void ListModel::sortListModel(QString sortBy, QString direction)
+void ListModel::sortListModel(QString command)
 {
 
-    this->setQuery("SELECT * FROM Results ORDER BY " +sortBy+" "+direction);
+    this->setQuery(command);
 
 }
 

@@ -130,7 +130,8 @@ Item {
                 textRole: "text"
 
                 onActivated:  {
-                    DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value);
+                    DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value,rangeSliderTime.first.value,rangeSliderTime.second.value, rankSlider.value);
+
                     console.log(sortOptions.get(comboBoxSortOption.currentIndex).value + " syötetty datacontrollerille parametrina")
                 }
 
@@ -165,15 +166,13 @@ Item {
 
                 first.onPressedChanged: {
                     if(!first.pressed) {
-                        console.log("Time range left changed update on SQL");
-                        console.log("Alaraja: " + rangeSliderTime.first.value + " Yläraja: " + rangeSliderTime.second.value);
+                       DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value,rangeSliderTime.first.value,rangeSliderTime.second.value, rankSlider.value);
                     }
                 }
 
                 second.onPressedChanged: {
                     if(!second.pressed) {
-                        console.log("Time range right changed update on SQL");
-                        console.log("Alaraja: " + rangeSliderTime.first.value + " Yläraja: " + rangeSliderTime.second.value);
+                       DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value,rangeSliderTime.first.value,rangeSliderTime.second.value, rankSlider.value);
                         // Eli ajan alarajan saat rangeSliderTime.first.value
                         // ja ajan ylärajan saat rangeSliderTime.second.value
                         // Eli noi kaks parametrii ja DataControlleriin funktiokutsu
@@ -247,11 +246,7 @@ Item {
 
                 onPressedChanged: {
                     if(!pressed) {
-                        console.log("Rank range changed update on SQL");
-                        console.log("Top: " + rankSlider.value);
-                        // Tässä saat rankkien yläarvon rankSlider.value
-                        // Ja sit vaan kutsut funktioo missä sulla suurin
-                        // mahdollinen rankki
+                       DataController.sortButtonClicked(sortOptions.get(comboBoxSortOption.currentIndex).value,rangeSliderTime.first.value,rangeSliderTime.second.value, rankSlider.value);
                     }
                 }
 

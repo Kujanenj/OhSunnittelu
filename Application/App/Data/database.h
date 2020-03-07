@@ -37,7 +37,7 @@ public:
     explicit DataBase(std::shared_ptr<ListModel> listModel=nullptr, QObject *parent = nullptr);
     ~DataBase();
     void connectToDataBase();
-    void sortDataBase(QString sortBy, QString direction="ASC");
+    void sortDataBase(QString command);
     QVector<QVector<QString>> searchDataBase(QString config);
 public slots:
     void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table

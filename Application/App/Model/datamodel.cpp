@@ -28,8 +28,13 @@ void DataModel::insertData()
         qDebug()<<"Nothing to insert";
         return;
     }
+   /*try {
+        calc_->getMinMaxResults(listedData_);
+    } catch (...) {
+        qDebug()<<"ERROR IN CALCULATOR";
+        delete this;
+    }*/
 
-    calc_->getMinMaxResults(listedData_);
     parser->clearListedData();
 
     QSqlDatabase::database().transaction();
@@ -55,9 +60,10 @@ void DataModel::insertData()
     }
 }
 
-void DataModel::sortDataBase(QString field)
+void DataModel::sortDataBase(QString command)
 {
-    database_->sortDataBase(field);
+    qDebug()<<"Sorting database";
+    database_->sortDataBase(command);
 }
 
 

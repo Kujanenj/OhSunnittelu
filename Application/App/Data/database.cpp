@@ -146,11 +146,11 @@ void DataBase::removeData()
 
 }
 
-void DataBase::sortDataBase(QString sortBy, QString direction)
+void DataBase::sortDataBase(QString command)
 {
 
 
- listModel_->sortListModel(sortBy,direction);
+ listModel_->sortListModel(command);
 
 }
 

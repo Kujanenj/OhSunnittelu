@@ -83,17 +83,20 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     }
 }
 
-void DataController::sortButtonClicked(QString selectedField)
+void DataController::sortButtonClicked(QString selectedField, QString lowerBound, QString upperBound, QString rankSilder)
 {
-    dataModel_->sortDataBase(selectedField);
+
+    QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder +  " ORDER BY " + selectedField+ " ASC";
+    qDebug()<<command;
+    dataModel_->sortDataBase(command);
     //SELECT * FROM Results WHERE SFName LIKE '%Ville%',
     // eli siis kaikki Villet
-    QMap<QString, QString> config = {{"select","*"},
+   /* QMap<QString, QString> config = {{"select","*"},
                                      {"from","Results"},
                                      {"where","place"},
                                      {"command","<"},
                                      {"toSearch","10"}};
-    dataModel_->searchDataBase(config);
-}
+   dataModel_->searchDataBase(config);
+*/}
 
 } // Namespace controller

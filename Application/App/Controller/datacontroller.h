@@ -52,7 +52,7 @@ public:
                                          QString firstName, QString lastName,
                                          QString place, QString nationality,
                                          QString team);
-    Q_INVOKABLE void sortButtonClicked(QString selectedField);
+    Q_INVOKABLE void sortButtonClicked(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);
 signals:
 
 public slots:

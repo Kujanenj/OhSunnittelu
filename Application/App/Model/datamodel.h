@@ -15,7 +15,7 @@ public:
     void doRequest(QMap<QString,QString> parameters);
     void doParse(QMap<QString,QString> config);
     void insertData();
-    void sortDataBase(QString field);
+    void sortDataBase(QString command);
 
     QVector<QVector<QString>> searchDataBase(QMap<QString,QString> config);
 
