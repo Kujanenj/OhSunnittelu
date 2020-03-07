@@ -1,6 +1,7 @@
 #include "calculator.h"
 #include "QStringList"
 #include <math.h>
+#include <QDebug>
 namespace Model {
 
 
@@ -11,15 +12,22 @@ Calculator::Calculator()
 
 QString Model::Calculator::calcAverageTime(QVector<QVector<QString> > results)
 {
+    int skipped=0;
     if(results.size()==0){
         return "ERROR NO RESULTS I WONT COUNT JACK SHIT BUDDY!";
     }
     float totalTime=0;
   for(auto it:results){
 
+    if(it.at(2).length()>8){
       totalTime=totalTime+TimeStringToInt(it.at(2));
   }
-  totalTime=totalTime/results.size();
+    else{
+        skipped++;
+    }
+  }
+  totalTime=totalTime/(results.size()-skipped);
+  qDebug()<<"Skipped total of "<<skipped<<" while calculating average time";
   return IntTimeToString(totalTime);
 }
 
