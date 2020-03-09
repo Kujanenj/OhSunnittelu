@@ -94,7 +94,7 @@ Item {
                     //MODEL FOR DISTANCE OPTIONS INCLUDING THE SELECTED STATE
                     ListModel {
                         id: distances
-                        ListElement { key: "All distances" ; value: "kaikki";}
+                        ListElement { key: "All distances" ; value: "kaikki"; selected: true}
                         ListElement { key: "50km classic"; value: "P50"; selected: false}
                         ListElement { key: "50km skate"; value: "V50"; selected: false}
                         ListElement { key: "100km classic"; value: "P100"; selected: false}
@@ -146,6 +146,8 @@ Item {
                                             }
                                         }
 
+                                        distanceSelectionInfoText.text = distanceSelectionInfoText.text.slice(0, -2)
+
                                         if(checked === false){
                                             console.log("unchecked")
                                             model.selected = false
@@ -156,6 +158,8 @@ Item {
                                                         distanceSelectionInfoText.text += distances.get(b).key + ", "
                                                 }
                                             }
+
+                                          distanceSelectionInfoText.text = distanceSelectionInfoText.text.slice(0, -2)
 
                                         }
                                     }
@@ -317,6 +321,8 @@ Item {
                                                     ageSelectionInfoText.text += ages.get(a).key + ", "
                                             }
                                         }
+                                        ageSelectionInfoText.text = ageSelectionInfoText.text.slice(0, -2)
+
                                     }
                                     if(checked === false){
                                         console.log("unchecked")
@@ -328,6 +334,7 @@ Item {
                                                     ageSelectionInfoText.text += ages.get(b).key + ", "
                                             }
                                         }
+                                        ageSelectionInfoText.text = ageSelectionInfoText.text.slice(0, -2)
                                     }
                                 }
                             }
