@@ -32,14 +32,14 @@
 
 #define TABLE_2                 "Analytics"
 #define TABLE_2_DIST            "distance"
-#define TABLE_2_AVGSPEED        "avgspeed"
+#define TABLE_2_AVGTIME         "avgtime"
 #define TABLE_2_PARTICIPANTS    "participants"
 #define TABLE_2_FASTESTTIME     "fastesttime"
 #define TABLE_2_SLOWESTTIME     "slowesttime"
 #define TABLE_2_WINNER          "winner"
 #define TABLE_2_SECOND          "second"
 #define TABLE_2_THIRD           "third"
-#define TABLE_2_BEST_TIME       "besttime"
+#define TABLE_2_BEST_TEAM       "bestteam"
 
 class DataBase : public QObject
 {
@@ -53,6 +53,7 @@ public:
 public slots:
 
     void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
+    void insertIntoAnalyticsTable(QVector<QString> toInsert);
     void removeData();
 
 private:
@@ -64,6 +65,8 @@ private:
     void createTable();
 
     QVector<QString> data;
+    QVector<QString> analyticsData;
+
     QString errorMessage_="No errors";
 
     std::shared_ptr<ListModel> listModel_;

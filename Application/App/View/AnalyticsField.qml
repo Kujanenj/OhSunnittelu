@@ -35,8 +35,8 @@ Item {
 
             TableViewColumn {
                 width: 80
-                title: "Average speed"
-                role: "avgspeed"
+                title: "Average time"
+                role: "avgtime"
             }
 
             TableViewColumn {

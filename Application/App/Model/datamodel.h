@@ -15,6 +15,7 @@ public:
     void doRequest(QMap<QString,QString> parameters);
     void doParse(QMap<QString,QString> config);
     void insertData();
+    void insertAnalyticsData();
     void sortDataBase(QString command);
     void analytics(QVector<QString> distances);
     QVector<QVector<QString>> getAnalyticsVector();

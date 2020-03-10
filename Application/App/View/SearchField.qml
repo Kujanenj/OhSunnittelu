@@ -664,6 +664,7 @@ Item {
                                                            fieldTeam.text);
                         bar.currentIndex = 1
                         myModel.updateModel()
+                        analyticsModel.updateModel()
                     }
                 }
             }

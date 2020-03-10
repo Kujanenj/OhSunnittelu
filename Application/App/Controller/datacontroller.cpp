@@ -86,6 +86,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     }
     try {
          dataModel_->analytics(distances);
+         dataModel_->insertAnalyticsData();
     } catch (...) {
         qDebug()<<"Viduigsi meni! Ebin:D";
         delete this;

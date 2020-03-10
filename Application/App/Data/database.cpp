@@ -75,13 +75,14 @@ void DataBase::createTable()
             !query.exec("CREATE TABLE " TABLE_2 " ("
                         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                         TABLE_2_DIST              " VARCHAR(255)    NOT NULL,"
-                        TABLE_2_AVGSPEED          " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_AVGTIME           " VARCHAR(255)    NOT NULL,"
                         TABLE_2_PARTICIPANTS      " INT,"
                         TABLE_2_FASTESTTIME       " VARCHAR(255)    NOT NULL,"
                         TABLE_2_SLOWESTTIME       " VARCHAR(255)    NOT NULL,"
                         TABLE_2_WINNER            " VARCHAR(255)    NOT NULL,"
                         TABLE_2_SECOND            " VARCHAR(255)    NOT NULL,"
-                        TABLE_2_THIRD             " VARCHAR(255)    NOT NULL"
+                        TABLE_2_THIRD             " VARCHAR(255)    NOT NULL,"
+                        TABLE_2_BEST_TEAM         " VARCHAR(255)    NOT NULL"
                         " )"
                         ))
     {
@@ -133,13 +134,46 @@ void DataBase::inserIntoTable(QVector<QString> toInsert)
         errorMessage_="Error in insertion to table";
         throw errorMessage_;
     }
+}
 
+void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
+{
+    analyticsData.clear();
+
+    analyticsData=toInsert;
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO " TABLE_2 " ( " TABLE_2_DIST  ", "
+                                             TABLE_2_AVGTIME ", "
+                                             TABLE_2_PARTICIPANTS ", "
+                                             TABLE_2_FASTESTTIME ", "
+                                             TABLE_2_SLOWESTTIME ", "
+                                             TABLE_2_WINNER ", "
+                                             TABLE_2_SECOND ", "
+                                             TABLE_2_THIRD ", "
+                                             TABLE_2_BEST_TEAM " ) "
+                  "VALUES (:distance, :avgtime, :participants, :fastesttime, :slowesttime, :winner, :second, :third, :bestteam)");
+    query.bindValue(":distance",        analyticsData[0]);
+    query.bindValue(":avgtime",         analyticsData[1]);
+    query.bindValue(":participants",    analyticsData[2]);
+    query.bindValue(":fastesttime",     analyticsData[3]);
+    query.bindValue(":slowesttime",     analyticsData[4]);
+    query.bindValue(":winner",          analyticsData[5]);
+    query.bindValue(":second",          analyticsData[6]);
+    query.bindValue(":third",           analyticsData[7]);
+    query.bindValue(":bestteam",        analyticsData[8]);
+
+    if(!query.exec()){
+        qDebug() << "error insert into " << TABLE_2;
+        qDebug() << query.lastError().text();
+        errorMessage_="Error in insertion to table";
+        throw errorMessage_;
+    }
 }
 
 void DataBase::removeData()
 {
-
-
     QSqlQuery query;
     query.prepare("DELETE FROM " TABLE);
 
@@ -149,8 +183,17 @@ void DataBase::removeData()
         errorMessage_="Databse error in deletion";
         throw errorMessage_;
     }
-    qDebug() << "All rows deleted succesfully";
 
+    query.prepare("DELETE FROM " TABLE_2);
+
+    if(!query.exec()){
+        qDebug() << "error delete row " << TABLE_2;
+        qDebug() << query.lastError().text();
+        errorMessage_="Databse error in deletion";
+        throw errorMessage_;
+    }
+
+    qDebug() << "All rows deleted succesfully";
 }
 
 void DataBase::sortDataBase(QString command)

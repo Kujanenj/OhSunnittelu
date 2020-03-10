@@ -11,7 +11,7 @@ public:
     enum resultRoles {
         IdRole = Qt::UserRole + 1,
         DistanceRole,
-        AvgspeedRole,
+        AvgtimeRole,
         ParticipantsRole,
         FastesttimeRole,
         SlowesttimeRole,
