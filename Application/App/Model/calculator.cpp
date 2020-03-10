@@ -89,6 +89,13 @@ std::pair<QVector<QString>, QVector<QString> > Calculator::getMinMaxResults(QVec
     return returnValues;
 }
 
+std::pair<QString, QString> Calculator::getBestTeam(QVector<QVector<QVector<QString> > > teamResults)
+{
+    QString returnTeam="Ebin";
+    QString returnTime =":DD";
+    std::pair<QString,QString> returnPair = {returnTeam,returnTime};
+}
+
 
 
 

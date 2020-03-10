@@ -17,7 +17,7 @@ public:
     void insertData();
     void sortDataBase(QString command);
     void analytics(QVector<QString> distances);
-  //  QVector<QVector<QString>> teamAnalyze(QVector<QString>teams);
+
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
 
 private:
@@ -28,6 +28,7 @@ private:
 
     QString data_="";
     QVector<QVector<QString>> listedData_;
+    QVector<QString> getTeamNames();
 
 };
 }

@@ -87,21 +87,25 @@ void DataModel::analytics(QVector<QString> distances)
 
         analyticsFULL.push_back(analyticsPARTIAL);
         analyticsPARTIAL.clear();
+
+        //Tähän viel sit jotenki bestTeam
     }
 
     }
 }
 
-/*QVector<QVector<QString> > DataModel::teamAnalyze(QVector<QString> teams)
-{
-
-}*/
 
 
-//tänne voi ja pitää lisätä noita parametrei.. jos haluu esim ettiä kahen jutun perusteella
+
 QVector<QVector<QString> > DataModel::searchDataBase(QString sqlCommand)
 {
 
     return database_->searchDataBase(sqlCommand);
+}
+
+QVector<QString> DataModel::getTeamNames(QString distance)
+{
+ //tänne pitäs saada semmonen että antaa listan kaikista uniikeista tiiminimistä jota on jollai tietyl matkal (ja vuodella?)
+
 }
 }
