@@ -6,6 +6,8 @@
 #include "Data/database.h"
 #include "Model/listmodel.h"
 
+#include "Model/analyticsmodel.h"
+
 /**
  * \mainpage Application
  *
@@ -22,7 +24,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
 
-     std::shared_ptr< ListModel > listmodel = std::make_shared<ListModel>();
+    std::shared_ptr<AnalyticsModel> analyticsmodel = std::make_shared<AnalyticsModel>();
+
+    std::shared_ptr<ListModel> listmodel = std::make_shared<ListModel>();
     std::shared_ptr<DataBase> database=std::make_shared<DataBase>(listmodel);
     std::shared_ptr<Model::DataModel> dataModel = std::make_shared<Model::DataModel>(database);
     try {
@@ -34,6 +38,7 @@ int main(int argc, char *argv[])
 
 
 
+    engine.rootContext()->setContextProperty("analyticsModel", &*analyticsmodel);
 
     engine.rootContext()->setContextProperty("myModel", &*listmodel);
     engine.rootContext()->setContextProperty("database", &*database);

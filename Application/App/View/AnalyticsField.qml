@@ -46,34 +46,42 @@ Item {
             }
 
             TableViewColumn {
-                width: 80
+                width: 100
                 title: "Fastest time"
                 role: "fastesttime"
             }
 
             TableViewColumn {
-                width: 80
+                width: 100
                 title: "Slowest time"
                 role: "slowesttime"
             }
 
             TableViewColumn {
-                width: 80
+                width: 120
                 title: "1st place"
                 role: "winner"
             }
 
             TableViewColumn {
-                width: 80
+                width: 120
                 title: "2nd place"
                 role: "second"
             }
 
             TableViewColumn {
-                width: 80
+                width: 120
                 title: "3rd place"
-                role: "sfname"
+                role: "third"
             }
+
+            TableViewColumn {
+                width: 120
+                title: "Best team"
+                role: "bestteam"
+            }
+
+            model: analyticsModel
         }
     }
 }

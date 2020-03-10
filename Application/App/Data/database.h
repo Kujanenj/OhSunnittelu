@@ -39,6 +39,7 @@
 #define TABLE_2_WINNER          "winner"
 #define TABLE_2_SECOND          "second"
 #define TABLE_2_THIRD           "third"
+#define TABLE_2_BEST_TIME       "besttime"
 
 class DataBase : public QObject
 {

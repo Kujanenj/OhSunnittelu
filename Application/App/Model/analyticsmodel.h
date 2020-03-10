@@ -17,7 +17,8 @@ public:
         SlowesttimeRole,
         WinnerRole,
         SecondRole,
-        ThirdRole
+        ThirdRole,
+        bestteamRole
     };
 
     explicit AnalyticsModel(QObject *parent = nullptr);

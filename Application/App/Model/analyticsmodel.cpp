@@ -29,6 +29,7 @@ QHash<int, QByteArray> AnalyticsModel::roleNames() const
     roles[WinnerRole] = "winner";
     roles[SecondRole] = "second";
     roles[ThirdRole] = "third";
+    roles[bestteamRole] = "bestteam";
     return roles;
 }
 
@@ -37,5 +38,5 @@ void AnalyticsModel::updateModel()
 
     qDebug() << "Updating model";
     // The update is performed SQL-queries to the database
-    this->setQuery("SELECT *, " TABLE_YEAR ", " TABLE_DIST ", " TABLE_TIME ", " TABLE_PLACE ", " TABLE_PLACEM ", " TABLE_PLACEN ", " TABLE_GENDER ", " TABLE_SFNAME ", " TABLE_CITY ", " TABLE_NATIONALITY ", " TABLE_AGE ", " TABLE_TEAM "  FROM " TABLE);
+    this->setQuery("SELECT *, " TABLE_2_DIST ", " TABLE_2_AVGSPEED ", " TABLE_2_PARTICIPANTS ", " TABLE_2_FASTESTTIME ", " TABLE_2_SLOWESTTIME ", " TABLE_2_WINNER ", " TABLE_2_SECOND ", " TABLE_2_THIRD ", " TABLE_2_BEST_TIME " FROM " TABLE_2);
 }
