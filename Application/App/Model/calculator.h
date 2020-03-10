@@ -14,7 +14,7 @@ public:
     float TimeStringToInt(QString time);
     QString IntTimeToString(float time);
     std::pair<QVector<QString>,QVector<QString>> getMinMaxResults(QVector<QVector<QString>> results);
-    std::pair<QString,QString> getBestTeam(QVector<QVector<QVector<QString>>> teamResults);
+    std::pair<QString,QString> getBestTeam(QVector<std::pair<QString,QString>> results);
 private:
 
 };

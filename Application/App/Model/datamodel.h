@@ -17,6 +17,7 @@ public:
     void insertData();
     void sortDataBase(QString command);
     void analytics(QVector<QString> distances);
+    QVector<QVector<QString>> getAnalyticsVector();
 
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
 
@@ -27,7 +28,7 @@ private:
     std::shared_ptr<DataBase> database_;
     std::shared_ptr<Calculator> calc_;
     QVector<QString> teamNames_;
-
+     QVector<QVector<QString>> analyticsFULL_;
     QString data_="";
     QVector<QVector<QString>> listedData_;
 

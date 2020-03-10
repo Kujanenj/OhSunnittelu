@@ -67,9 +67,13 @@ void DataModel::sortDataBase(QString command)
 
 void DataModel::analytics(QVector<QString> distances)
 {
+    analyticsFULL_.clear();
     QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
-    QVector<QVector<QString>> analyticsFULL;
+
     QVector<QString> analyticsPARTIAL;
+    QVector<std::pair<QString,QString>> teamResults;
+    std::pair<QString,QString> teamResultsPartial;
+
     QString sqlCommand;
 
     for(int i=0; i<distances.size(); i++){
@@ -77,25 +81,40 @@ void DataModel::analytics(QVector<QString> distances)
 
         sqlResults=searchDataBase(sqlCommand);
         if(!sqlResults.empty()){
-
+        analyticsPARTIAL.push_back(distances.at(i));
         analyticsPARTIAL.push_back(calc_->calcAverageTime(sqlResults));
         analyticsPARTIAL.push_back(QString::number(sqlResults.size()));
         analyticsPARTIAL.push_back(sqlResults.first().at(2));
         analyticsPARTIAL.push_back(sqlResults.last().at(2));
-
         analyticsPARTIAL.push_back(sqlResults.first().at(7));
+
         if(!(sqlResults.size() <= 3 )){
         analyticsPARTIAL.push_back(sqlResults.at(1).at(7));
         analyticsPARTIAL.push_back(sqlResults.at(2).at(7));
         }
 
-        analyticsFULL.push_back(analyticsPARTIAL);
+        for(int it=0; it<teamNames_.size(); it++){
+        sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";
+        sqlResults=searchDataBase(sqlCommand);
+        teamResultsPartial.first=sqlResults.at(0).at(11);
+        teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
+        teamResults.push_back(teamResultsPartial);
+
+        }
+        analyticsPARTIAL.push_back(calc_->getBestTeam(teamResults).first);
+
+        analyticsFULL_.push_back(analyticsPARTIAL);
         analyticsPARTIAL.clear();
 
-        //Tähän viel sit jotenki bestTeam
+
     }
 
     }
+}
+
+QVector<QVector<QString> > DataModel::getAnalyticsVector()
+{
+    return analyticsFULL_;
 }
 
 
