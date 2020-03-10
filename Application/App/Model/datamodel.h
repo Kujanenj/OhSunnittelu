@@ -20,15 +20,16 @@ public:
 
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
 
+    QVector<QString> getTeamNames();
 private:
     std::shared_ptr<Model::Requester> req;
     std::shared_ptr<Model::Parser> parser;
     std::shared_ptr<DataBase> database_;
     std::shared_ptr<Calculator> calc_;
+    QVector<QString> teamNames_;
 
     QString data_="";
     QVector<QVector<QString>> listedData_;
-    QVector<QString> getTeamNames();
 
 };
 }

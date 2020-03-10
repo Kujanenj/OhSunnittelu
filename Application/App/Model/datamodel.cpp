@@ -31,6 +31,7 @@ void DataModel::insertData()
 
 
     parser->clearListedData();
+    teamNames_.clear();
 
     QSqlDatabase::database().transaction();
     qDebug()<<"Starting the insertion";
@@ -39,6 +40,9 @@ void DataModel::insertData()
     try {
         for(int i=0; i<listedData_.size(); i++){
             database_->inserIntoTable(listedData_.at(i));
+            if(!teamNames_.contains(listedData_.at(i).at(11)) && listedData_.at(i).at(11) != "-"){
+                teamNames_.push_back(listedData_.at(i).at(11));
+            }
     }
         qDebug()<<"Inserted some data to database";
         QSqlDatabase::database().commit();
@@ -103,9 +107,9 @@ QVector<QVector<QString> > DataModel::searchDataBase(QString sqlCommand)
     return database_->searchDataBase(sqlCommand);
 }
 
-QVector<QString> DataModel::getTeamNames(QString distance)
+QVector<QString> DataModel::getTeamNames()
 {
  //tänne pitäs saada semmonen että antaa listan kaikista uniikeista tiiminimistä jota on jollai tietyl matkal (ja vuodella?)
-
+    return teamNames_;
 }
 }
