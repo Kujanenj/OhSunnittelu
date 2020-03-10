@@ -94,7 +94,7 @@ Item {
                     //MODEL FOR DISTANCE OPTIONS INCLUDING THE SELECTED STATE
                     ListModel {
                         id: distances
-                        ListElement { key: "All distances" ; value: "kaikki"; selected: true}
+                        ListElement { key: "All distances" ; value: "kaikki"; selected: false}
                         ListElement { key: "50km classic"; value: "P50"; selected: false}
                         ListElement { key: "50km skate"; value: "V50"; selected: false}
                         ListElement { key: "100km classic"; value: "P100"; selected: false}
@@ -162,6 +162,9 @@ Item {
                                           distanceSelectionInfoText.text = distanceSelectionInfoText.text.slice(0, -2)
 
                                         }
+                                        if(distances.get(0).selected === true){
+                                            distanceSelectionInfoText.text = "Selected: All distances"
+                                        }
                                     }
 
                                 }
@@ -175,7 +178,7 @@ Item {
                         id: distanceSelectionInfoText
                         font.pointSize: 10
                         anchors.left: menuDistance.right
-                        text: qsTr("Selected: ")
+                        text: qsTr("Selected: All distances by default. Select distances from the dropdown menu")
                     }
             }
 
@@ -285,7 +288,7 @@ Item {
                 //MODEL FOR AGE OPTIONS INCLUDING THE SELECTED STATE
                 ListModel {
                     id: ages
-                    ListElement { key: "All ages"; value: "kaikki" }
+                    ListElement { key: "All ages"; value: "kaikki"; selected: false }
                     ListElement { key: "Under 35 ages"; value: "<35"; selected: false}
                     ListElement { key: "Ages | 35"; value: "35"; selected: false}
                     ListElement { key: "Ages | 40"; value: "40"; selected: false}
@@ -336,6 +339,9 @@ Item {
                                         }
                                         ageSelectionInfoText.text = ageSelectionInfoText.text.slice(0, -2)
                                     }
+                                    if(ages.get(0).selected === true){
+                                        ageSelectionInfoText.text = "Selected: All ages"
+                                    }
                                 }
                             }
                             onObjectAdded: menuAge.insertItem(index, object)
@@ -348,7 +354,7 @@ Item {
                     id: ageSelectionInfoText
                     font.pointSize: 10
                     anchors.left: menuDistance.right
-                    text: qsTr("Selected: ")
+                    text: qsTr("Selected: All ages by default. Select ages from the dropdown menu")
                 }
             }
 
