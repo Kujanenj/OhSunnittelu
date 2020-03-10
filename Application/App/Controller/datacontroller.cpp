@@ -26,6 +26,8 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QString place, QString nationality,
                                   QString team)
 {
+
+
     database_->removeData();
 
     // Changes nationality text to match with all nationalities
@@ -74,12 +76,19 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                     dataModel_->doRequest(parameters);
                     dataModel_->doParse(parserConfig_);
                     dataModel_->insertData();
+
                 }
                 catch (QString msg){
                     qDebug()<<msg<< endl << " continuing search";
                 }
             }
         }
+    }
+    try {
+         dataModel_->analytics(distances);
+    } catch (...) {
+        qDebug()<<"Viduigsi meni! Ebin:D";
+        delete this;
     }
 }
 
@@ -89,14 +98,6 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
     QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder +  " ORDER BY " + selectedField+ " ASC";
     qDebug()<<command;
     dataModel_->sortDataBase(command);
-    //SELECT * FROM Results WHERE SFName LIKE '%Ville%',
-    // eli siis kaikki Villet
-   /* QMap<QString, QString> config = {{"select","*"},
-                                     {"from","Results"},
-                                     {"where","place"},
-                                     {"command","<"},
-                                     {"toSearch","10"}};
-   dataModel_->searchDataBase(config);
-*/}
 
+}
 } // Namespace controller
