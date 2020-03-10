@@ -28,12 +28,7 @@ void DataModel::insertData()
         qDebug()<<"Nothing to insert";
         return;
     }
-   /*try {
-        calc_->getMinMaxResults(listedData_);
-    } catch (...) {
-        qDebug()<<"ERROR IN CALCULATOR";
-        delete this;
-    }*/
+
 
     parser->clearListedData();
 
@@ -66,13 +61,47 @@ void DataModel::sortDataBase(QString command)
     database_->sortDataBase(command);
 }
 
+void DataModel::analytics(QVector<QString> distances)
+{
+    QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
+    QVector<QVector<QString>> analyticsFULL;
+    QVector<QString> analyticsPARTIAL;
+    QString sqlCommand;
+
+    for(int i=0; i<distances.size(); i++){
+        sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%'";
+
+        sqlResults=searchDataBase(sqlCommand);
+        if(!sqlResults.empty()){
+
+        analyticsPARTIAL.push_back(calc_->calcAverageTime(sqlResults));
+        analyticsPARTIAL.push_back(QString::number(sqlResults.size()));
+        analyticsPARTIAL.push_back(sqlResults.first().at(2));
+        analyticsPARTIAL.push_back(sqlResults.last().at(2));
+
+        analyticsPARTIAL.push_back(sqlResults.first().at(7));
+        if(!(sqlResults.size() <= 3 )){
+        analyticsPARTIAL.push_back(sqlResults.at(1).at(7));
+        analyticsPARTIAL.push_back(sqlResults.at(2).at(7));
+        }
+
+        analyticsFULL.push_back(analyticsPARTIAL);
+        analyticsPARTIAL.clear();
+    }
+
+    }
+}
+
+/*QVector<QVector<QString> > DataModel::teamAnalyze(QVector<QString> teams)
+{
+
+}*/
+
 
 //tänne voi ja pitää lisätä noita parametrei.. jos haluu esim ettiä kahen jutun perusteella
-QVector<QVector<QString> > DataModel::searchDataBase(QMap<QString, QString> config)
+QVector<QVector<QString> > DataModel::searchDataBase(QString sqlCommand)
 {
-    QString searchParameter="SELECT "+ config["select"] + " FROM " + config["from"]
-            + " WHERE " + config["where"] +" " +  config["command"] + " " + config["toSearch"];
-    qDebug()<<searchParameter;
-    return database_->searchDataBase(searchParameter);
+
+    return database_->searchDataBase(sqlCommand);
 }
 }

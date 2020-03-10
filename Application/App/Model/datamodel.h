@@ -16,8 +16,9 @@ public:
     void doParse(QMap<QString,QString> config);
     void insertData();
     void sortDataBase(QString command);
-
-    QVector<QVector<QString>> searchDataBase(QMap<QString,QString> config);
+    void analytics(QVector<QString> distances);
+  //  QVector<QVector<QString>> teamAnalyze(QVector<QString>teams);
+    QVector<QVector<QString>> searchDataBase(QString sqlCommand);
 
 private:
     std::shared_ptr<Model::Requester> req;

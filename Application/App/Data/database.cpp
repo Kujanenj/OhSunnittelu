@@ -163,22 +163,28 @@ void DataBase::sortDataBase(QString command)
 
 QVector<QVector<QString> > DataBase::searchDataBase(QString config)
 {
+    qDebug()<<config;
     QSqlQuery query(config);
 
     QVector<QVector<QString>> sumVector={};
     QVector<QString> insertionVector={};
     QString fieldResult;
     while (query.next()) {
-        for(int i = 1; i<12; i++){
+        for(int i = 1; i<13; i++){
 
            insertionVector.append(query.value(i).toString());
 
     }
+
         sumVector.append(insertionVector);
+        insertionVector.clear();
 
 }
-    qDebug()<<sumVector.size();
-    qDebug()<<sumVector;
+
+    qDebug()<<sumVector.size()<<" Results found matching sql query"<<endl;
+
+
+
     return sumVector;
 }
 
