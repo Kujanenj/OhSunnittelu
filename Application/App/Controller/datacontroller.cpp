@@ -85,9 +85,12 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
         }
     }
     try {
-        std::pair<QString, QString> years={startYear,endYear};
-         dataModel_->analytics(distances,years);
-         dataModel_->insertAnalyticsData();
+        qDebug() << firstName;
+        if(firstName == "" && lastName == "" && team == "" && place == "" && nationality == "0") {
+            std::pair<QString, QString> years={startYear,endYear};
+            dataModel_->analytics(distances,years);
+            dataModel_->insertAnalyticsData();
+        }
     } catch (...) {
         qDebug()<<"Viduigsi meni! Ebin:D";
         delete this;

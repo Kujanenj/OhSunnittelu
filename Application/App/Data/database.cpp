@@ -74,6 +74,7 @@ void DataBase::createTable()
                     ) ||
             !query.exec("CREATE TABLE " TABLE_2 " ("
                         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        TABLE_2_YEAR              " INT,"
                         TABLE_2_DIST              " VARCHAR(255)    NOT NULL,"
                         TABLE_2_AVGTIME           " VARCHAR(255)    NOT NULL,"
                         TABLE_2_PARTICIPANTS      " INT,"
@@ -142,9 +143,21 @@ void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
 
     analyticsData=toInsert;
 
+    qDebug() << analyticsData[0];
+    qDebug() << analyticsData[1];
+    qDebug() << analyticsData[2];
+    qDebug() << analyticsData[3];
+    qDebug() << analyticsData[4];
+    qDebug() << analyticsData[5];
+    qDebug() << analyticsData[6];
+    qDebug() << analyticsData[7];
+    qDebug() << analyticsData[8];
+    qDebug() << analyticsData[9];
+
     QSqlQuery query;
 
-    query.prepare("INSERT INTO " TABLE_2 " ( " TABLE_2_DIST  ", "
+    query.prepare("INSERT INTO " TABLE_2 " ( " TABLE_2_YEAR ", "
+                                             TABLE_2_DIST ", "
                                              TABLE_2_AVGTIME ", "
                                              TABLE_2_PARTICIPANTS ", "
                                              TABLE_2_FASTESTTIME ", "
@@ -153,16 +166,17 @@ void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
                                              TABLE_2_SECOND ", "
                                              TABLE_2_THIRD ", "
                                              TABLE_2_BEST_TEAM " ) "
-                  "VALUES (:distance, :avgtime, :participants, :fastesttime, :slowesttime, :winner, :second, :third, :bestteam)");
-    query.bindValue(":distance",        analyticsData[0]);
-    query.bindValue(":avgtime",         analyticsData[1]);
-    query.bindValue(":participants",    analyticsData[2]);
-    query.bindValue(":fastesttime",     analyticsData[3]);
-    query.bindValue(":slowesttime",     analyticsData[4]);
-    query.bindValue(":winner",          analyticsData[5]);
-    query.bindValue(":second",          analyticsData[6]);
-    query.bindValue(":third",           analyticsData[7]);
-    query.bindValue(":bestteam",        analyticsData[8]);
+                  "VALUES (:year, :distance, :avgtime, :participants, :fastesttime, :slowesttime, :winner, :second, :third, :bestteam)");
+    query.bindValue(":year",            analyticsData[0]);
+    query.bindValue(":distance",        analyticsData[1]);
+    query.bindValue(":avgtime",         analyticsData[2]);
+    query.bindValue(":participants",    analyticsData[3]);
+    query.bindValue(":fastesttime",     analyticsData[4]);
+    query.bindValue(":slowesttime",     analyticsData[5]);
+    query.bindValue(":winner",          analyticsData[6]);
+    query.bindValue(":second",          analyticsData[7]);
+    query.bindValue(":third",           analyticsData[8]);
+    query.bindValue(":bestteam",        analyticsData[9]);
 
     if(!query.exec()){
         qDebug() << "error insert into " << TABLE_2;

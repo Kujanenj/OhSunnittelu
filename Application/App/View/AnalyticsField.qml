@@ -29,6 +29,12 @@ Item {
             }
             TableViewColumn {
                 width: 80
+                title: "Year"
+                role: "year"
+            }
+
+            TableViewColumn {
+                width: 80
                 title: "Distance"
                 role: "distance"
             }
