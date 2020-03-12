@@ -84,7 +84,7 @@ void DataModel::sortDataBase(QString command)
     database_->sortDataBase(command);
 }
 
-void DataModel::analytics(QVector<QString> distances)
+void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString> years)
 {
     analyticsFULL_.clear();
     QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
@@ -92,26 +92,34 @@ void DataModel::analytics(QVector<QString> distances)
     QVector<QString> analyticsPARTIAL;
     QVector<std::pair<QString,QString>> teamResults;
     std::pair<QString,QString> teamResultsPartial;
-
+    int startYear=years.first.toInt();
+    int endYear=years.second.toInt();
     QString sqlCommand;
+    //loop all years
+
+
+    for(int yearIndex=startYear; yearIndex<=endYear; yearIndex++){
+
+
 
     for(int i=0; i<distances.size(); i++){
-        sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%'";
+        sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
 
         sqlResults=searchDataBase(sqlCommand);
         if(!sqlResults.empty()){
-            analyticsPARTIAL.push_back(distances.at(i));
-            analyticsPARTIAL.push_back(calc_->calcAverageTime(sqlResults));
-            analyticsPARTIAL.push_back(QString::number(sqlResults.size()));
-            analyticsPARTIAL.push_back(sqlResults.first().at(2));
-            analyticsPARTIAL.push_back(sqlResults.last().at(2));
-            analyticsPARTIAL.push_back(sqlResults.first().at(7));
+            analyticsPARTIAL.push_back(sqlResults.at(0).at(0));
+            analyticsPARTIAL.push_back(distances.at(i));                    //Distance
+            analyticsPARTIAL.push_back(calc_->calcAverageTime(sqlResults)); //Time
+            analyticsPARTIAL.push_back(QString::number(sqlResults.size())); //participants
+            analyticsPARTIAL.push_back(sqlResults.first().at(2));           //fastest time
+            analyticsPARTIAL.push_back(sqlResults.last().at(2));            //slowest time
+            analyticsPARTIAL.push_back(sqlResults.first().at(7));           //first
 
         if(!(sqlResults.size() <= 3 )){
-            analyticsPARTIAL.push_back(sqlResults.at(1).at(7));
-            analyticsPARTIAL.push_back(sqlResults.at(2).at(7));
+            analyticsPARTIAL.push_back(sqlResults.at(1).at(7)); //2nd
+            analyticsPARTIAL.push_back(sqlResults.at(2).at(7)); //3rd
         }
-
+            //Loop teams
         for(int it=0; it<teamNames_.size(); it++){
             sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";
             sqlResults=searchDataBase(sqlCommand);
@@ -129,6 +137,7 @@ void DataModel::analytics(QVector<QString> distances)
 
 
     }
+        }
 
     }
 }

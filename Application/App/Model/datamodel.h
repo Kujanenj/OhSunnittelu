@@ -17,7 +17,7 @@ public:
     void insertData();
     void insertAnalyticsData();
     void sortDataBase(QString command);
-    void analytics(QVector<QString> distances);
+    void analytics(QVector<QString> distances, std::pair<QString, QString> years);
     QVector<QVector<QString>> getAnalyticsVector();
 
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
