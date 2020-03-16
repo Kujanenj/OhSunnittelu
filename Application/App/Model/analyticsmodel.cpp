@@ -21,6 +21,7 @@ QHash<int, QByteArray> AnalyticsModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[IdRole] = "id";
+    roles[YearRole] = "year";
     roles[DistanceRole] = "distance";
     roles[AvgtimeRole] = "avgtime";
     roles[ParticipantsRole] = "participants";
@@ -37,5 +38,5 @@ void AnalyticsModel::updateModel()
 {
 
     qDebug() << "Updating analytics model";
-    this->setQuery("SELECT *, " TABLE_2_DIST ", " TABLE_2_AVGTIME ", " TABLE_2_PARTICIPANTS ", " TABLE_2_FASTESTTIME ", " TABLE_2_SLOWESTTIME ", " TABLE_2_WINNER ", " TABLE_2_SECOND ", " TABLE_2_THIRD ", " TABLE_2_BEST_TEAM " FROM " TABLE_2);
+    this->setQuery("SELECT *, " TABLE_2_YEAR ", " TABLE_2_DIST ", " TABLE_2_AVGTIME ", " TABLE_2_PARTICIPANTS ", " TABLE_2_FASTESTTIME ", " TABLE_2_SLOWESTTIME ", " TABLE_2_WINNER ", " TABLE_2_SECOND ", " TABLE_2_THIRD ", " TABLE_2_BEST_TEAM " FROM " TABLE_2);
 }

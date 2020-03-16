@@ -10,6 +10,7 @@ class AnalyticsModel : public QSqlQueryModel
 public:
     enum resultRoles {
         IdRole = Qt::UserRole + 1,
+        YearRole,
         DistanceRole,
         AvgtimeRole,
         ParticipantsRole,

@@ -31,6 +31,7 @@
 #define TABLE_TEAM              "team"
 
 #define TABLE_2                 "Analytics"
+#define TABLE_2_YEAR            "year"
 #define TABLE_2_DIST            "distance"
 #define TABLE_2_AVGTIME         "avgtime"
 #define TABLE_2_PARTICIPANTS    "participants"
