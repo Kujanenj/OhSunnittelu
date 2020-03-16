@@ -65,7 +65,9 @@ private:
      * @brief parseTable does the final parsing, and writes the complete data to a txt file if requested.
      */
     void parseTable();
-
+    /**
+     * @brief formListedData creates a fomatted list of the results
+     */
     void formListedData();
 
 

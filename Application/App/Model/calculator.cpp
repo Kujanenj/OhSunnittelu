@@ -19,7 +19,7 @@ QString Model::Calculator::calcAverageTime(QVector<QVector<QString> > results)
     float totalTime=0;
   for(auto it:results){
 
-    if(it.at(2).length()>8){
+    if(it.at(2).length()>8){                                  //if the field numbers are too small..not a perfect check..
       totalTime=totalTime+TimeStringToInt(it.at(2));
   }
     else{

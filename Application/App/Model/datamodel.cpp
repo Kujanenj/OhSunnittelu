@@ -120,7 +120,7 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
             analyticsPARTIAL.push_back(sqlResults.at(2).at(7)); //3rd
         }
             //Loop teams
-        for(int it=0; it<teamNames_.size(); it++){
+        for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
             sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";
             sqlResults=searchDataBase(sqlCommand);
             teamResultsPartial.first=sqlResults.at(0).at(11);

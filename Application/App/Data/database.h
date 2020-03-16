@@ -48,6 +48,10 @@ public:
     explicit DataBase(std::shared_ptr<ListModel> listModel=nullptr, QObject *parent = nullptr);
     ~DataBase();
     void connectToDataBase();
+    /**
+     * @brief sortDataBase sorts the database acording to the sql command
+     * @param command
+     */
     void sortDataBase(QString command);
     QVector<QVector<QString>> searchDataBase(QString config);
 public slots:
