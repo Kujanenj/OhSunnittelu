@@ -2,27 +2,14 @@
 #include "Data/database.h"
 
 ListModel::ListModel(QObject *parent) :
-    QSqlQueryModel(parent)
-{
-    this->updateModel();
-}
-
-QVariant ListModel::data(const QModelIndex & index, int role) const {
-
-    // Define the column number, on the role of number
-    int columnId = role - Qt::UserRole - 1;
-    // Create the index using a column ID
-    QModelIndex modelIndex = this->index(index.row(), columnId);
-
-    return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
-}
-
-void ListModel::sortListModel(QString command)
+    AbstractListModel(parent)
 {
 
-    this->setQuery(command);
-
 }
+
+
+
+
 
 QHash<int, QByteArray> ListModel::roleNames() const
 {
@@ -43,11 +30,5 @@ QHash<int, QByteArray> ListModel::roleNames() const
     return roles;
 }
 
-void ListModel::updateModel()
-{
 
-    qDebug() << "Updating list model";
-    // The update is performed SQL-queries to the database
-    this->setQuery("SELECT *, " TABLE_YEAR ", " TABLE_DIST ", " TABLE_TIME ", " TABLE_PLACE ", " TABLE_PLACEM ", " TABLE_PLACEN ", " TABLE_GENDER ", " TABLE_SFNAME ", " TABLE_CITY ", " TABLE_NATIONALITY ", " TABLE_AGE ", " TABLE_TEAM "  FROM " TABLE);
-}
 

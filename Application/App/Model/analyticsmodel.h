@@ -1,10 +1,9 @@
 #ifndef ANALYTICSMODEL_H
 #define ANALYTICSMODEL_H
 
-#include <QObject>
-#include <QSqlQueryModel>
+#include "abstractlistmodel.h"
 
-class AnalyticsModel : public QSqlQueryModel
+class AnalyticsModel : public AbstractListModel
 {
     Q_OBJECT
 public:
@@ -24,13 +23,10 @@ public:
 
     explicit AnalyticsModel(QObject *parent = nullptr);
 
-    QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
-    void sortListModel(QString sortBy, QString direction);
+
 private:
     QHash<int, QByteArray> roleNames() const;
 
-public slots:
-    void updateModel();
 
 };
 

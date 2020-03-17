@@ -1,10 +1,10 @@
 #ifndef LISTMODEL_H
 #define LISTMODEL_H
 
-#include <QObject>
-#include <QSqlQueryModel>
 
-class ListModel : public QSqlQueryModel
+#include "abstractlistmodel.h"
+
+class ListModel : public AbstractListModel
 {
     Q_OBJECT
 public:
@@ -25,14 +25,9 @@ public:
     };
 
     explicit ListModel(QObject *parent = nullptr);
-
-    QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
-    void sortListModel(QString command);
 private:
     QHash<int, QByteArray> roleNames() const;
 
-public slots:
-    void updateModel();
 
 };
 

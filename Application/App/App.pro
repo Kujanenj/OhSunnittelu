@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         Controller/datacontroller.cpp \
         Data/database.cpp \
+        Model/abstractlistmodel.cpp \
         Model/analyticsmodel.cpp \
         Model/listmodel.cpp \
         View/main.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 HEADERS += \
         Controller/datacontroller.h \
         Data/database.h \
+        Model/abstractlistmodel.h \
         Model/analyticsmodel.h \
         Model/listmodel.h \
         Model/requester.h \

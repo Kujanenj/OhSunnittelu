@@ -214,7 +214,7 @@ void DataBase::sortDataBase(QString command)
 {
 
 
- listModel_->sortListModel(command);
+ listModel_->sortModel(command);
 
 }
 
