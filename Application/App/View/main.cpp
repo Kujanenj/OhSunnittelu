@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<AnalyticsModel> analyticsmodel = std::make_shared<AnalyticsModel>();
     std::shared_ptr<ResultModel> resultmodel = std::make_shared<ResultModel>();
-    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(resultmodel);
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(resultmodel,analyticsmodel);
     std::shared_ptr<Model::DataModel> dataModel = std::make_shared<Model::DataModel>(database);
     try {
            database->connectToDataBase();

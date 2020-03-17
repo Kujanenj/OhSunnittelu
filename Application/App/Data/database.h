@@ -11,10 +11,8 @@
 #include <QDebug>
 #include <memory>
 
-#include "../Model/resultmodel.h"
+#include "abstarctdatabase.h"
 
-#define DATABASE_HOSTNAME       "NameDataBase"
-#define DATABASE_NAME           "data.db"
 
 #define TABLE                   "Results"
 #define TABLE_YEAR              "year"
@@ -42,13 +40,14 @@
 #define TABLE_2_THIRD           "third"
 #define TABLE_2_BEST_TEAM       "bestteam"
 
-class DataBase : public QObject
+class DataBase : public AbstarctDatabase
 {
     Q_OBJECT
 public:
-    explicit DataBase(std::shared_ptr<ResultModel> resultModel = nullptr, QObject *parent = nullptr);
+    explicit DataBase(std::shared_ptr<ResultModel> resultModel = nullptr,
+                      std::shared_ptr<AnalyticsModel> analyticsModel=nullptr);
     ~DataBase();
-    void connectToDataBase();
+    //void connectToDataBase();
     /**
      * @brief sortDataBase sorts the database acording to the sql command
      * @param command
@@ -62,19 +61,15 @@ public slots:
     void removeData();
 
 private:
-    QSqlDatabase db;
 
-    bool openDataBase();
-    void createDataBase();
-    void closeDataBase();
-    void createTable();
+
+    void createTable() override;
 
     QVector<QString> data;
     QVector<QString> analyticsData;
 
     QString errorMessage_="No errors";
 
-    std::shared_ptr<ResultModel> resultModel_;
 
 
 };

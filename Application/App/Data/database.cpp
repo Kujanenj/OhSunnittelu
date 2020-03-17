@@ -1,56 +1,14 @@
 #include "database.h"
 
-DataBase::DataBase(std::shared_ptr<ResultModel> listmodel, QObject *parent)
+DataBase::DataBase(std::shared_ptr<ResultModel> resultModel,
+                   std::shared_ptr<AnalyticsModel> analyticsModel)
+    :AbstarctDatabase(resultModel,analyticsModel)
 {
-    resultModel_=listmodel;
 }
 
 DataBase::~DataBase()
 {
 
-}
-
-void DataBase::connectToDataBase()
-{
-    if(!QFile("../../Application/App/Data/" DATABASE_NAME).exists()){
-        this->createDataBase();
-    } else {
-        qDebug() << "Restored old database";
-        this->openDataBase();
-
-    }
-
-}
-
-void DataBase::createDataBase()
-{
-    if(this->openDataBase()){
-        qDebug() << "Created new database";
-        this->createTable();
-    } else {
-         errorMessage_="Failed to resotore the database";
-
-        throw errorMessage_;
-    }
-}
-
-bool DataBase::openDataBase()
-{
-    qDebug() << "Opening database";
-
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setHostName(DATABASE_HOSTNAME);
-    db.setDatabaseName("../../Application/App/Data/" DATABASE_NAME);
-    if(!db.open()){
-        qDebug()<<"Error in opening database";
-       return false;
-    }
-        return true;
-}
-
-void DataBase::closeDataBase()
-{
-    db.close();
 }
 
 void DataBase::createTable()
@@ -188,6 +146,7 @@ void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
 
 void DataBase::removeData()
 {
+    qDebug()<<"Here";
     QSqlQuery query;
     query.prepare("DELETE FROM " TABLE);
 
@@ -197,7 +156,7 @@ void DataBase::removeData()
         errorMessage_="Databse error in deletion";
         throw errorMessage_;
     }
-
+    qDebug()<<"Here";
     query.prepare("DELETE FROM " TABLE_2);
 
     if(!query.exec()){
@@ -214,7 +173,7 @@ void DataBase::sortDataBase(QString command)
 {
 
 
- resultModel_->sortModel(command);
+ rModel_->sortModel(command);
 
 }
 
