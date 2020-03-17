@@ -1,8 +1,8 @@
 #include "database.h"
 
-DataBase::DataBase(std::shared_ptr<ListModel> listmodel, QObject *parent)
+DataBase::DataBase(std::shared_ptr<ResultModel> listmodel, QObject *parent)
 {
-    listModel_=listmodel;
+    resultModel_=listmodel;
 }
 
 DataBase::~DataBase()
@@ -214,7 +214,7 @@ void DataBase::sortDataBase(QString command)
 {
 
 
- listModel_->sortModel(command);
+ resultModel_->sortModel(command);
 
 }
 

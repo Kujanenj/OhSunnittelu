@@ -79,7 +79,7 @@ Item {
                 width: 100
             }
 
-            model: myModel
+            model: resultModel
 
             rowDelegate: Rectangle {
                 anchors.fill: parent

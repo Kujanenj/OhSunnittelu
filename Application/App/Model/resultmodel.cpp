@@ -1,7 +1,7 @@
-#include "listmodel.h"
+#include "resultmodel.h"
 #include "Data/database.h"
 
-ListModel::ListModel(QObject *parent) :
+ResultModel::ResultModel(QObject *parent) :
     AbstractListModel(parent)
 {
 
@@ -11,7 +11,7 @@ ListModel::ListModel(QObject *parent) :
 
 
 
-QHash<int, QByteArray> ListModel::roleNames() const
+QHash<int, QByteArray> ResultModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[IdRole] = "id";

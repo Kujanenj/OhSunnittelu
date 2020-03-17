@@ -4,7 +4,7 @@
 
 #include "Controller/datacontroller.h"
 #include "Data/database.h"
-#include "Model/listmodel.h"
+#include "Model/resultmodel.h"
 
 #include "Model/analyticsmodel.h"
 
@@ -25,9 +25,8 @@ int main(int argc, char *argv[])
 
 
     std::shared_ptr<AnalyticsModel> analyticsmodel = std::make_shared<AnalyticsModel>();
-
-    std::shared_ptr<ListModel> listmodel = std::make_shared<ListModel>();
-    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(listmodel);
+    std::shared_ptr<ResultModel> resultmodel = std::make_shared<ResultModel>();
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(resultmodel);
     std::shared_ptr<Model::DataModel> dataModel = std::make_shared<Model::DataModel>(database);
     try {
            database->connectToDataBase();
@@ -39,8 +38,7 @@ int main(int argc, char *argv[])
 
 
     engine.rootContext()->setContextProperty("analyticsModel", &*analyticsmodel);
-
-    engine.rootContext()->setContextProperty("myModel", &*listmodel);
+    engine.rootContext()->setContextProperty("resultModel", &*resultmodel);
     engine.rootContext()->setContextProperty("database", &*database);
 
 

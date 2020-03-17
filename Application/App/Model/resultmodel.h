@@ -4,7 +4,7 @@
 
 #include "abstractlistmodel.h"
 
-class ListModel : public AbstractListModel
+class ResultModel : public AbstractListModel
 {
     Q_OBJECT
 public:
@@ -24,7 +24,7 @@ public:
         TeamRole
     };
 
-    explicit ListModel(QObject *parent = nullptr);
+    explicit ResultModel(QObject *parent = nullptr);
 private:
     QHash<int, QByteArray> roleNames() const;
 

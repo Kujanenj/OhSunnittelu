@@ -663,7 +663,7 @@ Item {
                                                            fieldPlace.text, fieldNationality.currentText,
                                                            fieldTeam.text);
                         bar.currentIndex = 1
-                        myModel.updateModel("Results")
+                        resultModel.updateModel("Results")
                         analyticsModel.updateModel("Analytics")
                     }
                 }

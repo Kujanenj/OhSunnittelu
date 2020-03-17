@@ -11,7 +11,7 @@
 #include <QDebug>
 #include <memory>
 
-#include "../Model/listmodel.h"
+#include "../Model/resultmodel.h"
 
 #define DATABASE_HOSTNAME       "NameDataBase"
 #define DATABASE_NAME           "data.db"
@@ -46,7 +46,7 @@ class DataBase : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataBase(std::shared_ptr<ListModel> listModel=nullptr, QObject *parent = nullptr);
+    explicit DataBase(std::shared_ptr<ResultModel> resultModel = nullptr, QObject *parent = nullptr);
     ~DataBase();
     void connectToDataBase();
     /**
@@ -74,7 +74,7 @@ private:
 
     QString errorMessage_="No errors";
 
-    std::shared_ptr<ListModel> listModel_;
+    std::shared_ptr<ResultModel> resultModel_;
 
 
 };
