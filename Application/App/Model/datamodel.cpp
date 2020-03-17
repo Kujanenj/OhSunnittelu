@@ -62,6 +62,7 @@ void DataModel::insertData()
 
 void DataModel::insertAnalyticsData()
 {
+
     QSqlDatabase::database().transaction();
 
     try {
@@ -106,19 +107,8 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
         sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
 
         sqlResults=searchDataBase(sqlCommand);
-        if(!sqlResults.empty()){
-            analyticsPARTIAL.push_back(sqlResults.at(0).at(0));
-            analyticsPARTIAL.push_back(distances.at(i));                    //Distance
-            analyticsPARTIAL.push_back(calc_->calcAverageTime(sqlResults)); //Time
-            analyticsPARTIAL.push_back(QString::number(sqlResults.size())); //participants
-            analyticsPARTIAL.push_back(sqlResults.first().at(2));           //fastest time
-            analyticsPARTIAL.push_back(sqlResults.last().at(2));            //slowest time
-            analyticsPARTIAL.push_back(sqlResults.first().at(7));           //first
-
-        if(!(sqlResults.size() <= 3 )){
-            analyticsPARTIAL.push_back(sqlResults.at(1).at(7)); //2nd
-            analyticsPARTIAL.push_back(sqlResults.at(2).at(7)); //3rd
-        }
+        if(sqlResults.size()>=3){
+            analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
             //Loop teams
         for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
             sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";

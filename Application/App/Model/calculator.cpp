@@ -104,6 +104,32 @@ std::pair<QString, QString> Calculator::getBestTeam(QVector<std::pair<QString,QS
     return returnPair;
 }
 
+QVector<QString> Calculator::calculateAnalytics(QVector<QVector<QString>> nonTeamResults)
+{
+    QVector<QString> analyticsPARTIAL;
+    QVector<QVector<QString>> analyticsFULL;
+
+
+
+
+    analyticsPARTIAL.push_back(nonTeamResults.at(0).at(0));
+    analyticsPARTIAL.push_back(nonTeamResults.at(0).at(1));                    //Distance
+    analyticsPARTIAL.push_back(calcAverageTime(nonTeamResults)); //Time
+    analyticsPARTIAL.push_back(QString::number(nonTeamResults.size())); //participants
+    analyticsPARTIAL.push_back(nonTeamResults.first().at(2));           //fastest time
+    analyticsPARTIAL.push_back(nonTeamResults.last().at(2));            //slowest time
+    analyticsPARTIAL.push_back(nonTeamResults.first().at(7));           //first
+    analyticsPARTIAL.push_back(nonTeamResults.at(1).at(7)); //2nd
+    analyticsPARTIAL.push_back(nonTeamResults.at(2).at(7)); //3rd
+
+    return analyticsPARTIAL;
+
+
+
+
+
+}
+
 
 
 

@@ -112,6 +112,8 @@ void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
     qDebug() << analyticsData[8];
     qDebug() << analyticsData[9];
 
+
+    qDebug()<<"ASDASDASDAS";
     QSqlQuery query;
 
     query.prepare("INSERT INTO " TABLE_2 " ( " TABLE_2_YEAR ", "

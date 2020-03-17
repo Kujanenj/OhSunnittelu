@@ -29,6 +29,8 @@ public:
      * \return best team
      */
     std::pair<QString,QString> getBestTeam(QVector<std::pair<QString,QString>> results);
+
+    QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
 private:
     /*!
      * \brief TimeStringToInt turns a string based time to a float.
