@@ -3,18 +3,18 @@
 AbstarctDatabase::AbstarctDatabase(std::shared_ptr<ResultModel> rModel,
                                    std::shared_ptr<AnalyticsModel> aModel)
 {
-rModel_=rModel;
-aModel_=aModel;
+    rModel_=rModel;
+    aModel_=aModel;
 }
 
 void AbstarctDatabase::connectToDataBase()
 {
     if(!QFile("../../Application/App/Data/" DATABASE_NAME).exists()){
         this->createDataBase();
-    } else {
+    }
+    else {
         qDebug() << "Restored old database";
         this->openDataBase();
-
     }
 }
 
@@ -23,9 +23,9 @@ void AbstarctDatabase::createDataBase()
     if(this->openDataBase()){
         qDebug() << "Created new database";
         this->createTable();
-    } else {
-         errorMessage_="Failed to resotore the database";
-
+    }
+    else {
+        errorMessage_="Failed to restore the database";
         throw errorMessage_;
     }
 }
@@ -39,9 +39,9 @@ bool AbstarctDatabase::openDataBase()
     db.setDatabaseName("../../Application/App/Data/" DATABASE_NAME);
     if(!db.open()){
         qDebug()<<"Error in opening database";
-       return false;
+        return false;
     }
-        return true;
+    return true;
 }
 
 void AbstarctDatabase::closeDataBase()
