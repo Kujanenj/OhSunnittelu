@@ -5,6 +5,12 @@
 ### Model:
   - #### Parser:
     - Parsii HTML datan
+    - Muodostaa parsitusta datasta vectorin
+    - Ottaa käskyn parsimiseen DataModelilta
+    - fullParse kutsuu kaikkia parsimiseen tarvittavia komentoja: (readFile), parseToTable, parseTable, formListedData
+    - readFile tarkoitettu ainoastaan testaamiseen, eikä sitä kutsuta muuten
+    - Säilyttää data vectorin tyhjäyspyyntöön asti
+    - Palauttaa luodun vectorin pyydettäessä
   - #### Requester:
     - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
     - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
