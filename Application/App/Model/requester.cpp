@@ -28,8 +28,7 @@ QString Requester::DoRequest(QMap<QString, QString> config, QString& data)
 {
     parameters_ = config;
 
-
-        requestData();
+    requestData();
 
     data=htmlData_;
     return "all should be well";
@@ -134,9 +133,6 @@ void Requester::requestData()
     multiPart->append(param13);
 
    QNetworkReply *reply= manager->post(*request, multiPart.get());
-
-
-
     qDebug() << "Post request completed, waiting for response";
 
     QTimer timer;
@@ -151,9 +147,10 @@ void Requester::requestData()
     loop.exec();
 
     if(!reply->isFinished()){
-        QString errormsg="ERROR: Connection timed out";
+        QString errormsg = "ERROR: Connection timed out";
         throw errormsg;
     }
+}
 
-}}
+} // Namespace Model
 

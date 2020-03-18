@@ -13,7 +13,6 @@
 
 #include "abstarctdatabase.h"
 
-
 #define TABLE                   "Results"
 #define TABLE_YEAR              "year"
 #define TABLE_DIST              "distance"
@@ -40,38 +39,74 @@
 #define TABLE_2_THIRD           "third"
 #define TABLE_2_BEST_TEAM       "bestteam"
 
+/**
+ * @brief The DataBase class
+ * is used to create different tables and insert data on them.
+ * Also removing and searching from database happens here.
+ */
 class DataBase : public AbstarctDatabase
 {
     Q_OBJECT
 public:
+
+    /**
+     * @brief DataBase
+     * Constructor for database
+     * @param resultModel : pointer to resultmodel
+     * @param analyticsModel : pointer to analyticsmodel
+     */
     explicit DataBase(std::shared_ptr<ResultModel> resultModel = nullptr,
-                      std::shared_ptr<AnalyticsModel> analyticsModel=nullptr);
+                      std::shared_ptr<AnalyticsModel> analyticsModel = nullptr);
+
     ~DataBase();
-    //void connectToDataBase();
+
     /**
      * @brief sortDataBase sorts the database acording to the sql command
-     * @param command
+     * @param command : year, distance, etc.. to tell how to sort
      */
     void sortDataBase(QString command);
+
+    /**
+     * @brief searchDataBase
+     * @param config
+     * @return sumVector: which contains all results matching
+     * with sql query
+     */
     QVector<QVector<QString>> searchDataBase(QString config);
+
 public slots:
 
-    void inserIntoTable(QVector<QString> toInsert);      // Adding entries to the table
+    /**
+     * @brief insertIntoResultsTable
+     * Inserts results data to SQL table
+     * @param toInsert : Data
+     */
+    void insertIntoResultsTable(QVector<QString> toInsert);
+
+    /**
+     * @brief insertIntoAnalyticsTable
+     * Inserts analytics data to SQL table
+     * @param toInsert : Data
+     */
     void insertIntoAnalyticsTable(QVector<QString> toInsert);
+
+    /**
+     * @brief removeData
+     * Removes all results and analytics data
+     */
     void removeData();
 
 private:
 
-
+    /**
+     * @brief createTable
+     * Creates tables for results and analytics
+     */
     void createTable() override;
 
     QVector<QString> data;
     QVector<QString> analyticsData;
-
     QString errorMessage_="No errors";
-
-
-
 };
 
 #endif // DATABASE_H

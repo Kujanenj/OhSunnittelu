@@ -8,12 +8,13 @@ DataBase::DataBase(std::shared_ptr<ResultModel> resultModel,
 
 DataBase::~DataBase()
 {
-
+    qDebug() << "Database destroyed!";
 }
 
 void DataBase::createTable()
 {
     QSqlQuery query;
+
     if(!query.exec( "CREATE TABLE " TABLE " ("
                             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                             TABLE_YEAR              " VARCHAR(255)    NOT NULL,"
@@ -52,14 +53,12 @@ void DataBase::createTable()
     }
 }
 
-void DataBase::inserIntoTable(QVector<QString> toInsert)
+void DataBase::insertIntoResultsTable(QVector<QString> toInsert)
 {
     data.clear();
-
     data=toInsert;
 
     QSqlQuery query;
-
 
     query.prepare("INSERT INTO " TABLE " ( " TABLE_YEAR ", "
                                              TABLE_DIST ", "
@@ -98,22 +97,8 @@ void DataBase::inserIntoTable(QVector<QString> toInsert)
 void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
 {
     analyticsData.clear();
-
     analyticsData=toInsert;
 
-    qDebug() << analyticsData[0];
-    qDebug() << analyticsData[1];
-    qDebug() << analyticsData[2];
-    qDebug() << analyticsData[3];
-    qDebug() << analyticsData[4];
-    qDebug() << analyticsData[5];
-    qDebug() << analyticsData[6];
-    qDebug() << analyticsData[7];
-    qDebug() << analyticsData[8];
-    qDebug() << analyticsData[9];
-
-
-    qDebug()<<"ASDASDASDAS";
     QSqlQuery query;
 
     query.prepare("INSERT INTO " TABLE_2 " ( " TABLE_2_YEAR ", "
@@ -148,7 +133,6 @@ void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
 
 void DataBase::removeData()
 {
-    qDebug()<<"Here";
     QSqlQuery query;
     query.prepare("DELETE FROM " TABLE);
 
@@ -158,7 +142,6 @@ void DataBase::removeData()
         errorMessage_="Databse error in deletion";
         throw errorMessage_;
     }
-    qDebug()<<"Here";
     query.prepare("DELETE FROM " TABLE_2);
 
     if(!query.exec()){
@@ -173,35 +156,24 @@ void DataBase::removeData()
 
 void DataBase::sortDataBase(QString command)
 {
-
-
- rModel_->sortModel(command);
-
+    rModel_->sortModel(command);
 }
 
-QVector<QVector<QString> > DataBase::searchDataBase(QString config)
+QVector<QVector<QString>> DataBase::searchDataBase(QString config)
 {
-    qDebug()<<config;
     QSqlQuery query(config);
 
-    QVector<QVector<QString>> sumVector={};
-    QVector<QString> insertionVector={};
+    QVector<QVector<QString>> sumVector = {};
+    QVector<QString> insertionVector = {};
     QString fieldResult;
     while (query.next()) {
-        for(int i = 1; i<13; i++){
-
+        for(int i = 1; i < 13; i++){
            insertionVector.append(query.value(i).toString());
-
-    }
-
+        }
         sumVector.append(insertionVector);
         insertionVector.clear();
-
-}
-
-    qDebug()<<sumVector.size()<<" Results found matching sql query"<<endl;
-
-
+    }
+    qDebug() << sumVector.size() << " Results found matching sql query" << endl;
 
     return sumVector;
 }
