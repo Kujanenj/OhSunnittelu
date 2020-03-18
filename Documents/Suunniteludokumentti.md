@@ -55,7 +55,7 @@
 ### Data:
 - Mahdollisesti lokaali SQL tietokanta, jossa tulokset nähtävillä tableissa 
 - Toinen vaihtoehto tallentaa tulokset mappiin, josta tuloksia voi sortata key arvoilla
-### Tests:
+### Tests: // :D Näähän meni hyvi.
 - Yksikkötestit kaikille metodeille, joissa mahdollisuudet erroreihin
 
 
