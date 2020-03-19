@@ -4,6 +4,10 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import QtQml 2.3
 
+/**
+  * represents search tab contents in the UI
+ */
+
 Item {
     id: element
     Frame {

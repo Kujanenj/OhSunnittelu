@@ -1,8 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.13
 import QtQuick.Window 2.12
-
 import QtQuick.Controls 1.4
+
+/**
+  * represents analytics tab contents in the UI
+ */
 
 Item {
     Frame {
