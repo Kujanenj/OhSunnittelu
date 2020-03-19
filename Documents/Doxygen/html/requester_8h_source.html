@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ApplicationDocument: E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Model/requester.h Source File</title>
+<title>Application: E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Model/requester.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,10 +20,8 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">ApplicationDocument
-   &#160;<span id="projectnumber">Beta</span>
+   <div id="projectname">Application
    </div>
   </td>
  </tr>
@@ -71,11 +69,11 @@ $(function() {
 <div class="title">requester.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef REQUESTER_H</span></div>
+<a href="requester_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef REQUESTER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define REQUESTER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;parser.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="parser_8h.html">parser.h</a>&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QJsonDocument&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;QStringList&gt;</span></div>
@@ -92,37 +90,47 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;QHttpMultiPart&gt;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;memory&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_requester.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_requester.html">Requester</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_requester.html#a9eb19219453693b20438317fb061ca41">Requester</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ~<a class="code" href="class_requester.html">Requester</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    QString <a class="code" href="class_requester.html#a3bb41ef8410592af218f514c937c728d">DoRequest</a>(QMap&lt;QString,QString&gt;);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_requester.html#a3e22651f4544297b1f25b7a493be1bcd">replyFinished</a> (QNetworkReply *reply);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> requestData();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    QNetworkAccessManager *manager;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    QMap&lt;QString, QString&gt; parameters_;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::shared_ptr&lt;Parser&gt; parser = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    std::shared_ptr&lt;QNetworkRequest&gt; request = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::shared_ptr&lt;QHttpMultiPart&gt; multiPart = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_model.html">Model</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_model_1_1_requester.html">   28</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_model_1_1_requester.html">Requester</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_model_1_1_requester.html#aa8da1fd963de2fffa5945c548b605055">Requester</a>(QObject *parent = 0);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_model_1_1_requester.html#af39bf6920252bf182e1af1bc410fd1b4">~Requester</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    QString <a class="code" href="class_model_1_1_requester.html#a3248d088aef91fa8df78d21028fde6c3">DoRequest</a>(QMap&lt;QString,QString&gt; config, QString&amp; data);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_requester.html#a7d98f3f8226e03683265d4dd8e788dcc">replyFinished</a> (QNetworkReply *reply);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> requestData();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    QNetworkAccessManager *manager;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    QMap&lt;QString, QString&gt; parameters_;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif // REQUESTER_H</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    QString htmlData_=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::shared_ptr&lt;QNetworkRequest&gt; request = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    std::shared_ptr&lt;QHttpMultiPart&gt; multiPart = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;} <span class="comment">// Namespace Model</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif // REQUESTER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_requester_html_a9eb19219453693b20438317fb061ca41"><div class="ttname"><a href="class_requester.html#a9eb19219453693b20438317fb061ca41">Requester::Requester</a></div><div class="ttdeci">Requester(QObject *parent=0)</div><div class="ttdoc">Requester Initializes manager, parser and requester objects and makes connection between manager and ...</div><div class="ttdef"><b>Definition:</b> requester.cpp:4</div></div>
-<div class="ttc" id="aclass_requester_html_a3e22651f4544297b1f25b7a493be1bcd"><div class="ttname"><a href="class_requester.html#a3e22651f4544297b1f25b7a493be1bcd">Requester::replyFinished</a></div><div class="ttdeci">void replyFinished(QNetworkReply *reply)</div><div class="ttdoc">replyFinished Writes reply to file if reply is successful and calls parser to parse file</div><div class="ttdef"><b>Definition:</b> requester.cpp:39</div></div>
-<div class="ttc" id="aclass_requester_html_a3bb41ef8410592af218f514c937c728d"><div class="ttname"><a href="class_requester.html#a3bb41ef8410592af218f514c937c728d">Requester::DoRequest</a></div><div class="ttdeci">QString DoRequest(QMap&lt; QString, QString &gt;)</div><div class="ttdoc">DoRequest Tries to start request if there are no errors.</div><div class="ttdef"><b>Definition:</b> requester.cpp:25</div></div>
-<div class="ttc" id="aclass_requester_html"><div class="ttname"><a href="class_requester.html">Requester</a></div><div class="ttdoc">The Requester class Used to gather data from website and send it to parser.</div><div class="ttdef"><b>Definition:</b> requester.h:26</div></div>
+<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:5</div></div>
+<div class="ttc" id="aclass_model_1_1_requester_html_aa8da1fd963de2fffa5945c548b605055"><div class="ttname"><a href="class_model_1_1_requester.html#aa8da1fd963de2fffa5945c548b605055">Model::Requester::Requester</a></div><div class="ttdeci">Requester(QObject *parent=0)</div><div class="ttdoc">Requester Initializes manager, parser and requester objects and makes connection between manager and ...</div><div class="ttdef"><b>Definition:</b> requester.cpp:6</div></div>
+<div class="ttc" id="aclass_model_1_1_requester_html"><div class="ttname"><a href="class_model_1_1_requester.html">Model::Requester</a></div><div class="ttdoc">The Requester class Used to gather data from website and send it to parser.</div><div class="ttdef"><b>Definition:</b> requester.h:28</div></div>
+<div class="ttc" id="aclass_model_1_1_requester_html_af39bf6920252bf182e1af1bc410fd1b4"><div class="ttname"><a href="class_model_1_1_requester.html#af39bf6920252bf182e1af1bc410fd1b4">Model::Requester::~Requester</a></div><div class="ttdeci">~Requester()</div><div class="ttdef"><b>Definition:</b> requester.cpp:21</div></div>
+<div class="ttc" id="aparser_8h_html"><div class="ttname"><a href="parser_8h.html">parser.h</a></div></div>
+<div class="ttc" id="aclass_model_1_1_requester_html_a7d98f3f8226e03683265d4dd8e788dcc"><div class="ttname"><a href="class_model_1_1_requester.html#a7d98f3f8226e03683265d4dd8e788dcc">Model::Requester::replyFinished</a></div><div class="ttdeci">void replyFinished(QNetworkReply *reply)</div><div class="ttdoc">replyFinished Changes reply format to QString if reply was succesfull</div><div class="ttdef"><b>Definition:</b> requester.cpp:37</div></div>
+<div class="ttc" id="aclass_model_1_1_requester_html_a3248d088aef91fa8df78d21028fde6c3"><div class="ttname"><a href="class_model_1_1_requester.html#a3248d088aef91fa8df78d21028fde6c3">Model::Requester::DoRequest</a></div><div class="ttdeci">QString DoRequest(QMap&lt; QString, QString &gt; config, QString &amp;data)</div><div class="ttdoc">DoRequest Takes parameters from config and calls requestData() method.</div><div class="ttdef"><b>Definition:</b> requester.cpp:27</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

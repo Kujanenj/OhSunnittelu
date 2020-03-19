@@ -1,4 +1,0 @@
-<map id="Requester::Requester" name="Requester::Requester">
-<area shape="rect" id="node1" title="Requester Initializes manager, parser and requester objects and makes connection between manager and ..." alt="" coords="5,5,153,32"/>
-<area shape="rect" id="node2" href="$class_requester.html#a3e22651f4544297b1f25b7a493be1bcd" title="replyFinished Writes reply to file if reply is successful and calls parser to parse file" alt="" coords="201,5,368,32"/>
-</map>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['parser_15',['Parser',['../class_parser.html',1,'']]],
-  ['parsertests_16',['parserTests',['../classparser_tests.html',1,'']]]
+  ['calculator_127',['Calculator',['../class_model_1_1_calculator.html',1,'Model']]]
 ];

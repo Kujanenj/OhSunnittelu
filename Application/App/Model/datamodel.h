@@ -8,7 +8,7 @@
 namespace Model {
 
 /*!
- * \brief The DataModel class is an interface for all model modules.
+ * \brief The DataModel class is a facade for all model modules.
  */
 class DataModel        
 {
@@ -25,7 +25,8 @@ public:
      */
     void doParse(QMap<QString,QString> config);
     /**
-     * @brief insertData Nää pitää muuttaa koska vituillaan. Ei oo järkee ettei oo mitää parametrei
+     * @brief TODO: insertData Nää pitää muuttaa koska vituillaan. Ei oo järkee ettei oo mitää parametrei ja sit nää pitää yhistää.
+     *  minä hoidan.
      */
     void insertData();
     void insertAnalyticsData();
