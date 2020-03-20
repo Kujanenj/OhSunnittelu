@@ -73,19 +73,28 @@
 	- Poistaa myös taulut, joka haun jälkeen ja käynnistyksessä
 	- Periytetty abstraktista databasesta
 	
-### Tests: // :D Näähän meni hyvi.
+### Tests: // Ei toteutettu
 - Yksikkötestit kaikille metodeille, joissa mahdollisuudet erroreihin
 
 
 
 ### Itsearviointi:
 
-	- Miten suunnitelma on pitänyt?
+	* Miten suunnitelma on pitänyt?
+	- Yleisesti ottaen suunnitelma on pitänyt hyvin.
+	- Alussa oli helppo lähteä tekemään erinäisiä moduuleita, kun niiden tarkoitus oli suunniteltu valmiiksi.
+	- Esimerkiksi parser, requester ja controller suuniteltiin alusta asti.
 
-	- Mitä muutoksia vielä tehdään?
+	* Mitä muutoksia vielä tehdään?
+	- Datamodelin refactorointia. 
+	- InsertData funktioiden yhdistämistä.
+	- View class tullaan todennäköisesti poistamaan turhana.
 	
-	- Mitä muutoksia tehtiin aiempaan versioon?
-
+	* Mitä muutoksia tehtiin aiempaan versioon?
+	- Alunperin requester käytti pythonia ja seleniumia.
+	- SQL ei ollut mukana alkuperäisessä suunnitelussa.
+	- Unit testejä ei olla pidetty yllä.
+	
 ## Minimitoiminnallisuudet "Perusvaatimukset"
 - Tietyn vuoden kaikki tulokset
   - Otetaan mukaan vain tietyllä aikavälillä maaliin päässeet
