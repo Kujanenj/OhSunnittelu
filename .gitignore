@@ -8,4 +8,6 @@ venv
 *.qmake.stash
 *.moc
 *.o
+*.db
+*data.db-journal
 Makefile

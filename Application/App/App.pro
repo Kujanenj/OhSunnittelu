@@ -1,4 +1,5 @@
-QT += quick network
+
+QT += quick gui core widgets network sql
 
 CONFIG += c++11
 
@@ -14,17 +15,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        Controller/datamanager.cpp \
+        Controller/datacontroller.cpp \
+        Data/abstarctdatabase.cpp \
+        Data/database.cpp \
+        Model/abstractlistmodel.cpp \
+        Model/analyticsmodel.cpp \
+        Model/resultmodel.cpp \
         View/main.cpp \
         Model/parser.cpp \
         Model/requester.cpp \
-        Model/datahandler.cpp
+        Model/datamodel.cpp \
+        View/dataview.cpp \
+        Model/calculator.cpp
 
 HEADERS += \
+        Controller/datacontroller.h \
+        Data/abstarctdatabase.h \
+        Data/database.h \
+        Model/abstractlistmodel.h \
+        Model/analyticsmodel.h \
         Model/requester.h \
         Model/parser.h \
-        Controller/datamanager.h \
-        Model/datahandler.h
+        Model/datamodel.h \
+        Model/resultmodel.h \
+        View/dataview.h \
+        Model/calculator.h
 
 RESOURCES += \
         View/qml.qrc

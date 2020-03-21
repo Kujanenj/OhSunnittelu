@@ -1,7 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>InputFields.qml</file>
-        <file>Table.qml</file>
+        <file>SearchField.qml</file>
+        <file>ResultField.qml</file>
+        <file>InfoField.qml</file>
+        <file>ChartField.qml</file>
+        <file>ExtraField.qml</file>
+        <file>AnalyticsField.qml</file>
     </qresource>
 </RCC>

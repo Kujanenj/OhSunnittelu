@@ -1,4 +1,4 @@
-import QtQuick 2.12
+ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.11
 import QtQuick.Controls.Styles 1.4
@@ -11,16 +11,27 @@ ApplicationWindow {
         currentIndex: 0
 
         TabButton {
-            text: qsTr("Haku")
+            text: qsTr("Search")
             checked: true
         }
+
         TabButton {
-            text: qsTr("Tulokset")
+            text: qsTr("Results")
             checked: false
         }
 
         TabButton {
-            text: qsTr("Kaaviot")
+            text: qsTr("Analytics")
+            checked: false
+        }
+
+        TabButton {
+            text: qsTr("Athlete results")
+            checked: false
+        }
+
+        TabButton {
+            text: qsTr("Charts")
             checked: false
         }
         TabButton {
@@ -38,49 +49,41 @@ ApplicationWindow {
         currentIndex: bar.currentIndex
         Item {
             id: searchTab
-
-            Frame {
-                id: frame
+            SearchField {
                 anchors.fill: parent
-
-                InputFields {
-                    anchors.fill: parent
-                }
             }
         }
         Item {
             id: resultTab
-
-            Frame {
-                id: frame1
+            ResultField {
                 x: 0
-                y: -2
+                y: 43
+                anchors.topMargin: 0
                 anchors.fill: parent
-
-                Table {
-                    id: table
-                    anchors.fill: parent
-                    anchors.bottom: parent.bottom
-                }
+                anchors.bottom: parent.bottom
+            }
+        }
+        Item {
+            id: analyticsTab
+            AnalyticsField {
+                anchors.fill: parent
+            }
+        }
+        Item {
+            id: infoTab
+            InfoField {
+                anchors.fill: parent
             }
         }
         Item {
             id: chartTab
-
-            Frame {
-                id: frame2
-                x: 0
-                y: -2
+            ChartField {
                 anchors.fill: parent
             }
         }
         Item {
             id: extraTab
-
-            Frame {
-                id: frame3
-                x: 0
-                y: -2
+            ExtraField {
                 anchors.fill: parent
             }
         }
@@ -99,8 +102,7 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:8;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:12;anchors_x:"-12";anchors_y:"-12"}
-D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:14;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
-D{i:16;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}
+    D{i:6;anchors_width:1280;anchors_x:513;anchors_y:64}D{i:1;anchors_width:1280}D{i:8;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
+D{i:11;anchors_height:666;anchors_width:1261;anchors_x:"-502";anchors_y:"-18"}
 }
 ##^##*/

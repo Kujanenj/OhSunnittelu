@@ -1,30 +1,61 @@
 #include "parser.h"
 
-
+namespace Model{
 
 Parser::Parser()
 {
-
+    qDebug() << "pareseri luotu";
 
 }
 
-void Parser::fullParse(QMap<QString,QString> config, QString& dataToParse)
+Parser::~Parser()
 {
-    config_=config;
-    unparsedDataTotal_=dataToParse;
-    try {
+    qDebug() << "Parser tuhottu";
+}
 
-        readFile();
+void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
+{
+    config_ = config;
+    unparsedDataTotal_ = dataToParse;
+    try {
+        if(config_["fileToRead"]=="true"){
+            readFile();
+        }
         parseToTable();
         parseTable();
+        formListedData();
     } catch (QString msg) {
-         qDebug()<<msg;
+         qDebug() << msg;
          return;
     }
+}
 
-    dataToParse=unparsedDataTotal_;
+QVector<QVector<QString> > Parser::getListedData()
+{
+    return listedData_;
+}
 
+void Parser::clearListedData()
+{
+    listedData_.clear();
+}
 
+void Parser::readFile()
+{
+
+    qDebug()<<"luettiin tiedosto parsesrissa, vissiin testailemassa?? ;)";
+    QFile file(config_["fileToRead"]);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        returnMessage_="ERROR file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
+
+        throw returnMessage_;
+    }
+
+    while (!file.atEnd()) {
+
+           QString line = file.readLine();
+          unparsedDataTotal_.append(line);
+        }
 }
 
 void Parser::parseToTable()
@@ -32,12 +63,7 @@ void Parser::parseToTable()
 
     qDebug()<<"String Size "<<unparsedDataTotal_.size();
     int tableStartIndex=unparsedDataTotal_.indexOf(config_["tableStart"]);
-    unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
-    qDebug()<<"String Size "<<unparsedDataTotal_.size();
-        int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
-
-    unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
-    qDebug()<<"String Size "<<unparsedDataTotal_.size();
+    int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
 
 
     if(tableEndindex ==-1 || tableStartIndex ==-1){
@@ -46,6 +72,13 @@ void Parser::parseToTable()
 
         throw returnMessage_;
     }
+    else{
+        unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
+        unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
+        qDebug()<<"String Size "<<unparsedDataTotal_.size();
+    }
+
+
 }
 
 void Parser::parseTable()
@@ -67,6 +100,9 @@ void Parser::parseTable()
    parsedData.remove(0,1); //extra char at start
    parsedData.chop(5); //extra chars at end
 
+
+   parsedData.replace("&nbsp;", "-");
+
    unparsedDataTotal_=parsedData;
 
 
@@ -79,25 +115,38 @@ void Parser::parseTable()
 
 }
 
-void Parser::readFile()
+
+
+
+void Parser::formListedData()
 {
-    qDebug() << "Aletaan lukemaan data.txt filua t parseri";
 
-    if(config_["fileToRead"]=="false"){
-        qDebug()<<"Häähää ei luettukaa";
-        return;
-    }
-    QFile file(config_["fileToRead"]);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        returnMessage_="ERROR file to read not found, i am trying to look from "+ QDir::currentPath()+ " + "+ config_["fileToRead"];
 
-        throw returnMessage_;
-    }
+    QVector<QString> insertionVector;
+    QStringList lista=unparsedDataTotal_.split("$");
+    int total_results = 0;
 
-    while (!file.atEnd()) {
+    for(int i=0; i<lista.size(); i++){
 
-           QString line = file.readLine();
-          unparsedDataTotal_.append(line);
+        insertionVector.append(lista.at(i));
+        if(i%12==11 ){
+
+         listedData_.append(insertionVector);
+         insertionVector.clear();
+         total_results += 1;
+
         }
-}
 
+    }
+
+    if (lista.size() == 1){
+
+    qDebug()<< "No results found";
+
+    }
+
+    else{
+        qDebug() << "Total results:" << total_results;
+    }
+}
+}

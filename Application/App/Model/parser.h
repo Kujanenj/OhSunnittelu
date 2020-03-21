@@ -9,6 +9,7 @@
  *
  *
  */
+namespace Model{
 class Parser
 {
 public:
@@ -25,12 +26,27 @@ public:
      */
     Parser();
 
+    ~Parser();
+
     /**
     * @brief fullParse calls the other methods required for parsing the data
     * @param config contains information about how the parse will be preformed. See above
     * @param dataToParse duh
     */
-   void fullParse(QMap<QString,QString> config, QString& dataToParse);
+   void fullParse(QMap<QString,QString> config, QString dataToParse);
+
+   /**
+    * @brief getListedData
+    * @return listedData_ vector that contains all user result
+    * parameters
+    */
+   QVector<QVector<QString>> getListedData();
+
+   /**
+    * @brief clearListedData
+    * Used to clear old listedData_ vector
+    */
+   void clearListedData();
 
 private:
 
@@ -49,12 +65,20 @@ private:
      * @brief parseTable does the final parsing, and writes the complete data to a txt file if requested.
      */
     void parseTable();
+    /**
+     * @brief formListedData creates a fomatted list of the results
+     */
+    void formListedData();
+
+
 
     QString unparsedDataTotal_;
 
-    QMap <QString, QString> config_;
-    QString returnMessage_ = "Parse onnistui";
+    QMap<QString, QString> config_;
+    QString returnMessage_ = "Parse was successful";
 
+
+    QVector<QVector<QString>> listedData_;
 };
-
+}
 #endif // PARSER_H

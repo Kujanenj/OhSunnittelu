@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['replyfinished_8',['replyFinished',['../class_requester.html#a3e22651f4544297b1f25b7a493be1bcd',1,'Requester']]],
-  ['requester_9',['Requester',['../class_requester.html',1,'Requester'],['../class_requester.html#a9eb19219453693b20438317fb061ca41',1,'Requester::Requester()']]]
+  ['fastesttimerole_46',['FastesttimeRole',['../class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba0a03580b6b6bda6ca53a7b4f37c9debb',1,'AnalyticsModel']]],
+  ['fullparse_47',['fullParse',['../class_model_1_1_parser.html#afee4f13dda1185189bd607919c0a9cdb',1,'Model::Parser']]]
 ];

@@ -5,13 +5,33 @@
 ### Model:
   - #### Parser:
     - Parsii HTML datan
+    - Muodostaa parsitusta datasta vectorin
+    - Ottaa käskyn parsimiseen DataModelilta
+    - fullParse kutsuu kaikkia parsimiseen tarvittavia komentoja: (readFile), parseToTable, parseTable, formListedData
+    - readFile tarkoitettu ainoastaan testaamiseen, eikä sitä kutsuta muuten
+    - Säilyttää data vectorin tyhjäyspyyntöön asti
+    - Palauttaa luodun vectorin pyydettäessä
   - #### Requester:
     - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
     - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
-  - #### Datahandler:
+  - #### Datahandler: // EI TOTEUTETTU
     - Käsittelee parsettua dataa halutulla tavalla. 
       - Esimerkiksi: Datan järjestäminen aakkosjärjestykseen
-
+  - #### Calculator:
+	- Tarjoaa rajapinnan erinäsiä laskuja varten.
+	- Esim: Laske näiden tuloksien keskiaika.
+	- Käytänössä ottaa sisään QVec<QVec<QString>> muotoisia tuloksia, ja sylkee ulos QStringejä, tai std::pareja.
+	- Ongelma metodina calculateAnalytics, jonka voisi sijoittaa jonnekkin muualle.
+	- Käyttää math.h, sillä sitä tarvitaan osaan laskuista.
+	- Luotiin laskujen suorittamista varten.
+  - #### AbstractListModel
+  	- Suorittaa listmodeleitten datan päivittämisen qml, sekä sorttaamisen
+  - #### AnalyticsModel:
+	- Sisältää analytics rolejen alustamisen qml varten, jotta taulukkoihin inserttaaminen onnistuu
+	- Periytetty AbstractListModelista
+  - #### ResultModel:
+	- Sisältää results rolejen alustamisen qml varten, jotta taulukkoihin inserttaaminen onnistuu
+	- Periytetty AbstractListModelista
 ### View:
   - #### QML
     - QML avulla voi piirtää grapheja, filtteröidä ja tarkastella tulosdataa, hakea erilaisia
@@ -26,19 +46,55 @@
         - Näyttää erilaisia taulukoita, jotka generoidaan datan avulla
         
 ### Controller:
-  - #### Datamanager
+ - #### Datamodel:
+	- Hallinnoi muita modelin moduuleita, ja jalostaa niiden toimintaa.
+	- Ottaa ohjeensa controllerilta.
+	- Käytännön tasolla siis kutsuu muiden moduulien metodeita.
+	- Esim: doParse kutsuu parsersin metodia fullParse
+	- Pitää dataa tallensa niin kauan, että se saadaan käsiteltyä ja talletettua.
+	- Jatkossa tullaan yhdistämään perushaun toiminnallisuudet yhteen metodiin.
+	- Tullaan myös uudelleen tekemään insert metodit, sillä ne ovat miltei samantyyppisiä.
+	- höydyntää memory.h, sillä std::shared_ptr
+	- Classi luotiin sitä varten, että saatiin koottua modelin moduulien tominnat yhteen rajapintaan.
+  - #### Datamanager: //NIMETTY DATAMODELIKSI?
     - Kontrolloi dataa requesterin, parserin ja ui:n välillä
-    - Toimii myös yhteydessä taulukkojen luomisen kanssa
-  - #### Graphicsmanager
+    - Toimii myös yhteydessä taulukkojen luomisen kanssa //lol eipä
+  - #### Graphicsmanager: // EI TOTEUTETTU
     - Hoitaa graphien näyttämiseen tarvittavat operaatiot 
       - Esimerkiksi keskinopeuksien laskeminen, top-listojen luominen
       
 ### Data:
-- Mahdollisesti lokaali SQL tietokanta, jossa tulokset nähtävillä tableissa 
-- Toinen vaihtoehto tallentaa tulokset mappiin, josta tuloksia voi sortata key arvoilla
-### Tests:
+- #### AbstractDataBase:
+	- Suorittaa databasen luomisen, avaamisen ja sulkemisen
+- #### Database:
+	- SQLite hyödyntävä SQL tietokanta, jonka avulla hiihtodataa tallennetaan
+	- Mahdollistaa helpon haun ja sorttauksen SqlQueryiden avulla, mutta toteutus tapahtuu muualla
+	- Luo taulut modeleille ja suorittaa niihin tallentamisen
+	- Poistaa myös taulut, joka haun jälkeen ja käynnistyksessä
+	- Periytetty abstraktista databasesta
+	
+### Tests: // Ei toteutettu
 - Yksikkötestit kaikille metodeille, joissa mahdollisuudet erroreihin
 
+
+
+### Itsearviointi:
+
+	* Miten suunnitelma on pitänyt?
+	- Yleisesti ottaen suunnitelma on pitänyt hyvin.
+	- Alussa oli helppo lähteä tekemään erinäisiä moduuleita, kun niiden tarkoitus oli suunniteltu valmiiksi.
+	- Esimerkiksi parser, requester ja controller suuniteltiin alusta asti.
+
+	* Mitä muutoksia vielä tehdään?
+	- Datamodelin refactorointia. 
+	- InsertData funktioiden yhdistämistä.
+	- View class tullaan todennäköisesti poistamaan turhana.
+	
+	* Mitä muutoksia tehtiin aiempaan versioon?
+	- Alunperin requester käytti pythonia ja seleniumia.
+	- SQL ei ollut mukana alkuperäisessä suunnitelussa.
+	- Unit testejä ei olla pidetty yllä.
+	
 ## Minimitoiminnallisuudet "Perusvaatimukset"
 - Tietyn vuoden kaikki tulokset
   - Otetaan mukaan vain tietyllä aikavälillä maaliin päässeet

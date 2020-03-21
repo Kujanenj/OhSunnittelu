@@ -1,7 +1,12 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
-#include <Controller/datamanager.h>
 #include <QQmlContext>
+
+#include "Controller/datacontroller.h"
+#include "Data/database.h"
+#include "Model/resultmodel.h"
+
+#include "Model/analyticsmodel.h"
 
 /**
  * \mainpage Application
@@ -15,12 +20,31 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
+
+    std::shared_ptr<AnalyticsModel> analyticsmodel = std::make_shared<AnalyticsModel>();
+    std::shared_ptr<ResultModel> resultmodel = std::make_shared<ResultModel>();
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(resultmodel,analyticsmodel);
+    std::shared_ptr<Model::DataModel> dataModel = std::make_shared<Model::DataModel>(database);
+    try {
+           database->connectToDataBase();
+    } catch (QString msg) {
+        qDebug()<<msg;
+        return EXIT_FAILURE;
+    }
+
+
+
+    engine.rootContext()->setContextProperty("analyticsModel", &*analyticsmodel);
+    engine.rootContext()->setContextProperty("resultModel", &*resultmodel);
+    engine.rootContext()->setContextProperty("database", &*database);
+
+
     //Creating backend and exposing data to the QML components instantiated by the QML engine
-    Datamanager datamanager;
-    engine.rootContext()->setContextProperty("datamanager", &datamanager);
+    Controller::DataController DataController(dataModel);
+    engine.rootContext()->setContextProperty("DataController", &DataController);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

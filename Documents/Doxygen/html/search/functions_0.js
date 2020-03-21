@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['datamanager_19',['Datamanager',['../class_datamanager.html#a630d942d3e1085bea717c2d53fd2bed7',1,'Datamanager']]],
-  ['dorequest_20',['DoRequest',['../class_requester.html#a3bb41ef8410592af218f514c937c728d',1,'Requester']]]
+  ['abstarctdatabase_160',['AbstarctDatabase',['../class_abstarct_database.html#a6a91a6660920b40e6a2aa2ac13395bff',1,'AbstarctDatabase']]],
+  ['abstractlistmodel_161',['AbstractListModel',['../class_abstract_list_model.html#a2e942406101ed77e85b41a709e120cc8',1,'AbstractListModel']]],
+  ['analytics_162',['analytics',['../class_model_1_1_data_model.html#a69d2bcaa271ec57b91852b8b076fdeaa',1,'Model::DataModel']]],
+  ['analyticsmodel_163',['AnalyticsModel',['../class_analytics_model.html#a9753745d6a6c473ec735d9037d5d0a17',1,'AnalyticsModel']]]
 ];

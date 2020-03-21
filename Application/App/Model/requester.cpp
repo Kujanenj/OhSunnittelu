@@ -1,11 +1,13 @@
 #include "requester.h"
 #include "QTextCodec"
-
+#include "QEventLoop"
+#include "QTimer"
+namespace Model{
 Requester::Requester(QObject *parent)
     : QObject(parent),
       manager(new QNetworkAccessManager)
 {
-    parser = std::make_shared<Parser>();
+
 
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
@@ -13,32 +15,27 @@ Requester::Requester(QObject *parent)
     QUrl url("https://www.finlandiahiihto.fi/Tulokset/Tulosarkisto");
     request = std::make_shared<QNetworkRequest>(url);
 
-    qDebug() << "Requester luotu";
+    qDebug() << "Requester created";
 }
 
 Requester::~Requester()
 {
     delete manager;
-    qDebug() << "Requester poistettu";
+    qDebug() << "Requester deleted";
 }
 
-QString Requester::DoRequest(QMap<QString, QString> config)
+QString Requester::DoRequest(QMap<QString, QString> config, QString& data)
 {
     parameters_ = config;
 
-    try {
-        requestData();
-    }  catch (QString msg) {
-            qDebug() << msg;
-            std::move(msg);
-    }
+    requestData();
 
-    return "";
+    data=htmlData_;
+    return "all should be well";
 }
 
 void Requester::replyFinished(QNetworkReply *reply)
 {
-    qDebug() << "Reply saatu";
     if(reply->error())
     {
         qDebug() << "ERROR!";
@@ -46,51 +43,23 @@ void Requester::replyFinished(QNetworkReply *reply)
     }
     else
     {
-        qDebug() << reply->header(QNetworkRequest::ContentTypeHeader).toString()<<"response";
-        qDebug() << reply->header(QNetworkRequest::LastModifiedHeader).toDateTime().toString();
-        qDebug() << reply->header(QNetworkRequest::ContentLengthHeader).toULongLong();
-        qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
+        qDebug()<<"Response recieved from hiihto";
     }
-
 
     QString DataAsString = QTextCodec::codecForMib(106)->toUnicode(reply->readAll());
 
-
-
-
-    /*QFile *file = new QFile("testDataUnParsed.txt");
-    if(file->open(QIODevice::ReadWrite)){
-        file->write(DataAsString.toUtf8());
-        file->close();
-        qDebug()<<"Wrote";
-    }*/
-
-
-
     reply->deleteLater();
-
-    QMap<QString,QString> example = {{"fileToRead", "false"}, //false = "älä lue mitää"
-                                     {"fileToWrite", "false"},//false = "älä kirjota mitää"
-                                     {"tableStart", "</thead><tbody>"},
-                                     {"tableEnd", "</table><div"},
-                                     {"tableCellLeft", "7pt;\">"},
-                                     {"tableCellRight","</td>"}};
-
-    parser->fullParse(example,DataAsString);
-
-    qDebug() << DataAsString;
-    qDebug() << "Parsing completed";
+    htmlData_=DataAsString;
 }
 
 void Requester::requestData()
 {
-    // Korvaa http pyynnöt https
+    // Makes http to redirect https
     manager->setStrictTransportSecurityEnabled(true);
 
     multiPart = std::make_shared<QHttpMultiPart>();
 
-    // Asettaa multipartin käyttämään form-dataa
+    // Sets multipart to use form-data
     multiPart->setContentType(QHttpMultiPart::FormDataType);
 
     // Response headers
@@ -144,7 +113,7 @@ void Requester::requestData()
     param13.setHeader(QNetworkRequest::ContentDispositionHeader, "form-data; name=\"dnn$ctr1025$Etusivu$txtHakuJoukkue2\"");
     param13.setBody(parameters_.value("Joukkue").toUtf8());
 
-    // Parametrien lisäys multiparttiin
+    // Adds parameters to multipart
     multiPart->append(referer);
     multiPart->append(origin);
     multiPart->append(connection);
@@ -163,9 +132,25 @@ void Requester::requestData()
     multiPart->append(param12);
     multiPart->append(param13);
 
-    // Post request
-    manager->post(*request, multiPart.get());
+   QNetworkReply *reply= manager->post(*request, multiPart.get());
+    qDebug() << "Post request completed, waiting for response";
 
-    qDebug() << "Post request suoritettu";
+    QTimer timer;
+    timer.setSingleShot(true);
+
+    QEventLoop loop;
+
+
+    connect(&timer,SIGNAL(timeout()),&loop,SLOT(quit()));
+    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    timer.start(5000);
+    loop.exec();
+
+    if(!reply->isFinished()){
+        QString errormsg = "ERROR: Connection timed out";
+        throw errormsg;
+    }
 }
+
+} // Namespace Model
 
