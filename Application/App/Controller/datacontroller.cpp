@@ -42,8 +42,6 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 
     int size = endYear.toInt() - startYear.toInt();
 
-    //parameters.insert("Matka", distance);
-    //parameters.insert("Ikaluokka", ages);
     parameters.insert("Kansalaisuus", nationality);
     parameters.insert("Sukupuoli", gender);
     parameters.insert("Etunimi", firstName);
@@ -105,4 +103,5 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
     dataModel_->sortDataBase(command);
 
 }
+
 } // Namespace controller

@@ -4,6 +4,10 @@ import QtQuick.Controls 2.11
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.12
 
+/**
+  * Main qml file that forms the UI by using other qml files.
+ */
+
 ApplicationWindow {
     TabBar {
         id: bar

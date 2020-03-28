@@ -178,3 +178,4 @@ QVector<QVector<QString>> DataBase::searchDataBase(QString config)
     return sumVector;
 }
 
+

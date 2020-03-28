@@ -40,6 +40,8 @@ public:
      */
     explicit ResultModel(QObject *parent = nullptr);
 
+    Q_INVOKABLE QVariantList getData(QString row);
+
 private:
 
     /**

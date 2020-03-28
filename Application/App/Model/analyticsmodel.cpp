@@ -7,7 +7,6 @@ AnalyticsModel::AnalyticsModel(QObject *parent) :
 
 }
 
-
 QHash<int, QByteArray> AnalyticsModel::roleNames() const
 {
     QHash<int, QByteArray> roles;

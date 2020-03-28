@@ -1,6 +1,6 @@
 #include "datamodel.h"
-namespace Model {
 
+namespace Model {
 
 DataModel::DataModel(std::shared_ptr<DataBase> database)
 {
@@ -103,46 +103,39 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
 
 
 
-    for(int i=0; i<distances.size(); i++){
-        sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
+        for(int i=0; i<distances.size(); i++){
+            sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
 
-        sqlResults=searchDataBase(sqlCommand);
-        if(sqlResults.size()>=3){
-            analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
-            //Loop teams
-        for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
-            sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";
             sqlResults=searchDataBase(sqlCommand);
-            teamResultsPartial.first=sqlResults.at(0).at(11);
-            teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
-            teamResults.push_back(teamResultsPartial);
+            if(sqlResults.size()>=3){
+                analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
+                //Loop teams
+                for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+                    sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";
+                    sqlResults=searchDataBase(sqlCommand);
+                    teamResultsPartial.first=sqlResults.at(0).at(11);
+                    teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
+                    teamResults.push_back(teamResultsPartial);
+                }
 
+                analyticsPARTIAL.push_back(calc_->getBestTeam(teamResults).first);
+
+                analyticsFULL_.push_back(analyticsPARTIAL);
+                analyticsPARTIAL.clear();
+
+                qDebug() << "Analytics size: " << analyticsFULL_.size();
+            }
         }
-        analyticsPARTIAL.push_back(calc_->getBestTeam(teamResults).first);
-
-        analyticsFULL_.push_back(analyticsPARTIAL);
-        analyticsPARTIAL.clear();
-
-        qDebug() << "Analytics size: " << analyticsFULL_.size();
-
-
-    }
-        }
-
     }
 }
 
-QVector<QVector<QString> > DataModel::getAnalyticsVector()
+QVector<QVector<QString>> DataModel::getAnalyticsVector()
 {
     return analyticsFULL_;
 }
 
-
-
-
-QVector<QVector<QString> > DataModel::searchDataBase(QString sqlCommand)
+QVector<QVector<QString>> DataModel::searchDataBase(QString sqlCommand)
 {
-
     return database_->searchDataBase(sqlCommand);
 }
 
@@ -151,4 +144,5 @@ QVector<QString> DataModel::getTeamNames()
  //tänne pitäs saada semmonen että antaa listan kaikista uniikeista tiiminimistä jota on jollai tietyl matkal (ja vuodella?)
     return teamNames_;
 }
-}
+
+} // Namespace Model

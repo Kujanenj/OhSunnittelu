@@ -300,9 +300,14 @@ Item {
         id: contextMenu
 
         MenuItem {
-            text: qsTr("More info")
+            text: qsTr("Show all personal results")
             onTriggered: {
-                bar.currentIndex = 2
+                var anArray = resultModel.getData(tableView.currentRow)
+                var distances = ["kaikki"]
+                var ages = ["kaikki"]
+                console.log(anArray[0], anArray[1], anArray[2])
+                DataController.searchButtonClicked("1974", "2019", distances, "kaikki", ages, anArray[1], anArray[0], anArray[2], "0", "")
+                resultModel.updateModel("Results")
             }
         }
     }
