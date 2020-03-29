@@ -167,7 +167,7 @@ QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > results)
 
     QString winner_time = results.first().at(2);
 
-    if(distance == "P100") {
+    if(distance == "P100" || distance == "V100") {
         distance = distance.mid(1,3);
     }
     else {
@@ -192,7 +192,7 @@ QString Calculator::calcAverageSpeed(QVector<QVector<QString> > results)
 
     QString distance = results.first().at(1);
 
-    if(distance == "P100") {
+    if(distance == "P100" || distance == "V100") {
         distance = distance.mid(1,3);
     }
     else {
