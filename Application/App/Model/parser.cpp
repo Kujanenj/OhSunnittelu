@@ -131,7 +131,11 @@ void Parser::formListedData()
         insertionVector.append(lista.at(i));
         if(i%12==11 ){
 
+            if(insertionVector.at(2).length()<8){
+                insertionVector[2]=insertionVector.at(2)+".00";
+            }
          listedData_.append(insertionVector);
+
          insertionVector.clear();
          total_results += 1;
 
