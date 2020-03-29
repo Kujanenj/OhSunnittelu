@@ -309,7 +309,7 @@ Item {
                 console.log(anArray[0], anArray[1], anArray[2])
                 DataController.searchButtonClicked("1974", "2019", distances, "kaikki", ages, anArray[1], anArray[0], anArray[2], "0", "", personalSearch)
                 personalResultModel.updateModel("PersonalResults")
-                bar.currentIndex = 3
+                bar.currentIndex = 2
             }
         }
     }

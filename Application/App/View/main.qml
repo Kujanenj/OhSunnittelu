@@ -30,14 +30,10 @@ ApplicationWindow {
         }
 
         TabButton {
-            text: qsTr("Athlete results")
-            checked: false
-        }
-
-        TabButton {
             text: qsTr("Charts")
             checked: false
         }
+
         TabButton {
             text: qsTr("Extra")
             checked: false
@@ -70,12 +66,6 @@ ApplicationWindow {
         Item {
             id: analyticsTab
             AnalyticsField {
-                anchors.fill: parent
-            }
-        }
-        Item {
-            id: infoTab
-            InfoField {
                 anchors.fill: parent
             }
         }
