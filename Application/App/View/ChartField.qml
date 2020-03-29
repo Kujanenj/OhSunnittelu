@@ -16,8 +16,10 @@ Item {
         ChartView {
             title: "Matkan parhaat hiihtäjät ja niiden ajat"
             antialiasing: true
-            width: 625
-            height: 325
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.right: parent.horizontalCenter
+            anchors.bottom: parent.verticalCenter
             id: linechart
 
             LineSeries {
@@ -89,11 +91,12 @@ Item {
         }
         ChartView {
             title: "Osallistujat eri matkoille suhteessa"
-            width: 625
-            height: 325
             theme: ChartView.ChartThemeBlueIcy
             antialiasing: true
-            anchors.left: linechart.right
+            anchors.left: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.bottom: parent.verticalCenter
 
             PieSeries {
                 id: osallistujat
@@ -103,23 +106,29 @@ Item {
             }
         }
         ChartView {
-            title: "Miesten ja naisen osallistujamäärän suhde"
+            title: "Urheilijoiden jakauma maittain"
             width: 625
             height: 325
             theme: ChartView.ChartThemeBrownSand
             antialiasing: true
-            anchors.top: linechart.bottom
+            anchors.top: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            anchors.right: parent.horizontalCenter
 
             PieSeries {
                 id: miehetjanaiset
-                PieSlice { label: "Miehet"; value: 94.9 }
-                PieSlice { label: "Naiset"; value: 5.1 }
+                PieSlice { label: "Suomi"; value: 84.9 }
+                PieSlice { label: "Ruotsi"; value: 5.1 }
+                PieSlice { label: "Venäjä"; value: 10.0 }
             }
         }
         ChartView {
             title: "Parhaat ajat eri vuosille matkalla x"
-            anchors.top: linechart.bottom
-            anchors.left: linechart.right
+            anchors.top: parent.verticalCenter
+            anchors.left: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
             width: 625
             height: 325
             legend.alignment: Qt.AlignBottom
@@ -128,7 +137,7 @@ Item {
             BarSeries {
                 id: mySeries
                 axisX: BarCategoryAxis { categories: ["2007", "2008", "2009", "2010", "2011", "2012" ] }
-                BarSet { label: "Miehet"; values: [2, 2, 3, 4, 5, 6] ; color:"blue"}
+                BarSet { label: "Miehet"; values: [2, 2, 3, 4, 5, 6] ; color: "blue"}
                 BarSet { label: "Naiset"; values: [5, 1, 2, 4, 1, 7] ; color: "red"}
             }
         }
