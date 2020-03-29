@@ -25,8 +25,11 @@ Item {
                 width: 100
                 height : 50
                 onClicked: {
-                    var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", "2019", "P50");
+                    
+                    var ajat_values = DataController.getGraphValues("kansallisuudet", "2019", "P50");
+                    
                     series.clear();
+                    var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", "2019", "P50");
                     var kansallisuudet = DataController.getGraphTypes("kansallisuudet", "2019", "P50")
                     maat.clear()
                     for(var i = 0; i < kansallisuudet_values.length; i++){

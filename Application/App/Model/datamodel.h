@@ -71,9 +71,9 @@ public:
      * @return
      */
     QVector<QString> getTeamNames();
-    QVector<std::pair<QString,float>> getCountries();
 
 
+    QVector<std::pair<QString, float> > getCountries(QString sqlCommand);
 private:
     std::shared_ptr<Model::Requester> req;
     std::shared_ptr<Model::Parser> parser;

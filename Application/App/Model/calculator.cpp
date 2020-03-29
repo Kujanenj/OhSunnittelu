@@ -154,7 +154,7 @@ QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVect
        float test3 = test2 * 100;
        //Tänne vois laittaa jotain precision juttui
 
-        returnvec.push_back({it.key(),test3} );
+        returnvec.push_back({it.key(),it.value()} );
 
     }
 
