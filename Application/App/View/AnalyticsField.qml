@@ -74,13 +74,13 @@ Item {
             }
 
             TableViewColumn {
-                width: 100
+                width: 90
                 title: "Fastest time"
                 role: "fastesttime"
             }
 
             TableViewColumn {
-                width: 100
+                width: 90
                 title: "Slowest time"
                 role: "slowesttime"
             }
@@ -104,15 +104,21 @@ Item {
             }
 
             TableViewColumn {
-                width: 120
-                title: "Best team"
-                role: "bestteam"
+                width: 115
+                title: "Average speed (km/h)"
+                role: "averagespeed"
             }
 
             TableViewColumn {
                 width: 160
                 title: "Winner's average speed (km/h)"
                 role: "winnerspeed"
+            }
+
+            TableViewColumn {
+                width: 125
+                title: "Best team"
+                role: "bestteam"
             }
 
             model: analyticsModel

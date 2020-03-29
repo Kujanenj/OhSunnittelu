@@ -32,7 +32,7 @@ QString Model::Calculator::calcAverageTime(QVector<QVector<QString> > results)
 }
 
 float Calculator::TimeStringToInt(QString time)
-{
+{ 
     float total=0;
     QStringList splitted=time.split(":");
     total=splitted.at(0).toFloat()*60*60; //hours
@@ -110,22 +110,18 @@ QVector<QString> Calculator::calculateAnalytics(QVector<QVector<QString>> nonTea
     QVector<QVector<QString>> analyticsFULL;
 
     analyticsPARTIAL.push_back(nonTeamResults.at(0).at(0));
-    analyticsPARTIAL.push_back(nonTeamResults.at(0).at(1));                    //Distance
-    analyticsPARTIAL.push_back(calcAverageTime(nonTeamResults)); //Time
+    analyticsPARTIAL.push_back(nonTeamResults.at(0).at(1));             //Distance
+    analyticsPARTIAL.push_back(calcAverageTime(nonTeamResults));        //Time
     analyticsPARTIAL.push_back(QString::number(nonTeamResults.size())); //participants
     analyticsPARTIAL.push_back(nonTeamResults.first().at(2));           //fastest time
     analyticsPARTIAL.push_back(nonTeamResults.last().at(2));            //slowest time
     analyticsPARTIAL.push_back(nonTeamResults.first().at(7));           //first
-    analyticsPARTIAL.push_back(nonTeamResults.at(1).at(7)); //2nd
-    analyticsPARTIAL.push_back(nonTeamResults.at(2).at(7)); //3rd
-    analyticsPARTIAL.push_back(calcWinnerSpeed(nonTeamResults)); // Winners speed
+    analyticsPARTIAL.push_back(nonTeamResults.at(1).at(7));             //2nd
+    analyticsPARTIAL.push_back(nonTeamResults.at(2).at(7));             //3rd
+    analyticsPARTIAL.push_back(calcAverageSpeed(nonTeamResults));       // Average speed
+    analyticsPARTIAL.push_back(calcWinnerSpeed(nonTeamResults));        // Winners speed
 
     return analyticsPARTIAL;
-
-
-
-
-
 }
 
 QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVector<QString> > results)
@@ -162,14 +158,21 @@ QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVect
 
 }
 
-QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > result)
+QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > results)
 {
     float winner_speed_in_float;
-    qDebug() << "Tulokset: " << result.at(0);
-    QString distance = result.at(0).at(1);
-    QString winner_time = result.at(0).at(2);
+    qDebug() << "Tulokset: " << results.at(0);
+    QString distance = results.first().at(1);
 
-    distance = distance.mid(1,3);
+    QString winner_time = results.first().at(2);
+
+    if(distance == "P100") {
+        distance = distance.mid(1,3);
+    }
+    else {
+        distance = distance.mid(1,2);
+    }
+
     float time_in_hours = TimeStringToInt(winner_time) / 3600;
 
     winner_speed_in_float = round((distance.toInt() / time_in_hours)*10)/10;
@@ -179,6 +182,31 @@ QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > result)
     qDebug() << "Voittajan nopeus: " << winner_speed;
 
     return winner_speed;
+}
+
+QString Calculator::calcAverageSpeed(QVector<QVector<QString> > results)
+{
+    QString averageTime = calcAverageTime(results);
+    float average_speed_in_float;
+
+    QString distance = results.first().at(1);
+
+    if(distance == "P100") {
+        distance = distance.mid(1,3);
+    }
+    else {
+        distance = distance.mid(1,2);
+    }
+
+    float time_in_hours = TimeStringToInt(averageTime) / 3600;
+
+    average_speed_in_float = round((distance.toInt() / time_in_hours)*10)/10;
+
+    QString average_speed = QString::number(static_cast<double>(average_speed_in_float));
+
+    qDebug() << "Average speed: " << average_speed;
+
+    return average_speed;
 }
 
 
