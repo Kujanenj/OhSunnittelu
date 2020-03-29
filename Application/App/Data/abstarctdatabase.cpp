@@ -1,10 +1,12 @@
 #include "abstarctdatabase.h"
 
 AbstarctDatabase::AbstarctDatabase(std::shared_ptr<ResultModel> rModel,
-                                   std::shared_ptr<AnalyticsModel> aModel)
+                                   std::shared_ptr<AnalyticsModel> aModel,
+                                   std::shared_ptr<PersonalResultModel> pModel)
 {
     rModel_=rModel;
     aModel_=aModel;
+    pModel_ = pModel;
 }
 
 void AbstarctDatabase::connectToDataBase()

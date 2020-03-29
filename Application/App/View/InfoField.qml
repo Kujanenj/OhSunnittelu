@@ -99,6 +99,8 @@ Item {
                     title: "Team"
                     role: "team"
                 }
+
+                model: personalResultModel
             }
         }
 

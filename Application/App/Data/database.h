@@ -39,6 +39,20 @@
 #define TABLE_2_THIRD           "third"
 #define TABLE_2_BEST_TEAM       "bestteam"
 
+#define TABLE_3                  "PersonalResults"
+#define TABLE_3_YEAR              "year"
+#define TABLE_3_DIST              "distance"
+#define TABLE_3_TIME              "time"
+#define TABLE_3_PLACE             "place"
+#define TABLE_3_PLACEM            "placeM"
+#define TABLE_3_PLACEN            "placeN"
+#define TABLE_3_GENDER            "gender"
+#define TABLE_3_SFNAME            "SFname"
+#define TABLE_3_CITY              "city"
+#define TABLE_3_NATIONALITY       "nationality"
+#define TABLE_3_AGE               "age"
+#define TABLE_3_TEAM              "team"
+
 /**
  * @brief The DataBase class
  * is used to create different tables and insert data on them.
@@ -56,7 +70,8 @@ public:
      * @param analyticsModel : pointer to analyticsmodel
      */
     explicit DataBase(std::shared_ptr<ResultModel> resultModel = nullptr,
-                      std::shared_ptr<AnalyticsModel> analyticsModel = nullptr);
+                      std::shared_ptr<AnalyticsModel> analyticsModel = nullptr,
+                      std::shared_ptr<PersonalResultModel> personalResultModel = nullptr);
 
     ~DataBase();
 
@@ -90,6 +105,8 @@ public slots:
      */
     void insertIntoAnalyticsTable(QVector<QString> toInsert);
 
+    void insertIntoPersonalResultTable(QVector<QString> toInsert);
+
     /**
      * @brief removeData
      * Removes all results and analytics data
@@ -106,6 +123,7 @@ private:
 
     QVector<QString> data;
     QVector<QString> analyticsData;
+    QVector<QString> personalData;
     QString errorMessage_="No errors";
 };
 

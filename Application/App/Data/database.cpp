@@ -1,8 +1,9 @@
 #include "database.h"
 
 DataBase::DataBase(std::shared_ptr<ResultModel> resultModel,
-                   std::shared_ptr<AnalyticsModel> analyticsModel)
-    :AbstarctDatabase(resultModel,analyticsModel)
+                   std::shared_ptr<AnalyticsModel> analyticsModel,
+                   std::shared_ptr<PersonalResultModel> personalResultModel)
+    :AbstarctDatabase(resultModel,analyticsModel,personalResultModel)
 {
 }
 
@@ -44,7 +45,23 @@ void DataBase::createTable()
                         TABLE_2_THIRD             " VARCHAR(255)    NOT NULL,"
                         TABLE_2_BEST_TEAM         " VARCHAR(255)    NOT NULL"
                         " )"
-                        ))
+                        ) ||
+            !query.exec( "CREATE TABLE " TABLE_3 " ("
+                                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                    TABLE_3_YEAR              " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_DIST              " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_TIME              " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_PLACE             " INT,"
+                                    TABLE_3_PLACEM            " INT,"
+                                    TABLE_3_PLACEN            " INT,"
+                                    TABLE_3_GENDER            " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_SFNAME            " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_CITY              " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_NATIONALITY       " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_AGE               " VARCHAR(255)    NOT NULL,"
+                                    TABLE_3_TEAM              " VARCHAR(255)    NOT NULL"
+                                " )"
+                            ))
     {
         qDebug() << "DataBase: error of create " << TABLE;
         qDebug() << query.lastError().text();
@@ -131,6 +148,47 @@ void DataBase::insertIntoAnalyticsTable(QVector<QString> toInsert)
     }
 }
 
+void DataBase::insertIntoPersonalResultTable(QVector<QString> toInsert)
+{
+    personalData.clear();
+    personalData=toInsert;
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO " TABLE_3 " ( " TABLE_3_YEAR ", "
+                                             TABLE_3_DIST ", "
+                                             TABLE_3_TIME ", "
+                                             TABLE_3_PLACE ", "
+                                             TABLE_3_PLACEM ", "
+                                             TABLE_3_PLACEN ", "
+                                             TABLE_3_GENDER ", "
+                                             TABLE_3_SFNAME ", "
+                                             TABLE_3_CITY ", "
+                                             TABLE_3_NATIONALITY ", "
+                                             TABLE_3_AGE ", "
+                                             TABLE_3_TEAM " ) "
+                  "VALUES (:Year, :Distance, :Time, :Place, :PlaceM, :PlaceN, :Gender, :SFName, :City, :Nationality, :Age, :Team)");
+    query.bindValue(":Year",       personalData[0]);
+    query.bindValue(":Distance",       personalData[1]);
+    query.bindValue(":Time",         personalData[2]);
+    query.bindValue(":Place",       personalData[3]);
+    query.bindValue(":PlaceM",       personalData[4]);
+    query.bindValue(":PlaceN",         personalData[5]);
+    query.bindValue(":Gender",       personalData[6]);
+    query.bindValue(":SFName",       personalData[7]);
+    query.bindValue(":City",         personalData[8]);
+    query.bindValue(":Nationality",       personalData[9]);
+    query.bindValue(":Age",       personalData[10]);
+    query.bindValue(":Team",         personalData[11]);
+
+    if(!query.exec()){
+        qDebug() << "error insert into " << TABLE;
+        qDebug() << query.lastError().text();
+        errorMessage_="Error in insertion to table";
+        throw errorMessage_;
+    }
+}
+
 void DataBase::removeData()
 {
     QSqlQuery query;
@@ -146,6 +204,14 @@ void DataBase::removeData()
 
     if(!query.exec()){
         qDebug() << "error delete row " << TABLE_2;
+        qDebug() << query.lastError().text();
+        errorMessage_="Databse error in deletion";
+        throw errorMessage_;
+    }
+    query.prepare("DELETE FROM " TABLE_3);
+
+    if(!query.exec()){
+        qDebug() << "error delete row " << TABLE_3;
         qDebug() << query.lastError().text();
         errorMessage_="Databse error in deletion";
         throw errorMessage_;

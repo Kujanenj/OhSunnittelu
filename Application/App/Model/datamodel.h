@@ -36,7 +36,7 @@ public:
      * @brief TODO: insertData Nää pitää muuttaa koska vituillaan. Ei oo järkee ettei oo mitää parametrei ja sit nää pitää yhistää.
      *  minä hoidan.
      */
-    void insertData();
+    void insertData(QString personalSearch);
 
     void insertAnalyticsData();
 

@@ -660,15 +660,17 @@ Item {
                         console.log("2age - " + ageParams)
 
                         //Give params to C++ DataController class
+                        var personalSearch = 0
                         DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
                                                            distanceParams, selected.text,
                                                            ageParams,
                                                            fieldFirstName.text, fieldLastName.text,
                                                            fieldPlace.text, fieldNationality.currentText,
-                                                           fieldTeam.text);
+                                                           fieldTeam.text, personalSearch);
                         bar.currentIndex = 1
                         resultModel.updateModel("Results")
                         analyticsModel.updateModel("Analytics")
+                        personalResultModel.updateModel("PersonalResults")
                     }
                 }
             }

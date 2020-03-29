@@ -20,6 +20,7 @@ SOURCES += \
         Data/database.cpp \
         Model/abstractlistmodel.cpp \
         Model/analyticsmodel.cpp \
+        Model/personalresultmodel.cpp \
         Model/resultmodel.cpp \
         View/main.cpp \
         Model/parser.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
         Data/database.h \
         Model/abstractlistmodel.h \
         Model/analyticsmodel.h \
+        Model/personalresultmodel.h \
         Model/requester.h \
         Model/parser.h \
         Model/datamodel.h \

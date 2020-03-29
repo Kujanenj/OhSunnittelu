@@ -51,7 +51,7 @@ public:
                                          QVector<QString> distance, QString gender, QVector<QString> ages,
                                          QString firstName, QString lastName,
                                          QString place, QString nationality,
-                                         QString team);
+                                         QString team, QString personalSearch);
     Q_INVOKABLE void sortButtonClicked(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);
 signals:
 

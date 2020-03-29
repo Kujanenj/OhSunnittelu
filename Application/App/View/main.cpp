@@ -5,8 +5,8 @@
 #include "Controller/datacontroller.h"
 #include "Data/database.h"
 #include "Model/resultmodel.h"
-
 #include "Model/analyticsmodel.h"
+#include "Model/personalresultmodel.h"
 
 /**
  * \mainpage Application
@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<AnalyticsModel> analyticsmodel = std::make_shared<AnalyticsModel>();
     std::shared_ptr<ResultModel> resultmodel = std::make_shared<ResultModel>();
-    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(resultmodel,analyticsmodel);
+    std::shared_ptr<PersonalResultModel> personalresultmodel = std::make_shared<PersonalResultModel>();
+    std::shared_ptr<DataBase> database=std::make_shared<DataBase>(resultmodel,analyticsmodel,personalresultmodel);
     std::shared_ptr<Model::DataModel> dataModel = std::make_shared<Model::DataModel>(database);
     try {
            database->connectToDataBase();
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("analyticsModel", &*analyticsmodel);
     engine.rootContext()->setContextProperty("resultModel", &*resultmodel);
+    engine.rootContext()->setContextProperty("personalResultModel", &*personalresultmodel);
     engine.rootContext()->setContextProperty("database", &*database);
 
 

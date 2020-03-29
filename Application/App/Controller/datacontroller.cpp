@@ -24,10 +24,8 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QVector<QString> distances, QString gender, QVector<QString> ages,
                                   QString firstName, QString lastName,
                                   QString place, QString nationality,
-                                  QString team)
-{
-
-
+                                  QString team, QString personalSearch)
+{ 
     database_->removeData();
 
     // Changes nationality text to match with all nationalities
@@ -73,7 +71,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                 try{
                     dataModel_->doRequest(parameters);
                     dataModel_->doParse(parserConfig_);
-                    dataModel_->insertData();
+                    dataModel_->insertData(personalSearch);
 
                 }
                 catch (QString msg){

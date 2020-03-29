@@ -3,6 +3,7 @@
 
 #include "../Model/analyticsmodel.h"
 #include "../Model/resultmodel.h"
+#include "../Model/personalresultmodel.h"
 
 
 #include <memory>
@@ -35,7 +36,8 @@ public:
      * @param aModel : analyticsModel
      */
     AbstarctDatabase(std::shared_ptr<ResultModel> rModel,
-                     std::shared_ptr<AnalyticsModel> aModel);
+                     std::shared_ptr<AnalyticsModel> aModel,
+                     std::shared_ptr<PersonalResultModel> pModel);
 
     /**
      * @brief connectToDataBase
@@ -77,6 +79,7 @@ protected:
     QSqlDatabase db;
     std::shared_ptr<AnalyticsModel> aModel_=nullptr;
     std::shared_ptr<ResultModel> rModel_=nullptr;
+    std::shared_ptr<PersonalResultModel> pModel_ = nullptr;
 
 private:
     QString errorMessage_="No errors!";
