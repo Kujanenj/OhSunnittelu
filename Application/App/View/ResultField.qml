@@ -158,10 +158,10 @@ Item {
                 enabled: true
                 Layout.fillWidth: true
                 from: 1
-                to: 12
+                to: 9
                 stepSize: 1.0
                 first.value: 1
-                second.value: 12
+                second.value: 9
                 snapMode: "SnapAlways"
 
                 first.onPressedChanged: {

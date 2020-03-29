@@ -98,7 +98,8 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
 void DataController::sortButtonClicked(QString selectedField, QString lowerBound, QString upperBound, QString rankSilder)
 {
 
-    QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder +  " ORDER BY " + selectedField+ " ASC";
+    QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder +  " AND TIME < " + upperBound
+            + " AND TIME > "+ lowerBound + " ORDER BY " + selectedField+ " ASC";
     qDebug()<<command;
     dataModel_->sortDataBase(command);
 
