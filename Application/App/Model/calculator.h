@@ -31,6 +31,8 @@ public:
     std::pair<QString,QString> getBestTeam(QVector<std::pair<QString,QString>> results);
 
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
+
+    QVector<std::pair<QString,float>> calculateCountries(QVector<QVector< QString>> results);
 private:
     /*!
      * \brief TimeStringToInt turns a string based time to a float.

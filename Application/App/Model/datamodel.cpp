@@ -33,12 +33,15 @@ void DataModel::insertData(QString personalSearch)
     parser->clearListedData();
     teamNames_.clear();
 
+
     QSqlDatabase::database().transaction();
     qDebug()<<"Starting the insertion";
 
 
     try {
         QVector<QString> teamNameVecHolder;
+
+
         for(int i=0; i<listedData_.size(); i++){
             if(personalSearch == "1") {
                 database_->insertIntoPersonalResultTable(listedData_.at(i));
@@ -80,6 +83,8 @@ void DataModel::insertData(QString personalSearch)
             delete this;
         }
     }
+
+
 }
 
 void DataModel::insertAnalyticsData()
