@@ -21,8 +21,21 @@ Item {
             anchors.right: parent.horizontalCenter
             anchors.bottom: parent.verticalCenter
             id: linechart
+            Button{
+                width: 100
+                height : 50
+                onClicked: {
+                    var test = DataController.someData()
+                     series.clear();
+
+                    series.append(1,1)
+                    series.append(test,2)
+                }
+
+            }
 
             LineSeries {
+                id: series
                 name: "Ajat"
                 axisX: CategoryAxis{
                     min: 0
@@ -80,8 +93,8 @@ Item {
                     }
                 }
 
-                XYPoint { x: 0.5; y: 2.0 }
-                XYPoint { x: 1.5; y: 2.3 }
+                XYPoint {id: first; x: 0.5; y: 2.0 }
+                XYPoint {id: second; x: 1.5; y: 2.3 }
                 XYPoint { x: 2.5; y: 2.5 }
                 XYPoint { x: 3.5; y: 3.4 }
                 XYPoint { x: 4.5; y: 5.1 }

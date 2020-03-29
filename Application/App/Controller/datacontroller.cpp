@@ -112,4 +112,9 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
 
 }
 
+int DataController::someData()
+{
+    return  5;
+}
+
 } // Namespace controller
