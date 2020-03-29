@@ -37,6 +37,7 @@
 #define TABLE_2_WINNER          "winner"
 #define TABLE_2_SECOND          "second"
 #define TABLE_2_THIRD           "third"
+#define TABLE_2_WINNERSPEED     "winnerspeed"
 #define TABLE_2_BEST_TEAM       "bestteam"
 
 #define TABLE_3                  "PersonalResults"

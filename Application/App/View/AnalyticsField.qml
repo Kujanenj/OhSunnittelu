@@ -109,6 +109,12 @@ Item {
                 role: "bestteam"
             }
 
+            TableViewColumn {
+                width: 160
+                title: "Winner's average speed (km/h)"
+                role: "winnerspeed"
+            }
+
             model: analyticsModel
         }
 

@@ -2,6 +2,9 @@
 #define CALCULATOR_H
 #include <QString>
 #include <QVector>
+
+#define ROUNDF(f, c) (((float)((int)((f) * (c))) / (c)))
+
 namespace Model {
 
 /*!
@@ -33,6 +36,8 @@ public:
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
 
     QVector<std::pair<QString,float>> calculateCountries(QVector<QVector< QString>> results);
+
+    QString calcWinnerSpeed(QVector<QVector<QString>> result);
 private:
     /*!
      * \brief TimeStringToInt turns a string based time to a float.

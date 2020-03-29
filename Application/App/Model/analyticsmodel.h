@@ -28,7 +28,8 @@ public:
         WinnerRole,
         SecondRole,
         ThirdRole,
-        bestteamRole
+        bestteamRole,
+        winnerSpeedRole
     };
 
     /**
