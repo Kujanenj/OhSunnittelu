@@ -103,7 +103,7 @@ Item {
             }
         }
         ChartView {
-            title: "Miesten ja naisen osallistujamäärän suhde"
+            title: "Urheilijoiden jakauma maittain"
             width: 625
             height: 325
             theme: ChartView.ChartThemeBrownSand
@@ -112,8 +112,9 @@ Item {
 
             PieSeries {
                 id: miehetjanaiset
-                PieSlice { label: "Miehet"; value: 94.9 }
-                PieSlice { label: "Naiset"; value: 5.1 }
+                PieSlice { label: "Suomi"; value: 84.9 }
+                PieSlice { label: "Ruotsi"; value: 5.1 }
+                PieSlice { label: "Venäjä"; value: 10.0 }
             }
         }
         ChartView {
@@ -128,7 +129,7 @@ Item {
             BarSeries {
                 id: mySeries
                 axisX: BarCategoryAxis { categories: ["2007", "2008", "2009", "2010", "2011", "2012" ] }
-                BarSet { label: "Miehet"; values: [2, 2, 3, 4, 5, 6] ; color:"blue"}
+                BarSet { label: "Miehet"; values: [2, 2, 3, 4, 5, 6] ; color: "blue"}
                 BarSet { label: "Naiset"; values: [5, 1, 2, 4, 1, 7] ; color: "red"}
             }
         }
