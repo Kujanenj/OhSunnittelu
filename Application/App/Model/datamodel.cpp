@@ -172,4 +172,9 @@ QVector<QString> DataModel::getTeamNames()
     return teamNames_;
 }
 
+QVector<std::pair<QString, float> > DataModel::getCountries(QString sqlCommand)
+{
+    return calc_->calculateCountries(database_->searchDataBase(sqlCommand));
+}
+
 } // Namespace Model
