@@ -16,8 +16,10 @@ Item {
         ChartView {
             title: "Matkan parhaat hiihtäjät ja niiden ajat"
             antialiasing: true
-            width: 625
-            height: 325
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.right: parent.horizontalCenter
+            anchors.bottom: parent.verticalCenter
             id: linechart
 
             LineSeries {
@@ -89,11 +91,12 @@ Item {
         }
         ChartView {
             title: "Osallistujat eri matkoille suhteessa"
-            width: 625
-            height: 325
             theme: ChartView.ChartThemeBlueIcy
             antialiasing: true
-            anchors.left: linechart.right
+            anchors.left: parent.horizontalCenter
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.bottom: parent.verticalCenter
 
             PieSeries {
                 id: osallistujat
@@ -108,7 +111,10 @@ Item {
             height: 325
             theme: ChartView.ChartThemeBrownSand
             antialiasing: true
-            anchors.top: linechart.bottom
+            anchors.top: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            anchors.right: parent.horizontalCenter
 
             PieSeries {
                 id: miehetjanaiset
@@ -119,8 +125,10 @@ Item {
         }
         ChartView {
             title: "Parhaat ajat eri vuosille matkalla x"
-            anchors.top: linechart.bottom
-            anchors.left: linechart.right
+            anchors.top: parent.verticalCenter
+            anchors.left: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
             width: 625
             height: 325
             legend.alignment: Qt.AlignBottom
