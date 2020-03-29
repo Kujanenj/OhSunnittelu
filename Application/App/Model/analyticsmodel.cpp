@@ -20,8 +20,9 @@ QHash<int, QByteArray> AnalyticsModel::roleNames() const
     roles[WinnerRole] = "winner";
     roles[SecondRole] = "second";
     roles[ThirdRole] = "third";
-    roles[bestteamRole] = "bestteam";
+    roles[averageSpeedRole] = "averagespeed";
     roles[winnerSpeedRole] = "winnerspeed";
+    roles[bestteamRole] = "bestteam";
     return roles;
 }
 

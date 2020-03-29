@@ -37,7 +37,9 @@ public:
 
     QVector<std::pair<QString,float>> calculateCountries(QVector<QVector< QString>> results);
 
-    QString calcWinnerSpeed(QVector<QVector<QString>> result);
+    QString calcWinnerSpeed(QVector<QVector<QString>> results);
+
+    QString calcAverageSpeed(QVector<QVector<QString>> results);
 private:
     /*!
      * \brief TimeStringToInt turns a string based time to a float.
