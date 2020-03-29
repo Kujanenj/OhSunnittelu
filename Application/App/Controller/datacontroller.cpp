@@ -84,6 +84,15 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
         qDebug() << firstName;
         if(firstName == "" && lastName == "" && team == "" && place == "" && nationality == "0") {
             std::pair<QString, QString> years={startYear,endYear};
+            if(distances.at(0) == "kaikki") {
+                distances.clear();
+                distances = {"P50", "V50", "P100", "P32", "V20",
+                            "V32", "V20jun", "P42", "V32", "P20",
+                            "P30", "P44", "P60", "P62", "P25", "P32",
+                            "P35", "P45", "P52", "P53", "P75", "V30",
+                            "V45", "V53", "V75"};
+                qDebug() << "Only one distance";
+            }
             dataModel_->analytics(distances,years);
             dataModel_->insertAnalyticsData();
         }
