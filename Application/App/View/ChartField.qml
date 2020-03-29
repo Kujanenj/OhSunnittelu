@@ -122,29 +122,14 @@ Item {
             anchors.left: linechart.right
             width: 625
             height: 325
+            legend.alignment: Qt.AlignBottom
             antialiasing: true
 
-            LineSeries {
-                name: "Naiset"
-                color: "Red"
-                XYPoint { x: 0; y: 0 }
-                XYPoint { x: 1.1; y: 3.1 }
-                XYPoint { x: 1.9; y: 4.3 }
-                XYPoint { x: 2.1; y: 3.1 }
-                XYPoint { x: 2.9; y: 5.9 }
-                XYPoint { x: 3.4; y: 4.0 }
-                XYPoint { x: 4.1; y: 4.3 }
-            }
-            LineSeries {
-                name: "Miehet"
-                color: "Blue"
-                XYPoint { x: 0; y: 0 }
-                XYPoint { x: 1.1; y: 2.1 }
-                XYPoint { x: 1.9; y: 3.3 }
-                XYPoint { x: 2.1; y: 2.1 }
-                XYPoint { x: 2.9; y: 4.9 }
-                XYPoint { x: 3.4; y: 3.0 }
-                XYPoint { x: 4.1; y: 3.3 }
+            BarSeries {
+                id: mySeries
+                axisX: BarCategoryAxis { categories: ["2007", "2008", "2009", "2010", "2011", "2012" ] }
+                BarSet { label: "Miehet"; values: [2, 2, 3, 4, 5, 6] ; color:"blue"}
+                BarSet { label: "Naiset"; values: [5, 1, 2, 4, 1, 7] ; color: "red"}
             }
         }
     }
