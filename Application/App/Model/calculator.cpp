@@ -130,6 +130,41 @@ QVector<QString> Calculator::calculateAnalytics(QVector<QVector<QString>> nonTea
 
 }
 
+QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVector<QString> > results)
+{
+    QMap<QString,int> unmodifiedCountries;
+    for(int i = 0; i < results.size(); i++){
+        if(unmodifiedCountries.contains(results.at(i).at(9))){
+            unmodifiedCountries[results.at(i).at(9)]++;
+        }
+        else{
+            unmodifiedCountries[results.at(i).at(9)]=1;
+        }
+    }
+
+    int total = 0 ;
+    QVector<std::pair<QString, float>> returnvec;
+    for(QMap<QString,int>::iterator it = unmodifiedCountries.begin(); it!= unmodifiedCountries.end(); it++){
+        total = total + it.value();
+    }
+
+    for(QMap<QString,int>::iterator it = unmodifiedCountries.begin(); it!= unmodifiedCountries.end(); it++){
+       float test = it.value();
+
+       float test2= test/total;
+
+       float test3 = test2 * 100;
+       //Tänne vois laittaa jotain precision juttui
+
+        returnvec.push_back({it.key(),test3} );
+
+    }
+
+    return returnvec;
+
+}
+
+
 
 
 

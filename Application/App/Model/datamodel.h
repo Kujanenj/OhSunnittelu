@@ -71,6 +71,7 @@ public:
      * @return
      */
     QVector<QString> getTeamNames();
+    QVector<std::pair<QString,float>> getCountries();
 
 private:
     std::shared_ptr<Model::Requester> req;
@@ -79,6 +80,7 @@ private:
     std::shared_ptr<Calculator> calc_;
 
     QVector<QString> teamNames_;
+    QVector<std::pair<QString,float>> countries_;
     QVector<QVector<QString>> analyticsFULL_; //insertion vector to analytics
     QString data_="";
     QVector<QVector<QString>> listedData_;

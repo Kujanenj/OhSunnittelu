@@ -33,14 +33,20 @@ void DataModel::insertData()
     parser->clearListedData();
     teamNames_.clear();
 
+
     QSqlDatabase::database().transaction();
     qDebug()<<"Starting the insertion";
 
 
     try {
         QVector<QString> teamNameVecHolder;
+
+
         for(int i=0; i<listedData_.size(); i++){
             database_->insertIntoResultsTable(listedData_.at(i));
+
+
+
                 if(listedData_.at(i).at(11)!="-"){
                teamNameVecHolder.push_back(listedData_.at(i).at(11));
         }
@@ -76,6 +82,8 @@ void DataModel::insertData()
             delete this;
         }
     }
+
+
 }
 
 void DataModel::insertAnalyticsData()
