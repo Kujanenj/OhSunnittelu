@@ -38,13 +38,31 @@ void DataModel::insertData()
 
 
     try {
+        QVector<QString> teamNameVecHolder;
         for(int i=0; i<listedData_.size(); i++){
             database_->insertIntoResultsTable(listedData_.at(i));
-            if(!teamNames_.contains(listedData_.at(i).at(11)) && listedData_.at(i).at(11) != "-"){
-                teamNames_.push_back(listedData_.at(i).at(11));
-            }
+                if(listedData_.at(i).at(11)!="-"){
+               teamNameVecHolder.push_back(listedData_.at(i).at(11));
+        }
         }
 
+
+                int occ=0;
+                QString teamNameHOLDER="";
+                for(int i = 0 ; i< teamNameVecHolder.size(); i++){
+                    occ=0;
+                        teamNameHOLDER= teamNameVecHolder.at(i);
+                        for(int it=i; it< teamNameVecHolder.size(); it++){
+                            if( teamNameVecHolder.at(it)==teamNameHOLDER){
+                                teamNameVecHolder.remove(it);
+                                occ++;
+                                if(occ==3){
+                                    teamNames_.push_back(teamNameHOLDER);
+                                    break;
+                                }
+                            }
+                        }
+                }
         qDebug()<<"Inserted some data to database";
         QSqlDatabase::database().commit();
     } catch (QString msg) {
