@@ -101,6 +101,7 @@ std::pair<QString, QString> Calculator::getBestTeam(QVector<std::pair<QString,QS
             returnTeam=results.at(i).first;
         }
     }
+    returnPair={returnTeam,returnTime};
     return returnPair;
 }
 

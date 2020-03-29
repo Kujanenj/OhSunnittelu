@@ -145,7 +145,7 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
                 for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
                     sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
                             + QString::number(yearIndex) + "%'";
-                    qDebug()<<sqlCommand;
+
                     sqlResults=searchDataBase(sqlCommand);
 
                     if(sqlResults.size()==0){
@@ -154,6 +154,8 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
                     else{
                     teamResultsPartial.first=sqlResults.at(0).at(11);
                     teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
+                    qDebug()<<teamResultsPartial.first;
+                    qDebug()<<teamResultsPartial.second;
                     teamResults.push_back(teamResultsPartial);
                     }
                 }
