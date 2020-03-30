@@ -1,6 +1,7 @@
 #include "calculator.h"
 #include "QStringList"
 #include <math.h>
+#include <QMap>
 #include <QDebug>
 namespace Model {
 
@@ -27,12 +28,11 @@ QString Model::Calculator::calcAverageTime(QVector<QVector<QString> > results)
     }
   }
   totalTime=totalTime/(results.size()-skipped);
-  qDebug()<<"Skipped total of "<<skipped<<" while calculating average time";
   return IntTimeToString(totalTime);
 }
 
 float Calculator::TimeStringToInt(QString time)
-{ 
+{
     float total=0;
     QStringList splitted=time.split(":");
     total=splitted.at(0).toFloat()*60*60; //hours
@@ -162,7 +162,7 @@ QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVect
 QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > results)
 {
     float winner_speed_in_float;
-    qDebug() << "Tulokset: " << results.at(0);
+
     QString distance = results.first().at(1);
 
     QString winner_time = results.first().at(2);
@@ -180,7 +180,6 @@ QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > results)
 
     QString winner_speed = QString::number(static_cast<double>(winner_speed_in_float));
 
-    qDebug() << "Voittajan nopeus: " << winner_speed;
 
     return winner_speed;
 }
@@ -205,7 +204,7 @@ QString Calculator::calcAverageSpeed(QVector<QVector<QString> > results)
 
     QString average_speed = QString::number(static_cast<double>(average_speed_in_float));
 
-    qDebug() << "Average speed: " << average_speed;
+
 
     return average_speed;
 }

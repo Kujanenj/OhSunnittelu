@@ -660,7 +660,7 @@ Item {
                         console.log("2age - " + ageParams)
 
                         //Give params to C++ DataController class
-                        var personalSearch = 0
+                        var personalSearch = "Results"
                         DataController.searchButtonClicked(fieldYear.first.value, fieldYear.second.value,
                                                            distanceParams, selected.text,
                                                            ageParams,

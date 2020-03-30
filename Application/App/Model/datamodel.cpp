@@ -111,14 +111,10 @@ void DataModel::testInsertion(QString table)
 {
 
     listedData_=parser->getListedData();
-    if(listedData_.size()==0){
+    if(listedData_.size()==0 && table=="Results"){
         qDebug()<<"Nothing to insert";
         return;
     }
-
-
-    parser->clearListedData();
-    teamNames_.clear();
 
     try {
 
@@ -126,10 +122,21 @@ void DataModel::testInsertion(QString table)
      QSqlDatabase::database().transaction();
 
     if(table=="Analytics"){
+        if(analyticsFULL_.size()==0){
+            qDebug()<<"Empty analytics";
+            return;
+        }
+        qDebug()<<"Analytics insertion";
         database_->insertionTest(analyticsFULL_,table);
+        qDebug()<<"Analytics insertion successs";
+
     }
     else{
+
+
+        qDebug()<<"Regular insertion";
          database_->insertionTest(listedData_,table);
+         qDebug()<<"Regular insertion succesess";
     }
 
     } catch (QString msg) {
@@ -143,7 +150,7 @@ void DataModel::testInsertion(QString table)
         delete this;
     }
 }
-    qDebug()<<"Inserted some data to database";
+
     QSqlDatabase::database().commit();
 }
 
@@ -172,33 +179,36 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
 
 
         for(int i=0; i<distances.size(); i++){
+            qDebug()<<"New distance in analytics"<<distances.at(i);
             sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
 
             sqlResults=searchDataBase(sqlCommand);
             if(sqlResults.size()>=3){
+
                 analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
                 //Loop teams
 
 
-
-
+                teamNames_.clear();
+                teamNames_=parser->getTeamNames();
                 for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+
                     sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
                             + QString::number(yearIndex) + "%'";
 
                     sqlResults=searchDataBase(sqlCommand);
 
-                    if(sqlResults.size()==0){
-                        qDebug()<<"NO RESULTS";
-                    }
-                    else{
+                    if(sqlResults.size()!=0){
+
                     teamResultsPartial.first=sqlResults.at(0).at(11);
                     teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
-                    qDebug()<<teamResultsPartial.first;
-                    qDebug()<<teamResultsPartial.second;
+
                     teamResults.push_back(teamResultsPartial);
+
                     }
                 }
+
+
                 analyticsPARTIAL.push_back(calc_->getBestTeam(teamResults).first);
 
 
@@ -209,9 +219,12 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
                 analyticsPARTIAL.clear();
 
 
+
             }
         }
     }
+    qDebug()<<"End of analytics";
+    parser->clearTeams();
 }
 
 QVector<QVector<QString>> DataModel::getAnalyticsVector()

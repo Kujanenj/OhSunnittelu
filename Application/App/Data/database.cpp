@@ -245,17 +245,24 @@ QVector<QVector<QString>> DataBase::searchDataBase(QString config)
         sumVector.append(insertionVector);
         insertionVector.clear();
     }
-    qDebug() << sumVector.size() << " Results found matching sql query" << endl;
 
     return sumVector;
 }
 
 void DataBase::insertionTest(QVector<QVector<QString> > data, QString Table)
 {
+    qDebug()<<"Table type "<<Table;
+    data_.clear();
     QSqlQuery query;
+
     for(int i = 0; i<data.size(); i++){
+        if(data.size()==0){
+            qDebug()<<"Data size 0";
+            return;
+        }
+        data_=data.at(i);
         if(Table=="Results"){
-            data_=data.at(i);
+
 
 
             query.prepare("INSERT INTO " TABLE " ( " TABLE_YEAR ", "
@@ -331,6 +338,8 @@ void DataBase::insertionTest(QVector<QVector<QString> > data, QString Table)
 
 
             if(Table=="Personal"){
+                qDebug()<<"Inserting to personal";
+                qDebug()<<data_;
                 query.prepare("INSERT INTO " TABLE_3 " ( " TABLE_3_YEAR ", "
                                                          TABLE_3_DIST ", "
                                                          TABLE_3_TIME ", "

@@ -54,7 +54,7 @@ public:
                                          QString team, QString personalSearch);
     Q_INVOKABLE void sortButtonClicked(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);
 
-    Q_INVOKABLE int someData();
+
     Q_INVOKABLE QVector<int> getGraphValues(QString graphtype, QString year, QString distance);
     Q_INVOKABLE QVector<QString> getGraphTypes(QString graphtype, QString year, QString distance);
 signals:

@@ -48,6 +48,9 @@ public:
     */
    void clearListedData();
 
+   QVector<QString> getTeamNames();
+   void clearTeams();
+
 private:
 
     /**
@@ -77,8 +80,9 @@ private:
     QMap<QString, QString> config_;
     QString returnMessage_ = "Parse was successful";
 
-
     QVector<QVector<QString>> listedData_;
+
+    QVector<QString> valid_teams;
 };
 }
 #endif // PARSER_H

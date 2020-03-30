@@ -94,7 +94,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                 qDebug() << "Only one distance";
             }
             dataModel_->analytics(distances,years);
-            dataModel_->insertAnalyticsData();
+            dataModel_->testInsertion("Analytics");
         }
     } catch (...) {
         qDebug()<<"Viduigsi meni! Ebin:D";
@@ -112,10 +112,6 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
 
 }
 
-int DataController::someData()
-{
-    return  5;
-}
 
 QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance){
     QVector<int> values;

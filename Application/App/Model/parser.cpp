@@ -15,6 +15,8 @@ Parser::~Parser()
 
 void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
 {
+
+    listedData_.clear();
     config_ = config;
     unparsedDataTotal_ = dataToParse;
     try {
@@ -38,6 +40,17 @@ QVector<QVector<QString> > Parser::getListedData()
 void Parser::clearListedData()
 {
     listedData_.clear();
+}
+
+QVector<QString> Parser::getTeamNames()
+{
+
+    return valid_teams;
+}
+
+void Parser::clearTeams()
+{
+    valid_teams.clear();
 }
 
 void Parser::readFile()
@@ -122,31 +135,43 @@ void Parser::formListedData()
 {
 
 
+    QMap<QString, int> teams;
     QVector<QString> insertionVector;
     QStringList lista=unparsedDataTotal_.split("$");
     int total_results = 0;
 
     for(int i=0; i<lista.size(); i++){
-
         insertionVector.append(lista.at(i));
         if(i%12==11 ){
 
-            //inserti
-             if(insertionVector[2].count(":")>1){
-            if(insertionVector.at(3)>="1"){
+            if(insertionVector[2].count(":")>1){
+                if(insertionVector.at(3)>="1"){
+                    if(insertionVector.at(2).length()<8){
+                        insertionVector[2]=insertionVector.at(2)+".00";
+                    }
+                    listedData_.append(insertionVector);
+                    total_results += 1;
+                }
 
-
-            if(insertionVector.at(2).length()<8){
-                insertionVector[2]=insertionVector.at(2)+".00";
             }
-         listedData_.append(insertionVector);
-         total_results += 1;
-          }}
-         insertionVector.clear();
 
-
+            if(insertionVector.at(11) != "-") {
+                // Check if team exists
+                if(teams.contains(insertionVector.at(11))) {
+                    teams[insertionVector.at(11)]++;
+                }
+                else {
+                    teams[insertionVector.at(11)] = 1;
+                }
+            }
+            insertionVector.clear();
         }
+    }
 
+    for(auto it = teams.begin(); it != teams.end(); it++) {
+        if(it.value() > 3) {
+            valid_teams.push_back(it.key());
+        }
     }
 
     if (lista.size() == 1){
