@@ -305,7 +305,7 @@ Item {
                 var anArray = resultModel.getData(tableView.currentRow)
                 var distances = ["kaikki"]
                 var ages = ["kaikki"]
-                var personalSearch = 1
+                var personalSearch = "Personal"
                 console.log(anArray[0], anArray[1], anArray[2])
                 DataController.searchButtonClicked("1974", "2019", distances, "kaikki", ages, anArray[1], anArray[0], anArray[2], "0", "", personalSearch)
                 personalResultModel.updateModel("PersonalResults")

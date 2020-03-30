@@ -130,6 +130,8 @@ void Parser::formListedData()
 
         insertionVector.append(lista.at(i));
         if(i%12==11 ){
+
+            //inserti
              if(insertionVector[2].count(":")>1){
             if(insertionVector.at(3)>="1"){
 

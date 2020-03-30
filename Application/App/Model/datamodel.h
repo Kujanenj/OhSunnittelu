@@ -40,6 +40,8 @@ public:
 
     void insertAnalyticsData();
 
+    void testInsertion(QString table);
+
     /**
      * @brief sortDataBase Calls the DB  to sort the database according to the command
      * @param command sql instruction

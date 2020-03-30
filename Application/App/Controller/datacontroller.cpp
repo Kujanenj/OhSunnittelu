@@ -71,7 +71,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                 try{
                     dataModel_->doRequest(parameters);
                     dataModel_->doParse(parserConfig_);
-                    dataModel_->insertData(personalSearch);
+                    dataModel_->testInsertion(personalSearch);
 
                 }
                 catch (QString msg){
@@ -119,7 +119,9 @@ int DataController::someData()
 
 QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance){
     QVector<int> values;
-    if(graphtype == "test"){
+    if(graphtype == "ajat"){
+        QString query = "SELECT time FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
+        QVector<QVector<QString>> results;
         for(int i = 0; i < 10; i++){
             values.append((int)i/2);
         }

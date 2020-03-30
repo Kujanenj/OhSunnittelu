@@ -20,7 +20,7 @@ void DataModel::doParse(QMap<QString, QString> config)
 {
     parser->fullParse(config,data_);
 }
-
+/*
 void DataModel::insertData(QString personalSearch)
 {
     listedData_=parser->getListedData();
@@ -106,7 +106,7 @@ void DataModel::insertAnalyticsData()
 
     QSqlDatabase::database().commit();
 }
-
+*/
 void DataModel::testInsertion(QString table)
 {
 
