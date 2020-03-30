@@ -33,14 +33,11 @@ public:
     void doParse(QMap<QString,QString> config);
 
     /**
-     * @brief TODO: insertData Nää pitää muuttaa koska vituillaan. Ei oo järkee ettei oo mitää parametrei ja sit nää pitää yhistää.
-     *  minä hoidan.
+     * @brief insertData
+     * Used to start insertion to different sql tables
+     * @param table
      */
-    void insertData(QString personalSearch);
-
-    void insertAnalyticsData();
-
-    void testInsertion(QString table);
+    void insertData(QString table);
 
     /**
      * @brief sortDataBase Calls the DB  to sort the database according to the command
@@ -67,13 +64,6 @@ public:
      * @return vector of all results matching the criteria
      */
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
-
-    /**
-     * @brief getTeamNames returns all unique team names, exculding blanks
-     * @return
-     */
-    QVector<QString> getTeamNames();
-
 
     QVector<std::pair<QString, float> > getCountries(QString sqlCommand);
 private:

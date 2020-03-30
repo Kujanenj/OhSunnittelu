@@ -71,7 +71,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                 try{
                     dataModel_->doRequest(parameters);
                     dataModel_->doParse(parserConfig_);
-                    dataModel_->testInsertion(personalSearch);
+                    dataModel_->insertData(personalSearch);
 
                 }
                 catch (QString msg){
@@ -94,7 +94,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                 qDebug() << "Only one distance";
             }
             dataModel_->analytics(distances,years);
-            dataModel_->testInsertion("Analytics");
+            dataModel_->insertData("Analytics");
         }
     } catch (...) {
         qDebug()<<"Viduigsi meni! Ebin:D";
@@ -119,7 +119,7 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         QString query = "SELECT time FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
         QVector<QVector<QString>> results;
         for(int i = 0; i < 10; i++){
-            values.append((int)i/2);
+            values.append(static_cast<int>(i/2));
         }
         return values;
     }
@@ -127,11 +127,11 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
         QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
         for(int i = 0; i < results.size(); i++){
-            values.append((int)results.at(i).second);
+            values.append(static_cast<int>(results.at(i).second));
         }
         return values;
     }
-    return{};
+    return {};
 }
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance){
     if(graphtype == "kansallisuudet"){

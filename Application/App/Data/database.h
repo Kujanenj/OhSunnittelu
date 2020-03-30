@@ -90,24 +90,16 @@ public:
      * with sql query
      */
     QVector<QVector<QString>> searchDataBase(QString config);
-    void insertionTest(QVector<QVector<QString>> data, QString Table);
+
+    /**
+     * @brief insertIntoTable
+     * Used to insert data into different sql tables.
+     * @param data
+     * @param Table
+     */
+    void insertIntoTable(QVector<QVector<QString>> data, QString Table);
+
 public slots:
-
-    /**
-     * @brief insertIntoResultsTable
-     * Inserts results data to SQL table
-     * @param toInsert : Data
-     */
-    void insertIntoResultsTable(QVector<QString> toInsert);
-
-    /**
-     * @brief insertIntoAnalyticsTable
-     * Inserts analytics data to SQL table
-     * @param toInsert : Data
-     */
-    void insertIntoAnalyticsTable(QVector<QString> toInsert);
-
-    void insertIntoPersonalResultTable(QVector<QString> toInsert);
 
     /**
      * @brief removeData

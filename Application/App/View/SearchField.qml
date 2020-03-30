@@ -139,7 +139,6 @@ Item {
 
                                     onToggled: {
                                         if(checked === true){
-                                            console.log("checked")
                                             model.selected = true
 
                                             distanceSelectionInfoText.text = "Selected: "
@@ -153,7 +152,6 @@ Item {
                                         distanceSelectionInfoText.text = distanceSelectionInfoText.text.slice(0, -2)
 
                                         if(checked === false){
-                                            console.log("unchecked")
                                             model.selected = false
 
                                             distanceSelectionInfoText.text = "Selected: "
@@ -319,7 +317,6 @@ Item {
 
                                 onToggled: {
                                     if(checked === true){
-                                        console.log("checked")
                                         model.selected = true
 
                                         ageSelectionInfoText.text = "Selected: "
@@ -332,7 +329,6 @@ Item {
 
                                     }
                                     if(checked === false){
-                                        console.log("unchecked")
                                         model.selected = false
 
                                         ageSelectionInfoText.text = "Selected: "
@@ -639,7 +635,6 @@ Item {
                                     distanceParams.push(distances.get(i).value)
                             }
                         }
-                       console.log("1dist - " + distanceParams)
 
                         var ageParams = []
                         //10 is the number of possible ages to pick
@@ -648,16 +643,12 @@ Item {
                                 ageParams.push(ages.get(j).value)
                             }
                         }
-                        console.log("1age - " + ageParams)
 
                         //CLEANS THE PARAMETER ARRAYS IN GIVEN CONDITIONS
                         if(ageParams.includes("kaikki") || ageParams.length === 0)
                             ageParams = ["kaikki"]
                         if(distanceParams.includes("kaikki") || distanceParams.length === 0)
                             distanceParams = ["kaikki"]
-
-                        console.log("2dist - " + distanceParams)
-                        console.log("2age - " + ageParams)
 
                         //Give params to C++ DataController class
                         var personalSearch = "Results"

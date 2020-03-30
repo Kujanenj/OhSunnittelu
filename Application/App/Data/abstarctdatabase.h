@@ -1,11 +1,6 @@
 #ifndef ABSTARCTDATABASE_H
 #define ABSTARCTDATABASE_H
 
-#include "../Model/analyticsmodel.h"
-#include "../Model/resultmodel.h"
-#include "../Model/personalresultmodel.h"
-
-
 #include <memory>
 #include <QObject>
 #include <QSql>
@@ -16,7 +11,9 @@
 #include <QDate>
 #include <QDebug>
 
-
+#include "../Model/analyticsmodel.h"
+#include "../Model/resultmodel.h"
+#include "../Model/personalresultmodel.h"
 
 #define DATABASE_HOSTNAME       "NameDataBase"
 #define DATABASE_NAME           "data.db"
@@ -77,8 +74,8 @@ protected:
     virtual void createTable()=0;
 
     QSqlDatabase db;
-    std::shared_ptr<AnalyticsModel> aModel_=nullptr;
-    std::shared_ptr<ResultModel> rModel_=nullptr;
+    std::shared_ptr<AnalyticsModel> aModel_ = nullptr;
+    std::shared_ptr<ResultModel> rModel_ = nullptr;
     std::shared_ptr<PersonalResultModel> pModel_ = nullptr;
 
 private:
