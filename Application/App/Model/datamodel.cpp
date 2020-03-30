@@ -107,6 +107,46 @@ void DataModel::insertAnalyticsData()
     QSqlDatabase::database().commit();
 }
 
+void DataModel::testInsertion(QString table)
+{
+
+    listedData_=parser->getListedData();
+    if(listedData_.size()==0){
+        qDebug()<<"Nothing to insert";
+        return;
+    }
+
+
+    parser->clearListedData();
+    teamNames_.clear();
+
+    try {
+
+
+     QSqlDatabase::database().transaction();
+
+    if(table=="Analytics"){
+        database_->insertionTest(analyticsFULL_,table);
+    }
+    else{
+         database_->insertionTest(listedData_,table);
+    }
+
+    } catch (QString msg) {
+        qDebug()<<msg;
+    try {
+        database_->removeData();
+        qDebug()<<"removed all data from database since an error was thrown. Next error will cause me to destroy this program!";
+  } catch (QString msg_) {
+        qDebug()<<msg_;
+        qDebug()<<"I told you this would happen. I will suicide now, goodbye!";
+        delete this;
+    }
+}
+    qDebug()<<"Inserted some data to database";
+    QSqlDatabase::database().commit();
+}
+
 void DataModel::sortDataBase(QString command)
 {
     qDebug()<<"Sorting database";

@@ -250,4 +250,125 @@ QVector<QVector<QString>> DataBase::searchDataBase(QString config)
     return sumVector;
 }
 
+void DataBase::insertionTest(QVector<QVector<QString> > data, QString Table)
+{
+    QSqlQuery query;
+    for(int i = 0; i<data.size(); i++){
+        if(Table=="Results"){
+            data_=data.at(i);
+
+
+            query.prepare("INSERT INTO " TABLE " ( " TABLE_YEAR ", "
+                                                     TABLE_DIST ", "
+                                                     TABLE_TIME ", "
+                                                     TABLE_PLACE ", "
+                                                     TABLE_PLACEM ", "
+                                                     TABLE_PLACEN ", "
+                                                     TABLE_GENDER ", "
+                                                     TABLE_SFNAME ", "
+                                                     TABLE_CITY ", "
+                                                     TABLE_NATIONALITY ", "
+                                                     TABLE_AGE ", "
+                                                     TABLE_TEAM " ) "
+                          "VALUES (:Year, :Distance, :Time, :Place, :PlaceM, :PlaceN, :Gender, :SFName, :City, :Nationality, :Age, :Team)");
+            query.bindValue(":Year",       data_[0]);
+            query.bindValue(":Distance",       data_[1]);
+            query.bindValue(":Time",         data_[2]);
+            query.bindValue(":Place",       data_[3]);
+            query.bindValue(":PlaceM",       data_[4]);
+            query.bindValue(":PlaceN",         data_[5]);
+            query.bindValue(":Gender",       data_[6]);
+            query.bindValue(":SFName",       data_[7]);
+            query.bindValue(":City",         data_[8]);
+            query.bindValue(":Nationality",       data_[9]);
+            query.bindValue(":Age",       data_[10]);
+            query.bindValue(":Team",         data_[11]);
+
+            if(!query.exec()){
+                qDebug() << "error insert into " << TABLE;
+                qDebug() << query.lastError().text();
+                errorMessage_="Error in insertion to results";
+                throw errorMessage_;
+         }
+        }
+
+        if(Table=="Analytics"){
+
+            query.prepare("INSERT INTO " TABLE_2 " ( " TABLE_2_YEAR ", "
+                                                     TABLE_2_DIST ", "
+                                                     TABLE_2_AVGTIME ", "
+                                                     TABLE_2_PARTICIPANTS ", "
+                                                     TABLE_2_FASTESTTIME ", "
+                                                     TABLE_2_SLOWESTTIME ", "
+                                                     TABLE_2_WINNER ", "
+                                                     TABLE_2_SECOND ", "
+                                                     TABLE_2_THIRD ", "
+                                                     TABLE_2_AVERAGESPEED ", "
+                                                     TABLE_2_WINNERSPEED ", "
+                                                     TABLE_2_BEST_TEAM " ) "
+                          "VALUES (:year, :distance, :avgtime, :participants, :fastesttime, :slowesttime, :winner, :second, :third, :averagespeed, :winnerspeed, :bestteam)");
+            query.bindValue(":year",            data_[0]);
+            query.bindValue(":distance",        data_[1]);
+            query.bindValue(":avgtime",         data_[2]);
+            query.bindValue(":participants",    data_[3]);
+            query.bindValue(":fastesttime",     data_[4]);
+            query.bindValue(":slowesttime",     data_[5]);
+            query.bindValue(":winner",          data_[6]);
+            query.bindValue(":second",          data_[7]);
+            query.bindValue(":third",           data_[8]);
+            query.bindValue(":averagespeed",    data_[9]);
+            query.bindValue(":winnerspeed",     data_[10]);
+            query.bindValue(":bestteam",        data_[11]);
+
+            if(!query.exec()){
+                qDebug() << "error insert into " << TABLE_2;
+                qDebug() << query.lastError().text();
+                errorMessage_="Error in insertion to analytics";
+                throw errorMessage_;
+            }
+
+
+
+
+            if(Table=="Personal"){
+                query.prepare("INSERT INTO " TABLE_3 " ( " TABLE_3_YEAR ", "
+                                                         TABLE_3_DIST ", "
+                                                         TABLE_3_TIME ", "
+                                                         TABLE_3_PLACE ", "
+                                                         TABLE_3_PLACEM ", "
+                                                         TABLE_3_PLACEN ", "
+                                                         TABLE_3_GENDER ", "
+                                                         TABLE_3_SFNAME ", "
+                                                         TABLE_3_CITY ", "
+                                                         TABLE_3_NATIONALITY ", "
+                                                         TABLE_3_AGE ", "
+                                                         TABLE_3_TEAM " ) "
+                              "VALUES (:Year, :Distance, :Time, :Place, :PlaceM, :PlaceN, :Gender, :SFName, :City, :Nationality, :Age, :Team)");
+                query.bindValue(":Year",       data_[0]);
+                query.bindValue(":Distance",   data_[1]);
+                query.bindValue(":Time",       data_[2]);
+                query.bindValue(":Place",      data_[3]);
+                query.bindValue(":PlaceM",     data_[4]);
+                query.bindValue(":PlaceN",     data_[5]);
+                query.bindValue(":Gender",     data_[6]);
+                query.bindValue(":SFName",     data_[7]);
+                query.bindValue(":City",       data_[8]);
+                query.bindValue(":Nationality",data_[9]);
+                query.bindValue(":Age",        data_[10]);
+                query.bindValue(":Team",       data_[11]);
+
+                if(!query.exec()){
+                    qDebug() << "error insert into " << TABLE;
+                    qDebug() << query.lastError().text();
+                    errorMessage_="Error in insertion to personal";
+                    throw errorMessage_;
+                }
+            }
+
+
+
+        }
+    }
+}
+
 

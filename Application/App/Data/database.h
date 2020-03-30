@@ -90,7 +90,7 @@ public:
      * with sql query
      */
     QVector<QVector<QString>> searchDataBase(QString config);
-
+    void insertionTest(QVector<QVector<QString>> data, QString Table);
 public slots:
 
     /**
@@ -123,6 +123,7 @@ private:
      */
     void createTable() override;
 
+    QVector<QString> data_;
     QVector<QString> data;
     QVector<QString> analyticsData;
     QVector<QString> personalData;
