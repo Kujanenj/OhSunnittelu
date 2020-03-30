@@ -245,7 +245,6 @@ QVector<QVector<QString>> DataBase::searchDataBase(QString config)
         sumVector.append(insertionVector);
         insertionVector.clear();
     }
-    qDebug() << sumVector.size() << " Results found matching sql query" << endl;
 
     return sumVector;
 }

@@ -27,7 +27,6 @@ QString Model::Calculator::calcAverageTime(QVector<QVector<QString> > results)
     }
   }
   totalTime=totalTime/(results.size()-skipped);
-  qDebug()<<"Skipped total of "<<skipped<<" while calculating average time";
   return IntTimeToString(totalTime);
 }
 
