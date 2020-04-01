@@ -39,7 +39,6 @@ float Calculator::TimeStringToInt(QString time)
     total=total+((splitted.at(1).toFloat()))*60; //minutes
     total=total+((splitted.at(2).split(".")).at(0)).toFloat(); // seconds
     total=total+((splitted.at(2).split(".").at(1)).toFloat())/100; //last 2 digits
-
     return total;
 }
 

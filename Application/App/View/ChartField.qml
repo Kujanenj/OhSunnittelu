@@ -14,7 +14,7 @@ Item {
         anchors.fill: parent
 
         ChartView {
-            title: "Matkan parhaat hiihtäjät ja niiden ajat"
+            title: "Matkan parhaiden hiihtäjien ero voittajaan"
             antialiasing: true
             anchors.left: parent.left
             anchors.top: parent.top
@@ -26,13 +26,17 @@ Item {
                 height : 50
                 onClicked: {
                     
-                    var ajat_values = DataController.getGraphValues("kansallisuudet", "2019", "P50");
+                    var ajat_values = DataController.getGraphValues("ajat", "2019", "P50");
                     
                     series.clear();
+                    var eka = ajat_values[0]
+                    for(var i = 0; i < ajat_values.length; i++){
+                        series.append(i+0.5, (ajat_values[i]-eka)/100)
+                    }
                     var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", "2019", "P50");
                     var kansallisuudet = DataController.getGraphTypes("kansallisuudet", "2019", "P50")
                     maat.clear()
-                    for(var i = 0; i < kansallisuudet_values.length; i++){
+                    for(i = 0; i < kansallisuudet_values.length; i++){
                         maat.append(kansallisuudet[i], kansallisuudet_values[i])
                     }
 
@@ -51,6 +55,7 @@ Item {
             LineSeries {
                 id: series
                 name: "Ajat"
+
                 axisX: CategoryAxis{
                     min: 0
                     max: 10
@@ -99,37 +104,29 @@ Item {
                 }
                 axisY: CategoryAxis{
                     min: 0
-                    max: 7.5
+                    max: 1
 
                     CategoryRange{
-                        label: "0:00:00"
-                        endValue: 1
+                        label: "0:12:00"
+                        endValue: .2
                     }
 
+                    CategoryRange{
+                        label: "0:24:00"
+                        endValue: .4
+                    }
+
+                    CategoryRange{
+                        label: "0:36:00"
+                        endValue: .6
+                    }
+                    CategoryRange{
+                        label: "0:48:00"
+                        endValue: .8
+                    }
                     CategoryRange{
                         label: "1:00:00"
-                        endValue: 2
-                    }
-
-                    CategoryRange{
-                        label: "2:00:00"
-                        endValue: 3
-                    }
-                    CategoryRange{
-                        label: "3:00:00"
-                        endValue: 4
-                    }
-                    CategoryRange{
-                        label: "4:00:00"
-                        endValue: 5
-                    }
-                    CategoryRange{
-                        label: "5:00:00"
-                        endValue: 6
-                    }
-                    CategoryRange{
-                        label: "6:00:00"
-                        endValue: 7
+                        endValue: 1
                     }
                 }
 

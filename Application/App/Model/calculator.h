@@ -44,13 +44,13 @@ public:
     QString calcWinnerSpeed(QVector<QVector<QString>> results);
 
     QString calcAverageSpeed(QVector<QVector<QString>> results);
-private:
     /*!
      * \brief TimeStringToInt turns a string based time to a float.
      * \param time
      * \return time as a float
      */
     float TimeStringToInt(QString time);
+private:
     /*!
      * \brief IntTimeToString turns the float based time to stringbased
      * \param time

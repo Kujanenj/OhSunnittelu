@@ -142,4 +142,9 @@ QVector<std::pair<QString, float> > DataModel::getCountries(QString sqlCommand)
     return calc_->calculateCountries(database_->searchDataBase(sqlCommand));
 }
 
+float DataModel::timeToFloat(QString time)
+{
+    return calc_->TimeStringToInt(time);
+}
+
 } // Namespace Model

@@ -115,10 +115,12 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
 QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance){
     QVector<int> values;
     if(graphtype == "ajat"){
-        QString query = "SELECT time FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
-        QVector<QVector<QString>> results;
-        for(int i = 0; i < 10; i++){
-            values.append(static_cast<int>(i/2));
+        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
+        QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
+
+        for(int i = 0; i < results.size(); i++){
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
+            values.append(static_cast<int>(to_insert*100));
         }
         return values;
     }
