@@ -32,7 +32,11 @@ public:
      * \return best team
      */
     std::pair<QString,QString> getBestTeam(QVector<std::pair<QString,QString>> results);
-
+    /**
+     * @brief calculateAnalytics Calculates a analytics results partially
+     * @param nonTeamResults
+     * @return
+     */
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
 
     QVector<std::pair<QString,float>> calculateCountries(QVector<QVector< QString>> results);

@@ -11,9 +11,11 @@ DataModel::DataModel(std::shared_ptr<DataBase> database)
     qDebug()<<"Datamodel created";
 }
 
-void DataModel::doRequest(QMap<QString, QString> parameters)
+void DataModel::doRequest(QMap<QString,QString> requesterParameters, QMap<QString,QString> parserParameters)
 {
-    req->DoRequest(parameters,data_);
+
+    req->DoRequest(requesterParameters,data_);
+    doParse(parserParameters);
 }
 
 void DataModel::doParse(QMap<QString, QString> config)
@@ -23,7 +25,7 @@ void DataModel::doParse(QMap<QString, QString> config)
 
 void DataModel::insertData(QString table)
 {
-
+    //Note: Please never ever touch anything here if you want to keep your iq levels where they are.
     listedData_=parser->getListedData();
     if(listedData_.size()==0 && table=="Results"){
         qDebug()<<"Nothing to insert";
@@ -67,10 +69,9 @@ void DataModel::insertData(QString table)
     QSqlDatabase::database().commit();
 }
 
-void DataModel::sortDataBase(QString command)
+void DataModel::sortDataBase(QString sqlcommand)
 {
-    qDebug()<<"Sorting database";
-    database_->sortDataBase(command);
+    database_->sortDataBase(sqlcommand);
 }
 
 void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString> years)

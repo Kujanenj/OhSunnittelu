@@ -141,13 +141,13 @@ void Requester::requestData()
     QEventLoop loop;
 
 
-    connect(&timer,SIGNAL(timeout()),&loop,SLOT(quit()));
+    connect(&timer,SIGNAL(timeout()),&loop,SLOT(quit())); //safety for slow responds
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     timer.start(5000);
     loop.exec();
 
     if(!reply->isFinished()){
-        QString errormsg = "ERROR: Connection timed out";
+        QString errormsg = "ERROR: Connection timed out, voitko sammuttaa steamin donwloadit?";
         throw errormsg;
     }
 }

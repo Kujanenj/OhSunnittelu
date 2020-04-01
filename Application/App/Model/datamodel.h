@@ -24,13 +24,7 @@ public:
      * @brief doRequest calls the Requester class to do a html post request
      * @param parameters modifies the behaviour of requester class
      */
-    void doRequest(QMap<QString,QString> parameters);
-
-    /**
-     * @brief doParse Calls the parses to parse the html data
-     * @param config modifies the behaviour of the parser
-     */
-    void doParse(QMap<QString,QString> config);
+    void doRequest(QMap<QString,QString> requesterParameters, QMap<QString,QString> parserParameters);
 
     /**
      * @brief insertData
@@ -43,7 +37,7 @@ public:
      * @brief sortDataBase Calls the DB  to sort the database according to the command
      * @param command sql instruction
      */
-    void sortDataBase(QString command);
+    void sortDataBase(QString sqlcommand);
 
     /**
      * @brief analytics uses the calculator to calculate all the required fields for analytics
@@ -64,9 +58,17 @@ public:
      * @return vector of all results matching the criteria
      */
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
-
+    // JEMPPU JA RIKU TARVITAANKO TÄTÄ VIELÄ?!?!
     QVector<std::pair<QString, float> > getCountries(QString sqlCommand);
 private:
+    /**
+     * @brief doParse Calls the parses to parse the html data
+     * @param config modifies the behaviour of the parser
+     */
+    void doParse(QMap<QString,QString> config);
+
+
+
     std::shared_ptr<Model::Requester> req;
     std::shared_ptr<Model::Parser> parser;
     std::shared_ptr<DataBase> database_;

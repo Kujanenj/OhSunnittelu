@@ -69,8 +69,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                 parameters.insert("Ikaluokka", age);
 
                 try{
-                    dataModel_->doRequest(parameters);
-                    dataModel_->doParse(parserConfig_);
+                    dataModel_->doRequest(parameters,parserConfig_);
                     dataModel_->insertData(personalSearch);
 
                 }
