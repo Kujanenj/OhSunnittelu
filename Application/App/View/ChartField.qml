@@ -40,14 +40,23 @@ Item {
                         maat.append(kansallisuudet[i], kansallisuudet_values[i])
                     }
 
+                    var osallistujat_values = DataController.getGraphValues("osallistujat", "2019", "P50")
+                    var osallistuja = DataController.getGraphTypes("osallistujat", "2019", "P50")
+                    osallistujat.clear()
+
+                    for(i = 0; i < osallistujat_values.length; i++){
+                        osallistujat.append(osallistuja[i], osallistujat_values[i])
+                    }
+
                     /**
-                    series.append(1,1)
-                    series.append(test,2)
-                    miehetjanaiset.clear()
-                    miehetjanaiset.append("Miehet", 75)
-                    miehetjanaiset.append("Naiset", 25)
-                    years.replace("2019", "2018")
+                    var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m", "2019", "P50")
+                    var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", "2019", "P50")
+                    parhaat.clear()
+                    console.log(matkan_parhaat_m_values)
+                    parhaat.append("Miehet", matkan_parhaat_m_values )
                     **/
+
+
                 }
 
             }
@@ -186,7 +195,7 @@ Item {
             antialiasing: true
 
             BarSeries {
-                id: mySeries
+                id: parhaat
                 axisX: BarCategoryAxis { id: years
                     categories: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"  ] }
                 axisY: BarCategoryAxis{

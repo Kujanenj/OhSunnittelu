@@ -132,6 +132,24 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         }
         return values;
     }
+
+    else if(graphtype == "parhaat_m"){
+        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND place = 1 ORDER BY year";
+        QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
+        for(int i = 0; i < results.size(); i++){
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
+            values.append(static_cast<int>(to_insert*100));
+        }
+        return values;
+    }
+    else if(graphtype == "osallistujat"){
+        QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
+        QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
+        for(int i = 0; i < results.size(); i++){
+            values.append(static_cast<int>(results.at(i).second));
+        }
+        return values;
+    }
     return {};
 }
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance){
@@ -145,6 +163,17 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
             kansallisuudet.append(results.at(i).first);
         }
         return kansallisuudet;
+    }
+    else if(graphtype == "osallistujat"){
+        QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
+
+        QVector<std::pair<QString, float> > results = dataModel_->getDistances(query);
+
+        QVector<QString> osallistujat;
+        for(int i = 0; i < results.size(); i++){
+            osallistujat.append(results.at(i).first);
+        }
+        return osallistujat;
     }
     return{};
 }

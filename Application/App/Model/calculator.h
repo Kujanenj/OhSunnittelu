@@ -50,6 +50,7 @@ public:
      * \return time as a float
      */
     float TimeStringToInt(QString time);
+    QVector<std::pair<QString, float> > calculateDistances(QVector<QVector<QString> > results);
 private:
     /*!
      * \brief IntTimeToString turns the float based time to stringbased

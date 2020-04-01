@@ -60,6 +60,7 @@ public:
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
     // JEMPPU JA RIKU TARVITAANKO TÄTÄ VIELÄ?!?!
     QVector<std::pair<QString, float> > getCountries(QString sqlCommand);
+    QVector<std::pair<QString, float> > getDistances(QString sqlCommand);
     float timeToFloat(QString time);
 private:
     /**
