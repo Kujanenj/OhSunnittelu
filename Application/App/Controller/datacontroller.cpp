@@ -114,6 +114,7 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
 
 QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance){
     QVector<int> values;
+    int count_small_countries = 0;
     if(graphtype == "ajat"){
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
@@ -128,8 +129,14 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
         QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
         for(int i = 0; i < results.size(); i++){
-            values.append(static_cast<int>(results.at(i).second));
+            if(results.at(i).second < 20) {
+                count_small_countries = static_cast<int>(count_small_countries + results.at(i).second);
+            }
+            else {
+                values.append(static_cast<int>(results.at(i).second));
+            }
         }
+        values.append(count_small_countries);
         return values;
     }
 
@@ -160,8 +167,11 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
 
         QVector<QString> kansallisuudet;
         for(int i = 0; i < results.size(); i++){
-            kansallisuudet.append(results.at(i).first);
+            if(results.at(i).second >= 20) {
+                kansallisuudet.append(results.at(i).first);
+            }
         }
+        kansallisuudet.append("Muut maat");
         return kansallisuudet;
     }
     else if(graphtype == "osallistujat"){
