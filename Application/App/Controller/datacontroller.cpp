@@ -113,7 +113,7 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
 
 
 QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance){
-    QVector<int> values;
+    QVector<int> values = {};
     int count_small_countries = 0;
     if(graphtype == "ajat"){
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
@@ -149,6 +149,15 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         }
         return values;
     }
+    else if(graphtype == "parhaat_n"){
+        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND placeN = 1 ORDER BY year";
+        QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
+        for(int i = 0; i < results.size(); i++){
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
+            values.append(static_cast<int>(to_insert*100));
+        }
+        return values;
+    }
     else if(graphtype == "osallistujat"){
         QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
         QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
@@ -157,7 +166,39 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         }
         return values;
     }
-    return {};
+    else if(graphtype == "top_5"){
+
+        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year+5  + "' AND place <= 5 ORDER BY distance";
+        QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
+        QVector<QString> diff_distances;
+        QVector<std::pair<QString, float>> distances;
+        int amount = 0;
+        float total = 0;
+        float kilometers;
+        for(int i = 0; i < results.size(); i++){
+            if(diff_distances.indexOf(results.at(i).at(1)) == -1){
+                diff_distances.push_back(results.at(i).at(1));
+                qDebug() << results.at(i).at(1);
+            }
+        }
+        for(auto dist : diff_distances){
+            for(int i = 0; i < results.size(); i++){
+                if(dist == results.at(i).at(1)){
+                    total += dataModel_->timeToFloat(results.at(i).at(2))/3600;
+                    amount += 1;
+                }
+            }
+            if(dist.length() == 6){
+                dist.remove(3,3);
+            }
+            kilometers = dist.remove(0,1).toFloat();
+            values.append(kilometers / (total / amount) * 10);
+            total = 0;
+            amount = 0;
+        }
+        return values;
+    }
+    return values;
 }
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance){
     if(graphtype == "kansallisuudet"){

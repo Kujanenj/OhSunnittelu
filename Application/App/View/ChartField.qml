@@ -51,13 +51,24 @@ Item {
                         osallistujat.append(osallistuja[i], osallistujat_values[i])
                     }
 
-                    /**
                     var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m", "2019", "P50")
                     var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", "2019", "P50")
-                    parhaat.clear()
+                    var miehet = parhaat.at(0)
+                    var naiset = parhaat.at(1)
                     console.log(matkan_parhaat_m_values)
-                    parhaat.append("Miehet", matkan_parhaat_m_values )
-                    **/
+                    while(miehet.at(0)){
+                        miehet.remove(0)
+                    }
+                    while(naiset.at(0)){
+                        naiset.remove(0)
+                    }
+                    for(i = 0; i < matkan_parhaat_m_values.length; i++){
+                        miehet.append(matkan_parhaat_m_values[i]/100)
+                    }
+                    for(i = 0; i < matkan_parhaat_n_values.length; i++){
+
+                        naiset.append(matkan_parhaat_n_values[i]/100)
+                    }
                 }
 
                 model: ListModel {
@@ -229,8 +240,8 @@ Item {
                 axisY: BarCategoryAxis{
                     categories: ["0:00:00", "1:00:00", "2:00:00", "3:00:00", "4:00:00", "5:00:00"]
                     }
-                BarSet { label: "Miehet"; values: [2, 2, 3.32, 4, 2.24, 4.12] ; color: "blue"}
-                BarSet { label: "Naiset"; values: [5, 1, 2, 4, 1.12, 2] ; color: "red"}
+                BarSet { id: miehet; label: "Miehet"; values: [2, 2, 3.32, 4, 2.24, 4.12] ; color: "blue"}
+                BarSet { id: naiset; label: "Naiset"; values: [5, 1, 2, 4, 1.12, 2] ; color: "red"}
             }
         }
     }

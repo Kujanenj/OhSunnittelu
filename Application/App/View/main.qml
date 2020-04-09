@@ -30,7 +30,11 @@ ApplicationWindow {
         }
 
         TabButton {
-            text: qsTr("Charts")
+            text: qsTr("Charts 1")
+            checked: false
+        }
+        TabButton {
+            text: qsTr("Charts 2")
             checked: false
         }
 
@@ -72,6 +76,13 @@ ApplicationWindow {
         Item {
             id: chartTab
             ChartField {
+                anchors.fill: parent
+            }
+        }
+
+        Item {
+            id: chartTab2
+            Chart2Field {
                 anchors.fill: parent
             }
         }
