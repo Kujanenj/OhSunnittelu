@@ -139,12 +139,12 @@ QVector<QVector<QString>> DataModel::searchDataBase(QString sqlCommand)
 
 QVector<std::pair<QString, float> > DataModel::getCountries(QString sqlCommand)
 {
-    return calc_->calculateCountries(database_->searchDataBase(sqlCommand));
+    return calc_->calculateGeneral(database_->searchDataBase(sqlCommand),9);
 }
 
 QVector<std::pair<QString, float> > DataModel::getDistances(QString sqlCommand)
 {
-    return calc_->calculateDistances(database_->searchDataBase(sqlCommand));
+    return calc_->calculateGeneral(database_->searchDataBase(sqlCommand),1);
 }
 
 float DataModel::timeToFloat(QString time)

@@ -124,49 +124,16 @@ QVector<QString> Calculator::calculateAnalytics(QVector<QVector<QString>> nonTea
     return analyticsPARTIAL;
 }
 
-QVector<std::pair<QString, float> > Calculator::calculateDistances(QVector<QVector<QString> > results)
-{
-    QMap<QString,int> unmodifiedDistances;
-    for(int i = 0; i < results.size(); i++){
-        if(unmodifiedDistances.contains(results.at(i).at(9))){
-            unmodifiedDistances[results.at(i).at(1)]++;
-        }
-        else{
-            unmodifiedDistances[results.at(i).at(1)]=1;
-        }
-    }
 
-    int total = 0 ;
-    QVector<std::pair<QString, float>> returnvec;
-    for(QMap<QString,int>::iterator it = unmodifiedDistances.begin(); it!= unmodifiedDistances.end(); it++){
-        total = total + it.value();
-    }
-
-    for(QMap<QString,int>::iterator it = unmodifiedDistances.begin(); it!= unmodifiedDistances.end(); it++){
-       float test = it.value();
-
-       float test2= test/total;
-
-       float test3 = test2 * 100;
-       //Tänne vois laittaa jotain precision juttui
-
-        returnvec.push_back({it.key(),it.value()} );
-
-    }
-
-    return returnvec;
-
-}
-
-QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVector<QString> > results)
+QVector<std::pair<QString, float> > Calculator::calculateGeneral(QVector<QVector<QString> > results, int index)
 {
     QMap<QString,int> unmodifiedCountries;
     for(int i = 0; i < results.size(); i++){
-        if(unmodifiedCountries.contains(results.at(i).at(9))){
-            unmodifiedCountries[results.at(i).at(9)]++;
+        if(unmodifiedCountries.contains(results.at(i).at(index))){
+            unmodifiedCountries[results.at(i).at(index)]++;
         }
         else{
-            unmodifiedCountries[results.at(i).at(9)]=1;
+            unmodifiedCountries[results.at(i).at(index)]=1;
         }
     }
 
@@ -191,6 +158,7 @@ QVector<std::pair<QString, float> > Calculator::calculateCountries(QVector<QVect
     return returnvec;
 
 }
+
 
 QString Calculator::calcWinnerSpeed(QVector<QVector<QString> > results)
 {

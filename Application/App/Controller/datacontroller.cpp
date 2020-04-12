@@ -203,7 +203,7 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance){
     if(graphtype == "kansallisuudet"){
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
-
+        qDebug()<<query;
         QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
 
         QVector<QString> kansallisuudet;

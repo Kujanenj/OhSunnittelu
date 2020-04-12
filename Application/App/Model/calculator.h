@@ -39,7 +39,7 @@ public:
      */
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
 
-    QVector<std::pair<QString,float>> calculateCountries(QVector<QVector< QString>> results);
+
 
     QString calcWinnerSpeed(QVector<QVector<QString>> results);
 
@@ -50,7 +50,9 @@ public:
      * \return time as a float
      */
     float TimeStringToInt(QString time);
-    QVector<std::pair<QString, float> > calculateDistances(QVector<QVector<QString> > results);
+
+    QVector<std::pair<QString, float> > calculateGeneral(QVector<QVector<QString> > results, int index);
+
 private:
     /*!
      * \brief IntTimeToString turns the float based time to stringbased
