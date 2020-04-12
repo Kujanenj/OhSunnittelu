@@ -6,7 +6,7 @@
 #include "Model/requester.h"
 #include "Data/database.h"
 #include "../Model/datamodel.h"
-
+#include <algorithm>
 #include <QMap>
 #include <memory>
 
@@ -58,6 +58,7 @@ public:
     Q_INVOKABLE QVector<int> getGraphValues(QString graphtype, QString year, QString distance);
     Q_INVOKABLE QVector<QString> getGraphTypes(QString graphtype, QString year, QString distance);
     Q_INVOKABLE QStringList getYears();
+    Q_INVOKABLE QStringList getDistances(QString year);
 signals:
 
 public slots:

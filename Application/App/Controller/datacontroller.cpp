@@ -241,12 +241,44 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
         }
         return osallistujat;
     }
+    else if(graphtype == "top_5"){
+        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year+5  + "' AND place <= 5 ORDER BY distance";
+
+        QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
+
+        QVector<QString> matkat;
+        QVector<QString>::iterator it;
+        for(int i = 0; i < results.size(); i++){
+           it = std::find(matkat.begin(), matkat.end(), results.at(i).at(1));
+           if(it == matkat.end()){
+               matkat.push_back(results.at(i).at(1));
+           }
+        }
+        return matkat;
+    }
     return{};
 }
 
 QStringList DataController::getYears()
 {
     return years_;
+}
+
+QStringList DataController::getDistances(QString year)
+{
+    QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year+5  + "' AND place <= 5 ORDER BY distance";
+
+    QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
+
+    QStringList matkat;
+    QStringList::iterator it;
+    for(int i = 0; i < results.size(); i++){
+       it = std::find(matkat.begin(), matkat.end(), results.at(i).at(1));
+       if(it == matkat.end()){
+           matkat.push_back(results.at(i).at(1));
+       }
+    }
+    return matkat;
 }
 
 } // Namespace controller

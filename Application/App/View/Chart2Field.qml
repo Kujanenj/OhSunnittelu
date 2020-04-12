@@ -26,14 +26,14 @@ Item {
                 textRole: "text"
 
                 onActivated:  {
-                    var keskinopeus_top_5 = DataController.getGraphValues("top_5", "2015", "P50")
+                    var year = "2008"
+                    distances.categories = DataController.getDistances(year)
+                    var keskinopeus_top_5 = DataController.getGraphValues("top_5", year, "P50")
                     while(keskinopeudet.at(0)){
                         keskinopeudet.remove(0)
-                        console.log("!!")
                     }
                     for(var i = 0; i < keskinopeus_top_5.length; i++){
                         keskinopeudet.append(keskinopeus_top_5[i] / 10)
-                        console.log(keskinopeus_top_5[i])
                     }
                 }
 
@@ -68,8 +68,8 @@ Item {
 
             BarSeries {
                 id: keskinopeus
-                axisX: BarCategoryAxis {
-                    categories: ["P100", "P20", "P32", "P42", "P50", "V100", "V20", "V20jun", "V42", "V50"  ] }
+                axisX: BarCategoryAxis { id:distances;
+                    categories: ["P100", "P50" ] }
 
                 BarSet { id: keskinopeudet; label: "Keskinopeus"; values: [21.24, 25] ; color: "blue"}
             }
