@@ -34,7 +34,9 @@ Item {
                     series.clear();
                     var eka = ajat_values[0]
                     for(var i = 0; i < ajat_values.length; i++){
-                        series.append(i+0.5, (ajat_values[i]-eka)/100)
+                        console.log("Aika: ", ajat_values[i])
+                        console.log(i+0.5, "Ajat: ", (ajat_values[i]-eka)/100)
+                        series.append(i+0.5, ((ajat_values[i]-eka)/100)*3)
                     }
                     var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value);
                     var kansallisuudet = DataController.getGraphTypes("kansallisuudet", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
@@ -155,25 +157,25 @@ Item {
                     max: 1
 
                     CategoryRange{
-                        label: "0:12:00"
+                        label: "0:04:00"
                         endValue: .2
                     }
 
                     CategoryRange{
-                        label: "0:24:00"
+                        label: "0:08:00"
                         endValue: .4
                     }
 
                     CategoryRange{
-                        label: "0:36:00"
+                        label: "0:12:00"
                         endValue: .6
                     }
                     CategoryRange{
-                        label: "0:48:00"
+                        label: "0:16:00"
                         endValue: .8
                     }
                     CategoryRange{
-                        label: "1:00:00"
+                        label: "0:20:00"
                         endValue: 1
                     }
                 }
@@ -185,6 +187,29 @@ Item {
                 XYPoint { x: 4.5; y: 5.1 }
                 XYPoint { x: 5.5; y: 6.0 }
 
+            }
+
+            ComboBox {
+                id: comboBoxSortYears
+                x: 0
+                y: 41
+                scale: 1
+                editable: false
+                textRole: "text"
+
+                onActivated:  {
+
+                }
+
+                model: ListModel {
+                    id: sortYears
+                    ListElement {text: "2019"; value: "2019";}
+                    ListElement {text: "2018"; value: "2018";}
+                    ListElement {text: "2017"; value: "2017";}
+                    ListElement {text: "2016"; value: "2016";}
+                    ListElement {text: "2015"; value: "2015";}
+                    ListElement {text: "2014"; value: "2014";}
+                }
             }
         }
         ChartView {
