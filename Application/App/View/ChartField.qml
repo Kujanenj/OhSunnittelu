@@ -31,8 +31,8 @@ Item {
             maat.append(kansallisuudet[i], kansallisuudet_values[i])
         }
 
-        var osallistujat_values = DataController.getGraphValues("osallistujat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
-        var osallistuja = DataController.getGraphTypes("osallistujat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var osallistujat_values = DataController.getGraphValues("osallistujat", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var osallistuja = DataController.getGraphTypes("osallistujat", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
         osallistujat.clear()
 
         for(i = 0; i < osallistujat_values.length; i++){
