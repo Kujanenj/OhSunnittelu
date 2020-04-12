@@ -15,32 +15,36 @@ ApplicationWindow {
         currentIndex: 0
 
         TabButton {
+            id: searchButton
             text: qsTr("Search")
             checked: true
         }
 
         TabButton {
+            id: resultButton
             text: qsTr("Results")
             checked: false
+            enabled: false
         }
 
         TabButton {
+            id: analyticsButton
             text: qsTr("Analytics")
             checked: false
+            enabled: false
         }
 
         TabButton {
+            id: chartButton1
             text: qsTr("Charts 1")
             checked: false
+            enabled: false
         }
         TabButton {
+            id: chartButton2
             text: qsTr("Charts 2")
             checked: false
-        }
-
-        TabButton {
-            text: qsTr("Extra")
-            checked: false
+            enabled: false
         }
     }
 
@@ -83,12 +87,6 @@ ApplicationWindow {
         Item {
             id: chartTab2
             Chart2Field {
-                anchors.fill: parent
-            }
-        }
-        Item {
-            id: extraTab
-            ExtraField {
                 anchors.fill: parent
             }
         }

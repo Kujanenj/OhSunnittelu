@@ -4,7 +4,6 @@
         <file>SearchField.qml</file>
         <file>ResultField.qml</file>
         <file>ChartField.qml</file>
-        <file>ExtraField.qml</file>
         <file>AnalyticsField.qml</file>
         <file>Chart2Field.qml</file>
     </qresource>

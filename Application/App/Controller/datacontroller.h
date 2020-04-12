@@ -59,6 +59,10 @@ public:
     Q_INVOKABLE QVector<QString> getGraphTypes(QString graphtype, QString year, QString distance);
     Q_INVOKABLE QStringList getYears();
     Q_INVOKABLE QStringList getDistances(QString year);
+
+    Q_INVOKABLE void updateDistances();
+
+    Q_INVOKABLE QStringList getDist();
 signals:
 
 public slots:
@@ -76,6 +80,8 @@ private:
                                      {"tableEnd", "</table><div"},
                                      {"tableCellLeft", "7pt;\">"},
                                      {"tableCellRight","</td>"}};
+
+    QStringList distances_;
 
 
 

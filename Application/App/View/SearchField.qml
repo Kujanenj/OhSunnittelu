@@ -662,6 +662,12 @@ Item {
                         resultModel.updateModel("Results")
                         analyticsModel.updateModel("Analytics")
                         personalResultModel.updateModel("PersonalResults")
+                        DataController.updateDistances()
+                        searchButton.enabled = true
+                        resultButton.enabled = true
+                        analyticsButton.enabled = true
+                        chartButton1.enabled = true
+                        chartButton2.enabled = true
                     }
                 }
             }

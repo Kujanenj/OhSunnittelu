@@ -6,10 +6,10 @@ import QtQuick.Window 2.12
 Item {
     Frame {
         id: frame
+        anchors.topMargin: 49
         anchors.fill: parent
         ChartView {
             title: "Top 5 hiihtäjät keskinopeus"
-
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.right: parent.right
@@ -18,9 +18,12 @@ Item {
             height: 325
             legend.alignment: Qt.AlignBottom
             antialiasing: true
+            theme: ChartView.ChartThemeDark
 
             ComboBox {
                 id: comboBoxSortOption
+                x: -11
+                y: -56
                 scale: 1
                 editable: false
                 textRole: "text"
@@ -77,3 +80,9 @@ Item {
     }
 
 }
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+##^##*/

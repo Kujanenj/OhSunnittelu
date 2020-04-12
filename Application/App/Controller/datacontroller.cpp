@@ -109,7 +109,6 @@ void DataController::sortButtonClicked(QString selectedField, QString lowerBound
 
     QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder +  " AND TIME < " + upperBound
             + " AND TIME > "+ lowerBound + " ORDER BY " + selectedField+ " ASC";
-    qDebug()<<command;
     dataModel_->sortDataBase(command);
 
 }
@@ -177,6 +176,9 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
         QVector<std::pair<QString, float> > results = dataModel_->getDistances(query);
         for(int i = 0; i < results.size(); i++){
+            if(!distances_.contains(results.at(i).first)) {
+                distances_.push_back(results.at(i).first);
+            }
             values.append(static_cast<int>(results.at(i).second));
         }
         return values;
@@ -218,7 +220,6 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance){
     if(graphtype == "kansallisuudet"){
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
-        qDebug()<<query;
         QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
 
         QVector<QString> kansallisuudet;
@@ -279,6 +280,23 @@ QStringList DataController::getDistances(QString year)
        }
     }
     return matkat;
+}
+
+void DataController::updateDistances()
+{
+    distances_.clear();
+    QString query = "SELECT * FROM Results ";
+    QVector<std::pair<QString, float> > results = dataModel_->getDistances(query);
+    for(int i = 0; i < results.size(); i++){
+        if(!distances_.contains(results.at(i).first)) {
+            distances_.push_back(results.at(i).first);
+        }
+    }
+}
+
+QStringList DataController::getDist()
+{
+    return distances_;
 }
 
 } // Namespace controller

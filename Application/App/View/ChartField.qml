@@ -9,14 +9,20 @@ import QtQuick.Window 2.12
 
 
 Item {
+    id: charts
 
-
+    function updateDropDown() {
+        var distances = DataController.getDist()
+        var years = DataController.getYears();
+        comboBoxSortDistances.model = distances;
+        comboBoxSortYears.model = years;
+    }
 
     function comboFunction(){
 
         years.categories=DataController.getYears();
 
-        var ajat_values = DataController.getGraphValues("ajat",  sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value);
+        var ajat_values = DataController.getGraphValues("ajat",  comboBoxSortYears.currentText, comboBoxSortDistances.currentText);
 
         series.clear();
         var eka = ajat_values[0]
@@ -24,23 +30,23 @@ Item {
 
             series.append(i+0.5, ((ajat_values[i]-eka)/100)*3)
         }
-        var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value);
-        var kansallisuudet = DataController.getGraphTypes("kansallisuudet", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", comboBoxSortYears.currentText, comboBoxSortDistances.currentText);
+        var kansallisuudet = DataController.getGraphTypes("kansallisuudet", comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
         maat.clear()
         for(i = 0; i < kansallisuudet_values.length; i++){
             maat.append(kansallisuudet[i], kansallisuudet_values[i])
         }
 
-        var osallistujat_values = DataController.getGraphValues("osallistujat", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
-        var osallistuja = DataController.getGraphTypes("osallistujat", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var osallistujat_values = DataController.getGraphValues("osallistujat", comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
+        var osallistuja = DataController.getGraphTypes("osallistujat", comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
         osallistujat.clear()
 
         for(i = 0; i < osallistujat_values.length; i++){
             osallistujat.append(osallistuja[i], osallistujat_values[i])
         }
 
-        var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m",sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
-        var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m",comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
+        var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
         var miehet = parhaat.at(0)
         var naiset = parhaat.at(1)
 
@@ -62,6 +68,7 @@ Item {
 
     Frame {
         id: frame
+        anchors.topMargin: 47
         anchors.fill: parent
 
         ChartView {
@@ -72,45 +79,23 @@ Item {
             anchors.right: parent.horizontalCenter
             anchors.bottom: parent.verticalCenter
             id: linechart
+            theme: ChartView.ChartThemeDark
 
             ComboBox {
-                id: comboBoxSortOption
+                id: comboBoxSortDistances
+                x: -12
+                y: -56
                 scale: 1
                 editable: false
-                textRole: "text"
+                currentIndex: -1
+                displayText: currentIndex === -1 ? "Distance" : currentText
 
-                onActivated:  {
-
-                    comboFunction()
-
+                onActiveFocusChanged: {
+                    updateDropDown()
                 }
 
-                model: ListModel {
-                    id: sortOptions
-                    ListElement {text: "P50"; value: "P50";}
-                    ListElement {text: "V50"; value: "V50";}
-                    ListElement {text: "P100"; value: "P100";}
-                    ListElement {text: "P32"; value: "P32";}
-                    ListElement {text: "V20"; value: "V20";}
-                    ListElement {text: "V32"; value: "V32";}
-                    ListElement {text: "V20jun"; value: "V20jun";}
-                    ListElement {text: "P42"; value: "P42";}
-                    ListElement {text: "P20"; value: "P20";}
-                    ListElement {text: "P30"; value: "P30";}
-                    ListElement {text: "P44"; value: "P44";}
-                    ListElement {text: "P60"; value: "P60";}
-                    ListElement {text: "P62"; value: "P62";}
-                    ListElement {text: "P25"; value: "P25";}
-                    ListElement {text: "P32"; value: "P32";}
-                    ListElement {text: "P35"; value: "P35";}
-                    ListElement {text: "P45"; value: "P45";}
-                    ListElement {text: "P52"; value: "P52";}
-                    ListElement {text: "P53"; value: "P53";}
-                    ListElement {text: "P75"; value: "P75";}
-                    ListElement {text: "V30"; value: "V30";}
-                    ListElement {text: "V45"; value: "V45";}
-                    ListElement {text: "V53"; value: "V53";}
-                    ListElement {text: "V75"; value: "V75";}
+                onActivated:  {
+                    comboFunction()
                 }
             }
 
@@ -203,30 +188,25 @@ Item {
 
             ComboBox {
                 id: comboBoxSortYears
-                x: 0
-                y: 41
+                x: 140
+                y: -56
                 scale: 1
                 editable: false
-                textRole: "text"
+                currentIndex: -1
+                displayText: currentIndex === -1 ? "Years" : currentText
+
+                onActiveFocusChanged: {
+                    updateDropDown()
+                }
 
                 onActivated:  {
                     comboFunction()
-                }
-
-                model: ListModel {
-                    id: sortYears
-                    ListElement {text: "2019"; value: "2019";}
-                    ListElement {text: "2018"; value: "2018";}
-                    ListElement {text: "2017"; value: "2017";}
-                    ListElement {text: "2016"; value: "2016";}
-                    ListElement {text: "2015"; value: "2015";}
-                    ListElement {text: "2014"; value: "2014";}
                 }
             }
         }
         ChartView {
             title: "Osallistujat eri matkoille suhteessa"
-            theme: ChartView.ChartThemeBlueIcy
+            theme: ChartView.ChartThemeDark
             antialiasing: true
             anchors.top: parent.verticalCenter
             anchors.left: parent.horizontalCenter
@@ -244,7 +224,7 @@ Item {
             title: "Urheilijoiden jakauma maittain"
             width: 625
             height: 325
-            theme: ChartView.ChartThemeBrownSand
+            theme: ChartView.ChartThemeDark
             antialiasing: true
             anchors.top: parent.verticalCenter
             anchors.left: parent.left
@@ -269,6 +249,7 @@ Item {
             height: 325
             legend.alignment: Qt.AlignBottom
             antialiasing: true
+            theme: ChartView.ChartThemeDark
 
             BarSeries {
                 id: parhaat
@@ -284,3 +265,9 @@ Item {
     }
 
 }
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+##^##*/
