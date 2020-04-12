@@ -26,6 +26,7 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
                                   QString place, QString nationality,
                                   QString team, QString personalSearch)
 { 
+    years_.clear();
     database_->removeData();
 
     // Changes nationality text to match with all nationalities
@@ -53,7 +54,8 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
         //YEAR
         QString s;
         s = QString::number(startYear.toInt() + i);
-        qDebug() << s;        
+        qDebug() << "VOUOSI " << s;
+        years_.append(s);
         parameters.insert("Vuosi", s);
 
         //DISTANCES LOOPING
@@ -227,6 +229,11 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
         return osallistujat;
     }
     return{};
+}
+
+QStringList DataController::getYears()
+{
+    return years_;
 }
 
 } // Namespace controller

@@ -57,6 +57,7 @@ public:
 
     Q_INVOKABLE QVector<int> getGraphValues(QString graphtype, QString year, QString distance);
     Q_INVOKABLE QVector<QString> getGraphTypes(QString graphtype, QString year, QString distance);
+    Q_INVOKABLE QStringList getYears();
 signals:
 
 public slots:
@@ -66,7 +67,7 @@ private:
     std::shared_ptr<DataBase> database_;
 
     std::shared_ptr<Model::DataModel> dataModel_;
-
+    QStringList years_;
 
     QMap<QString,QString> parserConfig_ = {{"fileToRead", "false"}, //false = "älä lue mitää"
                                      {"fileToWrite", "false"},//false = "älä kirjota mitää"

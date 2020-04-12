@@ -11,9 +11,10 @@ import QtQuick.Window 2.12
 Item {
 
 
+
     function comboFunction(){
 
-
+        years.categories=DataController.getYears();
 
         var ajat_values = DataController.getGraphValues("ajat",  sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value);
 
@@ -260,7 +261,7 @@ Item {
         }
         ChartView {
             title: "Parhaat ajat eri vuosille matkalla x"
-
+            id: testi
             anchors.left: parent.horizontalCenter
             anchors.top: parent.top
             anchors.right: parent.right
