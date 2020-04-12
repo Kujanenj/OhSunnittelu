@@ -9,6 +9,57 @@ import QtQuick.Window 2.12
 
 
 Item {
+
+
+    function comboFunction(){
+
+
+
+        var ajat_values = DataController.getGraphValues("ajat",  sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value);
+
+        series.clear();
+        var eka = ajat_values[0]
+        for(var i = 0; i < ajat_values.length; i++){
+            console.log("Aika: ", ajat_values[i])
+            console.log(i+0.5, "Ajat: ", (ajat_values[i]-eka)/100)
+            series.append(i+0.5, ((ajat_values[i]-eka)/100)*3)
+        }
+        var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value);
+        var kansallisuudet = DataController.getGraphTypes("kansallisuudet", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
+        maat.clear()
+        for(i = 0; i < kansallisuudet_values.length; i++){
+            maat.append(kansallisuudet[i], kansallisuudet_values[i])
+        }
+
+        var osallistujat_values = DataController.getGraphValues("osallistujat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var osallistuja = DataController.getGraphTypes("osallistujat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
+        osallistujat.clear()
+
+        for(i = 0; i < osallistujat_values.length; i++){
+            osallistujat.append(osallistuja[i], osallistujat_values[i])
+        }
+
+        var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m", "2019", "P50")
+        var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", "2019", "P50")
+        var miehet = parhaat.at(0)
+        var naiset = parhaat.at(1)
+        console.log(matkan_parhaat_m_values)
+        while(miehet.at(0)){
+            miehet.remove(0)
+        }
+        while(naiset.at(0)){
+            naiset.remove(0)
+        }
+        for(i = 0; i < matkan_parhaat_m_values.length; i++){
+            miehet.append(matkan_parhaat_m_values[i]/100)
+        }
+        for(i = 0; i < matkan_parhaat_n_values.length; i++){
+
+            naiset.append(matkan_parhaat_n_values[i]/100)
+        }
+
+      }
+
     Frame {
         id: frame
         anchors.fill: parent
@@ -29,48 +80,9 @@ Item {
                 textRole: "text"
 
                 onActivated:  {
-                    var ajat_values = DataController.getGraphValues("ajat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value);
 
-                    series.clear();
-                    var eka = ajat_values[0]
-                    for(var i = 0; i < ajat_values.length; i++){
-                        console.log("Aika: ", ajat_values[i])
-                        console.log(i+0.5, "Ajat: ", (ajat_values[i]-eka)/100)
-                        series.append(i+0.5, ((ajat_values[i]-eka)/100)*3)
-                    }
-                    var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value);
-                    var kansallisuudet = DataController.getGraphTypes("kansallisuudet", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
-                    maat.clear()
-                    for(i = 0; i < kansallisuudet_values.length; i++){
-                        maat.append(kansallisuudet[i], kansallisuudet_values[i])
-                    }
+                    comboFunction()
 
-                    var osallistujat_values = DataController.getGraphValues("osallistujat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
-                    var osallistuja = DataController.getGraphTypes("osallistujat", "2019", sortOptions.get(comboBoxSortOption.currentIndex).value)
-                    osallistujat.clear()
-
-                    for(i = 0; i < osallistujat_values.length; i++){
-                        osallistujat.append(osallistuja[i], osallistujat_values[i])
-                    }
-
-                    var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m", "2019", "P50")
-                    var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", "2019", "P50")
-                    var miehet = parhaat.at(0)
-                    var naiset = parhaat.at(1)
-                    console.log(matkan_parhaat_m_values)
-                    while(miehet.at(0)){
-                        miehet.remove(0)
-                    }
-                    while(naiset.at(0)){
-                        naiset.remove(0)
-                    }
-                    for(i = 0; i < matkan_parhaat_m_values.length; i++){
-                        miehet.append(matkan_parhaat_m_values[i]/100)
-                    }
-                    for(i = 0; i < matkan_parhaat_n_values.length; i++){
-
-                        naiset.append(matkan_parhaat_n_values[i]/100)
-                    }
                 }
 
                 model: ListModel {
@@ -198,7 +210,7 @@ Item {
                 textRole: "text"
 
                 onActivated:  {
-
+                    comboFunction()
                 }
 
                 model: ListModel {
