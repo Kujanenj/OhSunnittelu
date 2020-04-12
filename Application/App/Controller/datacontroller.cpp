@@ -146,30 +146,30 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
     else if(graphtype == "parhaat_m"){
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND place = 1 ORDER BY year";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
-         qDebug()<<"MIEHET "<< results.size();
-        if(results.size()==1){
-            values.append(0);
-        }
-        else{
+        int last = getYears().at(0).toInt();
         for(int i = 0; i < results.size(); i++){
+            while(last +1 < results.at(i).at(0).toInt()){
+                values.append(0);
+                ++last;
+            }
             float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
-            qDebug()<<to_insert;
             values.append(static_cast<int>(to_insert*100));
+            last = results.at(i).at(0).toInt();
         }
-        }
-
         return values;
     }
     else if(graphtype == "parhaat_n"){
         QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND placeN = 1 ORDER BY year";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
-
-
-
+        int last = getYears().at(0).toInt() -1;
         for(int i = 0; i < results.size(); i++){
+            while(last +1 < results.at(i).at(0).toInt()){
+                values.append(0);
+                ++last;
+            }
             float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
-
             values.append(static_cast<int>(to_insert*100));
+            last = results.at(i).at(0).toInt();
         }
         return values;
     }
