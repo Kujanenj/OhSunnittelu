@@ -45,13 +45,14 @@ void DataModel::insertData(QString table)
         qDebug()<<"Analytics insertion";
         database_->insertIntoTable(analyticsFULL_,table);
         qDebug()<<"Analytics insertion successs";
-
+        qDebug()<<"---------------------------";
     }
     else{
 
         qDebug()<<"Regular insertion";
         database_->insertIntoTable(listedData_,table);
         qDebug()<<"Regular insertion succesess";
+
     }
 
     } catch (QString msg) {
@@ -89,7 +90,7 @@ void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString>
     //loop all years
     for(int yearIndex=startYear; yearIndex<=endYear; yearIndex++){
         for(int i=0; i<distances.size(); i++){
-            qDebug()<<"New distance in analytics"<<distances.at(i);
+
             sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
 
             sqlResults=searchDataBase(sqlCommand);

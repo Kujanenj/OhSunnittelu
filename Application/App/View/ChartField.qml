@@ -21,8 +21,7 @@ Item {
         series.clear();
         var eka = ajat_values[0]
         for(var i = 0; i < ajat_values.length; i++){
-            console.log("Aika: ", ajat_values[i])
-            console.log(i+0.5, "Ajat: ", (ajat_values[i]-eka)/100)
+
             series.append(i+0.5, ((ajat_values[i]-eka)/100)*3)
         }
         var kansallisuudet_values = DataController.getGraphValues("kansallisuudet", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value);
@@ -40,11 +39,11 @@ Item {
             osallistujat.append(osallistuja[i], osallistujat_values[i])
         }
 
-        var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m", "2019", "P50")
-        var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", "2019", "P50")
+        var matkan_parhaat_m_values = DataController.getGraphValues("parhaat_m",sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
+        var matkan_parhaat_n_values = DataController.getGraphValues("parhaat_n", sortYears.get(comboBoxSortYears.currentIndex).value, sortOptions.get(comboBoxSortOption.currentIndex).value)
         var miehet = parhaat.at(0)
         var naiset = parhaat.at(1)
-        console.log(matkan_parhaat_m_values)
+
         while(miehet.at(0)){
             miehet.remove(0)
         }

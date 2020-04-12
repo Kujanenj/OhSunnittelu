@@ -74,7 +74,7 @@ void Parser::readFile()
 void Parser::parseToTable()
 {
 
-    qDebug()<<"String Size "<<unparsedDataTotal_.size();
+
     int tableStartIndex=unparsedDataTotal_.indexOf(config_["tableStart"]);
     int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
 
@@ -88,7 +88,7 @@ void Parser::parseToTable()
     else{
         unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
         unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
-        qDebug()<<"String Size "<<unparsedDataTotal_.size();
+
     }
 
 

@@ -128,7 +128,7 @@ QVector<QVector<QString>> DataBase::searchDataBase(QString config)
 
 void DataBase::insertIntoTable(QVector<QVector<QString> > data, QString Table)
 {
-    qDebug()<<"Table type: "<<Table;
+
     data_.clear();
     QSqlQuery query;
 
