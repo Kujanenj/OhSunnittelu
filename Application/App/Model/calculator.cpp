@@ -92,7 +92,7 @@ std::pair<QVector<QString>, QVector<QString> > Calculator::getMinMaxResults(QVec
 
 QVector<std::pair<QString, QString> > Calculator::getBestTeams(QVector<std::pair<QString, QString> >results, int amount)
 {
-    if(amount ==1){
+    if(amount ==1){ //This shit is way faster than actually sorting all the results
         QString returnTeam=results.at(0).first;
         QString returnTime =results.at(0).second;
         std::pair<QString,QString> returnPair = {returnTeam,returnTime};
@@ -114,7 +114,6 @@ QVector<std::pair<QString, QString> > Calculator::getBestTeams(QVector<std::pair
     std::sort(results.begin(), results.end(),compareTime());
     QVector<std::pair<QString, QString> > returnvec;
     for(int i=0; i<amount; i++){
-        qDebug()<<results.at(i);
         returnvec.push_back(results.at(i));
     }
 

@@ -71,7 +71,7 @@ public:
      * \return time as a float number
      */
     float timeToFloat(QString time);
-    QVector<std::pair<QString,QString>> getBestTeams(QString sqlCommand, int amount, QString year, QString distance);
+    QVector<std::pair<QString,QString>> getBestTeams(int amount, QString year, QString distance);
 private:
     /**
      * @brief doParse Calls the parses to parse the html data
