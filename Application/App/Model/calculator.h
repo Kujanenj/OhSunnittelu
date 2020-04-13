@@ -50,8 +50,13 @@ public:
      * \return time as a float
      */
     float TimeStringToInt(QString time);
-
-    QVector<std::pair<QString, float> > calculateGeneral(QVector<QVector<QString> > results, int index);
+    /*!
+     * \brief calculatePercentagesGeneral calculates the percantegas of the key based on the number of results
+     * \param results
+     * \param index the result field index. E.g: index number 9 is countries
+     * \return <Key, percantage>
+     */
+    QVector<std::pair<QString, float> > calculatePercentagesGeneral(QVector<QVector<QString> > results, int index);
 
 private:
     /*!

@@ -58,9 +58,18 @@ public:
      * @return vector of all results matching the criteria
      */
     QVector<QVector<QString>> searchDataBase(QString sqlCommand);
-    // JEMPPU JA RIKU TARVITAANKO TÄTÄ VIELÄ?!?!
-    QVector<std::pair<QString, float> > getCountries(QString sqlCommand);
-    QVector<std::pair<QString, float> > getDistances(QString sqlCommand);
+    /*!
+     * \brief getPercanteges returns percentages of corrosponding index field
+     * \param sqlCommand "SELECT * FROM results Where X
+     * \param index the result field index. E.g: index number 9 is countries
+     * \return <Key, percantage>
+     */
+    QVector<std::pair<QString, float> > getPercanteges(QString sqlCommand, int index);
+    /*!
+     * \brief timeToFloat
+     * \param time
+     * \return time as a float number
+     */
     float timeToFloat(QString time);
 private:
     /**

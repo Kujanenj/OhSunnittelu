@@ -125,7 +125,7 @@ QVector<QString> Calculator::calculateAnalytics(QVector<QVector<QString>> nonTea
 }
 
 
-QVector<std::pair<QString, float> > Calculator::calculateGeneral(QVector<QVector<QString> > results, int index)
+QVector<std::pair<QString, float> > Calculator::calculatePercentagesGeneral(QVector<QVector<QString> > results, int index)
 {
     QMap<QString,int> unmodifiedCountries;
     for(int i = 0; i < results.size(); i++){

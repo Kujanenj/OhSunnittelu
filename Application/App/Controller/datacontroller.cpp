@@ -249,7 +249,7 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
     {
         QString query
             = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
-        QVector<std::pair<QString, float>> results = dataModel_->getCountries(query);
+        QVector<std::pair<QString, float>> results = dataModel_->getPercanteges(query,9);
 
         QVector<QString> kansallisuudet;
         for (int i = 0; i < results.size(); i++)
@@ -266,7 +266,7 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
     {
         QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
 
-        QVector<std::pair<QString, float>> results = dataModel_->getDistances(query);
+        QVector<std::pair<QString, float>> results = dataModel_->getPercanteges(query,1);
 
         QVector<QString> osallistujat;
         for (int i = 0; i < results.size(); i++)

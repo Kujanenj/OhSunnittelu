@@ -2,7 +2,9 @@
 #define ABSTRACTLISTMODEL_H
 
 #include <QSqlQueryModel>
-
+/*!
+ * \brief The AbstractListModel class is baseclass for all models for displaying SQL
+ */
 class AbstractListModel : public QSqlQueryModel
 {
     Q_OBJECT
