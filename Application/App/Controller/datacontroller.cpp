@@ -218,7 +218,6 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
             if (diff_distances.indexOf(results.at(i).at(1)) == -1)
             {
                 diff_distances.push_back(results.at(i).at(1));
-                qDebug() << results.at(i).at(1);
             }
         }
         for (auto dist : diff_distances)
@@ -244,13 +243,12 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
     }
     else if(graphtype=="Teams"){
         for(int i =0; i<someTeamTimes_.size(); i++){
-            float to_insert = (dataModel_->timeToFloat(someTeamTimes_.at(i).at(2))) / 3600;
+            float to_insert = (dataModel_->timeToFloat(someTeamTimes_.at(i))) / 3600;
             values.append(static_cast<int>(to_insert * 100));
         }
-            return values;
+        return values;
     }
     return values;
-
 }
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance)
 {
@@ -268,7 +266,7 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
                 kansallisuudet.append(results.at(i).first);
             }
         }
-        kansallisuudet.append("Muut maat");
+        kansallisuudet.append("Other countries");
         return kansallisuudet;
     }
     else if (graphtype == "osallistujat")
@@ -303,11 +301,6 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
         }
         return matkat;
     }
-    else if(graphtype== "Teams"){
-        QVector<std::pair<QString,QString>> results=dataModel_->getBestTeams(10,year,distance); //Nimet
-        return translateSomeNames(results);
-
-    }
     return {};
 }
 
@@ -333,7 +326,6 @@ QStringList DataController::getDistances(QString year)
             matkat.push_back(results.at(i).at(1));
         }
     }
-    qDebug() << matkat;
     return matkat;
 }
 
@@ -356,10 +348,16 @@ QStringList DataController::getDropdownDistances()
     return distances_;
 }
 
-QVector<QString> DataController::translateSomeNames(QVector<std::pair<QString, QString> > result)
+QStringList DataController::getTopTeams(QString year, QString distance)
+{
+    QVector<std::pair<QString,QString>> results=dataModel_->getBestTeams(10,year,distance); //Nimet
+    return translateSomeNames(results);
+}
+
+QStringList DataController::translateSomeNames(QVector<std::pair<QString, QString> > result)
 {
     someTeamTimes_.clear();
-    QVector<QString> returnList;
+    QStringList returnList;
     for(int i = 0; i<result.size(); i++){
         returnList.push_back(result.at(i).first);
         someTeamTimes_.push_back(result.at(i).second);

@@ -14,8 +14,8 @@ Item {
     }
 
     function comboFunction() {
-        top10chart.title = "Top 10 teams " + comboBoxSortDistances.currentText
         top5averageSpeedChart.title = "Top 5 average speed " + comboBoxSortYears.currentText
+        top10chart.title = "Top 10 teams " + comboBoxSortDistances.currentText + " in " + comboBoxSortYears.currentText
 
         var year = "2008"
         distances.categories = DataController.getDistances(year)
@@ -26,6 +26,17 @@ Item {
         for(var i = 0; i < keskinopeus_top_5.length; i++){
             keskinopeudet.append(keskinopeus_top_5[i] / 10)
         }
+
+        var bestTeams = DataController.getTopTeams(comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
+
+        console.log(bestTeams)
+        teams.categories = bestTeams
+        var averageTimes = DataController.getGraphValues("Teams", "2019", "P50")
+
+        // TODO JEMPPU Laita averageTimes akselit toimimaa - Ajat saat averageTimes vectorista
+        // Lisäksi korjaa toi keskinopeus chartti silleen, että se laskee ne top5 keskinopeudet
+        // siltä väliltä mitä searchis haetaan - eli EI vain 5 vuoden väliä vaan esim 2012-2019
+        // väliltä kaikkien matkojen keskinopeudet
     }
 
     Frame {
@@ -88,7 +99,7 @@ Item {
                         categories: ["Team 1", "Team 2" ]
                     }
                     BarSet {
-                        id: averageSpeed
+                        id: averageTimeValues
                         color: "#0000ff"
                         label: "Average times"
                         values: [21.24, 25]

@@ -19,6 +19,13 @@ Item {
     }
 
     function comboFunction(){
+        bestTimesChart.title = "Best times in distance " + comboBoxSortDistances.currentText
+        distributionChart.title = "Distribution of athletes by country " +
+                comboBoxSortDistances.currentText + " in " +
+                comboBoxSortYears.currentText
+        participantChart.title = "Participants on different trips in " + comboBoxSortYears.currentText
+        bestskiersChart.title = "The difference between best skiers and winner " + comboBoxSortDistances.currentText +
+                " in " + comboBoxSortYears.currentText
 
         years.categories=DataController.getYears();
 
@@ -72,13 +79,13 @@ Item {
         anchors.fill: parent
 
         ChartView {
-            title: "Matkan parhaiden hiihtäjien ero voittajaan"
+            id: bestskiersChart
+            title: "The difference between best skiers and winner"
             antialiasing: true
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.right: parent.horizontalCenter
             anchors.bottom: parent.verticalCenter
-            id: linechart
             theme: ChartView.ChartThemeDark
 
             ComboBox {
@@ -101,7 +108,7 @@ Item {
 
             LineSeries {
                 id: series
-                name: "Ajat"
+                name: "Times"
 
                 axisX: CategoryAxis{
                     min: 0
@@ -205,7 +212,8 @@ Item {
             }
         }
         ChartView {
-            title: "Osallistujat eri matkoille suhteessa"
+            id: participantChart
+            title: "Participants on different trips"
             theme: ChartView.ChartThemeDark
             antialiasing: true
             anchors.top: parent.verticalCenter
@@ -221,7 +229,8 @@ Item {
             }
         }
         ChartView {
-            title: "Urheilijoiden jakauma maittain"
+            id: distributionChart
+            title: "Distribution of athletes by country"
             width: 625
             height: 325
             theme: ChartView.ChartThemeDark
@@ -239,8 +248,8 @@ Item {
             }
         }
         ChartView {
-            title: "Parhaat ajat eri vuosille matkalla x"
-            id: testi
+            title: "Best times in distance"
+            id: bestTimesChart
             anchors.left: parent.horizontalCenter
             anchors.top: parent.top
             anchors.right: parent.right
@@ -258,8 +267,8 @@ Item {
                 axisY: BarCategoryAxis{
                     categories: ["0:00:00", "1:00:00", "2:00:00", "3:00:00", "4:00:00", "5:00:00"]
                     }
-                BarSet { id: miehet; label: "Miehet"; values: [2, 2, 3.32, 4, 2.24, 4.12] ; color: "blue"}
-                BarSet { id: naiset; label: "Naiset"; values: [5, 1, 2, 4, 1.12, 2] ; color: "red"}
+                BarSet { id: miehet; label: "Men"; values: [2, 2, 3.32, 4, 2.24, 4.12] ; color: "blue"}
+                BarSet { id: naiset; label: "Women"; values: [5, 1, 2, 4, 1.12, 2] ; color: "red"}
             }
         }
     }

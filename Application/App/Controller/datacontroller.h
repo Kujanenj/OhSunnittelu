@@ -82,13 +82,15 @@ public:
      * @return valid distances_ vector
      */
     Q_INVOKABLE QStringList getDropdownDistances();
+
+    Q_INVOKABLE QStringList getTopTeams(QString year, QString distance);
 signals:
 
 public slots:
 
 private:
 
-    QVector<QString> translateSomeNames(QVector<std::pair<QString,QString>> result);
+    QStringList translateSomeNames(QVector<std::pair<QString,QString>> result);
     QVector<QString> someTeamTimes_;
     std::shared_ptr<DataBase> database_;
     std::shared_ptr<Model::DataModel> dataModel_;
