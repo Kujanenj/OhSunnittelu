@@ -133,7 +133,7 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
     {
         QString query
             = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
-        QVector<std::pair<QString, float>> results = dataModel_->getCountries(query);
+        QVector<std::pair<QString, float>> results = dataModel_->getPercanteges(query,9);
         for (int i = 0; i < results.size(); i++)
         {
             if (results.at(i).second < 20)
@@ -191,7 +191,7 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
     else if (graphtype == "osallistujat")
     {
         QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
-        QVector<std::pair<QString, float>> results = dataModel_->getDistances(query);
+        QVector<std::pair<QString, float>> results = dataModel_->getPercanteges(query,1);
         for (int i = 0; i < results.size(); i++)
         {
             if (!distances_.contains(results.at(i).first))
@@ -327,7 +327,7 @@ void DataController::updateDropdownDistances()
 {
     distances_.clear();
     QString query = "SELECT * FROM Results ";
-    QVector<std::pair<QString, float>> results = dataModel_->getDistances(query);
+    QVector<std::pair<QString, float>> results = dataModel_->getPercanteges(query,1);
     for (int i = 0; i < results.size(); i++)
     {
         if (!distances_.contains(results.at(i).first))
