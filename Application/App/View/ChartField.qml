@@ -12,7 +12,7 @@ Item {
     id: charts
 
     function updateDropDown() {
-        var distances = DataController.getDist()
+        var distances = DataController.getDropdownDistances()
         var years = DataController.getYears();
         comboBoxSortDistances.model = distances;
         comboBoxSortYears.model = years;

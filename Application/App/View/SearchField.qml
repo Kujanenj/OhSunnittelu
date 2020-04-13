@@ -662,7 +662,7 @@ Item {
                         resultModel.updateModel("Results")
                         analyticsModel.updateModel("Analytics")
                         personalResultModel.updateModel("PersonalResults")
-                        DataController.updateDistances()
+                        DataController.updateDropdownDistances()
                         searchButton.enabled = true
                         resultButton.enabled = true
                         analyticsButton.enabled = true

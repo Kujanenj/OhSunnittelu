@@ -4,41 +4,37 @@
 namespace Controller
 {
 
-
-DataController::DataController(std::shared_ptr<Model::DataModel> model, QObject *parent ) :
-    QObject(parent)
+DataController::DataController(std::shared_ptr<Model::DataModel> model, QObject* parent)
+    : QObject(parent)
 {
-
-    dataModel_=model;
+    dataModel_ = model;
     qDebug() << "DataController created";
 }
 
 DataController::~DataController()
 {
-
     database_->removeData();
     qDebug() << "DataController removed";
 }
 
 void DataController::searchButtonClicked(QString startYear, QString endYear,
-                                  QVector<QString> distances, QString gender, QVector<QString> ages,
-                                  QString firstName, QString lastName,
-                                  QString place, QString nationality,
-                                  QString team, QString personalSearch)
-{ 
-    qDebug()<<"---------------------------";
+    QVector<QString> distances, QString gender, QVector<QString> ages, QString firstName,
+    QString lastName, QString place, QString nationality, QString team, QString personalSearch)
+{
+    qDebug() << "---------------------------";
     years_.clear();
     database_->removeData();
 
     // Changes nationality text to match with all nationalities
-    if(nationality == "All"){
+    if (nationality == "All")
+    {
         nationality = "0";
     }
 
     // Takes 2 nationality symbol letters
     nationality = nationality.left(2);
 
-    QMap<QString,QString> parameters;
+    QMap<QString, QString> parameters;
 
     int size = endYear.toInt() - startYear.toInt();
 
@@ -49,92 +45,104 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     parameters.insert("Paikkakunta", place);
     parameters.insert("Joukkue", team);
 
-    //MULTISEARCH FOR YEAR, DISTANCE, AGESERIES
-    for(int i = 0; i <= size; i++) {
-
-        //YEAR
+    // MULTISEARCH FOR YEAR, DISTANCE, AGESERIES
+    for (int i = 0; i <= size; i++)
+    {
+        // YEAR
         QString s;
         s = QString::number(startYear.toInt() + i);
 
         years_.append(s);
         parameters.insert("Vuosi", s);
 
-        //DISTANCES LOOPING
-        for(int j = 0; j < distances.size(); j++){
+        // DISTANCES LOOPING
+        for (int j = 0; j < distances.size(); j++)
+        {
             QString distance = distances.at(j);
 
             parameters.insert("Matka", distance);
 
-            //AGES LOOPING
-            for(int k = 0; k < ages.size(); k++){
+            // AGES LOOPING
+            for (int k = 0; k < ages.size(); k++)
+            {
                 QString age = ages.at(k);
 
                 parameters.insert("Ikaluokka", age);
 
-                try{
-                    dataModel_->doRequest(parameters,parserConfig_);
+                try
+                {
+                    dataModel_->doRequest(parameters, parserConfig_);
                     dataModel_->insertData(personalSearch);
-
                 }
-                catch (QString msg){
-                    qDebug()<<msg<< endl << " continuing search";
+                catch (QString msg)
+                {
+                    qDebug() << msg << endl << " continuing search";
                 }
             }
         }
     }
-    try {
-
-        if(firstName == "" && lastName == "" && team == "" && place == "" && nationality == "0") {
-            std::pair<QString, QString> years={startYear,endYear};
-            if(distances.at(0) == "kaikki") {
+    try
+    {
+        if (firstName == "" && lastName == "" && team == "" && place == "" && nationality == "0")
+        {
+            std::pair<QString, QString> years = { startYear, endYear };
+            if (distances.at(0) == "kaikki")
+            {
                 distances.clear();
-                distances = {"P50", "V50", "P100", "P32", "V20",
-                            "V32", "V20jun", "P42", "V32", "P20",
-                            "P30", "P44", "P60", "P62", "P25", "P32",
-                            "P35", "P45", "P52", "P53", "P75", "V30",
-                            "V45", "V53", "V75"};
-
+                distances = { "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V32",
+                    "P20", "P30", "P44", "P60", "P62", "P25", "P32", "P35", "P45", "P52", "P53",
+                    "P75", "V30", "V45", "V53", "V75" };
             }
-            dataModel_->analytics(distances,years);
+            dataModel_->analytics(distances, years);
             dataModel_->insertData("Analytics");
         }
-    } catch (...) {
-        qDebug()<<"Viduigsi meni! Ebin:D";
+    }
+    catch (...)
+    {
+        qDebug() << "Viduigsi meni! Ebin:D";
         delete this;
     }
 }
 
-void DataController::sortButtonClicked(QString selectedField, QString lowerBound, QString upperBound, QString rankSilder)
+void DataController::sortButtonClicked(
+    QString selectedField, QString lowerBound, QString upperBound, QString rankSilder)
 {
-
-    QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder +  " AND TIME < " + upperBound
-            + " AND TIME > "+ lowerBound + " ORDER BY " + selectedField+ " ASC";
+    QString command = "SELECT * FROM Results WHERE PLACE <= " + rankSilder + " AND TIME < "
+        + upperBound + " AND TIME > " + lowerBound + " ORDER BY " + selectedField + " ASC";
     dataModel_->sortDataBase(command);
-
 }
 
-
-QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance){
+QVector<int> DataController::getGraphValues(QString graphtype, QString year, QString distance)
+{
     QVector<int> values = {};
     int count_small_countries = 0;
-    if(graphtype == "ajat"){
-        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "' AND place < 11";
+    if (graphtype == "ajat")
+    {
+        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '"
+            + year + "' AND place < 11";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
 
-        for(int i = 0; i < results.size(); i++){
-            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
-            values.append(static_cast<int>(to_insert*100));
+        for (int i = 0; i < results.size(); i++)
+        {
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600;
+            values.append(static_cast<int>(to_insert * 100));
         }
         return values;
     }
-    else if(graphtype == "kansallisuudet"){
-        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
-        QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
-        for(int i = 0; i < results.size(); i++){
-            if(results.at(i).second < 20) {
-                count_small_countries = static_cast<int>(count_small_countries + results.at(i).second);
+    else if (graphtype == "kansallisuudet")
+    {
+        QString query
+            = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
+        QVector<std::pair<QString, float>> results = dataModel_->getCountries(query);
+        for (int i = 0; i < results.size(); i++)
+        {
+            if (results.at(i).second < 20)
+            {
+                count_small_countries
+                    = static_cast<int>(count_small_countries + results.at(i).second);
             }
-            else {
+            else
+            {
                 values.append(static_cast<int>(results.at(i).second));
             }
         }
@@ -142,73 +150,91 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         return values;
     }
 
-    else if(graphtype == "parhaat_m"){
-        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND place = 1 ORDER BY year";
+    else if (graphtype == "parhaat_m")
+    {
+        QString query = "SELECT * FROM Results WHERE distance = '" + distance
+            + "' AND place = 1 ORDER BY year";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
         int last = getYears().at(0).toInt();
-        for(int i = 0; i < results.size(); i++){
-            while(last +1 < results.at(i).at(0).toInt()){
+        for (int i = 0; i < results.size(); i++)
+        {
+            while (last + 1 < results.at(i).at(0).toInt())
+            {
                 values.append(0);
                 ++last;
             }
-            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
-            values.append(static_cast<int>(to_insert*100));
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600;
+            values.append(static_cast<int>(to_insert * 100));
             last = results.at(i).at(0).toInt();
         }
         return values;
     }
-    else if(graphtype == "parhaat_n"){
-        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND placeN = 1 ORDER BY year";
+    else if (graphtype == "parhaat_n")
+    {
+        QString query = "SELECT * FROM Results WHERE distance = '" + distance
+            + "' AND placeN = 1 ORDER BY year";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
-        int last = getYears().at(0).toInt() -1;
-        for(int i = 0; i < results.size(); i++){
-            while(last +1 < results.at(i).at(0).toInt()){
+        int last = getYears().at(0).toInt() - 1;
+        for (int i = 0; i < results.size(); i++)
+        {
+            while (last + 1 < results.at(i).at(0).toInt())
+            {
                 values.append(0);
                 ++last;
             }
-            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2)))/3600;
-            values.append(static_cast<int>(to_insert*100));
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600;
+            values.append(static_cast<int>(to_insert * 100));
             last = results.at(i).at(0).toInt();
         }
         return values;
     }
-    else if(graphtype == "osallistujat"){
+    else if (graphtype == "osallistujat")
+    {
         QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
-        QVector<std::pair<QString, float> > results = dataModel_->getDistances(query);
-        for(int i = 0; i < results.size(); i++){
-            if(!distances_.contains(results.at(i).first)) {
+        QVector<std::pair<QString, float>> results = dataModel_->getDistances(query);
+        for (int i = 0; i < results.size(); i++)
+        {
+            if (!distances_.contains(results.at(i).first))
+            {
                 distances_.push_back(results.at(i).first);
             }
             values.append(static_cast<int>(results.at(i).second));
         }
         return values;
     }
-    else if(graphtype == "top_5"){
-
-        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year+5  + "' AND place <= 5 ORDER BY distance";
+    else if (graphtype == "top_5")
+    {
+        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year + 5
+            + "' AND place <= 5 ORDER BY distance";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
         QVector<QString> diff_distances;
         QVector<std::pair<QString, float>> distances;
         int amount = 0;
         float total = 0;
         float kilometers;
-        for(int i = 0; i < results.size(); i++){
-            if(diff_distances.indexOf(results.at(i).at(1)) == -1){
+        for (int i = 0; i < results.size(); i++)
+        {
+            if (diff_distances.indexOf(results.at(i).at(1)) == -1)
+            {
                 diff_distances.push_back(results.at(i).at(1));
                 qDebug() << results.at(i).at(1);
             }
         }
-        for(auto dist : diff_distances){
-            for(int i = 0; i < results.size(); i++){
-                if(dist == results.at(i).at(1)){
-                    total += dataModel_->timeToFloat(results.at(i).at(2))/3600;
+        for (auto dist : diff_distances)
+        {
+            for (int i = 0; i < results.size(); i++)
+            {
+                if (dist == results.at(i).at(1))
+                {
+                    total += dataModel_->timeToFloat(results.at(i).at(2)) / 3600;
                     amount += 1;
                 }
             }
-            if(dist.length() == 6){
-                dist.remove(3,3);
+            if (dist.length() == 6)
+            {
+                dist.remove(3, 3);
             }
-            kilometers = dist.remove(0,1).toFloat();
+            kilometers = dist.remove(0, 1).toFloat();
             values.append(kilometers / (total / amount) * 10);
             total = 0;
             amount = 0;
@@ -217,47 +243,58 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
     }
     return values;
 }
-QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance){
-    if(graphtype == "kansallisuudet"){
-        QString query = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
-        QVector<std::pair<QString, float> > results = dataModel_->getCountries(query);
+QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance)
+{
+    if (graphtype == "kansallisuudet")
+    {
+        QString query
+            = "SELECT * FROM Results WHERE distance = '" + distance + "' AND year = '" + year + "'";
+        QVector<std::pair<QString, float>> results = dataModel_->getCountries(query);
 
         QVector<QString> kansallisuudet;
-        for(int i = 0; i < results.size(); i++){
-            if(results.at(i).second >= 20) {
+        for (int i = 0; i < results.size(); i++)
+        {
+            if (results.at(i).second >= 20)
+            {
                 kansallisuudet.append(results.at(i).first);
             }
         }
         kansallisuudet.append("Muut maat");
         return kansallisuudet;
     }
-    else if(graphtype == "osallistujat"){
+    else if (graphtype == "osallistujat")
+    {
         QString query = "SELECT * FROM Results WHERE year = '" + year + "'";
 
-        QVector<std::pair<QString, float> > results = dataModel_->getDistances(query);
+        QVector<std::pair<QString, float>> results = dataModel_->getDistances(query);
 
         QVector<QString> osallistujat;
-        for(int i = 0; i < results.size(); i++){
+        for (int i = 0; i < results.size(); i++)
+        {
             osallistujat.append(results.at(i).first);
         }
         return osallistujat;
     }
-    else if(graphtype == "top_5"){
-        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year+5  + "' AND place <= 5 ORDER BY distance";
+    else if (graphtype == "top_5")
+    {
+        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year + 5
+            + "' AND place <= 5 ORDER BY distance";
 
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
 
         QVector<QString> matkat;
         QVector<QString>::iterator it;
-        for(int i = 0; i < results.size(); i++){
-           it = std::find(matkat.begin(), matkat.end(), results.at(i).at(1));
-           if(it == matkat.end()){
-               matkat.push_back(results.at(i).at(1));
-           }
+        for (int i = 0; i < results.size(); i++)
+        {
+            it = std::find(matkat.begin(), matkat.end(), results.at(i).at(1));
+            if (it == matkat.end())
+            {
+                matkat.push_back(results.at(i).at(1));
+            }
         }
         return matkat;
     }
-    return{};
+    return {};
 }
 
 QStringList DataController::getYears()
@@ -267,34 +304,40 @@ QStringList DataController::getYears()
 
 QStringList DataController::getDistances(QString year)
 {
-    QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year+5  + "' AND place <= 5 ORDER BY distance";
+    QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year + 5
+        + "' AND place <= 5 ORDER BY distance";
 
     QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
 
     QStringList matkat;
     QStringList::iterator it;
-    for(int i = 0; i < results.size(); i++){
-       it = std::find(matkat.begin(), matkat.end(), results.at(i).at(1));
-       if(it == matkat.end()){
-           matkat.push_back(results.at(i).at(1));
-       }
+    for (int i = 0; i < results.size(); i++)
+    {
+        it = std::find(matkat.begin(), matkat.end(), results.at(i).at(1));
+        if (it == matkat.end())
+        {
+            matkat.push_back(results.at(i).at(1));
+        }
     }
+    qDebug() << matkat;
     return matkat;
 }
 
-void DataController::updateDistances()
+void DataController::updateDropdownDistances()
 {
     distances_.clear();
     QString query = "SELECT * FROM Results ";
-    QVector<std::pair<QString, float> > results = dataModel_->getDistances(query);
-    for(int i = 0; i < results.size(); i++){
-        if(!distances_.contains(results.at(i).first)) {
+    QVector<std::pair<QString, float>> results = dataModel_->getDistances(query);
+    for (int i = 0; i < results.size(); i++)
+    {
+        if (!distances_.contains(results.at(i).first))
+        {
             distances_.push_back(results.at(i).first);
         }
     }
 }
 
-QStringList DataController::getDist()
+QStringList DataController::getDropdownDistances()
 {
     return distances_;
 }

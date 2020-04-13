@@ -13,47 +13,47 @@
 
 #include "abstarctdatabase.h"
 
-#define TABLE                   "Results"
-#define TABLE_YEAR              "year"
-#define TABLE_DIST              "distance"
-#define TABLE_TIME              "time"
-#define TABLE_PLACE             "place"
-#define TABLE_PLACEM            "placeM"
-#define TABLE_PLACEN            "placeN"
-#define TABLE_GENDER            "gender"
-#define TABLE_SFNAME            "SFname"
-#define TABLE_CITY              "city"
-#define TABLE_NATIONALITY       "nationality"
-#define TABLE_AGE               "age"
-#define TABLE_TEAM              "team"
+#define TABLE "Results"
+#define TABLE_YEAR "year"
+#define TABLE_DIST "distance"
+#define TABLE_TIME "time"
+#define TABLE_PLACE "place"
+#define TABLE_PLACEM "placeM"
+#define TABLE_PLACEN "placeN"
+#define TABLE_GENDER "gender"
+#define TABLE_SFNAME "SFname"
+#define TABLE_CITY "city"
+#define TABLE_NATIONALITY "nationality"
+#define TABLE_AGE "age"
+#define TABLE_TEAM "team"
 
-#define TABLE_2                 "Analytics"
-#define TABLE_2_YEAR            "year"
-#define TABLE_2_DIST            "distance"
-#define TABLE_2_AVGTIME         "avgtime"
-#define TABLE_2_PARTICIPANTS    "participants"
-#define TABLE_2_FASTESTTIME     "fastesttime"
-#define TABLE_2_SLOWESTTIME     "slowesttime"
-#define TABLE_2_WINNER          "winner"
-#define TABLE_2_SECOND          "second"
-#define TABLE_2_THIRD           "third"
-#define TABLE_2_BEST_TEAM       "bestteam"
-#define TABLE_2_WINNERSPEED     "winnerspeed"
-#define TABLE_2_AVERAGESPEED    "averagespeed"
+#define TABLE_2 "Analytics"
+#define TABLE_2_YEAR "year"
+#define TABLE_2_DIST "distance"
+#define TABLE_2_AVGTIME "avgtime"
+#define TABLE_2_PARTICIPANTS "participants"
+#define TABLE_2_FASTESTTIME "fastesttime"
+#define TABLE_2_SLOWESTTIME "slowesttime"
+#define TABLE_2_WINNER "winner"
+#define TABLE_2_SECOND "second"
+#define TABLE_2_THIRD "third"
+#define TABLE_2_BEST_TEAM "bestteam"
+#define TABLE_2_WINNERSPEED "winnerspeed"
+#define TABLE_2_AVERAGESPEED "averagespeed"
 
-#define TABLE_3                  "PersonalResults"
-#define TABLE_3_YEAR              "year"
-#define TABLE_3_DIST              "distance"
-#define TABLE_3_TIME              "time"
-#define TABLE_3_PLACE             "place"
-#define TABLE_3_PLACEM            "placeM"
-#define TABLE_3_PLACEN            "placeN"
-#define TABLE_3_GENDER            "gender"
-#define TABLE_3_SFNAME            "SFname"
-#define TABLE_3_CITY              "city"
-#define TABLE_3_NATIONALITY       "nationality"
-#define TABLE_3_AGE               "age"
-#define TABLE_3_TEAM              "team"
+#define TABLE_3 "PersonalResults"
+#define TABLE_3_YEAR "year"
+#define TABLE_3_DIST "distance"
+#define TABLE_3_TIME "time"
+#define TABLE_3_PLACE "place"
+#define TABLE_3_PLACEM "placeM"
+#define TABLE_3_PLACEN "placeN"
+#define TABLE_3_GENDER "gender"
+#define TABLE_3_SFNAME "SFname"
+#define TABLE_3_CITY "city"
+#define TABLE_3_NATIONALITY "nationality"
+#define TABLE_3_AGE "age"
+#define TABLE_3_TEAM "team"
 
 /**
  * @brief The DataBase class
@@ -64,7 +64,6 @@ class DataBase : public AbstarctDatabase
 {
     Q_OBJECT
 public:
-
     /**
      * @brief DataBase
      * Constructor for database
@@ -72,8 +71,8 @@ public:
      * @param analyticsModel : pointer to analyticsmodel
      */
     explicit DataBase(std::shared_ptr<ResultModel> resultModel = nullptr,
-                      std::shared_ptr<AnalyticsModel> analyticsModel = nullptr,
-                      std::shared_ptr<PersonalResultModel> personalResultModel = nullptr);
+        std::shared_ptr<AnalyticsModel> analyticsModel = nullptr,
+        std::shared_ptr<PersonalResultModel> personalResultModel = nullptr);
 
     ~DataBase();
 
@@ -100,7 +99,6 @@ public:
     void insertIntoTable(QVector<QVector<QString>> data, QString Table);
 
 public slots:
-
     /**
      * @brief removeData
      * Removes all results and analytics data
@@ -108,7 +106,6 @@ public slots:
     void removeData();
 
 private:
-
     /**
      * @brief createTable
      * Creates tables for results and analytics
@@ -119,7 +116,7 @@ private:
     QVector<QString> data;
     QVector<QString> analyticsData;
     QVector<QString> personalData;
-    QString errorMessage_="No errors";
+    QString errorMessage_ = "No errors";
 };
 
 #endif // DATABASE_H
