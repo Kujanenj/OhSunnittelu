@@ -138,15 +138,11 @@ QVector<QVector<QString>> DataModel::searchDataBase(QString sqlCommand)
     return database_->searchDataBase(sqlCommand);
 }
 
-QVector<std::pair<QString, float> > DataModel::getCountries(QString sqlCommand)
+QVector<std::pair<QString, float> > DataModel::getPercanteges(QString sqlCommand, int index)
 {
-    return calc_->calculateGeneral(database_->searchDataBase(sqlCommand),9);
+    return calc_->calculatePercentagesGeneral(database_->searchDataBase(sqlCommand),index);
 }
 
-QVector<std::pair<QString, float> > DataModel::getDistances(QString sqlCommand)
-{
-    return calc_->calculateGeneral(database_->searchDataBase(sqlCommand),1);
-}
 
 float DataModel::timeToFloat(QString time)
 {

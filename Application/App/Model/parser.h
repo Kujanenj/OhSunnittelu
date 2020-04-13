@@ -47,8 +47,14 @@ public:
     * Used to clear old listedData_ vector
     */
    void clearListedData();
-
+   /*!
+    * \brief getTeamNames
+    * \return
+    */
    QVector<QString> getTeamNames();
+   /*!
+    * \brief clearTeams
+    */
    void clearTeams();
 
 private:
