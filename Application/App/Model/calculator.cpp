@@ -3,6 +3,7 @@
 #include <math.h>
 #include <QMap>
 #include <QDebug>
+#include <algorithm>
 namespace Model {
 
 
@@ -88,20 +89,36 @@ std::pair<QVector<QString>, QVector<QString> > Calculator::getMinMaxResults(QVec
     return returnValues;
 }
 
-std::pair<QString, QString> Calculator::getBestTeam(QVector<std::pair<QString,QString>> results)
-{
 
-    QString returnTeam=results.at(0).first;
-    QString returnTime =results.at(0).second;
-    std::pair<QString,QString> returnPair = {returnTeam,returnTime};
-    for(int i = 0; i<results.size(); i++){
-        if(TimeStringToInt(results.at(i).second)<TimeStringToInt(returnTime)){
-            returnTime=results.at(i).second;
-            returnTeam=results.at(i).first;
+QVector<std::pair<QString, QString> > Calculator::getBestTeams(QVector<std::pair<QString, QString> >results, int amount)
+{
+    if(amount ==1){
+        QString returnTeam=results.at(0).first;
+        QString returnTime =results.at(0).second;
+        std::pair<QString,QString> returnPair = {returnTeam,returnTime};
+        for(int i = 0; i<results.size(); i++){
+            if(TimeStringToInt(results.at(i).second)<TimeStringToInt(returnTime)){
+                returnTime=results.at(i).second;
+                returnTeam=results.at(i).first;
+            }
         }
+        returnPair={returnTeam,returnTime};
+        return {returnPair};
     }
-    returnPair={returnTeam,returnTime};
-    return returnPair;
+
+
+    if(results.size()<amount){
+
+       amount = results.size();
+    }
+    std::sort(results.begin(), results.end(),compareTime());
+    QVector<std::pair<QString, QString> > returnvec;
+    for(int i=0; i<amount; i++){
+        qDebug()<<results.at(i);
+        returnvec.push_back(results.at(i));
+    }
+
+    return returnvec;
 }
 
 QVector<QString> Calculator::calculateAnalytics(QVector<QVector<QString>> nonTeamResults)

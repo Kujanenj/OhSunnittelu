@@ -26,17 +26,13 @@ public:
      * \return minMax
      */
     std::pair<QVector<QString>,QVector<QString>> getMinMaxResults(QVector<QVector<QString>> results);
-    /*!
-     * \brief getBestTeam returns team with the lowest time
-     * \param results <Team, Time>
-     * \return best team
-     */
-    std::pair<QString,QString> getBestTeam(QVector<std::pair<QString,QString>> results);
+
     /**
      * @brief calculateAnalytics Calculates a analytics results partially
      * @param nonTeamResults
      * @return
      */
+    QVector<std::pair<QString,QString>> getBestTeams(QVector<std::pair<QString,QString>>,int amount);
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
 
 
@@ -49,7 +45,7 @@ public:
      * \param time
      * \return time as a float
      */
-    float TimeStringToInt(QString time);
+     static float TimeStringToInt(QString time);
     /*!
      * \brief calculatePercentagesGeneral calculates the percantegas of the key based on the number of results
      * \param results
@@ -65,6 +61,15 @@ private:
      * \return time as a string
      */
     QString IntTimeToString(float time);
+
+
+    struct compareTime{
+        inline bool operator()(const std::pair<QString,QString>& first, const std::pair<QString,QString>& second)
+        {
+            return ( TimeStringToInt(first.second)<TimeStringToInt(second.second) );
+        }
+    };
+
 };
 }
 #endif // CALCULATOR_H
