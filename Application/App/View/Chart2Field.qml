@@ -5,6 +5,24 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
 
 Item {
+
+    function updateDropDown() {
+        var years = DataController.getYears();
+        comboBoxSortYears.model = years;
+    }
+
+    function comboFunction() {
+        var year = "2008"
+        distances.categories = DataController.getDistances(year)
+        var keskinopeus_top_5 = DataController.getGraphValues("top_5", year, "P50")
+        while(keskinopeudet.at(0)){
+            keskinopeudet.remove(0)
+        }
+        for(var i = 0; i < keskinopeus_top_5.length; i++){
+            keskinopeudet.append(keskinopeus_top_5[i] / 10)
+        }
+    }
+
     Frame {
         id: frame
         anchors.topMargin: 49
@@ -19,15 +37,7 @@ Item {
             textRole: "text"
 
             onActivated:  {
-                var year = "2008"
-                distances.categories = DataController.getDistances(year)
-                var keskinopeus_top_5 = DataController.getGraphValues("top_5", year, "P50")
-                while(keskinopeudet.at(0)){
-                    keskinopeudet.remove(0)
-                }
-                for(var i = 0; i < keskinopeus_top_5.length; i++){
-                    keskinopeudet.append(keskinopeus_top_5[i] / 10)
-                }
+                comboFunction()
             }
 
             model: ListModel {
@@ -76,7 +86,7 @@ Item {
                     axisX: BarCategoryAxis { id:distances;
                         categories: ["P100", "P50" ] }
 
-                    BarSet { id: keskinopeudet; label: "Keskinopeus"; values: [21.24, 25] ; color: "blue"}
+                    BarSet { id: keskinopeudet; label: "Average speed"; values: [21.24, 25] ; color: "blue"}
                 }
             }
 
@@ -84,25 +94,40 @@ Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 legend.alignment: Qt.AlignBottom
-                title: "Top 5 hiihtäjät keskinopeus"
+                title: "Top 10 teams"
                 theme: ChartView.ChartThemeDark
 
                 BarSeries {
-                    id: keskinopeus1
+                    id: top10teams
                     axisX: BarCategoryAxis {
-                        id: distances1
-                        categories: ["P100", "P50" ]
+                        id: teams
+                        categories: ["Team 1", "Team 2" ]
                     }
                     BarSet {
                         id: keskinopeudet1
                         color: "#0000ff"
-                        label: "Keskinopeus"
+                        label: "Average speed"
                         values: [21.24, 25]
                     }
                 }
                 antialiasing: true
             }
 
+        }
+
+        ComboBox {
+            id: comboBoxSortYears
+            x: 134
+            y: -56
+            displayText: currentIndex === -1 ? "Years" : currentText
+
+            onActiveFocusChanged: {
+                updateDropDown()
+            }
+
+            onActivated:  {
+                comboFunction()
+            }
         }
     }
 }
