@@ -124,7 +124,8 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
 
         for (int i = 0; i < results.size(); i++)
         {
-            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600;
+            float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600; // :D Ei olisi voinu tehä tätä omaksi funktioksi?
+            //Kun esiintyy varmaan kymmenespaikkaa
             values.append(static_cast<int>(to_insert * 100));
         }
         return values;
@@ -241,7 +242,15 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         }
         return values;
     }
+    else if(graphtype=="Teams"){
+        for(int i =0; i<someTeamTimes_.size(); i++){
+            float to_insert = (dataModel_->timeToFloat(someTeamTimes_.at(i).at(2))) / 3600;
+            values.append(static_cast<int>(to_insert * 100));
+        }
+            return values;
+    }
     return values;
+
 }
 QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, QString distance)
 {
@@ -294,6 +303,11 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
         }
         return matkat;
     }
+    else if(graphtype== "Teams"){
+        QVector<std::pair<QString,QString>> results=dataModel_->getBestTeams(10,year,distance); //Nimet
+        return translateSomeNames(results);
+
+    }
     return {};
 }
 
@@ -340,6 +354,17 @@ void DataController::updateDropdownDistances()
 QStringList DataController::getDropdownDistances()
 {
     return distances_;
+}
+
+QVector<QString> DataController::translateSomeNames(QVector<std::pair<QString, QString> > result)
+{
+    someTeamTimes_.clear();
+    QVector<QString> returnList;
+    for(int i = 0; i<result.size(); i++){
+        returnList.push_back(result.at(i).first);
+        someTeamTimes_.push_back(result.at(i).second);
+    }
+    return returnList;
 }
 
 } // Namespace controller

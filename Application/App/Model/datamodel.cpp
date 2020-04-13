@@ -148,10 +148,10 @@ float DataModel::timeToFloat(QString time)
     return calc_->TimeStringToInt(time);
 }
 
-QVector<std::pair<QString, QString> > DataModel::getBestTeams(QString sqlCommand, int amount, QString year,QString distance)
+QVector<std::pair<QString, QString> > DataModel::getBestTeams(int amount, QString year,QString distance)
 {
     QVector<QVector<QString>> sqlResults;
-
+    QString sqlCommand;
     QVector<std::pair<QString,QString>> teamResults;
     for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
 

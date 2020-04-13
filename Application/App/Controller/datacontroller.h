@@ -87,6 +87,9 @@ signals:
 public slots:
 
 private:
+
+    QVector<QString> translateSomeNames(QVector<std::pair<QString,QString>> result);
+    QVector<QString> someTeamTimes_;
     std::shared_ptr<DataBase> database_;
     std::shared_ptr<Model::DataModel> dataModel_;
 
