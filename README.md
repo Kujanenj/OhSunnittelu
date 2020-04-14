@@ -3,8 +3,8 @@
 ## Tekijät
 Veikko Hiltunen, 283475, veikko.hiltunen@tuni.fi  
 Riku Rainio, 275097, riku.rainio@tuni.fi  
-Jussi Kujanen,  273161 jussi.kujanen@tuni.fi
-Jere-Matias Huttunen,  
+Jussi Kujanen,  273161 jussi.kujanen@tuni.fi  
+Jere-Matias Huttunen,  284010 jere.huttunen@tuni.fi
 
 ## Ympäristö, jolla ohjelmisto toimii
 Ohjelmisto on suunniteltu käyttäen C++, QML ja SQL ja JS. Ohjelmisto rakennettiin  
