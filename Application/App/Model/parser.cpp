@@ -15,6 +15,8 @@ Parser::~Parser()
 
 void Parser::fullParse(QMap<QString,QString> config, QString dataToParse)
 {
+
+    listedData_.clear();
     config_ = config;
     unparsedDataTotal_ = dataToParse;
     try {
@@ -40,6 +42,27 @@ void Parser::clearListedData()
     listedData_.clear();
 }
 
+QVector<QString> Parser::getTeamNames(QString distance, QString year)
+{
+    QVector<QString> returnTeams;
+    std::tuple<QString,QString,QString> placeHolder;
+
+    for(auto it = valid_teams.begin(); it != valid_teams.end(); it++) {
+
+           if(std::get<1>(*it) == distance && std::get<2>(*it)==year){
+               returnTeams.push_back(std::get<0>(*it));
+           }
+    }
+
+    return returnTeams;
+}
+
+void Parser::clearTeams()
+{
+    qDebug()<<"Cleared teams";
+    valid_teams.clear();
+}
+
 void Parser::readFile()
 {
 
@@ -61,7 +84,7 @@ void Parser::readFile()
 void Parser::parseToTable()
 {
 
-    qDebug()<<"String Size "<<unparsedDataTotal_.size();
+
     int tableStartIndex=unparsedDataTotal_.indexOf(config_["tableStart"]);
     int tableEndindex = unparsedDataTotal_.indexOf(config_["tableEnd"]);
 
@@ -75,7 +98,7 @@ void Parser::parseToTable()
     else{
         unparsedDataTotal_=unparsedDataTotal_.remove(0,tableStartIndex); // remove extra stuff from start
         unparsedDataTotal_=unparsedDataTotal_.remove(tableEndindex,unparsedDataTotal_.size()-tableEndindex); //remove extra stuff from end
-        qDebug()<<"String Size "<<unparsedDataTotal_.size();
+
     }
 
 
@@ -122,21 +145,45 @@ void Parser::formListedData()
 {
 
 
+    QMap<std::tuple<QString,QString,QString>,int> teams;
     QVector<QString> insertionVector;
     QStringList lista=unparsedDataTotal_.split("$");
     int total_results = 0;
 
     for(int i=0; i<lista.size(); i++){
-
         insertionVector.append(lista.at(i));
         if(i%12==11 ){
 
-         listedData_.append(insertionVector);
-         insertionVector.clear();
-         total_results += 1;
+            if(insertionVector[2].count(":")>1){
+                if(insertionVector.at(3)>="1"){
+                    if(insertionVector.at(2).length()<8){
+                        insertionVector[2]=insertionVector.at(2)+".00";
+                    }
+                    listedData_.append(insertionVector);
+                    total_results += 1;
+                }
 
+            }
+
+            if(insertionVector.at(11) != "-") {
+                // Check if team exists
+
+                if(teams.contains({insertionVector.at(11),insertionVector.at(1),insertionVector.at(0)})) {
+                    teams[{insertionVector.at(11),insertionVector.at(1),insertionVector.at(0)}]++;
+                }
+                else {
+                    teams[{insertionVector.at(11),insertionVector.at(1),insertionVector.at(0)}] = 1;
+
+                }
+            }
+            insertionVector.clear();
         }
+    }
 
+    for(auto it = teams.begin(); it != teams.end(); it++) {
+        if(it.value() > 3) {
+            valid_teams.push_back({it.key()});
+        }
     }
 
     if (lista.size() == 1){

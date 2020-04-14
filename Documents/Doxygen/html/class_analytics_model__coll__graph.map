@@ -1,5 +1,5 @@
 <map id="AnalyticsModel" name="AnalyticsModel">
 <area shape="rect" id="node1" title="The AnalyticsModel class is used to set roles that can be used to create analytics table on qml." alt="" coords="13,155,124,181"/>
-<area shape="rect" id="node2" href="$class_abstract_list_model.html" title=" " alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node2" href="$class_abstract_list_model.html" title="The AbstractListModel class is baseclass for all models for displaying SQL." alt="" coords="5,80,132,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="8,5,129,32"/>
 </map>

@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('database_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_2276b5c5161e2d79a7ba5cb14af441ba.html">Data</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">database.h</div>  </div>
@@ -84,80 +104,138 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="abstarctdatabase_8h.html">abstarctdatabase.h</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="database_8h.html#acadaccd8321f8569f31a11bdad1829da">   16</a></span>&#160;<span class="preprocessor">#define TABLE                   &quot;Results&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="database_8h.html#a46bed1c544352ce4f587447c215154fc">   17</a></span>&#160;<span class="preprocessor">#define TABLE_YEAR              &quot;year&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="database_8h.html#a9d2e0859808df8c37b7bc6ca65253f8e">   18</a></span>&#160;<span class="preprocessor">#define TABLE_DIST              &quot;distance&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="database_8h.html#a3732e15d2737873f6c45435153fbfbe7">   19</a></span>&#160;<span class="preprocessor">#define TABLE_TIME              &quot;time&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="database_8h.html#a23b4da887321747919c4b0491bf72aa8">   20</a></span>&#160;<span class="preprocessor">#define TABLE_PLACE             &quot;place&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="database_8h.html#aae654479b004140d4e4d2a24d1ad9a85">   21</a></span>&#160;<span class="preprocessor">#define TABLE_PLACEM            &quot;placeM&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="database_8h.html#a7cee51fd1a2bb1f2c7183a4ba8db7c44">   22</a></span>&#160;<span class="preprocessor">#define TABLE_PLACEN            &quot;placeN&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="database_8h.html#aa53d66f0a5c8db42ebd51cf2fcbad3f3">   23</a></span>&#160;<span class="preprocessor">#define TABLE_GENDER            &quot;gender&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="database_8h.html#a8b7ba2139e9b660b1df9876cb35fa30a">   24</a></span>&#160;<span class="preprocessor">#define TABLE_SFNAME            &quot;SFname&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="database_8h.html#a88412f0a594627a8c1c53a821815d791">   25</a></span>&#160;<span class="preprocessor">#define TABLE_CITY              &quot;city&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="database_8h.html#ab05260918fac5b8b7742fdfe4171df9e">   26</a></span>&#160;<span class="preprocessor">#define TABLE_NATIONALITY       &quot;nationality&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="database_8h.html#a0a49e7bb2c912d25ffeac6075248564e">   27</a></span>&#160;<span class="preprocessor">#define TABLE_AGE               &quot;age&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="database_8h.html#a7681cfa631a830feac80dd8b58a1c514">   28</a></span>&#160;<span class="preprocessor">#define TABLE_TEAM              &quot;team&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="database_8h.html#acadaccd8321f8569f31a11bdad1829da">   16</a></span>&#160;<span class="preprocessor">#define TABLE &quot;Results&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="database_8h.html#a46bed1c544352ce4f587447c215154fc">   17</a></span>&#160;<span class="preprocessor">#define TABLE_YEAR &quot;year&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="database_8h.html#a9d2e0859808df8c37b7bc6ca65253f8e">   18</a></span>&#160;<span class="preprocessor">#define TABLE_DIST &quot;distance&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="database_8h.html#a3732e15d2737873f6c45435153fbfbe7">   19</a></span>&#160;<span class="preprocessor">#define TABLE_TIME &quot;time&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="database_8h.html#a23b4da887321747919c4b0491bf72aa8">   20</a></span>&#160;<span class="preprocessor">#define TABLE_PLACE &quot;place&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="database_8h.html#aae654479b004140d4e4d2a24d1ad9a85">   21</a></span>&#160;<span class="preprocessor">#define TABLE_PLACEM &quot;placeM&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="database_8h.html#a7cee51fd1a2bb1f2c7183a4ba8db7c44">   22</a></span>&#160;<span class="preprocessor">#define TABLE_PLACEN &quot;placeN&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="database_8h.html#aa53d66f0a5c8db42ebd51cf2fcbad3f3">   23</a></span>&#160;<span class="preprocessor">#define TABLE_GENDER &quot;gender&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="database_8h.html#a8b7ba2139e9b660b1df9876cb35fa30a">   24</a></span>&#160;<span class="preprocessor">#define TABLE_SFNAME &quot;SFname&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="database_8h.html#a88412f0a594627a8c1c53a821815d791">   25</a></span>&#160;<span class="preprocessor">#define TABLE_CITY &quot;city&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="database_8h.html#ab05260918fac5b8b7742fdfe4171df9e">   26</a></span>&#160;<span class="preprocessor">#define TABLE_NATIONALITY &quot;nationality&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="database_8h.html#a0a49e7bb2c912d25ffeac6075248564e">   27</a></span>&#160;<span class="preprocessor">#define TABLE_AGE &quot;age&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="database_8h.html#a7681cfa631a830feac80dd8b58a1c514">   28</a></span>&#160;<span class="preprocessor">#define TABLE_TEAM &quot;team&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="database_8h.html#afd53107c438063a831268db065481286">   30</a></span>&#160;<span class="preprocessor">#define TABLE_2                 &quot;Analytics&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="database_8h.html#a3674eaae94a065f054e59f9e74fd96d2">   31</a></span>&#160;<span class="preprocessor">#define TABLE_2_YEAR            &quot;year&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="database_8h.html#aa2084ee1d5d890970779aaedae1628e3">   32</a></span>&#160;<span class="preprocessor">#define TABLE_2_DIST            &quot;distance&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="database_8h.html#aab0fc6326469ca1c6cad362dfa3fa85a">   33</a></span>&#160;<span class="preprocessor">#define TABLE_2_AVGTIME         &quot;avgtime&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="database_8h.html#a3de978b0ab888aced672d2ad9a8fae88">   34</a></span>&#160;<span class="preprocessor">#define TABLE_2_PARTICIPANTS    &quot;participants&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="database_8h.html#a735386b7c6aba55b3bd3e3791d3228d9">   35</a></span>&#160;<span class="preprocessor">#define TABLE_2_FASTESTTIME     &quot;fastesttime&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="database_8h.html#aded4bdc6f2e02c4ff1ad71d630693f6b">   36</a></span>&#160;<span class="preprocessor">#define TABLE_2_SLOWESTTIME     &quot;slowesttime&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="database_8h.html#a6254c659231c36208852f074ef0ee982">   37</a></span>&#160;<span class="preprocessor">#define TABLE_2_WINNER          &quot;winner&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="database_8h.html#a3e8dd652096873f5fd3ffb8e6ab2a406">   38</a></span>&#160;<span class="preprocessor">#define TABLE_2_SECOND          &quot;second&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="database_8h.html#a7d4ac1938f42b55de12f66e8f3d90450">   39</a></span>&#160;<span class="preprocessor">#define TABLE_2_THIRD           &quot;third&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="database_8h.html#a10e697fc1514a1b591a363592e79fa64">   40</a></span>&#160;<span class="preprocessor">#define TABLE_2_BEST_TEAM       &quot;bestteam&quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_data_base.html">   47</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_data_base.html">DataBase</a> : <span class="keyword">public</span> <a class="code" href="class_abstarct_database.html">AbstarctDatabase</a></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_data_base.html#a6c5ee322dfd08aeddfbf134d2665424f">DataBase</a>(std::shared_ptr&lt;ResultModel&gt; resultModel = <span class="keyword">nullptr</span>,</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                      std::shared_ptr&lt;AnalyticsModel&gt; analyticsModel = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_data_base.html#a9d4629e705ccaa4897e9650222a2a648">~DataBase</a>();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#af9c207471ca383489f669be62be6e3af">sortDataBase</a>(QString command);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">searchDataBase</a>(QString config);</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="database_8h.html#afd53107c438063a831268db065481286">   30</a></span>&#160;<span class="preprocessor">#define TABLE_2 &quot;Analytics&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="database_8h.html#a3674eaae94a065f054e59f9e74fd96d2">   31</a></span>&#160;<span class="preprocessor">#define TABLE_2_YEAR &quot;year&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="database_8h.html#aa2084ee1d5d890970779aaedae1628e3">   32</a></span>&#160;<span class="preprocessor">#define TABLE_2_DIST &quot;distance&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="database_8h.html#aab0fc6326469ca1c6cad362dfa3fa85a">   33</a></span>&#160;<span class="preprocessor">#define TABLE_2_AVGTIME &quot;avgtime&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="database_8h.html#a3de978b0ab888aced672d2ad9a8fae88">   34</a></span>&#160;<span class="preprocessor">#define TABLE_2_PARTICIPANTS &quot;participants&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="database_8h.html#a735386b7c6aba55b3bd3e3791d3228d9">   35</a></span>&#160;<span class="preprocessor">#define TABLE_2_FASTESTTIME &quot;fastesttime&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="database_8h.html#aded4bdc6f2e02c4ff1ad71d630693f6b">   36</a></span>&#160;<span class="preprocessor">#define TABLE_2_SLOWESTTIME &quot;slowesttime&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="database_8h.html#a6254c659231c36208852f074ef0ee982">   37</a></span>&#160;<span class="preprocessor">#define TABLE_2_WINNER &quot;winner&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="database_8h.html#a3e8dd652096873f5fd3ffb8e6ab2a406">   38</a></span>&#160;<span class="preprocessor">#define TABLE_2_SECOND &quot;second&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="database_8h.html#a7d4ac1938f42b55de12f66e8f3d90450">   39</a></span>&#160;<span class="preprocessor">#define TABLE_2_THIRD &quot;third&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="database_8h.html#a10e697fc1514a1b591a363592e79fa64">   40</a></span>&#160;<span class="preprocessor">#define TABLE_2_BEST_TEAM &quot;bestteam&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="database_8h.html#a54bd30d314016e6d09a1fab7255a1f01">   41</a></span>&#160;<span class="preprocessor">#define TABLE_2_WINNERSPEED &quot;winnerspeed&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="database_8h.html#a7b9a7887ba47abae59320fb2af4778da">   42</a></span>&#160;<span class="preprocessor">#define TABLE_2_AVERAGESPEED &quot;averagespeed&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="database_8h.html#aab2af97a2794bc988d1bbd4330782632">   44</a></span>&#160;<span class="preprocessor">#define TABLE_3 &quot;PersonalResults&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="database_8h.html#a1ffe8c82dd0da2597d14b6aa996f41e3">   45</a></span>&#160;<span class="preprocessor">#define TABLE_3_YEAR &quot;year&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="database_8h.html#a8516606571cb0859230b6144563e40a9">   46</a></span>&#160;<span class="preprocessor">#define TABLE_3_DIST &quot;distance&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="database_8h.html#a19229d35b8b06e27c24706330fcaefa8">   47</a></span>&#160;<span class="preprocessor">#define TABLE_3_TIME &quot;time&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="database_8h.html#a09436840f4416bc057301487004586b4">   48</a></span>&#160;<span class="preprocessor">#define TABLE_3_PLACE &quot;place&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="database_8h.html#a0412bb1dd5243b7f9c35a1eb56918d0d">   49</a></span>&#160;<span class="preprocessor">#define TABLE_3_PLACEM &quot;placeM&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="database_8h.html#ab1a04cb22008cdb6b247e3deb9b3c4c4">   50</a></span>&#160;<span class="preprocessor">#define TABLE_3_PLACEN &quot;placeN&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="database_8h.html#a44045a0c9297b8595aacd54a5b8153bd">   51</a></span>&#160;<span class="preprocessor">#define TABLE_3_GENDER &quot;gender&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="database_8h.html#af9006210e3151e54734de5060164bb4c">   52</a></span>&#160;<span class="preprocessor">#define TABLE_3_SFNAME &quot;SFname&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="database_8h.html#a24d82cdbf19e51c2f4e63f5d1ae6bdff">   53</a></span>&#160;<span class="preprocessor">#define TABLE_3_CITY &quot;city&quot;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="database_8h.html#a2f5cb10c7ec0be9cbf67c8ef903c9555">   54</a></span>&#160;<span class="preprocessor">#define TABLE_3_NATIONALITY &quot;nationality&quot;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="database_8h.html#a6f1bb1a4f8767a576b70297efab042b0">   55</a></span>&#160;<span class="preprocessor">#define TABLE_3_AGE &quot;age&quot;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="database_8h.html#af9bfe56e352116454419ffc46e58bca7">   56</a></span>&#160;<span class="preprocessor">#define TABLE_3_TEAM &quot;team&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_data_base.html">   63</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_data_base.html">DataBase</a> : <span class="keyword">public</span> <a class="code" href="class_abstarct_database.html">AbstarctDatabase</a></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_data_base.html#aec6e88e706eb4224325f573a50e17696">DataBase</a>(std::shared_ptr&lt;ResultModel&gt; resultModel = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        std::shared_ptr&lt;AnalyticsModel&gt; analyticsModel = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::shared_ptr&lt;PersonalResultModel&gt; personalResultModel = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_data_base.html#a9d4629e705ccaa4897e9650222a2a648">~DataBase</a>();</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#a7debe68706e9d4429902f1fa77aec712">insertIntoResultsTable</a>(QVector&lt;QString&gt; toInsert);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#a91b34839a2d835662da070240598d152">insertIntoAnalyticsTable</a>(QVector&lt;QString&gt; toInsert);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#af9c207471ca383489f669be62be6e3af">sortDataBase</a>(QString command);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">searchDataBase</a>(QString config);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#ae76c813a3e1b6dd34d0d315c3931677a">removeData</a>();</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#a5c3ac743984b63edf3838e18623e7e61">insertIntoTable</a>(QVector&lt;QVector&lt;QString&gt;&gt; data, QString Table);</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">void</span> createTable() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QVector&lt;QString&gt; data;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    QVector&lt;QString&gt; analyticsData;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    QString errorMessage_=<span class="stringliteral">&quot;No errors&quot;</span>;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;};</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#endif // DATABASE_H</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_data_base.html#ae76c813a3e1b6dd34d0d315c3931677a">removeData</a>();</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> createTable() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    QVector&lt;QString&gt; data_;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    QVector&lt;QString&gt; data;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    QVector&lt;QString&gt; analyticsData;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    QVector&lt;QString&gt; personalData;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    QString errorMessage_ = <span class="stringliteral">&quot;No errors&quot;</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;};</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif // DATABASE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_data_base_html_ae76c813a3e1b6dd34d0d315c3931677a"><div class="ttname"><a href="class_data_base.html#ae76c813a3e1b6dd34d0d315c3931677a">DataBase::removeData</a></div><div class="ttdeci">void removeData()</div><div class="ttdoc">removeData Removes all results and analytics data</div><div class="ttdef"><b>Definition:</b> database.cpp:134</div></div>
-<div class="ttc" id="aclass_data_base_html_aa3144628c164e631b0ad78720a9881c5"><div class="ttname"><a href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">DataBase::searchDataBase</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; searchDataBase(QString config)</div><div class="ttdoc">searchDataBase</div><div class="ttdef"><b>Definition:</b> database.cpp:162</div></div>
-<div class="ttc" id="aclass_data_base_html"><div class="ttname"><a href="class_data_base.html">DataBase</a></div><div class="ttdoc">The DataBase class is used to create different tables and insert data on them. Also removing and sear...</div><div class="ttdef"><b>Definition:</b> database.h:47</div></div>
-<div class="ttc" id="aclass_abstarct_database_html"><div class="ttname"><a href="class_abstarct_database.html">AbstarctDatabase</a></div><div class="ttdoc">The AbstarctDatabase class is used to create SQLite database for skiing results.</div><div class="ttdef"><b>Definition:</b> abstarctdatabase.h:27</div></div>
-<div class="ttc" id="aclass_data_base_html_a9d4629e705ccaa4897e9650222a2a648"><div class="ttname"><a href="class_data_base.html#a9d4629e705ccaa4897e9650222a2a648">DataBase::~DataBase</a></div><div class="ttdeci">~DataBase()</div><div class="ttdef"><b>Definition:</b> database.cpp:9</div></div>
-<div class="ttc" id="aclass_data_base_html_a91b34839a2d835662da070240598d152"><div class="ttname"><a href="class_data_base.html#a91b34839a2d835662da070240598d152">DataBase::insertIntoAnalyticsTable</a></div><div class="ttdeci">void insertIntoAnalyticsTable(QVector&lt; QString &gt; toInsert)</div><div class="ttdoc">insertIntoAnalyticsTable Inserts analytics data to SQL table</div><div class="ttdef"><b>Definition:</b> database.cpp:97</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="adatabase_8h_html_aab2af97a2794bc988d1bbd4330782632"><div class="ttname"><a href="database_8h.html#aab2af97a2794bc988d1bbd4330782632">TABLE_3</a></div><div class="ttdeci">#define TABLE_3</div><div class="ttdef"><b>Definition:</b> database.h:44</div></div>
+<div class="ttc" id="aclass_data_base_html_ae76c813a3e1b6dd34d0d315c3931677a"><div class="ttname"><a href="class_data_base.html#ae76c813a3e1b6dd34d0d315c3931677a">DataBase::removeData</a></div><div class="ttdeci">void removeData()</div><div class="ttdoc">removeData Removes all results and analytics data</div><div class="ttdef"><b>Definition:</b> database.cpp:60</div></div>
+<div class="ttc" id="adatabase_8h_html_aab0fc6326469ca1c6cad362dfa3fa85a"><div class="ttname"><a href="database_8h.html#aab0fc6326469ca1c6cad362dfa3fa85a">TABLE_2_AVGTIME</a></div><div class="ttdeci">#define TABLE_2_AVGTIME</div><div class="ttdef"><b>Definition:</b> database.h:33</div></div>
+<div class="ttc" id="adatabase_8h_html_a0a49e7bb2c912d25ffeac6075248564e"><div class="ttname"><a href="database_8h.html#a0a49e7bb2c912d25ffeac6075248564e">TABLE_AGE</a></div><div class="ttdeci">#define TABLE_AGE</div><div class="ttdef"><b>Definition:</b> database.h:27</div></div>
+<div class="ttc" id="aclass_data_base_html_aa3144628c164e631b0ad78720a9881c5"><div class="ttname"><a href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">DataBase::searchDataBase</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; searchDataBase(QString config)</div><div class="ttdoc">searchDataBase</div><div class="ttdef"><b>Definition:</b> database.cpp:99</div></div>
+<div class="ttc" id="adatabase_8h_html_a0412bb1dd5243b7f9c35a1eb56918d0d"><div class="ttname"><a href="database_8h.html#a0412bb1dd5243b7f9c35a1eb56918d0d">TABLE_3_PLACEM</a></div><div class="ttdeci">#define TABLE_3_PLACEM</div><div class="ttdef"><b>Definition:</b> database.h:49</div></div>
+<div class="ttc" id="adatabase_8h_html_aae654479b004140d4e4d2a24d1ad9a85"><div class="ttname"><a href="database_8h.html#aae654479b004140d4e4d2a24d1ad9a85">TABLE_PLACEM</a></div><div class="ttdeci">#define TABLE_PLACEM</div><div class="ttdef"><b>Definition:</b> database.h:21</div></div>
+<div class="ttc" id="aclass_data_base_html"><div class="ttname"><a href="class_data_base.html">DataBase</a></div><div class="ttdoc">The DataBase class is used to create different tables and insert data on them. Also removing and sear...</div><div class="ttdef"><b>Definition:</b> database.h:63</div></div>
+<div class="ttc" id="aclass_data_base_html_aec6e88e706eb4224325f573a50e17696"><div class="ttname"><a href="class_data_base.html#aec6e88e706eb4224325f573a50e17696">DataBase::DataBase</a></div><div class="ttdeci">DataBase(std::shared_ptr&lt; ResultModel &gt; resultModel=nullptr, std::shared_ptr&lt; AnalyticsModel &gt; analyticsModel=nullptr, std::shared_ptr&lt; PersonalResultModel &gt; personalResultModel=nullptr)</div><div class="ttdoc">DataBase Constructor for database.</div><div class="ttdef"><b>Definition:</b> database.cpp:3</div></div>
+<div class="ttc" id="adatabase_8h_html_a3e8dd652096873f5fd3ffb8e6ab2a406"><div class="ttname"><a href="database_8h.html#a3e8dd652096873f5fd3ffb8e6ab2a406">TABLE_2_SECOND</a></div><div class="ttdeci">#define TABLE_2_SECOND</div><div class="ttdef"><b>Definition:</b> database.h:38</div></div>
+<div class="ttc" id="adatabase_8h_html_a09436840f4416bc057301487004586b4"><div class="ttname"><a href="database_8h.html#a09436840f4416bc057301487004586b4">TABLE_3_PLACE</a></div><div class="ttdeci">#define TABLE_3_PLACE</div><div class="ttdef"><b>Definition:</b> database.h:48</div></div>
+<div class="ttc" id="aclass_abstarct_database_html"><div class="ttname"><a href="class_abstarct_database.html">AbstarctDatabase</a></div><div class="ttdoc">The AbstarctDatabase class is used to create SQLite database for skiing results.</div><div class="ttdef"><b>Definition:</b> abstarctdatabase.h:25</div></div>
+<div class="ttc" id="adatabase_8h_html_a6254c659231c36208852f074ef0ee982"><div class="ttname"><a href="database_8h.html#a6254c659231c36208852f074ef0ee982">TABLE_2_WINNER</a></div><div class="ttdeci">#define TABLE_2_WINNER</div><div class="ttdef"><b>Definition:</b> database.h:37</div></div>
+<div class="ttc" id="adatabase_8h_html_afd53107c438063a831268db065481286"><div class="ttname"><a href="database_8h.html#afd53107c438063a831268db065481286">TABLE_2</a></div><div class="ttdeci">#define TABLE_2</div><div class="ttdef"><b>Definition:</b> database.h:30</div></div>
+<div class="ttc" id="adatabase_8h_html_a23b4da887321747919c4b0491bf72aa8"><div class="ttname"><a href="database_8h.html#a23b4da887321747919c4b0491bf72aa8">TABLE_PLACE</a></div><div class="ttdeci">#define TABLE_PLACE</div><div class="ttdef"><b>Definition:</b> database.h:20</div></div>
+<div class="ttc" id="adatabase_8h_html_aa53d66f0a5c8db42ebd51cf2fcbad3f3"><div class="ttname"><a href="database_8h.html#aa53d66f0a5c8db42ebd51cf2fcbad3f3">TABLE_GENDER</a></div><div class="ttdeci">#define TABLE_GENDER</div><div class="ttdef"><b>Definition:</b> database.h:23</div></div>
+<div class="ttc" id="adatabase_8h_html_a54bd30d314016e6d09a1fab7255a1f01"><div class="ttname"><a href="database_8h.html#a54bd30d314016e6d09a1fab7255a1f01">TABLE_2_WINNERSPEED</a></div><div class="ttdeci">#define TABLE_2_WINNERSPEED</div><div class="ttdef"><b>Definition:</b> database.h:41</div></div>
+<div class="ttc" id="adatabase_8h_html_a2f5cb10c7ec0be9cbf67c8ef903c9555"><div class="ttname"><a href="database_8h.html#a2f5cb10c7ec0be9cbf67c8ef903c9555">TABLE_3_NATIONALITY</a></div><div class="ttdeci">#define TABLE_3_NATIONALITY</div><div class="ttdef"><b>Definition:</b> database.h:54</div></div>
+<div class="ttc" id="adatabase_8h_html_ab1a04cb22008cdb6b247e3deb9b3c4c4"><div class="ttname"><a href="database_8h.html#ab1a04cb22008cdb6b247e3deb9b3c4c4">TABLE_3_PLACEN</a></div><div class="ttdeci">#define TABLE_3_PLACEN</div><div class="ttdef"><b>Definition:</b> database.h:50</div></div>
+<div class="ttc" id="adatabase_8h_html_acadaccd8321f8569f31a11bdad1829da"><div class="ttname"><a href="database_8h.html#acadaccd8321f8569f31a11bdad1829da">TABLE</a></div><div class="ttdeci">#define TABLE</div><div class="ttdef"><b>Definition:</b> database.h:16</div></div>
+<div class="ttc" id="adatabase_8h_html_a3674eaae94a065f054e59f9e74fd96d2"><div class="ttname"><a href="database_8h.html#a3674eaae94a065f054e59f9e74fd96d2">TABLE_2_YEAR</a></div><div class="ttdeci">#define TABLE_2_YEAR</div><div class="ttdef"><b>Definition:</b> database.h:31</div></div>
+<div class="ttc" id="aclass_data_base_html_a9d4629e705ccaa4897e9650222a2a648"><div class="ttname"><a href="class_data_base.html#a9d4629e705ccaa4897e9650222a2a648">DataBase::~DataBase</a></div><div class="ttdeci">~DataBase()</div><div class="ttdef"><b>Definition:</b> database.cpp:10</div></div>
+<div class="ttc" id="adatabase_8h_html_a6f1bb1a4f8767a576b70297efab042b0"><div class="ttname"><a href="database_8h.html#a6f1bb1a4f8767a576b70297efab042b0">TABLE_3_AGE</a></div><div class="ttdeci">#define TABLE_3_AGE</div><div class="ttdef"><b>Definition:</b> database.h:55</div></div>
+<div class="ttc" id="adatabase_8h_html_ab05260918fac5b8b7742fdfe4171df9e"><div class="ttname"><a href="database_8h.html#ab05260918fac5b8b7742fdfe4171df9e">TABLE_NATIONALITY</a></div><div class="ttdeci">#define TABLE_NATIONALITY</div><div class="ttdef"><b>Definition:</b> database.h:26</div></div>
+<div class="ttc" id="adatabase_8h_html_a3732e15d2737873f6c45435153fbfbe7"><div class="ttname"><a href="database_8h.html#a3732e15d2737873f6c45435153fbfbe7">TABLE_TIME</a></div><div class="ttdeci">#define TABLE_TIME</div><div class="ttdef"><b>Definition:</b> database.h:19</div></div>
+<div class="ttc" id="adatabase_8h_html_af9bfe56e352116454419ffc46e58bca7"><div class="ttname"><a href="database_8h.html#af9bfe56e352116454419ffc46e58bca7">TABLE_3_TEAM</a></div><div class="ttdeci">#define TABLE_3_TEAM</div><div class="ttdef"><b>Definition:</b> database.h:56</div></div>
+<div class="ttc" id="adatabase_8h_html_a735386b7c6aba55b3bd3e3791d3228d9"><div class="ttname"><a href="database_8h.html#a735386b7c6aba55b3bd3e3791d3228d9">TABLE_2_FASTESTTIME</a></div><div class="ttdeci">#define TABLE_2_FASTESTTIME</div><div class="ttdef"><b>Definition:</b> database.h:35</div></div>
+<div class="ttc" id="adatabase_8h_html_a8b7ba2139e9b660b1df9876cb35fa30a"><div class="ttname"><a href="database_8h.html#a8b7ba2139e9b660b1df9876cb35fa30a">TABLE_SFNAME</a></div><div class="ttdeci">#define TABLE_SFNAME</div><div class="ttdef"><b>Definition:</b> database.h:24</div></div>
+<div class="ttc" id="adatabase_8h_html_a7d4ac1938f42b55de12f66e8f3d90450"><div class="ttname"><a href="database_8h.html#a7d4ac1938f42b55de12f66e8f3d90450">TABLE_2_THIRD</a></div><div class="ttdeci">#define TABLE_2_THIRD</div><div class="ttdef"><b>Definition:</b> database.h:39</div></div>
+<div class="ttc" id="adatabase_8h_html_a44045a0c9297b8595aacd54a5b8153bd"><div class="ttname"><a href="database_8h.html#a44045a0c9297b8595aacd54a5b8153bd">TABLE_3_GENDER</a></div><div class="ttdeci">#define TABLE_3_GENDER</div><div class="ttdef"><b>Definition:</b> database.h:51</div></div>
 <div class="ttc" id="aabstarctdatabase_8h_html"><div class="ttname"><a href="abstarctdatabase_8h.html">abstarctdatabase.h</a></div></div>
-<div class="ttc" id="aclass_data_base_html_af9c207471ca383489f669be62be6e3af"><div class="ttname"><a href="class_data_base.html#af9c207471ca383489f669be62be6e3af">DataBase::sortDataBase</a></div><div class="ttdeci">void sortDataBase(QString command)</div><div class="ttdoc">sortDataBase sorts the database acording to the sql command</div><div class="ttdef"><b>Definition:</b> database.cpp:157</div></div>
-<div class="ttc" id="aclass_data_base_html_a6c5ee322dfd08aeddfbf134d2665424f"><div class="ttname"><a href="class_data_base.html#a6c5ee322dfd08aeddfbf134d2665424f">DataBase::DataBase</a></div><div class="ttdeci">DataBase(std::shared_ptr&lt; ResultModel &gt; resultModel=nullptr, std::shared_ptr&lt; AnalyticsModel &gt; analyticsModel=nullptr)</div><div class="ttdoc">DataBase Constructor for database.</div><div class="ttdef"><b>Definition:</b> database.cpp:3</div></div>
-<div class="ttc" id="aclass_data_base_html_a7debe68706e9d4429902f1fa77aec712"><div class="ttname"><a href="class_data_base.html#a7debe68706e9d4429902f1fa77aec712">DataBase::insertIntoResultsTable</a></div><div class="ttdeci">void insertIntoResultsTable(QVector&lt; QString &gt; toInsert)</div><div class="ttdoc">insertIntoResultsTable Inserts results data to SQL table</div><div class="ttdef"><b>Definition:</b> database.cpp:56</div></div>
+<div class="ttc" id="adatabase_8h_html_a24d82cdbf19e51c2f4e63f5d1ae6bdff"><div class="ttname"><a href="database_8h.html#a24d82cdbf19e51c2f4e63f5d1ae6bdff">TABLE_3_CITY</a></div><div class="ttdeci">#define TABLE_3_CITY</div><div class="ttdef"><b>Definition:</b> database.h:53</div></div>
+<div class="ttc" id="adatabase_8h_html_a9d2e0859808df8c37b7bc6ca65253f8e"><div class="ttname"><a href="database_8h.html#a9d2e0859808df8c37b7bc6ca65253f8e">TABLE_DIST</a></div><div class="ttdeci">#define TABLE_DIST</div><div class="ttdef"><b>Definition:</b> database.h:18</div></div>
+<div class="ttc" id="adatabase_8h_html_a88412f0a594627a8c1c53a821815d791"><div class="ttname"><a href="database_8h.html#a88412f0a594627a8c1c53a821815d791">TABLE_CITY</a></div><div class="ttdeci">#define TABLE_CITY</div><div class="ttdef"><b>Definition:</b> database.h:25</div></div>
+<div class="ttc" id="adatabase_8h_html_a19229d35b8b06e27c24706330fcaefa8"><div class="ttname"><a href="database_8h.html#a19229d35b8b06e27c24706330fcaefa8">TABLE_3_TIME</a></div><div class="ttdeci">#define TABLE_3_TIME</div><div class="ttdef"><b>Definition:</b> database.h:47</div></div>
+<div class="ttc" id="adatabase_8h_html_aa2084ee1d5d890970779aaedae1628e3"><div class="ttname"><a href="database_8h.html#aa2084ee1d5d890970779aaedae1628e3">TABLE_2_DIST</a></div><div class="ttdeci">#define TABLE_2_DIST</div><div class="ttdef"><b>Definition:</b> database.h:32</div></div>
+<div class="ttc" id="adatabase_8h_html_a46bed1c544352ce4f587447c215154fc"><div class="ttname"><a href="database_8h.html#a46bed1c544352ce4f587447c215154fc">TABLE_YEAR</a></div><div class="ttdeci">#define TABLE_YEAR</div><div class="ttdef"><b>Definition:</b> database.h:17</div></div>
+<div class="ttc" id="aclass_data_base_html_af9c207471ca383489f669be62be6e3af"><div class="ttname"><a href="class_data_base.html#af9c207471ca383489f669be62be6e3af">DataBase::sortDataBase</a></div><div class="ttdeci">void sortDataBase(QString command)</div><div class="ttdoc">sortDataBase sorts the database acording to the sql command</div><div class="ttdef"><b>Definition:</b> database.cpp:94</div></div>
+<div class="ttc" id="adatabase_8h_html"><div class="ttname"><a href="database_8h.html">database.h</a></div></div>
+<div class="ttc" id="adatabase_8h_html_a1ffe8c82dd0da2597d14b6aa996f41e3"><div class="ttname"><a href="database_8h.html#a1ffe8c82dd0da2597d14b6aa996f41e3">TABLE_3_YEAR</a></div><div class="ttdeci">#define TABLE_3_YEAR</div><div class="ttdef"><b>Definition:</b> database.h:45</div></div>
+<div class="ttc" id="adatabase_8h_html_af9006210e3151e54734de5060164bb4c"><div class="ttname"><a href="database_8h.html#af9006210e3151e54734de5060164bb4c">TABLE_3_SFNAME</a></div><div class="ttdeci">#define TABLE_3_SFNAME</div><div class="ttdef"><b>Definition:</b> database.h:52</div></div>
+<div class="ttc" id="adatabase_8h_html_a8516606571cb0859230b6144563e40a9"><div class="ttname"><a href="database_8h.html#a8516606571cb0859230b6144563e40a9">TABLE_3_DIST</a></div><div class="ttdeci">#define TABLE_3_DIST</div><div class="ttdef"><b>Definition:</b> database.h:46</div></div>
+<div class="ttc" id="aclass_abstarct_database_html_a1b58ec991787887a3d2ba293a8e180b8"><div class="ttname"><a href="class_abstarct_database.html#a1b58ec991787887a3d2ba293a8e180b8">AbstarctDatabase::rModel_</a></div><div class="ttdeci">std::shared_ptr&lt; ResultModel &gt; rModel_</div><div class="ttdef"><b>Definition:</b> abstarctdatabase.h:75</div></div>
+<div class="ttc" id="adatabase_8h_html_a10e697fc1514a1b591a363592e79fa64"><div class="ttname"><a href="database_8h.html#a10e697fc1514a1b591a363592e79fa64">TABLE_2_BEST_TEAM</a></div><div class="ttdeci">#define TABLE_2_BEST_TEAM</div><div class="ttdef"><b>Definition:</b> database.h:40</div></div>
+<div class="ttc" id="aclass_data_base_html_a5c3ac743984b63edf3838e18623e7e61"><div class="ttname"><a href="class_data_base.html#a5c3ac743984b63edf3838e18623e7e61">DataBase::insertIntoTable</a></div><div class="ttdeci">void insertIntoTable(QVector&lt; QVector&lt; QString &gt;&gt; data, QString Table)</div><div class="ttdoc">insertIntoTable Used to insert data into different sql tables.</div><div class="ttdef"><b>Definition:</b> database.cpp:119</div></div>
+<div class="ttc" id="adatabase_8h_html_a7cee51fd1a2bb1f2c7183a4ba8db7c44"><div class="ttname"><a href="database_8h.html#a7cee51fd1a2bb1f2c7183a4ba8db7c44">TABLE_PLACEN</a></div><div class="ttdeci">#define TABLE_PLACEN</div><div class="ttdef"><b>Definition:</b> database.h:22</div></div>
+<div class="ttc" id="adatabase_8h_html_a7b9a7887ba47abae59320fb2af4778da"><div class="ttname"><a href="database_8h.html#a7b9a7887ba47abae59320fb2af4778da">TABLE_2_AVERAGESPEED</a></div><div class="ttdeci">#define TABLE_2_AVERAGESPEED</div><div class="ttdef"><b>Definition:</b> database.h:42</div></div>
+<div class="ttc" id="adatabase_8h_html_a3de978b0ab888aced672d2ad9a8fae88"><div class="ttname"><a href="database_8h.html#a3de978b0ab888aced672d2ad9a8fae88">TABLE_2_PARTICIPANTS</a></div><div class="ttdeci">#define TABLE_2_PARTICIPANTS</div><div class="ttdef"><b>Definition:</b> database.h:34</div></div>
+<div class="ttc" id="adatabase_8h_html_a7681cfa631a830feac80dd8b58a1c514"><div class="ttname"><a href="database_8h.html#a7681cfa631a830feac80dd8b58a1c514">TABLE_TEAM</a></div><div class="ttdeci">#define TABLE_TEAM</div><div class="ttdef"><b>Definition:</b> database.h:28</div></div>
+<div class="ttc" id="adatabase_8h_html_aded4bdc6f2e02c4ff1ad71d630693f6b"><div class="ttname"><a href="database_8h.html#aded4bdc6f2e02c4ff1ad71d630693f6b">TABLE_2_SLOWESTTIME</a></div><div class="ttdeci">#define TABLE_2_SLOWESTTIME</div><div class="ttdef"><b>Definition:</b> database.h:36</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_2276b5c5161e2d79a7ba5cb14af441ba.html">Data</a></li><li class="navelem"><a class="el" href="database_8h.html">database.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -7,7 +7,6 @@ AnalyticsModel::AnalyticsModel(QObject *parent) :
 
 }
 
-
 QHash<int, QByteArray> AnalyticsModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
@@ -21,6 +20,8 @@ QHash<int, QByteArray> AnalyticsModel::roleNames() const
     roles[WinnerRole] = "winner";
     roles[SecondRole] = "second";
     roles[ThirdRole] = "third";
+    roles[averageSpeedRole] = "averagespeed";
+    roles[winnerSpeedRole] = "winnerspeed";
     roles[bestteamRole] = "bestteam";
     return roles;
 }

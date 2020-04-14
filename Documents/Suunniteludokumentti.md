@@ -14,18 +14,15 @@
   - #### Requester:
     - Hoitaa datan requestauksen / pullaamisen finlandia-hiihto sivuilta
     - Toimii data requesterin kanssa, jolta pyytää datan filttereihin
-  - #### Datahandler: // EI TOTEUTETTU
-    - Käsittelee parsettua dataa halutulla tavalla. 
-      - Esimerkiksi: Datan järjestäminen aakkosjärjestykseen
   - #### Calculator:
 	- Tarjoaa rajapinnan erinäsiä laskuja varten.
 	- Esim: Laske näiden tuloksien keskiaika.
-	- Käytänössä ottaa sisään QVec<QVec<QString>> muotoisia tuloksia, ja sylkee ulos QStringejä, tai std::pareja.
-	- Ongelma metodina calculateAnalytics, jonka voisi sijoittaa jonnekkin muualle.
+	- Käytänössä ottaa sisään QVec<QVec<QString>> muotoisia tuloksia, ja sylkee ulos QStringejä, tai std::pareja..
 	- Käyttää math.h, sillä sitä tarvitaan osaan laskuista.
 	- Luotiin laskujen suorittamista varten.
   - #### AbstractListModel
-  	- Suorittaa listmodeleitten datan päivittämisen qml, sekä sorttaamisen
+  	- Suorittaa listmodeleitten datan päivittämisen qml, sekä sorttaamisen.
+	- Kantaluokka kaikille modeleille.
   - #### AnalyticsModel:
 	- Sisältää analytics rolejen alustamisen qml varten, jotta taulukkoihin inserttaaminen onnistuu
 	- Periytetty AbstractListModelista
@@ -41,7 +38,6 @@
         - Näyttää perushaku ikkunan, josta voi hakea tietyillä filttereillä dataa
       - Tulokset
         - Näyttää hausta saadut tulokset, jonkin tyyppisessä taulukossa
-        - Ei vielä varmuutta taulukon tyypistä
       - Kaaviot (Charts)
         - Näyttää erilaisia taulukoita, jotka generoidaan datan avulla
         
@@ -52,20 +48,15 @@
 	- Käytännön tasolla siis kutsuu muiden moduulien metodeita.
 	- Esim: doParse kutsuu parsersin metodia fullParse
 	- Pitää dataa tallensa niin kauan, että se saadaan käsiteltyä ja talletettua.
-	- Jatkossa tullaan yhdistämään perushaun toiminnallisuudet yhteen metodiin.
-	- Tullaan myös uudelleen tekemään insert metodit, sillä ne ovat miltei samantyyppisiä.
 	- höydyntää memory.h, sillä std::shared_ptr
 	- Classi luotiin sitä varten, että saatiin koottua modelin moduulien tominnat yhteen rajapintaan.
-  - #### Datamanager: //NIMETTY DATAMODELIKSI?
-    - Kontrolloi dataa requesterin, parserin ja ui:n välillä
-    - Toimii myös yhteydessä taulukkojen luomisen kanssa //lol eipä
-  - #### Graphicsmanager: // EI TOTEUTETTU
-    - Hoitaa graphien näyttämiseen tarvittavat operaatiot 
-      - Esimerkiksi keskinopeuksien laskeminen, top-listojen luominen
+
+
       
 ### Data:
 - #### AbstractDataBase:
 	- Suorittaa databasen luomisen, avaamisen ja sulkemisen
+	- Baseclass kaikille mahdollisille databeisseille.
 - #### Database:
 	- SQLite hyödyntävä SQL tietokanta, jonka avulla hiihtodataa tallennetaan
 	- Mahdollistaa helpon haun ja sorttauksen SqlQueryiden avulla, mutta toteutus tapahtuu muualla
@@ -73,10 +64,14 @@
 	- Poistaa myös taulut, joka haun jälkeen ja käynnistyksessä
 	- Periytetty abstraktista databasesta
 	
-### Tests: // Ei toteutettu
-- Yksikkötestit kaikille metodeille, joissa mahdollisuudet erroreihin
 
-
+### Refaktorointi ja muutokset:
+- Yksikkötestien poisto
+- Graphicsmanager jätetty pois tarpeettomana.
+- Datahandler jätetty pois tarpeettomana.
+- ViewClass jätetty pois tarpeettomana.
+- Datamanegrin metodien karsiminen ja yhdistely. Esim insert database metodit yhdistetty yhdeksi yleiseksi metodiksi
+- Calculaattorien metodien yleistys. Esim calculateCountries ja calculateDistances yhdistetty yleiseksi metodiksi.
 
 ### Itsearviointi:
 
@@ -95,45 +90,65 @@
 	- SQL ei ollut mukana alkuperäisessä suunnitelussa.
 	- Unit testejä ei olla pidetty yllä.
 	
-## Minimitoiminnallisuudet "Perusvaatimukset"
-- Tietyn vuoden kaikki tulokset
-  - Otetaan mukaan vain tietyllä aikavälillä maaliin päässeet
-    - Esimerkki: Vuosi 2015 - Aikaväli: 2-5 tuntia
-- Rinnakkaisten vuosien/matkojen/sukupuolien/ikäsarjojen vertailu 
-  - Esimerkki: Vuodet 2015 & 2016 rinnakkain
-- Lasketaan tietylle vuodelle/vuosille osallistuvien määrä, voittajan & häviäjän ajat, sekä keskinopeudet
-  - Esimerkki: Vuoden 2015-2018 osallistujat - Voittajan aika - Häviäjän aika - Kisan keskiaika/nopeus
-- Lasketaan tiettyjen vuosien voittajien yhteiset keskiajat
-  - Esimerkki: Vuosien 2015-2018 voittajien keskinopeudet
-- Parhaan naisen/miehen sijoituus tietyllä aikavälillä
-  - Esimerkki: Parhaan naisen sijoitus välillä 2010-2015 perinteisen 50km matkalla
-- Tulosten järjestäminen seuran nimen/vuoden/sijoituksen/iän/sukupuolen/kansallisuuden/jne. mukaan
-  - Esimerkki: Järjesää 2015 vuoden tulokset joukkueen nimen mukaan aakkosjärjestykseen
-- Tulosten näyttäminen joukkueittain
-  - Esimerkki: Lasketaan 4 samassa seurassa olevien ajat yhteen ja lasketaan sijoitukset joukkueille
-- Virhetilanteiden hallitseminen
-  - Liikaa tuloksia
-  - Nimi alkaa pienellä alkukirjaimella
-  - Tiettynä vuotena ei järjestetty tiettyä matkaa
-  - Jne...
-  
-## Työnjako (alustava)
-- Jussi
-  - Parserin teko
-  - Datahandlerin teko
-  - Muut toiminnallisuudet
-    
-- Veikko
-  - Requesterin teko
-  - Yleistä fixailua
-  - QML
+## Ohjelman toiminta ja kuvat
 
-- Riku
-  - QML
-  
-- Jemppu
+- ### Etusivu
+![Etusivu](https://i.imgur.com/tAUSJ0D.png)
+#### Toiminta 
+Etusivulta käyttäjä voi suorittaa tuloshaun monilla eri filttereillä.
+Filtterit:
+- Useita vuosia samaan aikaan
+- Monia eri hiihtomatkoja
+- Rajata sukupuolia
+- Tiettyjen ikäsarjojen haku
+- Etu- ja sukunimi haut
+- Paikkakunta filtteri
+- Kansallisuus
+- Joukkue
 
-## Muuta
+---
+
+- ### Tulokset
+![Tulokset](https://i.imgur.com/j5n0qtV.png)
+Tulokset sivulla käyttäjä näkee hakemansa tulokset ja pystyy järjestämään tuloksia eri järjestyksiin.
+Käyttäjä pystyy hakemaan tietylle henkilölle yksilöllisen haun klikkaamalla oikea hiirenpainiketta tuloksen kohdalla ja painalla
+"Show all personal results". Tämä toiminto laskee yksilölliset tulokset koko urheilijan uralta ja siirtää näkymän statistiikka sivulle.
+Lisäksi käyttäjä pystyy tarkastelemaan tuloksia 1-9 tunnin aikavälillä ja näyttämään sijoitukset 10 - 1500 asti.
+Mahdolliset järjestystavat:
+- Vuosi
+- Matka
+- Aika
+- Sijoitus / Sijoitus miehet / Sijoitus naiset
+- Sukupuoli
+- Nimi
+- Kaupunki
+- Kansallisuus
+- Ikä
+- Joukkue
+
+---
+
+- ### Statistiikat
+![Analytiikat](https://i.imgur.com/YfNx7An.png)
+Statistiikat sivulta käyttäjä pystyy tarkastelemaan eri vuosien ja matkojen keskiaikoja, keskinopeuksia, osallistujamääriä, nopeimpia ja hitaimpia aikoja, top 3 urheilijat ja matkan parhaan joukkueen. Lisäksi statistiikka sivulla on yksilöhaun tulokset mikäli käyttäjä on suorittanut yksilöhaun.
+
+---
+
+- ### Kaaviot 1
+![Kaaviot 1](https://i.imgur.com/sj6lH57.png)
+Kaaviot 1 sivulla käyttäjä näkee 4 eri taulukkoa. Ensimmäinen taulukko kuvaa aikaeroa parhaan urheilijan ja 9 hänen jälkeen tulevan välillä. Toinen taulukko oikealla ylhäällä kuvaa parhaita aikoja tietyillä matkoilla naisten ja miesten välillä. Vasemmalla alhaalla on taulukko, jossa käyttäjä pystyy tarkastelemaan urheilijoiden kansallisuus jakaumaa tietyllä matkalla ja vuodella. Oikealla alhaalla on neljäs graafi, joka näyttää osallistujamäärän suhteen tietyille matkoille tietyllä vuodella.
+Kaikkia graafeja pystyy muokkaamaan dynaamisten dropdownboxien avulla.
+
+---
+
+- ### Kaaviot 2
+![Kaaviot 2](https://i.imgur.com/x0bxXO7.png)
+Kaaviot 2 sivulla ylempi taulukko kuvaa kaikkien vuosien matkojen parhaiden 5 urheilijan keskinopeudet. Alempi taulukko näyttää 10 parhaan joukkueen keskiarvolliset tulokset tietyllä matkalla ja tietyllä vuodella.
+Tässäkin graafeja pystyy muokkaamaan dynaamisten dropdownboxien avulla.
+
+---
+
+### Muuta
 - Trello
   - Päivitämme trelloa suunnittelun aikataulutukseen 
   https://trello.com/invite/b/Wp3kg4Ow/89425dc8c3a6074faefcea4a7d8cfa78/ohjelmistojen-suunnittelu

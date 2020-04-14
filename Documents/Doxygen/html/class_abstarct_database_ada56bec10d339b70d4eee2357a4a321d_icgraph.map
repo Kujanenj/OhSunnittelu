@@ -1,0 +1,4 @@
+<map id="AbstarctDatabase::createDataBase" name="AbstarctDatabase::createDataBase">
+<area shape="rect" id="node1" title="createDataBase Checks if database is open and asks database to create tables" alt="" coords="233,5,404,47"/>
+<area shape="rect" id="node2" href="$class_abstarct_database.html#ad73cd90db0d628642c2b708932583479" title="connectToDataBase Makes connection to database" alt="" coords="5,5,185,47"/>
+</map>

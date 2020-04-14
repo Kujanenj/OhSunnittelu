@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -46,6 +54,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('functions.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -65,22 +89,26 @@ $(function() {
 
 <h3><a id="index_a"></a>- a -</h3><ul>
 <li>AbstarctDatabase()
-: <a class="el" href="class_abstarct_database.html#a6a91a6660920b40e6a2aa2ac13395bff">AbstarctDatabase</a>
+: <a class="el" href="class_abstarct_database.html#ad1516d3f0f468452ff4302f6de682637">AbstarctDatabase</a>
 </li>
 <li>AbstractListModel()
 : <a class="el" href="class_abstract_list_model.html#a2e942406101ed77e85b41a709e120cc8">AbstractListModel</a>
 </li>
 <li>AgeRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ad3cd1e65ff0bc6b255acb9ec293a377f">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbcac9d3ccc4ff40bd5d52232ecab5958806">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ad3cd1e65ff0bc6b255acb9ec293a377f">ResultModel</a>
 </li>
 <li>aModel_
 : <a class="el" href="class_abstarct_database.html#a8964e766c19d9d59b2d1cbbf38373cfa">AbstarctDatabase</a>
 </li>
 <li>analytics()
-: <a class="el" href="class_model_1_1_data_model.html#a69d2bcaa271ec57b91852b8b076fdeaa">Model::DataModel</a>
+: <a class="el" href="class_model_1_1_data_model.html#a51db7067b93c0eaecf09838dd5cca4c9">Model::DataModel</a>
 </li>
 <li>AnalyticsModel()
 : <a class="el" href="class_analytics_model.html#a9753745d6a6c473ec735d9037d5d0a17">AnalyticsModel</a>
+</li>
+<li>averageSpeedRole
+: <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba29809fa3e65ef17650e502b838b25f76">AnalyticsModel</a>
 </li>
 <li>AvgtimeRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1bad7b20d52bcccdd0b0928fa1697d50fb2">AnalyticsModel</a>
@@ -96,20 +124,36 @@ $(function() {
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>calcAverageSpeed()
+: <a class="el" href="class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504">Model::Calculator</a>
+</li>
 <li>calcAverageTime()
 : <a class="el" href="class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5">Model::Calculator</a>
 </li>
 <li>calculateAnalytics()
 : <a class="el" href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f">Model::Calculator</a>
 </li>
+<li>calculatePercentagesGeneral()
+: <a class="el" href="class_model_1_1_calculator.html#a96ec0ef11c5515c12401bb67591a8ca0">Model::Calculator</a>
+</li>
 <li>Calculator()
 : <a class="el" href="class_model_1_1_calculator.html#ab182003240f455605a04a07231a42283">Model::Calculator</a>
 </li>
+<li>calcWinnerSpeed()
+: <a class="el" href="class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b">Model::Calculator</a>
+</li>
 <li>CityRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a2d449a03989e8f5e5e6a66053709880c">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbcadb63c0cc323eeeba296c5dc543d423b1">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a2d449a03989e8f5e5e6a66053709880c">ResultModel</a>
 </li>
 <li>clearListedData()
 : <a class="el" href="class_model_1_1_parser.html#ad28c165e8862989f4c5e2dc79b563ea5">Model::Parser</a>
+</li>
+<li>clearPars()
+: <a class="el" href="class_model_1_1_data_model.html#a46392b03869e32565385a9853283edd5">Model::DataModel</a>
+</li>
+<li>clearTeams()
+: <a class="el" href="class_model_1_1_parser.html#a68a0eb3b04f54e0334a1319611be6cb6">Model::Parser</a>
 </li>
 <li>closeDataBase()
 : <a class="el" href="class_abstarct_database.html#a536bbdf9451a8f56d787332b79c4ced3">AbstarctDatabase</a>
@@ -131,7 +175,7 @@ $(function() {
 : <a class="el" href="class_abstract_list_model.html#a52ab75632979a5e7ff1cacf3067a148d">AbstractListModel</a>
 </li>
 <li>DataBase()
-: <a class="el" href="class_data_base.html#a6c5ee322dfd08aeddfbf134d2665424f">DataBase</a>
+: <a class="el" href="class_data_base.html#aec6e88e706eb4224325f573a50e17696">DataBase</a>
 </li>
 <li>DataController()
 : <a class="el" href="class_controller_1_1_data_controller.html#ae097c0fbd8c74c3f07e13aad9c7a69d3">Controller::DataController</a>
@@ -147,13 +191,11 @@ $(function() {
 </li>
 <li>DistanceRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1bab176df4b0a072d714be08463ec00f394">AnalyticsModel</a>
+, <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca192d0aad734205573ee1695bd6ddcdae">PersonalResultModel</a>
 , <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a56cc14836b4443be738861d649186cad">ResultModel</a>
 </li>
-<li>doParse()
-: <a class="el" href="class_model_1_1_data_model.html#ac79e1dbfc76f0484c633e8b9962b1fe1">Model::DataModel</a>
-</li>
 <li>doRequest()
-: <a class="el" href="class_model_1_1_data_model.html#aca409782947bc575b9f39bf25562e774">Model::DataModel</a>
+: <a class="el" href="class_model_1_1_data_model.html#a45647ff636c330db75021629c507d0ce">Model::DataModel</a>
 </li>
 <li>DoRequest()
 : <a class="el" href="class_model_1_1_requester.html#a3248d088aef91fa8df78d21028fde6c3">Model::Requester</a>
@@ -173,13 +215,30 @@ $(function() {
 
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>GenderRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ad84f0aece713cebfed39550e6212aed1">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca48c87937784ab02ddc8fd6879939fcd5">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ad84f0aece713cebfed39550e6212aed1">ResultModel</a>
 </li>
 <li>getAnalyticsVector()
 : <a class="el" href="class_model_1_1_data_model.html#abae6a2f4a5bb1cb4ccf805ce033c12bf">Model::DataModel</a>
 </li>
-<li>getBestTeam()
-: <a class="el" href="class_model_1_1_calculator.html#a73e31fb64100402fe68cfe32b0d51eac">Model::Calculator</a>
+<li>getBestTeams()
+: <a class="el" href="class_model_1_1_calculator.html#a5a75ff605840b543e1cb740f6b5e26c5">Model::Calculator</a>
+, <a class="el" href="class_model_1_1_data_model.html#a854a5a442fe724e5393e5e74deaaa9c3">Model::DataModel</a>
+</li>
+<li>getData()
+: <a class="el" href="class_result_model.html#a509fbd3903c8c48b501368590cdc02d2">ResultModel</a>
+</li>
+<li>getDistances()
+: <a class="el" href="class_controller_1_1_data_controller.html#a7fe1df07e7ce5064d7eb9578ec4bca97">Controller::DataController</a>
+</li>
+<li>getDropdownDistances()
+: <a class="el" href="class_controller_1_1_data_controller.html#a13222f7966a761dec0ab11ceead48b00">Controller::DataController</a>
+</li>
+<li>getGraphTypes()
+: <a class="el" href="class_controller_1_1_data_controller.html#ab1235a784c82b47b25460c503e735d18">Controller::DataController</a>
+</li>
+<li>getGraphValues()
+: <a class="el" href="class_controller_1_1_data_controller.html#adf441db3f5497b6e4ff99d2d34a17f04">Controller::DataController</a>
 </li>
 <li>getListedData()
 : <a class="el" href="class_model_1_1_parser.html#a629c48f3724f7d9a8fa17d04f8f32efe">Model::Parser</a>
@@ -187,8 +246,17 @@ $(function() {
 <li>getMinMaxResults()
 : <a class="el" href="class_model_1_1_calculator.html#a4c75c0ec5fb788bdca39da6321dd5ee6">Model::Calculator</a>
 </li>
+<li>getPercanteges()
+: <a class="el" href="class_model_1_1_data_model.html#a15a51e2f9c09167132d6f6085bd0a541">Model::DataModel</a>
+</li>
 <li>getTeamNames()
-: <a class="el" href="class_model_1_1_data_model.html#a5d4c94a817b0a886753dde02218a5473">Model::DataModel</a>
+: <a class="el" href="class_model_1_1_parser.html#a55dc4dc402cf1a162edcaebb9add6f8b">Model::Parser</a>
+</li>
+<li>getTopTeams()
+: <a class="el" href="class_controller_1_1_data_controller.html#a816bbec31e0d7695663f2b95d9d6bf5a">Controller::DataController</a>
+</li>
+<li>getYears()
+: <a class="el" href="class_controller_1_1_data_controller.html#a5ede0e3fbba1465f1e5a1ef6df5a69ee">Controller::DataController</a>
 </li>
 </ul>
 
@@ -196,26 +264,22 @@ $(function() {
 <h3><a id="index_i"></a>- i -</h3><ul>
 <li>IdRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1bac72622864bea30cab98398d7f0b42ae3">AnalyticsModel</a>
+, <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca9d936bf678ab0ba02bc03d3e5a84570e">PersonalResultModel</a>
 , <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab881b7320ed541ba1ac1339480ead712">ResultModel</a>
 </li>
-<li>insertAnalyticsData()
-: <a class="el" href="class_model_1_1_data_model.html#ac660fa7a193a9e11ee6ddd1af8cb6e3c">Model::DataModel</a>
-</li>
 <li>insertData()
-: <a class="el" href="class_model_1_1_data_model.html#a35b9ae40121e01dec436308ce5be9952">Model::DataModel</a>
+: <a class="el" href="class_model_1_1_data_model.html#aec9b2dddeff6b4e3273d92e31695bb49">Model::DataModel</a>
 </li>
-<li>insertIntoAnalyticsTable()
-: <a class="el" href="class_data_base.html#a91b34839a2d835662da070240598d152">DataBase</a>
-</li>
-<li>insertIntoResultsTable()
-: <a class="el" href="class_data_base.html#a7debe68706e9d4429902f1fa77aec712">DataBase</a>
+<li>insertIntoTable()
+: <a class="el" href="class_data_base.html#a5c3ac743984b63edf3838e18623e7e61">DataBase</a>
 </li>
 </ul>
 
 
 <h3><a id="index_n"></a>- n -</h3><ul>
 <li>NationalityRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00abe7f0081828ad239666a897e7159c1de">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca3e0498a273791b89d3bd50f14ddb3781">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00abe7f0081828ad239666a897e7159c1de">ResultModel</a>
 </li>
 </ul>
 
@@ -234,14 +298,23 @@ $(function() {
 <li>ParticipantsRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1bafc036810234327ad27e2b8e6d47a80c6">AnalyticsModel</a>
 </li>
+<li>PersonalResultModel()
+: <a class="el" href="class_personal_result_model.html#ab15673297927ba82011cba8705e49ab2">PersonalResultModel</a>
+</li>
 <li>PlaceMRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a6b9ed17b7cc54026b5b1bb134b534c6f">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbcaf364c0743dfe29aab13904f3be57bcff">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a6b9ed17b7cc54026b5b1bb134b534c6f">ResultModel</a>
 </li>
 <li>PlaceNRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a425b3cb7eb61de8fd5ee56b3ac31825a">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca83041f6bad472e85f8b1474cb099b5cd">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a425b3cb7eb61de8fd5ee56b3ac31825a">ResultModel</a>
 </li>
 <li>PlaceRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a39247b9a8f102951a33dd45dd3104492">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbcacc8e56955172e052c5e7dc180286529d">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a39247b9a8f102951a33dd45dd3104492">ResultModel</a>
+</li>
+<li>pModel_
+: <a class="el" href="class_abstarct_database.html#a7b8856e3a3d16a41f0b67f31a579cc16">AbstarctDatabase</a>
 </li>
 </ul>
 
@@ -261,6 +334,7 @@ $(function() {
 </li>
 <li>resultRoles
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1b">AnalyticsModel</a>
+, <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbc">PersonalResultModel</a>
 , <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00">ResultModel</a>
 </li>
 <li>rModel_
@@ -274,7 +348,7 @@ $(function() {
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>searchButtonClicked()
-: <a class="el" href="class_controller_1_1_data_controller.html#acb91ba48e889ac7116903af01a67864a">Controller::DataController</a>
+: <a class="el" href="class_controller_1_1_data_controller.html#a2932fc6a896464a3b1681cd14e60e98c">Controller::DataController</a>
 </li>
 <li>searchDataBase()
 : <a class="el" href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">DataBase</a>
@@ -284,7 +358,8 @@ $(function() {
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba6f0cb1f8ccd956dbd70958cb7eb04e39">AnalyticsModel</a>
 </li>
 <li>SFNameRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a3719616798824de7538f1725ab77b8c1">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca6af3515b33f12ecc1228c6feb8fbbc9b">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a3719616798824de7538f1725ab77b8c1">ResultModel</a>
 </li>
 <li>SlowesttimeRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba2add7cbb8d19b5ea9423d7f240945990">AnalyticsModel</a>
@@ -294,7 +369,7 @@ $(function() {
 </li>
 <li>sortDataBase()
 : <a class="el" href="class_data_base.html#af9c207471ca383489f669be62be6e3af">DataBase</a>
-, <a class="el" href="class_model_1_1_data_model.html#acc45fd92dfd9e0e64171609cb12c5ca8">Model::DataModel</a>
+, <a class="el" href="class_model_1_1_data_model.html#aacd98caf5c60553f4caeff6cb3ef290f">Model::DataModel</a>
 </li>
 <li>sortModel()
 : <a class="el" href="class_abstract_list_model.html#ab0328c399ea167081efe3b0ef603c15a">AbstractListModel</a>
@@ -304,18 +379,29 @@ $(function() {
 
 <h3><a id="index_t"></a>- t -</h3><ul>
 <li>TeamRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab070c71f6839491c9ebf5e3a5c250a78">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca4839896a78727b990c1e155cc1ddfff7">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab070c71f6839491c9ebf5e3a5c250a78">ResultModel</a>
 </li>
 <li>ThirdRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba68120d542ab1d2c9d05df05a0b5efd1d">AnalyticsModel</a>
 </li>
 <li>TimeRole
-: <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00aa38cf703838c79909a21a3012a5cd279">ResultModel</a>
+: <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca2a86a41344043026d0a1f23009c2b1d2">PersonalResultModel</a>
+, <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00aa38cf703838c79909a21a3012a5cd279">ResultModel</a>
+</li>
+<li>TimeStringToInt()
+: <a class="el" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632">Model::Calculator</a>
+</li>
+<li>timeToFloat()
+: <a class="el" href="class_model_1_1_data_model.html#a4998719b98ad57dac58e44f9d02cb1a4">Model::DataModel</a>
 </li>
 </ul>
 
 
 <h3><a id="index_u"></a>- u -</h3><ul>
+<li>updateDropdownDistances()
+: <a class="el" href="class_controller_1_1_data_controller.html#a1c146608b2234da98565c1fabc064602">Controller::DataController</a>
+</li>
 <li>updateModel()
 : <a class="el" href="class_abstract_list_model.html#a9abe8ca599e29d892af3ed975544581e">AbstractListModel</a>
 </li>
@@ -326,12 +412,16 @@ $(function() {
 <li>WinnerRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1baca14b4a772a6bd66bcbb5a3b3c7630e6">AnalyticsModel</a>
 </li>
+<li>winnerSpeedRole
+: <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1bab7ca54a2f47a206f48258cfabdf29e82">AnalyticsModel</a>
+</li>
 </ul>
 
 
 <h3><a id="index_y"></a>- y -</h3><ul>
 <li>YearRole
 : <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1baa781a1584dee4ec51d5b3579158fd8c2">AnalyticsModel</a>
+, <a class="el" href="class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbca10be5995bfd3b46255bda66dbf886439">PersonalResultModel</a>
 , <a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ac99ce81e07d2732d2f1398009d8e478e">ResultModel</a>
 </li>
 </ul>
@@ -352,11 +442,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

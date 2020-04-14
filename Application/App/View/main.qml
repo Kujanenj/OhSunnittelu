@@ -4,6 +4,10 @@ import QtQuick.Controls 2.11
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.12
 
+/**
+  * Main qml file that forms the UI by using other qml files.
+ */
+
 ApplicationWindow {
     TabBar {
         id: bar
@@ -11,32 +15,36 @@ ApplicationWindow {
         currentIndex: 0
 
         TabButton {
+            id: searchButton
             text: qsTr("Search")
             checked: true
         }
 
         TabButton {
+            id: resultButton
             text: qsTr("Results")
             checked: false
+            enabled: false
         }
 
         TabButton {
+            id: analyticsButton
             text: qsTr("Analytics")
             checked: false
+            enabled: false
         }
 
         TabButton {
-            text: qsTr("Athlete results")
+            id: chartButton1
+            text: qsTr("Charts 1")
             checked: false
-        }
-
-        TabButton {
-            text: qsTr("Charts")
-            checked: false
+            enabled: false
         }
         TabButton {
-            text: qsTr("Extra")
+            id: chartButton2
+            text: qsTr("Charts 2")
             checked: false
+            enabled: false
         }
     }
 
@@ -70,20 +78,15 @@ ApplicationWindow {
             }
         }
         Item {
-            id: infoTab
-            InfoField {
-                anchors.fill: parent
-            }
-        }
-        Item {
             id: chartTab
             ChartField {
                 anchors.fill: parent
             }
         }
+
         Item {
-            id: extraTab
-            ExtraField {
+            id: chartTab2
+            Chart2Field {
                 anchors.fill: parent
             }
         }

@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_controller_1_1_data_controller.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_controller.html">Controller</a></li><li class="navelem"><a class="el" href="class_controller_1_1_data_controller.html">DataController</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -85,7 +105,7 @@ Inheritance diagram for Controller::DataController:</div>
 <area shape="rect" title="The DataController class. Controls data between view and model." alt="" coords="5,80,172,107"/>
 <area shape="rect" title=" " alt="" coords="53,5,124,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Controller::DataController:</div>
 <div class="dyncontent">
@@ -94,7 +114,7 @@ Collaboration diagram for Controller::DataController:</div>
 <area shape="rect" title="The DataController class. Controls data between view and model." alt="" coords="5,80,172,107"/>
 <area shape="rect" title=" " alt="" coords="53,5,124,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,11 +124,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a346fcb773a3c779436232e525cce1bc3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a346fcb773a3c779436232e525cce1bc3">~DataController</a> ()</td></tr>
 <tr class="memdesc:a346fcb773a3c779436232e525cce1bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_controller_1_1_data_controller.html" title="The DataController class. Controls data between view and model.">DataController</a> destructor.  <a href="class_controller_1_1_data_controller.html#a346fcb773a3c779436232e525cce1bc3">More...</a><br /></td></tr>
 <tr class="separator:a346fcb773a3c779436232e525cce1bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb91ba48e889ac7116903af01a67864a"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#acb91ba48e889ac7116903af01a67864a">searchButtonClicked</a> (QString startYear, QString endYear, QVector&lt; QString &gt; distance, QString gender, QVector&lt; QString &gt; ages, QString firstName, QString lastName, QString place, QString nationality, QString team)</td></tr>
-<tr class="memdesc:acb91ba48e889ac7116903af01a67864a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q_INVOKABLE type function that is called from QML when search button is clicked.  <a href="class_controller_1_1_data_controller.html#acb91ba48e889ac7116903af01a67864a">More...</a><br /></td></tr>
-<tr class="separator:acb91ba48e889ac7116903af01a67864a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2932fc6a896464a3b1681cd14e60e98c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a2932fc6a896464a3b1681cd14e60e98c">searchButtonClicked</a> (QString startYear, QString endYear, QVector&lt; QString &gt; distance, QString gender, QVector&lt; QString &gt; ages, QString firstName, QString lastName, QString place, QString nationality, QString team, QString personalSearch)</td></tr>
+<tr class="memdesc:a2932fc6a896464a3b1681cd14e60e98c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q_INVOKABLE type function that is called from QML when search button is clicked.  <a href="class_controller_1_1_data_controller.html#a2932fc6a896464a3b1681cd14e60e98c">More...</a><br /></td></tr>
+<tr class="separator:a2932fc6a896464a3b1681cd14e60e98c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7c08c8716479bf61822d6c68279530c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#ab7c08c8716479bf61822d6c68279530c">sortButtonClicked</a> (QString selectedField, QString upperBound, QString lowerBound, QString rankSilder)</td></tr>
 <tr class="separator:ab7c08c8716479bf61822d6c68279530c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf441db3f5497b6e4ff99d2d34a17f04"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QVector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#adf441db3f5497b6e4ff99d2d34a17f04">getGraphValues</a> (QString graphtype, QString year, QString distance)</td></tr>
+<tr class="separator:adf441db3f5497b6e4ff99d2d34a17f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1235a784c82b47b25460c503e735d18"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QVector&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#ab1235a784c82b47b25460c503e735d18">getGraphTypes</a> (QString graphtype, QString year, QString distance)</td></tr>
+<tr class="separator:ab1235a784c82b47b25460c503e735d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ede0e3fbba1465f1e5a1ef6df5a69ee"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a5ede0e3fbba1465f1e5a1ef6df5a69ee">getYears</a> ()</td></tr>
+<tr class="memdesc:a5ede0e3fbba1465f1e5a1ef6df5a69ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">getYears  <a href="class_controller_1_1_data_controller.html#a5ede0e3fbba1465f1e5a1ef6df5a69ee">More...</a><br /></td></tr>
+<tr class="separator:a5ede0e3fbba1465f1e5a1ef6df5a69ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe1df07e7ce5064d7eb9578ec4bca97"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a7fe1df07e7ce5064d7eb9578ec4bca97">getDistances</a> ()</td></tr>
+<tr class="separator:a7fe1df07e7ce5064d7eb9578ec4bca97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c146608b2234da98565c1fabc064602"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a1c146608b2234da98565c1fabc064602">updateDropdownDistances</a> ()</td></tr>
+<tr class="memdesc:a1c146608b2234da98565c1fabc064602"><td class="mdescLeft">&#160;</td><td class="mdescRight">updateDropdownDistances Updates distances_ vector which stores all used distances  <a href="class_controller_1_1_data_controller.html#a1c146608b2234da98565c1fabc064602">More...</a><br /></td></tr>
+<tr class="separator:a1c146608b2234da98565c1fabc064602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13222f7966a761dec0ab11ceead48b00"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a13222f7966a761dec0ab11ceead48b00">getDropdownDistances</a> ()</td></tr>
+<tr class="memdesc:a13222f7966a761dec0ab11ceead48b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">getDropdownDistances Used to get all valid distances from specific search  <a href="class_controller_1_1_data_controller.html#a13222f7966a761dec0ab11ceead48b00">More...</a><br /></td></tr>
+<tr class="separator:a13222f7966a761dec0ab11ceead48b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a816bbec31e0d7695663f2b95d9d6bf5a"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller_1_1_data_controller.html#a816bbec31e0d7695663f2b95d9d6bf5a">getTopTeams</a> (QString year, QString distance)</td></tr>
+<tr class="separator:a816bbec31e0d7695663f2b95d9d6bf5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_controller_1_1_data_controller.html" title="The DataController class. Controls data between view and model.">DataController</a> class. Controls data between view and model. </p>
@@ -177,8 +214,179 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acb91ba48e889ac7116903af01a67864a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb91ba48e889ac7116903af01a67864a">&#9670;&nbsp;</a></span>searchButtonClicked()</h2>
+<a id="a7fe1df07e7ce5064d7eb9578ec4bca97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fe1df07e7ce5064d7eb9578ec4bca97">&#9670;&nbsp;</a></span>getDistances()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList Controller::DataController::getDistances </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13222f7966a761dec0ab11ceead48b00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13222f7966a761dec0ab11ceead48b00">&#9670;&nbsp;</a></span>getDropdownDistances()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList Controller::DataController::getDropdownDistances </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getDropdownDistances Used to get all valid distances from specific search </p>
+<dl class="section return"><dt>Returns</dt><dd>valid distances_ vector </dd></dl>
+
+</div>
+</div>
+<a id="ab1235a784c82b47b25460c503e735d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1235a784c82b47b25460c503e735d18">&#9670;&nbsp;</a></span>getGraphTypes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt; QString &gt; Controller::DataController::getGraphTypes </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>graphtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf441db3f5497b6e4ff99d2d34a17f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf441db3f5497b6e4ff99d2d34a17f04">&#9670;&nbsp;</a></span>getGraphValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt; int &gt; Controller::DataController::getGraphValues </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>graphtype</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controller_1_1_data_controller_adf441db3f5497b6e4ff99d2d34a17f04_cgraph.png" border="0" usemap="#class_controller_1_1_data_controller_adf441db3f5497b6e4ff99d2d34a17f04_cgraph" alt=""/></div>
+<map name="class_controller_1_1_data_controller_adf441db3f5497b6e4ff99d2d34a17f04_cgraph" id="class_controller_1_1_data_controller_adf441db3f5497b6e4ff99d2d34a17f04_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,172,47"/>
+<area shape="rect" href="class_controller_1_1_data_controller.html#a5ede0e3fbba1465f1e5a1ef6df5a69ee" title="getYears" alt="" coords="220,5,387,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a816bbec31e0d7695663f2b95d9d6bf5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a816bbec31e0d7695663f2b95d9d6bf5a">&#9670;&nbsp;</a></span>getTopTeams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList Controller::DataController::getTopTeams </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>distance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ede0e3fbba1465f1e5a1ef6df5a69ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ede0e3fbba1465f1e5a1ef6df5a69ee">&#9670;&nbsp;</a></span>getYears()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList Controller::DataController::getYears </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>getYears </p>
+<dl class="section return"><dt>Returns</dt><dd>all used years </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controller_1_1_data_controller_a5ede0e3fbba1465f1e5a1ef6df5a69ee_icgraph.png" border="0" usemap="#class_controller_1_1_data_controller_a5ede0e3fbba1465f1e5a1ef6df5a69ee_icgraph" alt=""/></div>
+<map name="class_controller_1_1_data_controller_a5ede0e3fbba1465f1e5a1ef6df5a69ee_icgraph" id="class_controller_1_1_data_controller_a5ede0e3fbba1465f1e5a1ef6df5a69ee_icgraph">
+<area shape="rect" title="getYears" alt="" coords="220,5,387,47"/>
+<area shape="rect" href="class_controller_1_1_data_controller.html#adf441db3f5497b6e4ff99d2d34a17f04" title=" " alt="" coords="5,5,172,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2932fc6a896464a3b1681cd14e60e98c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2932fc6a896464a3b1681cd14e60e98c">&#9670;&nbsp;</a></span>searchButtonClicked()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,7 +449,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>team</em>&#160;</td>
+          <td class="paramname"><em>team</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>personalSearch</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -310,16 +524,39 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a1c146608b2234da98565c1fabc064602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c146608b2234da98565c1fabc064602">&#9670;&nbsp;</a></span>updateDropdownDistances()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Controller::DataController::updateDropdownDistances </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>updateDropdownDistances Updates distances_ vector which stores all used distances </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Controller/<a class="el" href="datacontroller_8h_source.html">datacontroller.h</a></li>
 <li>E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Controller/<a class="el" href="datacontroller_8cpp.html">datacontroller.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_controller.html">Controller</a></li><li class="navelem"><a class="el" href="class_controller_1_1_data_controller.html">DataController</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

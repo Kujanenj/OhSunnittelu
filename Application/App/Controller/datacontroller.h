@@ -3,15 +3,17 @@
 #include <QString>
 #include <QVector>
 #include <QObject>
+#include <algorithm>
+#include <QMap>
+#include <memory>
+
 #include "Model/requester.h"
 #include "Data/database.h"
 #include "../Model/datamodel.h"
 
-#include <QMap>
-#include <memory>
 
-
-namespace Controller {
+namespace Controller
+{
 
 
 /**
@@ -27,7 +29,7 @@ public:
      * @brief DataController constructor
      * @param parent null pointer to QObject
      */
-    explicit DataController(std::shared_ptr<Model::DataModel> model, QObject *parent = nullptr);
+    explicit DataController(std::shared_ptr<Model::DataModel> model, QObject* parent = nullptr);
 
     /**
       * @brief DataController destructor
@@ -48,31 +50,58 @@ public:
       * @param team search team option
       */
     Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear,
-                                         QVector<QString> distance, QString gender, QVector<QString> ages,
-                                         QString firstName, QString lastName,
-                                         QString place, QString nationality,
-                                         QString team);
-    Q_INVOKABLE void sortButtonClicked(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);
+        QVector<QString> distance, QString gender, QVector<QString> ages, QString firstName,
+        QString lastName, QString place, QString nationality, QString team, QString personalSearch);
+
+    Q_INVOKABLE void sortButtonClicked(
+        QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);
+
+
+    Q_INVOKABLE QVector<int> getGraphValues(QString graphtype, QString year, QString distance);
+
+    Q_INVOKABLE QVector<QString> getGraphTypes(QString graphtype, QString year, QString distance);
+
+    /**
+     * @brief getYears
+     * @return all used years
+     */
+    Q_INVOKABLE QStringList getYears();
+
+    Q_INVOKABLE QStringList getDistances();
+
+    /**
+     * @brief updateDropdownDistances
+     * Updates distances_ vector which stores all
+     * used distances
+     */
+    Q_INVOKABLE void updateDropdownDistances();
+
+    /**
+     * @brief getDropdownDistances
+     * Used to get all valid distances from specific search
+     * @return valid distances_ vector
+     */
+    Q_INVOKABLE QStringList getDropdownDistances();
+
+    Q_INVOKABLE QStringList getTopTeams(QString year, QString distance);
 signals:
 
 public slots:
 
 private:
-    //Requester *req;
-    std::shared_ptr<DataBase> database_;
 
+    QStringList translateSomeNames(QVector<std::pair<QString,QString>> result);
+    QVector<QString> someTeamTimes_;
+    std::shared_ptr<DataBase> database_;
     std::shared_ptr<Model::DataModel> dataModel_;
 
+    QStringList years_;
+    QStringList distances_;
 
-    QMap<QString,QString> parserConfig_ = {{"fileToRead", "false"}, //false = "älä lue mitää"
-                                     {"fileToWrite", "false"},//false = "älä kirjota mitää"
-                                     {"tableStart", "</thead><tbody>"},
-                                     {"tableEnd", "</table><div"},
-                                     {"tableCellLeft", "7pt;\">"},
-                                     {"tableCellRight","</td>"}};
-
-
-
+    QMap<QString, QString> parserConfig_ = { { "fileToRead", "false" }, // false = "älä lue mitää"
+        { "fileToWrite", "false" }, // false = "älä kirjota mitää"
+        { "tableStart", "</thead><tbody>" }, { "tableEnd", "</table><div" },
+        { "tableCellLeft", "7pt;\">" }, { "tableCellRight", "</td>" } };
 };
 }
 

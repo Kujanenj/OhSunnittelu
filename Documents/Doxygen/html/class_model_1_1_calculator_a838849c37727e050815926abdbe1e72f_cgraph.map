@@ -1,0 +1,7 @@
+<map id="Model::Calculator::calculateAnalytics" name="Model::Calculator::calculateAnalytics">
+<area shape="rect" id="node1" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,35,136,76"/>
+<area shape="rect" id="node2" href="$class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504" title="calcAverageSpeed" alt="" coords="184,35,315,76"/>
+<area shape="rect" id="node3" href="$class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5" title="calcAverageTime Counts the average time based on number of results" alt="" coords="363,5,493,47"/>
+<area shape="rect" id="node5" href="$class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b" title="calcWinnerSpeed calulates the topspeed" alt="" coords="184,100,315,141"/>
+<area shape="rect" id="node4" href="$class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="363,85,493,127"/>
+</map>

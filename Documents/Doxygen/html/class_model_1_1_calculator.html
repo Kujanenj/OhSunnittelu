@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_model_1_1_calculator.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,14 +84,11 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_model.html">Model</a></li><li class="navelem"><a class="el" href="class_model_1_1_calculator.html">Calculator</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_model_1_1_calculator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Model::Calculator Class Reference</div>  </div>
@@ -88,11 +110,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4c75c0ec5fb788bdca39da6321dd5ee6"><td class="memItemLeft" align="right" valign="top">std::pair&lt; QVector&lt; QString &gt;, QVector&lt; QString &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a4c75c0ec5fb788bdca39da6321dd5ee6">getMinMaxResults</a> (QVector&lt; QVector&lt; QString &gt;&gt; results)</td></tr>
 <tr class="memdesc:a4c75c0ec5fb788bdca39da6321dd5ee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">getMinMaxResults Gets the best and worst result  <a href="class_model_1_1_calculator.html#a4c75c0ec5fb788bdca39da6321dd5ee6">More...</a><br /></td></tr>
 <tr class="separator:a4c75c0ec5fb788bdca39da6321dd5ee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73e31fb64100402fe68cfe32b0d51eac"><td class="memItemLeft" align="right" valign="top">std::pair&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a73e31fb64100402fe68cfe32b0d51eac">getBestTeam</a> (QVector&lt; std::pair&lt; QString, QString &gt;&gt; results)</td></tr>
-<tr class="memdesc:a73e31fb64100402fe68cfe32b0d51eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">getBestTeam returns team with the lowest time  <a href="class_model_1_1_calculator.html#a73e31fb64100402fe68cfe32b0d51eac">More...</a><br /></td></tr>
-<tr class="separator:a73e31fb64100402fe68cfe32b0d51eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a75ff605840b543e1cb740f6b5e26c5"><td class="memItemLeft" align="right" valign="top">QVector&lt; std::pair&lt; QString, QString &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a5a75ff605840b543e1cb740f6b5e26c5">getBestTeams</a> (QVector&lt; std::pair&lt; QString, QString &gt;&gt;, int amount)</td></tr>
+<tr class="memdesc:a5a75ff605840b543e1cb740f6b5e26c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculateAnalytics Calculates a analytics results partially  <a href="class_model_1_1_calculator.html#a5a75ff605840b543e1cb740f6b5e26c5">More...</a><br /></td></tr>
+<tr class="separator:a5a75ff605840b543e1cb740f6b5e26c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a838849c37727e050815926abdbe1e72f"><td class="memItemLeft" align="right" valign="top">QVector&lt; QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f">calculateAnalytics</a> (QVector&lt; QVector&lt; QString &gt;&gt; nonTeamResults)</td></tr>
+<tr class="memdesc:a838849c37727e050815926abdbe1e72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculateAnalytics Calculates a part of the analytics vector  <a href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f">More...</a><br /></td></tr>
 <tr class="separator:a838849c37727e050815926abdbe1e72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a671e7a3d2b9ca884ea28d931578cec6b"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b">calcWinnerSpeed</a> (QVector&lt; QVector&lt; QString &gt;&gt; results)</td></tr>
+<tr class="memdesc:a671e7a3d2b9ca884ea28d931578cec6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">calcWinnerSpeed calulates the topspeed  <a href="class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b">More...</a><br /></td></tr>
+<tr class="separator:a671e7a3d2b9ca884ea28d931578cec6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b3a268877025e84cbc9b948aea2e504"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504">calcAverageSpeed</a> (QVector&lt; QVector&lt; QString &gt;&gt; results)</td></tr>
+<tr class="memdesc:a0b3a268877025e84cbc9b948aea2e504"><td class="mdescLeft">&#160;</td><td class="mdescRight">calcAverageSpeed  <a href="class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504">More...</a><br /></td></tr>
+<tr class="separator:a0b3a268877025e84cbc9b948aea2e504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96ec0ef11c5515c12401bb67591a8ca0"><td class="memItemLeft" align="right" valign="top">QVector&lt; std::pair&lt; QString, float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a96ec0ef11c5515c12401bb67591a8ca0">calculatePercentagesGeneral</a> (QVector&lt; QVector&lt; QString &gt; &gt; results, int index)</td></tr>
+<tr class="memdesc:a96ec0ef11c5515c12401bb67591a8ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculatePercentagesGeneral calculates the percantegas of the key based on the number of results  <a href="class_model_1_1_calculator.html#a96ec0ef11c5515c12401bb67591a8ca0">More...</a><br /></td></tr>
+<tr class="separator:a96ec0ef11c5515c12401bb67591a8ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a4121331941985476c4662de8eab74632"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632">TimeStringToInt</a> (QString time)</td></tr>
+<tr class="memdesc:a4121331941985476c4662de8eab74632"><td class="mdescLeft">&#160;</td><td class="mdescRight">TimeStringToInt turns a string based time to a float.  <a href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632">More...</a><br /></td></tr>
+<tr class="separator:a4121331941985476c4662de8eab74632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_model_1_1_calculator.html" title="The Calculator class does diffrent kind of calculations.">Calculator</a> class does diffrent kind of calculations. </p>
@@ -115,6 +153,52 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0b3a268877025e84cbc9b948aea2e504"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b3a268877025e84cbc9b948aea2e504">&#9670;&nbsp;</a></span>calcAverageSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString Model::Calculator::calcAverageSpeed </td>
+          <td>(</td>
+          <td class="paramtype">QVector&lt; QVector&lt; QString &gt;&gt;&#160;</td>
+          <td class="paramname"><em>results</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calcAverageSpeed </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">results</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_cgraph.png" border="0" usemap="#class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_cgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_cgraph" id="class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_cgraph">
+<area shape="rect" title="calcAverageSpeed" alt="" coords="5,39,136,80"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5" title="calcAverageTime Counts the average time based on number of results" alt="" coords="184,5,315,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="184,71,315,112"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_icgraph.png" border="0" usemap="#class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_icgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_icgraph" id="class_model_1_1_calculator_a0b3a268877025e84cbc9b948aea2e504_icgraph">
+<area shape="rect" title="calcAverageSpeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,5,136,47"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a4ab904c76c6496ecdffdb8599d3836b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ab904c76c6496ecdffdb8599d3836b5">&#9670;&nbsp;</a></span>calcAverageTime()</h2>
 
@@ -139,6 +223,16 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>h:min:sec.msec </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a4ab904c76c6496ecdffdb8599d3836b5_icgraph.png" border="0" usemap="#class_model_1_1_calculator_a4ab904c76c6496ecdffdb8599d3836b5_icgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a4ab904c76c6496ecdffdb8599d3836b5_icgraph" id="class_model_1_1_calculator_a4ab904c76c6496ecdffdb8599d3836b5_icgraph">
+<area shape="rect" title="calcAverageTime Counts the average time based on number of results" alt="" coords="363,35,493,76"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504" title="calcAverageSpeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,35,136,76"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -158,32 +252,155 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>calculateAnalytics Calculates a part of the analytics vector </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nonTeamResults</td><td>Results to be calculated </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>calculated vector </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a838849c37727e050815926abdbe1e72f_cgraph.png" border="0" usemap="#class_model_1_1_calculator_a838849c37727e050815926abdbe1e72f_cgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a838849c37727e050815926abdbe1e72f_cgraph" id="class_model_1_1_calculator_a838849c37727e050815926abdbe1e72f_cgraph">
+<area shape="rect" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,35,136,76"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504" title="calcAverageSpeed" alt="" coords="184,35,315,76"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5" title="calcAverageTime Counts the average time based on number of results" alt="" coords="363,5,493,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b" title="calcWinnerSpeed calulates the topspeed" alt="" coords="184,100,315,141"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="363,85,493,127"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="a73e31fb64100402fe68cfe32b0d51eac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73e31fb64100402fe68cfe32b0d51eac">&#9670;&nbsp;</a></span>getBestTeam()</h2>
+<a id="a96ec0ef11c5515c12401bb67591a8ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96ec0ef11c5515c12401bb67591a8ca0">&#9670;&nbsp;</a></span>calculatePercentagesGeneral()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt; QString, QString &gt; Model::Calculator::getBestTeam </td>
+          <td class="memname">QVector&lt; std::pair&lt; QString, float &gt; &gt; Model::Calculator::calculatePercentagesGeneral </td>
           <td>(</td>
-          <td class="paramtype">QVector&lt; std::pair&lt; QString, QString &gt;&gt;&#160;</td>
+          <td class="paramtype">QVector&lt; QVector&lt; QString &gt; &gt;&#160;</td>
+          <td class="paramname"><em>results</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculatePercentagesGeneral calculates the percantegas of the key based on the number of results </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">results</td><td></td></tr>
+    <tr><td class="paramname">index</td><td>the result field index. E.g: index number 9 is countries </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>&lt;Key, percantage&gt; </dd></dl>
+
+</div>
+</div>
+<a id="a671e7a3d2b9ca884ea28d931578cec6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a671e7a3d2b9ca884ea28d931578cec6b">&#9670;&nbsp;</a></span>calcWinnerSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString Model::Calculator::calcWinnerSpeed </td>
+          <td>(</td>
+          <td class="paramtype">QVector&lt; QVector&lt; QString &gt;&gt;&#160;</td>
           <td class="paramname"><em>results</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>getBestTeam returns team with the lowest time </p>
+<p>calcWinnerSpeed calulates the topspeed </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">results</td><td>&lt;Team, Time&gt; </td></tr>
+    <tr><td class="paramname">results</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>best team </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>topspeed </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_cgraph.png" border="0" usemap="#class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_cgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_cgraph" id="class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_cgraph">
+<area shape="rect" title="calcWinnerSpeed calulates the topspeed" alt="" coords="5,5,136,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="184,5,315,47"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_icgraph.png" border="0" usemap="#class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_icgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_icgraph" id="class_model_1_1_calculator_a671e7a3d2b9ca884ea28d931578cec6b_icgraph">
+<area shape="rect" title="calcWinnerSpeed calulates the topspeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,5,136,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5a75ff605840b543e1cb740f6b5e26c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a75ff605840b543e1cb740f6b5e26c5">&#9670;&nbsp;</a></span>getBestTeams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt; std::pair&lt; QString, QString &gt; &gt; Model::Calculator::getBestTeams </td>
+          <td>(</td>
+          <td class="paramtype">QVector&lt; std::pair&lt; QString, QString &gt;&gt;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>amount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calculateAnalytics Calculates a analytics results partially </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nonTeamResults</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a5a75ff605840b543e1cb740f6b5e26c5_cgraph.png" border="0" usemap="#class_model_1_1_calculator_a5a75ff605840b543e1cb740f6b5e26c5_cgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a5a75ff605840b543e1cb740f6b5e26c5_cgraph" id="class_model_1_1_calculator_a5a75ff605840b543e1cb740f6b5e26c5_cgraph">
+<area shape="rect" title="calculateAnalytics Calculates a analytics results partially" alt="" coords="5,5,136,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="184,5,315,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -211,6 +428,63 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>minMax </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a4c75c0ec5fb788bdca39da6321dd5ee6_cgraph.png" border="0" usemap="#class_model_1_1_calculator_a4c75c0ec5fb788bdca39da6321dd5ee6_cgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a4c75c0ec5fb788bdca39da6321dd5ee6_cgraph" id="class_model_1_1_calculator_a4c75c0ec5fb788bdca39da6321dd5ee6_cgraph">
+<area shape="rect" title="getMinMaxResults Gets the best and worst result" alt="" coords="5,5,136,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="184,5,315,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4121331941985476c4662de8eab74632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4121331941985476c4662de8eab74632">&#9670;&nbsp;</a></span>TimeStringToInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Model::Calculator::TimeStringToInt </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TimeStringToInt turns a string based time to a float. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>time as a float </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_model_1_1_calculator_a4121331941985476c4662de8eab74632_icgraph.png" border="0" usemap="#class_model_1_1_calculator_a4121331941985476c4662de8eab74632_icgraph" alt=""/></div>
+<map name="class_model_1_1_calculator_a4121331941985476c4662de8eab74632_icgraph" id="class_model_1_1_calculator_a4121331941985476c4662de8eab74632_icgraph">
+<area shape="rect" title="TimeStringToInt turns a string based time to a float." alt="" coords="363,104,493,145"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504" title="calcAverageSpeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b" title="calcWinnerSpeed calulates the topspeed" alt="" coords="184,71,315,112"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a5a75ff605840b543e1cb740f6b5e26c5" title="calculateAnalytics Calculates a analytics results partially" alt="" coords="184,136,315,177"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a4c75c0ec5fb788bdca39da6321dd5ee6" title="getMinMaxResults Gets the best and worst result" alt="" coords="184,201,315,243"/>
+<area shape="rect" href="class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,39,136,80"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -219,11 +493,15 @@ Public Member Functions</h2></td></tr>
 <li>E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Model/<a class="el" href="calculator_8cpp.html">calculator.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_model.html">Model</a></li><li class="navelem"><a class="el" href="class_model_1_1_calculator.html">Calculator</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

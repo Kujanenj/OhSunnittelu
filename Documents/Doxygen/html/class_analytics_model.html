@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_analytics_model.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -80,20 +104,20 @@ Inheritance diagram for AnalyticsModel:</div>
 <div class="center"><img src="class_analytics_model__inherit__graph.png" border="0" usemap="#_analytics_model_inherit__map" alt="Inheritance graph"/></div>
 <map name="_analytics_model_inherit__map" id="_analytics_model_inherit__map">
 <area shape="rect" title="The AnalyticsModel class is used to set roles that can be used to create analytics table on qml." alt="" coords="13,155,124,181"/>
-<area shape="rect" href="class_abstract_list_model.html" title=" " alt="" coords="5,80,132,107"/>
+<area shape="rect" href="class_abstract_list_model.html" title="The AbstractListModel class is baseclass for all models for displaying SQL." alt="" coords="5,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="8,5,129,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for AnalyticsModel:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_analytics_model__coll__graph.png" border="0" usemap="#_analytics_model_coll__map" alt="Collaboration graph"/></div>
 <map name="_analytics_model_coll__map" id="_analytics_model_coll__map">
 <area shape="rect" title="The AnalyticsModel class is used to set roles that can be used to create analytics table on qml." alt="" coords="13,155,124,181"/>
-<area shape="rect" href="class_abstract_list_model.html" title=" " alt="" coords="5,80,132,107"/>
+<area shape="rect" href="class_abstract_list_model.html" title="The AbstractListModel class is baseclass for all models for displaying SQL." alt="" coords="5,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="8,5,129,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -110,7 +134,10 @@ Public Types</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba6f0cb1f8ccd956dbd70958cb7eb04e39">SecondRole</a>, 
 <a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba68120d542ab1d2c9d05df05a0b5efd1d">ThirdRole</a>, 
-<a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba3985dfc38d03ea4977bc496beadfef9e">bestteamRole</a>
+<a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba29809fa3e65ef17650e502b838b25f76">averageSpeedRole</a>, 
+<a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1bab7ca54a2f47a206f48258cfabdf29e82">winnerSpeedRole</a>, 
+<br />
+&#160;&#160;<a class="el" href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1ba3985dfc38d03ea4977bc496beadfef9e">bestteamRole</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a3a378ce6ed2d5b2f88c1cbb7316e1a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resultRoles enum Roles that can be detected from qml.  <a href="class_analytics_model.html#a3a378ce6ed2d5b2f88c1cbb7316e1a1b">More...</a><br /></td></tr>
@@ -123,7 +150,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9753745d6a6c473ec735d9037d5d0a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_abstract_list_model"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_abstract_list_model')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_abstract_list_model.html">AbstractListModel</a></td></tr>
 <tr class="memitem:a2e942406101ed77e85b41a709e120cc8 inherit pub_methods_class_abstract_list_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_model.html#a2e942406101ed77e85b41a709e120cc8">AbstractListModel</a> (QObject *parent=nullptr)</td></tr>
-<tr class="memdesc:a2e942406101ed77e85b41a709e120cc8 inherit pub_methods_class_abstract_list_model"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_abstract_list_model.html">AbstractListModel</a> Constructor for <a class="el" href="class_abstract_list_model.html">AbstractListModel</a>.  <a href="class_abstract_list_model.html#a2e942406101ed77e85b41a709e120cc8">More...</a><br /></td></tr>
+<tr class="memdesc:a2e942406101ed77e85b41a709e120cc8 inherit pub_methods_class_abstract_list_model"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_abstract_list_model.html" title="The AbstractListModel class is baseclass for all models for displaying SQL.">AbstractListModel</a> Constructor for <a class="el" href="class_abstract_list_model.html" title="The AbstractListModel class is baseclass for all models for displaying SQL.">AbstractListModel</a>.  <a href="class_abstract_list_model.html#a2e942406101ed77e85b41a709e120cc8">More...</a><br /></td></tr>
 <tr class="separator:a2e942406101ed77e85b41a709e120cc8 inherit pub_methods_class_abstract_list_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ab75632979a5e7ff1cacf3067a148d inherit pub_methods_class_abstract_list_model"><td class="memItemLeft" align="right" valign="top">virtual QVariant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_list_model.html#a52ab75632979a5e7ff1cacf3067a148d">data</a> (const QModelIndex &amp;index, int role=Qt::DisplayRole) const</td></tr>
 <tr class="memdesc:a52ab75632979a5e7ff1cacf3067a148d inherit pub_methods_class_abstract_list_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">data Used on background to update specific role on specific row to database  <a href="class_abstract_list_model.html#a52ab75632979a5e7ff1cacf3067a148d">More...</a><br /></td></tr>
@@ -166,6 +193,8 @@ Additional Inherited Members</h2></td></tr>
 <tr><td class="fieldname"><a id="a3a378ce6ed2d5b2f88c1cbb7316e1a1baca14b4a772a6bd66bcbb5a3b3c7630e6"></a>WinnerRole&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3a378ce6ed2d5b2f88c1cbb7316e1a1ba6f0cb1f8ccd956dbd70958cb7eb04e39"></a>SecondRole&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3a378ce6ed2d5b2f88c1cbb7316e1a1ba68120d542ab1d2c9d05df05a0b5efd1d"></a>ThirdRole&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3a378ce6ed2d5b2f88c1cbb7316e1a1ba29809fa3e65ef17650e502b838b25f76"></a>averageSpeedRole&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3a378ce6ed2d5b2f88c1cbb7316e1a1bab7ca54a2f47a206f48258cfabdf29e82"></a>winnerSpeedRole&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a3a378ce6ed2d5b2f88c1cbb7316e1a1ba3985dfc38d03ea4977bc496beadfef9e"></a>bestteamRole&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
@@ -211,11 +240,15 @@ Additional Inherited Members</h2></td></tr>
 <li>E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Model/<a class="el" href="analyticsmodel_8cpp.html">analyticsmodel.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_analytics_model.html">AnalyticsModel</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

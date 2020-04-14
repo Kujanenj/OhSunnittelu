@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['insertanalyticsdata_185',['insertAnalyticsData',['../class_model_1_1_data_model.html#ac660fa7a193a9e11ee6ddd1af8cb6e3c',1,'Model::DataModel']]],
-  ['insertdata_186',['insertData',['../class_model_1_1_data_model.html#a35b9ae40121e01dec436308ce5be9952',1,'Model::DataModel']]],
-  ['insertintoanalyticstable_187',['insertIntoAnalyticsTable',['../class_data_base.html#a91b34839a2d835662da070240598d152',1,'DataBase']]],
-  ['insertintoresultstable_188',['insertIntoResultsTable',['../class_data_base.html#a7debe68706e9d4429902f1fa77aec712',1,'DataBase']]]
+  ['insertdata_235',['insertData',['../class_model_1_1_data_model.html#aec9b2dddeff6b4e3273d92e31695bb49',1,'Model::DataModel']]],
+  ['insertintotable_236',['insertIntoTable',['../class_data_base.html#a5c3ac743984b63edf3838e18623e7e61',1,'DataBase']]]
 ];

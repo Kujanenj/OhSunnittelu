@@ -1,6 +1,6 @@
 #include "datamodel.h"
-namespace Model {
 
+namespace Model {
 
 DataModel::DataModel(std::shared_ptr<DataBase> database)
 {
@@ -11,144 +11,193 @@ DataModel::DataModel(std::shared_ptr<DataBase> database)
     qDebug()<<"Datamodel created";
 }
 
-void DataModel::doRequest(QMap<QString, QString> parameters)
+void DataModel::doRequest(QMap<QString,QString> requesterParameters, QMap<QString,QString> parserParameters)
 {
-    req->DoRequest(parameters,data_);
+
+    req->DoRequest(requesterParameters,data_);
+    doParse(parserParameters);
 }
 
 void DataModel::doParse(QMap<QString, QString> config)
 {
+
     parser->fullParse(config,data_);
 }
 
-void DataModel::insertData()
+void DataModel::insertData(QString table)
 {
+    //Note: Please never ever touch anything here if you want to keep your iq levels where they are.
     listedData_=parser->getListedData();
-    if(listedData_.size()==0){
+    if(listedData_.size()==0 && table=="Results"){
         qDebug()<<"Nothing to insert";
         return;
     }
 
-
-    parser->clearListedData();
-    teamNames_.clear();
-
-    QSqlDatabase::database().transaction();
-    qDebug()<<"Starting the insertion";
-
-
     try {
-        for(int i=0; i<listedData_.size(); i++){
-            database_->insertIntoResultsTable(listedData_.at(i));
-            if(!teamNames_.contains(listedData_.at(i).at(11)) && listedData_.at(i).at(11) != "-"){
-                teamNames_.push_back(listedData_.at(i).at(11));
-            }
-        }
 
-        qDebug()<<"Inserted some data to database";
-        QSqlDatabase::database().commit();
-    } catch (QString msg) {
-            qDebug()<<msg;
-        try {
-            database_->removeData();
-            qDebug()<<"removed all data from database since an error was thrown. Next error will cause me to destroy this program!";
-      } catch (QString msg_) {
-            qDebug()<<msg_;
-            qDebug()<<"I told you this would happen. I will suicide now, goodbye!";
-            delete this;
+
+     QSqlDatabase::database().transaction();
+
+    if(table=="Analytics"){
+        if(analyticsFULL_.size()==0){
+            qDebug()<<"Empty analytics";
+            return;
         }
+        qDebug()<<"Analytics insertion";
+        database_->insertIntoTable(analyticsFULL_,table);
+        qDebug()<<"Analytics insertion successs";
+        qDebug()<<"---------------------------";
+    }
+    else{
+
+        qDebug()<<"Regular insertion";
+        database_->insertIntoTable(listedData_,table);
+        qDebug()<<"Regular insertion succesess";
+
+    }
+
+    } catch (QString msg) {
+        qDebug()<<msg;
+    try {
+        database_->removeData();
+        qDebug()<<"removed all data from database since an error was thrown. Next error will cause me to destroy this program!";
+  } catch (QString msg_) {
+        qDebug()<<msg_;
+        qDebug()<<"I told you this would happen. I will suicide now, goodbye!";
+        delete this;
     }
 }
-
-void DataModel::insertAnalyticsData()
-{
-
-    QSqlDatabase::database().transaction();
-
-    try {
-        for(int i = 0; i < analyticsFULL_.size(); i++) {
-            qDebug() << analyticsFULL_.at(i);
-            database_->insertIntoAnalyticsTable(analyticsFULL_.at(i));
-            QSqlDatabase::database().commit();
-            qDebug() << "Inserted data to analytics tab";
-        }
-    } catch (QString msg) {
-        qDebug() << msg;
-    }
 
     QSqlDatabase::database().commit();
 }
 
-void DataModel::sortDataBase(QString command)
+void DataModel::sortDataBase(QString sqlcommand)
 {
-    qDebug()<<"Sorting database";
-    database_->sortDataBase(command);
+    database_->sortDataBase(sqlcommand);
 }
 
-void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString> years)
+void DataModel::analytics(QString distance,QString year)
 {
-    analyticsFULL_.clear();
-    QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
 
-    QVector<QString> analyticsPARTIAL;
-    QVector<std::pair<QString,QString>> teamResults;
-    std::pair<QString,QString> teamResultsPartial;
-    int startYear=years.first.toInt();
-    int endYear=years.second.toInt();
-    QString sqlCommand;
-    //loop all years
+    QVector<QString> distances;
 
-
-    for(int yearIndex=startYear; yearIndex<=endYear; yearIndex++){
-
-
-
-    for(int i=0; i<distances.size(); i++){
-        sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
-
-        sqlResults=searchDataBase(sqlCommand);
-        if(sqlResults.size()>=3){
-            analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
-            //Loop teams
-        for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
-            sqlCommand="SELECT * FROM Results WHERE team like '%"+teamNames_.at(it)+"%'";
-            sqlResults=searchDataBase(sqlCommand);
-            teamResultsPartial.first=sqlResults.at(0).at(11);
-            teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
-            teamResults.push_back(teamResultsPartial);
-
-        }
-        analyticsPARTIAL.push_back(calc_->getBestTeam(teamResults).first);
-
-        analyticsFULL_.push_back(analyticsPARTIAL);
-        analyticsPARTIAL.clear();
-
-        qDebug() << "Analytics size: " << analyticsFULL_.size();
-
+    if (distance == "kaikki")
+    {
+        distances.clear();
+        distances = { "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V32",
+            "P20", "P30", "P44", "P60", "P62", "P25", "P32", "P35", "P45", "P52", "P53",
+            "P75", "V30", "V45", "V53", "V75" };
 
     }
-        }
+    else{
+        distances.append(distance);
+    }
+
+        analyticsFULL_.clear();
+        QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
+
+        QVector<QString> analyticsPARTIAL;
+        QVector<std::pair<QString,QString>> teamResults;
+        std::pair<QString,QString> teamResultsPartial;
+
+        QString sqlCommand;
+
+        //loop all distances
+        for(int i =0; i<distances.size(); i++){
+
+
+
+
+                sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + year + "%'";
+
+                sqlResults=searchDataBase(sqlCommand);
+
+                if(sqlResults.size()>=3){
+                    analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
+                    teamNames_=parser->getTeamNames(distances.at(i),year);
+
+                    //Loop teams
+                if(teamNames_.size()==0){
+                    analyticsPARTIAL.push_back("-");
+
+                }
+
+                else{
+                    for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+                        sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
+                                + year + "%'";
+
+                        sqlResults=searchDataBase(sqlCommand);
+                        if(sqlResults.size()!=0){
+
+                        teamResultsPartial.first=sqlResults.at(0).at(11);
+                        teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
+
+                        teamResults.push_back(teamResultsPartial);
+
+                        }
+                    }
+
+                    analyticsPARTIAL.push_back(calc_->getBestTeams(teamResults,1).at(0).first);
+                    teamResults.clear();
+                }
+
+                    analyticsFULL_.push_back(analyticsPARTIAL);
+
+                    analyticsPARTIAL.clear();
+                }
 
     }
-}
+        qDebug()<<"End of analytics";
 
-QVector<QVector<QString> > DataModel::getAnalyticsVector()
+    }
+
+QVector<QVector<QString>> DataModel::getAnalyticsVector()
 {
     return analyticsFULL_;
 }
 
-
-
-
-QVector<QVector<QString> > DataModel::searchDataBase(QString sqlCommand)
+QVector<QVector<QString>> DataModel::searchDataBase(QString sqlCommand)
 {
-
     return database_->searchDataBase(sqlCommand);
 }
 
-QVector<QString> DataModel::getTeamNames()
+QVector<std::pair<QString, float> > DataModel::getPercanteges(QString sqlCommand, int index)
 {
- //tänne pitäs saada semmonen että antaa listan kaikista uniikeista tiiminimistä jota on jollai tietyl matkal (ja vuodella?)
-    return teamNames_;
+    return calc_->calculatePercentagesGeneral(database_->searchDataBase(sqlCommand),index);
 }
+
+
+float DataModel::timeToFloat(QString time)
+{
+    return calc_->TimeStringToInt(time);
 }
+
+QVector<std::pair<QString, QString> > DataModel::getBestTeams(int amount, QString year,QString distance)
+{
+    QVector<QVector<QString>> sqlResults;
+    QString sqlCommand;
+    QVector<std::pair<QString,QString>> teamResults;
+    teamNames_=parser->getTeamNames(distance,year);
+    for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+
+        sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distance+"%' AND year LIKE '%"
+                + year + "%'";
+
+        sqlResults=searchDataBase(sqlCommand);
+
+        if(sqlResults.size()!=0){
+
+        teamResults.push_back({sqlResults.at(0).at(11),calc_->calcAverageTime(sqlResults)});
+
+        }
+    }
+    return(calc_->getBestTeams(teamResults,amount));
+}
+
+void DataModel::clearPars()
+{
+    parser->clearTeams();
+}
+
+} // Namespace Model

@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_data_base.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
@@ -83,7 +107,7 @@ Inheritance diagram for DataBase:</div>
 <area shape="rect" href="class_abstarct_database.html" title="The AbstarctDatabase class is used to create SQLite database for skiing results." alt="" coords="5,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="33,5,104,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for DataBase:</div>
 <div class="dyncontent">
@@ -93,25 +117,19 @@ Collaboration diagram for DataBase:</div>
 <area shape="rect" href="class_abstarct_database.html" title="The AbstarctDatabase class is used to create SQLite database for skiing results." alt="" coords="5,80,132,107"/>
 <area shape="rect" title=" " alt="" coords="33,5,104,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a7debe68706e9d4429902f1fa77aec712"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a7debe68706e9d4429902f1fa77aec712">insertIntoResultsTable</a> (QVector&lt; QString &gt; toInsert)</td></tr>
-<tr class="memdesc:a7debe68706e9d4429902f1fa77aec712"><td class="mdescLeft">&#160;</td><td class="mdescRight">insertIntoResultsTable Inserts results data to SQL table  <a href="class_data_base.html#a7debe68706e9d4429902f1fa77aec712">More...</a><br /></td></tr>
-<tr class="separator:a7debe68706e9d4429902f1fa77aec712"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91b34839a2d835662da070240598d152"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a91b34839a2d835662da070240598d152">insertIntoAnalyticsTable</a> (QVector&lt; QString &gt; toInsert)</td></tr>
-<tr class="memdesc:a91b34839a2d835662da070240598d152"><td class="mdescLeft">&#160;</td><td class="mdescRight">insertIntoAnalyticsTable Inserts analytics data to SQL table  <a href="class_data_base.html#a91b34839a2d835662da070240598d152">More...</a><br /></td></tr>
-<tr class="separator:a91b34839a2d835662da070240598d152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae76c813a3e1b6dd34d0d315c3931677a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#ae76c813a3e1b6dd34d0d315c3931677a">removeData</a> ()</td></tr>
 <tr class="memdesc:ae76c813a3e1b6dd34d0d315c3931677a"><td class="mdescLeft">&#160;</td><td class="mdescRight">removeData Removes all results and analytics data  <a href="class_data_base.html#ae76c813a3e1b6dd34d0d315c3931677a">More...</a><br /></td></tr>
 <tr class="separator:ae76c813a3e1b6dd34d0d315c3931677a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6c5ee322dfd08aeddfbf134d2665424f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a6c5ee322dfd08aeddfbf134d2665424f">DataBase</a> (std::shared_ptr&lt; <a class="el" href="class_result_model.html">ResultModel</a> &gt; resultModel=nullptr, std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt; analyticsModel=nullptr)</td></tr>
-<tr class="memdesc:a6c5ee322dfd08aeddfbf134d2665424f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_data_base.html" title="The DataBase class is used to create different tables and insert data on them. Also removing and sear...">DataBase</a> Constructor for database.  <a href="class_data_base.html#a6c5ee322dfd08aeddfbf134d2665424f">More...</a><br /></td></tr>
-<tr class="separator:a6c5ee322dfd08aeddfbf134d2665424f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec6e88e706eb4224325f573a50e17696"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#aec6e88e706eb4224325f573a50e17696">DataBase</a> (std::shared_ptr&lt; <a class="el" href="class_result_model.html">ResultModel</a> &gt; resultModel=nullptr, std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt; analyticsModel=nullptr, std::shared_ptr&lt; <a class="el" href="class_personal_result_model.html">PersonalResultModel</a> &gt; personalResultModel=nullptr)</td></tr>
+<tr class="memdesc:aec6e88e706eb4224325f573a50e17696"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_data_base.html" title="The DataBase class is used to create different tables and insert data on them. Also removing and sear...">DataBase</a> Constructor for database.  <a href="class_data_base.html#aec6e88e706eb4224325f573a50e17696">More...</a><br /></td></tr>
+<tr class="separator:aec6e88e706eb4224325f573a50e17696"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d4629e705ccaa4897e9650222a2a648"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a9d4629e705ccaa4897e9650222a2a648">~DataBase</a> ()</td></tr>
 <tr class="separator:a9d4629e705ccaa4897e9650222a2a648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9c207471ca383489f669be62be6e3af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#af9c207471ca383489f669be62be6e3af">sortDataBase</a> (QString command)</td></tr>
@@ -120,10 +138,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3144628c164e631b0ad78720a9881c5"><td class="memItemLeft" align="right" valign="top">QVector&lt; QVector&lt; QString &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">searchDataBase</a> (QString config)</td></tr>
 <tr class="memdesc:aa3144628c164e631b0ad78720a9881c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">searchDataBase  <a href="class_data_base.html#aa3144628c164e631b0ad78720a9881c5">More...</a><br /></td></tr>
 <tr class="separator:aa3144628c164e631b0ad78720a9881c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c3ac743984b63edf3838e18623e7e61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a5c3ac743984b63edf3838e18623e7e61">insertIntoTable</a> (QVector&lt; QVector&lt; QString &gt;&gt; data, QString Table)</td></tr>
+<tr class="memdesc:a5c3ac743984b63edf3838e18623e7e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">insertIntoTable Used to insert data into different sql tables.  <a href="class_data_base.html#a5c3ac743984b63edf3838e18623e7e61">More...</a><br /></td></tr>
+<tr class="separator:a5c3ac743984b63edf3838e18623e7e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_abstarct_database"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_abstarct_database')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_abstarct_database.html">AbstarctDatabase</a></td></tr>
-<tr class="memitem:a6a91a6660920b40e6a2aa2ac13395bff inherit pub_methods_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a6a91a6660920b40e6a2aa2ac13395bff">AbstarctDatabase</a> (std::shared_ptr&lt; <a class="el" href="class_result_model.html">ResultModel</a> &gt; rModel, std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt; aModel)</td></tr>
-<tr class="memdesc:a6a91a6660920b40e6a2aa2ac13395bff inherit pub_methods_class_abstarct_database"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_abstarct_database.html" title="The AbstarctDatabase class is used to create SQLite database for skiing results.">AbstarctDatabase</a> Constructor that initializes listmodel pointers.  <a href="class_abstarct_database.html#a6a91a6660920b40e6a2aa2ac13395bff">More...</a><br /></td></tr>
-<tr class="separator:a6a91a6660920b40e6a2aa2ac13395bff inherit pub_methods_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1516d3f0f468452ff4302f6de682637 inherit pub_methods_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#ad1516d3f0f468452ff4302f6de682637">AbstarctDatabase</a> (std::shared_ptr&lt; <a class="el" href="class_result_model.html">ResultModel</a> &gt; rModel, std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt; aModel, std::shared_ptr&lt; <a class="el" href="class_personal_result_model.html">PersonalResultModel</a> &gt; pModel)</td></tr>
+<tr class="memdesc:ad1516d3f0f468452ff4302f6de682637 inherit pub_methods_class_abstarct_database"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_abstarct_database.html" title="The AbstarctDatabase class is used to create SQLite database for skiing results.">AbstarctDatabase</a> Constructor that initializes listmodel pointers.  <a href="class_abstarct_database.html#ad1516d3f0f468452ff4302f6de682637">More...</a><br /></td></tr>
+<tr class="separator:ad1516d3f0f468452ff4302f6de682637 inherit pub_methods_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad73cd90db0d628642c2b708932583479 inherit pub_methods_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#ad73cd90db0d628642c2b708932583479">connectToDataBase</a> ()</td></tr>
 <tr class="memdesc:ad73cd90db0d628642c2b708932583479 inherit pub_methods_class_abstarct_database"><td class="mdescLeft">&#160;</td><td class="mdescRight">connectToDataBase Makes connection to database  <a href="class_abstarct_database.html#ad73cd90db0d628642c2b708932583479">More...</a><br /></td></tr>
 <tr class="separator:ad73cd90db0d628642c2b708932583479 inherit pub_methods_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,16 +164,18 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_abstarct_database"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_abstarct_database')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_abstarct_database.html">AbstarctDatabase</a></td></tr>
 <tr class="memitem:a5e3b0925174f136d270fe459fc9aa7fc inherit pro_attribs_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">QSqlDatabase&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a5e3b0925174f136d270fe459fc9aa7fc">db</a></td></tr>
 <tr class="separator:a5e3b0925174f136d270fe459fc9aa7fc inherit pro_attribs_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8964e766c19d9d59b2d1cbbf38373cfa inherit pro_attribs_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a8964e766c19d9d59b2d1cbbf38373cfa">aModel_</a> =nullptr</td></tr>
+<tr class="memitem:a8964e766c19d9d59b2d1cbbf38373cfa inherit pro_attribs_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a8964e766c19d9d59b2d1cbbf38373cfa">aModel_</a> = nullptr</td></tr>
 <tr class="separator:a8964e766c19d9d59b2d1cbbf38373cfa inherit pro_attribs_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b58ec991787887a3d2ba293a8e180b8 inherit pro_attribs_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_result_model.html">ResultModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a1b58ec991787887a3d2ba293a8e180b8">rModel_</a> =nullptr</td></tr>
+<tr class="memitem:a1b58ec991787887a3d2ba293a8e180b8 inherit pro_attribs_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_result_model.html">ResultModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a1b58ec991787887a3d2ba293a8e180b8">rModel_</a> = nullptr</td></tr>
 <tr class="separator:a1b58ec991787887a3d2ba293a8e180b8 inherit pro_attribs_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8856e3a3d16a41f0b67f31a579cc16 inherit pro_attribs_class_abstarct_database"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_personal_result_model.html">PersonalResultModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstarct_database.html#a7b8856e3a3d16a41f0b67f31a579cc16">pModel_</a> = nullptr</td></tr>
+<tr class="separator:a7b8856e3a3d16a41f0b67f31a579cc16 inherit pro_attribs_class_abstarct_database"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_data_base.html" title="The DataBase class is used to create different tables and insert data on them. Also removing and sear...">DataBase</a> class is used to create different tables and insert data on them. Also removing and searching from database happens here. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6c5ee322dfd08aeddfbf134d2665424f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c5ee322dfd08aeddfbf134d2665424f">&#9670;&nbsp;</a></span>DataBase()</h2>
+<a id="aec6e88e706eb4224325f573a50e17696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec6e88e706eb4224325f573a50e17696">&#9670;&nbsp;</a></span>DataBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,7 +193,13 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_analytics_model.html">AnalyticsModel</a> &gt;&#160;</td>
-          <td class="paramname"><em>analyticsModel</em> = <code>nullptr</code>&#160;</td>
+          <td class="paramname"><em>analyticsModel</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_personal_result_model.html">PersonalResultModel</a> &gt;&#160;</td>
+          <td class="paramname"><em>personalResultModel</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -214,68 +243,37 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a91b34839a2d835662da070240598d152"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91b34839a2d835662da070240598d152">&#9670;&nbsp;</a></span>insertIntoAnalyticsTable</h2>
+<a id="a5c3ac743984b63edf3838e18623e7e61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c3ac743984b63edf3838e18623e7e61">&#9670;&nbsp;</a></span>insertIntoTable()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DataBase::insertIntoAnalyticsTable </td>
+          <td class="memname">void DataBase::insertIntoTable </td>
           <td>(</td>
-          <td class="paramtype">QVector&lt; QString &gt;&#160;</td>
-          <td class="paramname"><em>toInsert</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">QVector&lt; QVector&lt; QString &gt;&gt;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
         </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>insertIntoAnalyticsTable Inserts analytics data to SQL table </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">toInsert</td><td>: Data </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a7debe68706e9d4429902f1fa77aec712"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7debe68706e9d4429902f1fa77aec712">&#9670;&nbsp;</a></span>insertIntoResultsTable</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
         <tr>
-          <td class="memname">void DataBase::insertIntoResultsTable </td>
-          <td>(</td>
-          <td class="paramtype">QVector&lt; QString &gt;&#160;</td>
-          <td class="paramname"><em>toInsert</em></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>Table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>insertIntoResultsTable Inserts results data to SQL table </p>
+<p>insertIntoTable Used to insert data into different sql tables. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">toInsert</td><td>: Data </td></tr>
+    <tr><td class="paramname">data</td><td></td></tr>
+    <tr><td class="paramname">Table</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -367,11 +365,15 @@ Additional Inherited Members</h2></td></tr>
 <li>E:/Gitin repo/ohSuunnittelu/OhSunnittelu/Application/App/Data/<a class="el" href="database_8cpp.html">database.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_data_base.html">DataBase</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

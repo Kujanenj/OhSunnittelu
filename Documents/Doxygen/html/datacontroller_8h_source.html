@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('datacontroller_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_2bbf5203a336a713318e52081671c064.html">Controller</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">datacontroller.h</div>  </div>
@@ -74,70 +94,97 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QVector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="requester_8h.html">Model/requester.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="database_8h.html">Data/database.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../Model/datamodel.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="requester_8h.html">Model/requester.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="database_8h.html">Data/database.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../Model/datamodel.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_controller.html">Controller</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_controller_1_1_data_controller.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_controller_1_1_data_controller.html">DataController</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_controller_1_1_data_controller.html#ae097c0fbd8c74c3f07e13aad9c7a69d3">DataController</a>(std::shared_ptr&lt;Model::DataModel&gt; model, QObject *parent = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_controller_1_1_data_controller.html#a346fcb773a3c779436232e525cce1bc3">~DataController</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_controller_1_1_data_controller.html#acb91ba48e889ac7116903af01a67864a">searchButtonClicked</a>(QString startYear, QString endYear,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                         QVector&lt;QString&gt; distance, QString gender, QVector&lt;QString&gt; ages,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                         QString firstName, QString lastName,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                         QString place, QString nationality,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                         QString team);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_controller_1_1_data_controller.html#ab7c08c8716479bf61822d6c68279530c">sortButtonClicked</a>(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;signals:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_controller.html">Controller</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_controller_1_1_data_controller.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_controller_1_1_data_controller.html">DataController</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_controller_1_1_data_controller.html#ae097c0fbd8c74c3f07e13aad9c7a69d3">DataController</a>(std::shared_ptr&lt;Model::DataModel&gt; model, QObject* parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_controller_1_1_data_controller.html#a346fcb773a3c779436232e525cce1bc3">~DataController</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_controller_1_1_data_controller.html#a2932fc6a896464a3b1681cd14e60e98c">searchButtonClicked</a>(QString startYear, QString endYear,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        QVector&lt;QString&gt; distance, QString gender, QVector&lt;QString&gt; ages, QString firstName,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        QString lastName, QString place, QString nationality, QString team, QString personalSearch);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_controller_1_1_data_controller.html#ab7c08c8716479bf61822d6c68279530c">sortButtonClicked</a>(</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        QString selectedField, QString upperBound, QString lowerBound, QString rankSilder);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//Requester *req;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::shared_ptr&lt;DataBase&gt; database_;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    Q_INVOKABLE QVector&lt;int&gt; <a class="code" href="class_controller_1_1_data_controller.html#adf441db3f5497b6e4ff99d2d34a17f04">getGraphValues</a>(QString graphtype, QString year, QString distance);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    Q_INVOKABLE QVector&lt;QString&gt; <a class="code" href="class_controller_1_1_data_controller.html#ab1235a784c82b47b25460c503e735d18">getGraphTypes</a>(QString graphtype, QString year, QString distance);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::shared_ptr&lt;Model::DataModel&gt; dataModel_;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QMap&lt;QString,QString&gt; parserConfig_ = {{<span class="stringliteral">&quot;fileToRead&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>}, <span class="comment">//false = &quot;älä lue mitää&quot;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                     {<span class="stringliteral">&quot;fileToWrite&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>},<span class="comment">//false = &quot;älä kirjota mitää&quot;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                     {<span class="stringliteral">&quot;tableStart&quot;</span>, <span class="stringliteral">&quot;&lt;/thead&gt;&lt;tbody&gt;&quot;</span>},</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                     {<span class="stringliteral">&quot;tableEnd&quot;</span>, <span class="stringliteral">&quot;&lt;/table&gt;&lt;div&quot;</span>},</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                     {<span class="stringliteral">&quot;tableCellLeft&quot;</span>, <span class="stringliteral">&quot;7pt;\&quot;&gt;&quot;</span>},</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                     {<span class="stringliteral">&quot;tableCellRight&quot;</span>,<span class="stringliteral">&quot;&lt;/td&gt;&quot;</span>}};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    Q_INVOKABLE QStringList <a class="code" href="class_controller_1_1_data_controller.html#a5ede0e3fbba1465f1e5a1ef6df5a69ee">getYears</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    Q_INVOKABLE QStringList <a class="code" href="class_controller_1_1_data_controller.html#a7fe1df07e7ce5064d7eb9578ec4bca97">getDistances</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    Q_INVOKABLE <span class="keywordtype">void</span> <a class="code" href="class_controller_1_1_data_controller.html#a1c146608b2234da98565c1fabc064602">updateDropdownDistances</a>();</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif // DATACONTROLLER_H</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    Q_INVOKABLE QStringList <a class="code" href="class_controller_1_1_data_controller.html#a13222f7966a761dec0ab11ceead48b00">getDropdownDistances</a>();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    Q_INVOKABLE QStringList <a class="code" href="class_controller_1_1_data_controller.html#a816bbec31e0d7695663f2b95d9d6bf5a">getTopTeams</a>(QString year, QString distance);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;signals:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    QStringList translateSomeNames(QVector&lt;std::pair&lt;QString,QString&gt;&gt; result);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    QVector&lt;QString&gt; someTeamTimes_;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    std::shared_ptr&lt;DataBase&gt; database_;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    std::shared_ptr&lt;Model::DataModel&gt; dataModel_;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    QStringList years_;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QStringList distances_;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QMap&lt;QString, QString&gt; parserConfig_ = { { <span class="stringliteral">&quot;fileToRead&quot;</span>, <span class="stringliteral">&quot;false&quot;</span> }, <span class="comment">// false = &quot;älä lue mitää&quot;</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        { <span class="stringliteral">&quot;fileToWrite&quot;</span>, <span class="stringliteral">&quot;false&quot;</span> }, <span class="comment">// false = &quot;älä kirjota mitää&quot;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        { <span class="stringliteral">&quot;tableStart&quot;</span>, <span class="stringliteral">&quot;&lt;/thead&gt;&lt;tbody&gt;&quot;</span> }, { <span class="stringliteral">&quot;tableEnd&quot;</span>, <span class="stringliteral">&quot;&lt;/table&gt;&lt;div&quot;</span> },</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        { <span class="stringliteral">&quot;tableCellLeft&quot;</span>, <span class="stringliteral">&quot;7pt;\&quot;&gt;&quot;</span> }, { <span class="stringliteral">&quot;tableCellRight&quot;</span>, <span class="stringliteral">&quot;&lt;/td&gt;&quot;</span> } };</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif // DATACONTROLLER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <div class="ttc" id="anamespace_controller_html"><div class="ttname"><a href="namespace_controller.html">Controller</a></div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:4</div></div>
-<div class="ttc" id="aclass_controller_1_1_data_controller_html_acb91ba48e889ac7116903af01a67864a"><div class="ttname"><a href="class_controller_1_1_data_controller.html#acb91ba48e889ac7116903af01a67864a">Controller::DataController::searchButtonClicked</a></div><div class="ttdeci">Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear, QVector&lt; QString &gt; distance, QString gender, QVector&lt; QString &gt; ages, QString firstName, QString lastName, QString place, QString nationality, QString team)</div><div class="ttdoc">Q_INVOKABLE type function that is called from QML when search button is clicked.</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:23</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a13222f7966a761dec0ab11ceead48b00"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a13222f7966a761dec0ab11ceead48b00">Controller::DataController::getDropdownDistances</a></div><div class="ttdeci">Q_INVOKABLE QStringList getDropdownDistances()</div><div class="ttdoc">getDropdownDistances Used to get all valid distances from specific search</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:348</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a816bbec31e0d7695663f2b95d9d6bf5a"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a816bbec31e0d7695663f2b95d9d6bf5a">Controller::DataController::getTopTeams</a></div><div class="ttdeci">Q_INVOKABLE QStringList getTopTeams(QString year, QString distance)</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:353</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a7fe1df07e7ce5064d7eb9578ec4bca97"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a7fe1df07e7ce5064d7eb9578ec4bca97">Controller::DataController::getDistances</a></div><div class="ttdeci">Q_INVOKABLE QStringList getDistances()</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:315</div></div>
+<div class="ttc" id="adatacontroller_8h_html"><div class="ttname"><a href="datacontroller_8h.html">datacontroller.h</a></div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a1c146608b2234da98565c1fabc064602"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a1c146608b2234da98565c1fabc064602">Controller::DataController::updateDropdownDistances</a></div><div class="ttdeci">Q_INVOKABLE void updateDropdownDistances()</div><div class="ttdoc">updateDropdownDistances Updates distances_ vector which stores all used distances</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:334</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_adf441db3f5497b6e4ff99d2d34a17f04"><div class="ttname"><a href="class_controller_1_1_data_controller.html#adf441db3f5497b6e4ff99d2d34a17f04">Controller::DataController::getGraphValues</a></div><div class="ttdeci">Q_INVOKABLE QVector&lt; int &gt; getGraphValues(QString graphtype, QString year, QString distance)</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:120</div></div>
 <div class="ttc" id="arequester_8h_html"><div class="ttname"><a href="requester_8h.html">requester.h</a></div></div>
-<div class="ttc" id="aclass_controller_1_1_data_controller_html_ae097c0fbd8c74c3f07e13aad9c7a69d3"><div class="ttname"><a href="class_controller_1_1_data_controller.html#ae097c0fbd8c74c3f07e13aad9c7a69d3">Controller::DataController::DataController</a></div><div class="ttdeci">DataController(std::shared_ptr&lt; Model::DataModel &gt; model, QObject *parent=nullptr)</div><div class="ttdoc">DataController constructor.</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:8</div></div>
-<div class="ttc" id="aclass_controller_1_1_data_controller_html_ab7c08c8716479bf61822d6c68279530c"><div class="ttname"><a href="class_controller_1_1_data_controller.html#ab7c08c8716479bf61822d6c68279530c">Controller::DataController::sortButtonClicked</a></div><div class="ttdeci">Q_INVOKABLE void sortButtonClicked(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder)</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:100</div></div>
-<div class="ttc" id="aclass_controller_1_1_data_controller_html_a346fcb773a3c779436232e525cce1bc3"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a346fcb773a3c779436232e525cce1bc3">Controller::DataController::~DataController</a></div><div class="ttdeci">~DataController()</div><div class="ttdoc">DataController destructor.</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:16</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_ae097c0fbd8c74c3f07e13aad9c7a69d3"><div class="ttname"><a href="class_controller_1_1_data_controller.html#ae097c0fbd8c74c3f07e13aad9c7a69d3">Controller::DataController::DataController</a></div><div class="ttdeci">DataController(std::shared_ptr&lt; Model::DataModel &gt; model, QObject *parent=nullptr)</div><div class="ttdoc">DataController constructor.</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:7</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_ab7c08c8716479bf61822d6c68279530c"><div class="ttname"><a href="class_controller_1_1_data_controller.html#ab7c08c8716479bf61822d6c68279530c">Controller::DataController::sortButtonClicked</a></div><div class="ttdeci">Q_INVOKABLE void sortButtonClicked(QString selectedField, QString upperBound, QString lowerBound, QString rankSilder)</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:112</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a346fcb773a3c779436232e525cce1bc3"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a346fcb773a3c779436232e525cce1bc3">Controller::DataController::~DataController</a></div><div class="ttdeci">~DataController()</div><div class="ttdoc">DataController destructor.</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:14</div></div>
 <div class="ttc" id="adatabase_8h_html"><div class="ttname"><a href="database_8h.html">database.h</a></div></div>
-<div class="ttc" id="aclass_controller_1_1_data_controller_html"><div class="ttname"><a href="class_controller_1_1_data_controller.html">Controller::DataController</a></div><div class="ttdoc">The DataController class. Controls data between view and model.</div><div class="ttdef"><b>Definition:</b> datacontroller.h:21</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_ab1235a784c82b47b25460c503e735d18"><div class="ttname"><a href="class_controller_1_1_data_controller.html#ab1235a784c82b47b25460c503e735d18">Controller::DataController::getGraphTypes</a></div><div class="ttdeci">Q_INVOKABLE QVector&lt; QString &gt; getGraphTypes(QString graphtype, QString year, QString distance)</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:257</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html"><div class="ttname"><a href="class_controller_1_1_data_controller.html">Controller::DataController</a></div><div class="ttdoc">The DataController class. Controls data between view and model.</div><div class="ttdef"><b>Definition:</b> datacontroller.h:23</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a2932fc6a896464a3b1681cd14e60e98c"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a2932fc6a896464a3b1681cd14e60e98c">Controller::DataController::searchButtonClicked</a></div><div class="ttdeci">Q_INVOKABLE void searchButtonClicked(QString startYear, QString endYear, QVector&lt; QString &gt; distance, QString gender, QVector&lt; QString &gt; ages, QString firstName, QString lastName, QString place, QString nationality, QString team, QString personalSearch)</div><div class="ttdoc">Q_INVOKABLE type function that is called from QML when search button is clicked.</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:20</div></div>
+<div class="ttc" id="aclass_controller_1_1_data_controller_html_a5ede0e3fbba1465f1e5a1ef6df5a69ee"><div class="ttname"><a href="class_controller_1_1_data_controller.html#a5ede0e3fbba1465f1e5a1ef6df5a69ee">Controller::DataController::getYears</a></div><div class="ttdeci">Q_INVOKABLE QStringList getYears()</div><div class="ttdoc">getYears</div><div class="ttdef"><b>Definition:</b> datacontroller.cpp:310</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_2bbf5203a336a713318e52081671c064.html">Controller</a></li><li class="navelem"><a class="el" href="datacontroller_8h.html">datacontroller.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

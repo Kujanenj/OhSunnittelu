@@ -1,10 +1,6 @@
 #ifndef ABSTARCTDATABASE_H
 #define ABSTARCTDATABASE_H
 
-#include "../Model/analyticsmodel.h"
-#include "../Model/resultmodel.h"
-
-
 #include <memory>
 #include <QObject>
 #include <QSql>
@@ -15,10 +11,12 @@
 #include <QDate>
 #include <QDebug>
 
+#include "../Model/analyticsmodel.h"
+#include "../Model/resultmodel.h"
+#include "../Model/personalresultmodel.h"
 
-
-#define DATABASE_HOSTNAME       "NameDataBase"
-#define DATABASE_NAME           "data.db"
+#define DATABASE_HOSTNAME "NameDataBase"
+#define DATABASE_NAME "data.db"
 
 /**
  * @brief The AbstarctDatabase class
@@ -27,15 +25,14 @@
 class AbstarctDatabase : public QObject
 {
 public:
-
     /**
      * @brief AbstarctDatabase
      * Constructor that initializes listmodel pointers
      * @param rModel : resultsModel
      * @param aModel : analyticsModel
      */
-    AbstarctDatabase(std::shared_ptr<ResultModel> rModel,
-                     std::shared_ptr<AnalyticsModel> aModel);
+    AbstarctDatabase(std::shared_ptr<ResultModel> rModel, std::shared_ptr<AnalyticsModel> aModel,
+        std::shared_ptr<PersonalResultModel> pModel);
 
     /**
      * @brief connectToDataBase
@@ -44,7 +41,6 @@ public:
     void connectToDataBase();
 
 protected:
-
     /**
      * @brief createDataBase
      * Checks if database is open and asks
@@ -72,14 +68,15 @@ protected:
      * Used on derived classes to create
      * different kind of tables
      */
-    virtual void createTable()=0;
+    virtual void createTable() = 0;
 
     QSqlDatabase db;
-    std::shared_ptr<AnalyticsModel> aModel_=nullptr;
-    std::shared_ptr<ResultModel> rModel_=nullptr;
+    std::shared_ptr<AnalyticsModel> aModel_ = nullptr;
+    std::shared_ptr<ResultModel> rModel_ = nullptr;
+    std::shared_ptr<PersonalResultModel> pModel_ = nullptr;
 
 private:
-    QString errorMessage_="No errors!";
+    QString errorMessage_ = "No errors!";
 };
 
 #endif // ABSTARCTDATABASE_H

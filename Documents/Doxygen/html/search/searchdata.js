@@ -4,11 +4,11 @@ var indexSectionsWithContent =
   1: "acdpr",
   2: "cm",
   3: "acdmpr",
-  4: "acdfgimoprsu~",
-  5: "adr",
+  4: "acdfgimoprstu~",
+  5: "adpr",
   6: "r",
   7: "abcdfginpstwy",
-  8: "dt",
+  8: "drt",
   9: "a"
 };
 

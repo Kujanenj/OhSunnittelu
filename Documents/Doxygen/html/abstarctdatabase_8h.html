@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('abstarctdatabase_8h.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_2276b5c5161e2d79a7ba5cb14af441ba.html">Data</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -72,9 +92,7 @@ $(function() {
 <div class="title">abstarctdatabase.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="analyticsmodel_8h_source.html">../Model/analyticsmodel.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="resultmodel_8h_source.html">../Model/resultmodel.h</a>&quot;</code><br />
-<code>#include &lt;memory&gt;</code><br />
+<div class="textblock"><code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;QObject&gt;</code><br />
 <code>#include &lt;QSql&gt;</code><br />
 <code>#include &lt;QSqlQuery&gt;</code><br />
@@ -83,25 +101,29 @@ $(function() {
 <code>#include &lt;QFile&gt;</code><br />
 <code>#include &lt;QDate&gt;</code><br />
 <code>#include &lt;QDebug&gt;</code><br />
+<code>#include &quot;<a class="el" href="analyticsmodel_8h_source.html">../Model/analyticsmodel.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="resultmodel_8h_source.html">../Model/resultmodel.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="personalresultmodel_8h_source.html">../Model/personalresultmodel.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for abstarctdatabase.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="abstarctdatabase_8h__incl.png" border="0" usemap="#_e_1_2_gitin_01repo_2oh_suunnittelu_2_oh_sunnittelu_2_application_2_app_2_data_2abstarctdatabase_8h" alt=""/></div>
 <map name="_e_1_2_gitin_01repo_2oh_suunnittelu_2_oh_sunnittelu_2_application_2_app_2_data_2abstarctdatabase_8h" id="_e_1_2_gitin_01repo_2oh_suunnittelu_2_oh_sunnittelu_2_application_2_app_2_data_2abstarctdatabase_8h">
-<area shape="rect" title=" " alt="" coords="587,5,781,61"/>
-<area shape="rect" href="analyticsmodel_8h.html" title=" " alt="" coords="5,109,176,136"/>
-<area shape="rect" href="resultmodel_8h.html" title=" " alt="" coords="201,109,351,136"/>
-<area shape="rect" title=" " alt="" coords="376,109,445,136"/>
-<area shape="rect" title=" " alt="" coords="470,109,541,136"/>
-<area shape="rect" title=" " alt="" coords="565,109,616,136"/>
-<area shape="rect" title=" " alt="" coords="641,109,727,136"/>
-<area shape="rect" title=" " alt="" coords="751,109,830,136"/>
-<area shape="rect" title=" " alt="" coords="855,109,961,136"/>
-<area shape="rect" title=" " alt="" coords="985,109,1039,136"/>
-<area shape="rect" title=" " alt="" coords="1063,109,1121,136"/>
-<area shape="rect" title=" " alt="" coords="1145,109,1215,136"/>
-<area shape="rect" href="abstractlistmodel_8h.html" title=" " alt="" coords="117,184,249,211"/>
-<area shape="rect" title=" " alt="" coords="122,259,243,285"/>
+<area shape="rect" title=" " alt="" coords="492,5,687,61"/>
+<area shape="rect" title=" " alt="" coords="5,109,75,136"/>
+<area shape="rect" title=" " alt="" coords="99,109,170,136"/>
+<area shape="rect" title=" " alt="" coords="195,109,245,136"/>
+<area shape="rect" title=" " alt="" coords="270,109,357,136"/>
+<area shape="rect" title=" " alt="" coords="381,109,459,136"/>
+<area shape="rect" title=" " alt="" coords="484,109,591,136"/>
+<area shape="rect" title=" " alt="" coords="615,109,668,136"/>
+<area shape="rect" title=" " alt="" coords="692,109,751,136"/>
+<area shape="rect" title=" " alt="" coords="775,109,844,136"/>
+<area shape="rect" href="analyticsmodel_8h.html" title=" " alt="" coords="868,109,1039,136"/>
+<area shape="rect" href="resultmodel_8h.html" title=" " alt="" coords="1063,109,1214,136"/>
+<area shape="rect" href="personalresultmodel_8h.html" title=" " alt="" coords="1239,109,1439,136"/>
+<area shape="rect" href="abstractlistmodel_8h.html" title=" " alt="" coords="1073,184,1205,211"/>
+<area shape="rect" title=" " alt="" coords="1078,259,1199,285"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -168,11 +190,15 @@ Macros</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_2276b5c5161e2d79a7ba5cb14af441ba.html">Data</a></li><li class="navelem"><a class="el" href="abstarctdatabase_8h.html">abstarctdatabase.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

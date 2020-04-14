@@ -158,10 +158,10 @@ Item {
                 enabled: true
                 Layout.fillWidth: true
                 from: 1
-                to: 12
+                to: 9
                 stepSize: 1.0
                 first.value: 1
-                second.value: 12
+                second.value: 9
                 snapMode: "SnapAlways"
 
                 first.onPressedChanged: {
@@ -300,9 +300,18 @@ Item {
         id: contextMenu
 
         MenuItem {
-            text: qsTr("More info")
+            text: qsTr("Show all personal results")
             onTriggered: {
+                var anArray = resultModel.getData(tableView.currentRow)
+                var distances = ["kaikki"]
+                var ages = ["kaikki"]
+                var personalSearch = "Personal"
+                console.log(anArray[0], anArray[1], anArray[2])
+                DataController.searchButtonClicked("1974", "2019", distances, "kaikki", ages, anArray[1], anArray[0], anArray[2], "0", "", personalSearch)
+                personalResultModel.updateModel("PersonalResults")
                 bar.currentIndex = 2
+                chartButton1.enabled = false
+                chartButton2.enabled = false
             }
         }
     }

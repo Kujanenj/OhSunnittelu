@@ -47,6 +47,15 @@ public:
     * Used to clear old listedData_ vector
     */
    void clearListedData();
+   /*!
+    * \brief getTeamNames
+    * \return
+    */
+   QVector<QString> getTeamNames(QString distance, QString year);
+   /*!
+    * \brief clearTeams
+    */
+   void clearTeams();
 
 private:
 
@@ -77,8 +86,9 @@ private:
     QMap<QString, QString> config_;
     QString returnMessage_ = "Parse was successful";
 
-
     QVector<QVector<QString>> listedData_;
+
+    QVector<std::tuple<QString,QString,QString>> valid_teams;
 };
 }
 #endif // PARSER_H

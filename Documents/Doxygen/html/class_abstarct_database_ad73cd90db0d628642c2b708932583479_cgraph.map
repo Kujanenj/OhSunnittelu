@@ -1,0 +1,6 @@
+<map id="AbstarctDatabase::connectToDataBase" name="AbstarctDatabase::connectToDataBase">
+<area shape="rect" id="node1" title="connectToDataBase Makes connection to database" alt="" coords="5,35,185,76"/>
+<area shape="rect" id="node2" href="$class_abstarct_database.html#ada56bec10d339b70d4eee2357a4a321d" title="createDataBase Checks if database is open and asks database to create tables" alt="" coords="233,5,404,47"/>
+<area shape="rect" id="node4" href="$class_abstarct_database.html#a0b8dfa479aea4a3e92906bb799a170b2" title="openDataBase Creates SQLite database" alt="" coords="452,71,671,98"/>
+<area shape="rect" id="node3" href="$class_abstarct_database.html#a27771a63b364a173fca2a2b942b7e27e" title="createTable Used on derived classes to create different kind of tables" alt="" coords="476,5,647,47"/>
+</map>

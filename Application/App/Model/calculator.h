@@ -2,6 +2,9 @@
 #define CALCULATOR_H
 #include <QString>
 #include <QVector>
+
+#define ROUNDF(f, c) (((float)((int)((f) * (c))) / (c)))
+
 namespace Model {
 
 /*!
@@ -23,27 +26,63 @@ public:
      * \return minMax
      */
     std::pair<QVector<QString>,QVector<QString>> getMinMaxResults(QVector<QVector<QString>> results);
-    /*!
-     * \brief getBestTeam returns team with the lowest time
-     * \param results <Team, Time>
-     * \return best team
-     */
-    std::pair<QString,QString> getBestTeam(QVector<std::pair<QString,QString>> results);
 
+    /**
+     * @brief calculateAnalytics Calculates a analytics results partially
+     * @param nonTeamResults
+     * @return
+     */
+    QVector<std::pair<QString,QString>> getBestTeams(QVector<std::pair<QString,QString>>,int amount);
+    /*!
+     * \brief calculateAnalytics Calculates a part of the analytics vector
+     * \param nonTeamResults Results to be calculated
+     * \return calculated vector
+     */
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
-private:
+
+
+    /*!
+     * \brief calcWinnerSpeed calulates the topspeed
+     * \param results
+     * \return topspeed
+     */
+    QString calcWinnerSpeed(QVector<QVector<QString>> results);
+    /*!
+     * \brief calcAverageSpeed
+     * \param results
+     * \return
+     */
+    QString calcAverageSpeed(QVector<QVector<QString>> results);
     /*!
      * \brief TimeStringToInt turns a string based time to a float.
      * \param time
      * \return time as a float
      */
-    float TimeStringToInt(QString time);
+     static float TimeStringToInt(QString time);
+    /*!
+     * \brief calculatePercentagesGeneral calculates the percantegas of the key based on the number of results
+     * \param results
+     * \param index the result field index. E.g: index number 9 is countries
+     * \return <Key, percantage>
+     */
+    QVector<std::pair<QString, float> > calculatePercentagesGeneral(QVector<QVector<QString> > results, int index);
+
+private:
     /*!
      * \brief IntTimeToString turns the float based time to stringbased
      * \param time
      * \return time as a string
      */
     QString IntTimeToString(float time);
+
+
+    struct compareTime{
+        inline bool operator()(const std::pair<QString,QString>& first, const std::pair<QString,QString>& second)
+        {
+            return ( TimeStringToInt(first.second)<TimeStringToInt(second.second) );
+        }
+    };
+
 };
 }
 #endif // CALCULATOR_H
