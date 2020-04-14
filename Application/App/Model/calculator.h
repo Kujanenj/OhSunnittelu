@@ -33,12 +33,25 @@ public:
      * @return
      */
     QVector<std::pair<QString,QString>> getBestTeams(QVector<std::pair<QString,QString>>,int amount);
+    /*!
+     * \brief calculateAnalytics Calculates a part of the analytics vector
+     * \param nonTeamResults Results to be calculated
+     * \return calculated vector
+     */
     QVector<QString> calculateAnalytics(QVector<QVector<QString>> nonTeamResults);
 
 
-
+    /*!
+     * \brief calcWinnerSpeed calulates the topspeed
+     * \param results
+     * \return topspeed
+     */
     QString calcWinnerSpeed(QVector<QVector<QString>> results);
-
+    /*!
+     * \brief calcAverageSpeed
+     * \param results
+     * \return
+     */
     QString calcAverageSpeed(QVector<QVector<QString>> results);
     /*!
      * \brief TimeStringToInt turns a string based time to a float.
