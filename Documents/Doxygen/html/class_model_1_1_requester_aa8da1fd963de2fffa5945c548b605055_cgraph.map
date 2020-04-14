@@ -1,0 +1,4 @@
+<map id="Model::Requester::Requester" name="Model::Requester::Requester">
+<area shape="rect" id="node1" title="Requester Initializes manager, parser and requester objects and makes connection between manager and ..." alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node2" href="$class_model_1_1_requester.html#a7d98f3f8226e03683265d4dd8e788dcc" title="replyFinished Changes reply format to QString if reply was succesfull" alt="" coords="244,5,453,32"/>
+</map>

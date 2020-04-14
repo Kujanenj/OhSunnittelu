@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['calcaveragetime_15',['calcAverageTime',['../class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5',1,'Model::Calculator']]],
-  ['calculateanalytics_16',['calculateAnalytics',['../class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f',1,'Model::Calculator']]],
-  ['calculator_17',['Calculator',['../class_model_1_1_calculator.html',1,'Model::Calculator'],['../class_model_1_1_calculator.html#ab182003240f455605a04a07231a42283',1,'Model::Calculator::Calculator()']]],
-  ['calculator_2ecpp_18',['calculator.cpp',['../calculator_8cpp.html',1,'']]],
-  ['calculator_2eh_19',['calculator.h',['../calculator_8h.html',1,'']]],
-  ['cityrole_20',['CityRole',['../class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a2d449a03989e8f5e5e6a66053709880c',1,'ResultModel']]],
-  ['clearlisteddata_21',['clearListedData',['../class_model_1_1_parser.html#ad28c165e8862989f4c5e2dc79b563ea5',1,'Model::Parser']]],
-  ['closedatabase_22',['closeDataBase',['../class_abstarct_database.html#a536bbdf9451a8f56d787332b79c4ced3',1,'AbstarctDatabase']]],
-  ['connecttodatabase_23',['connectToDataBase',['../class_abstarct_database.html#ad73cd90db0d628642c2b708932583479',1,'AbstarctDatabase']]],
-  ['controller_24',['Controller',['../namespace_controller.html',1,'']]],
-  ['createdatabase_25',['createDataBase',['../class_abstarct_database.html#ada56bec10d339b70d4eee2357a4a321d',1,'AbstarctDatabase']]],
-  ['createtable_26',['createTable',['../class_abstarct_database.html#a27771a63b364a173fca2a2b942b7e27e',1,'AbstarctDatabase']]]
+  ['calcaveragespeed_16',['calcAverageSpeed',['../class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504',1,'Model::Calculator']]],
+  ['calcaveragetime_17',['calcAverageTime',['../class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5',1,'Model::Calculator']]],
+  ['calculateanalytics_18',['calculateAnalytics',['../class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f',1,'Model::Calculator']]],
+  ['calculatepercentagesgeneral_19',['calculatePercentagesGeneral',['../class_model_1_1_calculator.html#a96ec0ef11c5515c12401bb67591a8ca0',1,'Model::Calculator']]],
+  ['calculator_20',['Calculator',['../class_model_1_1_calculator.html',1,'Model::Calculator'],['../class_model_1_1_calculator.html#ab182003240f455605a04a07231a42283',1,'Model::Calculator::Calculator()']]],
+  ['calculator_2ecpp_21',['calculator.cpp',['../calculator_8cpp.html',1,'']]],
+  ['calculator_2eh_22',['calculator.h',['../calculator_8h.html',1,'']]],
+  ['calcwinnerspeed_23',['calcWinnerSpeed',['../class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b',1,'Model::Calculator']]],
+  ['cityrole_24',['CityRole',['../class_personal_result_model.html#a3add0eb334993a9de2418512b7883dbcadb63c0cc323eeeba296c5dc543d423b1',1,'PersonalResultModel::CityRole()'],['../class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a2d449a03989e8f5e5e6a66053709880c',1,'ResultModel::CityRole()']]],
+  ['clearlisteddata_25',['clearListedData',['../class_model_1_1_parser.html#ad28c165e8862989f4c5e2dc79b563ea5',1,'Model::Parser']]],
+  ['clearpars_26',['clearPars',['../class_model_1_1_data_model.html#a46392b03869e32565385a9853283edd5',1,'Model::DataModel']]],
+  ['clearteams_27',['clearTeams',['../class_model_1_1_parser.html#a68a0eb3b04f54e0334a1319611be6cb6',1,'Model::Parser']]],
+  ['closedatabase_28',['closeDataBase',['../class_abstarct_database.html#a536bbdf9451a8f56d787332b79c4ced3',1,'AbstarctDatabase']]],
+  ['connecttodatabase_29',['connectToDataBase',['../class_abstarct_database.html#ad73cd90db0d628642c2b708932583479',1,'AbstarctDatabase']]],
+  ['controller_30',['Controller',['../namespace_controller.html',1,'']]],
+  ['createdatabase_31',['createDataBase',['../class_abstarct_database.html#ada56bec10d339b70d4eee2357a4a321d',1,'AbstarctDatabase']]],
+  ['createtable_32',['createTable',['../class_abstarct_database.html#a27771a63b364a173fca2a2b942b7e27e',1,'AbstarctDatabase']]]
 ];

@@ -1,0 +1,5 @@
+<map id="Model::DataModel::searchDataBase" name="Model::DataModel::searchDataBase">
+<area shape="rect" id="node1" title="searchDataBase calls the database search based on the sql command" alt="" coords="240,27,415,69"/>
+<area shape="rect" id="node2" href="$class_model_1_1_data_model.html#a51db7067b93c0eaecf09838dd5cca4c9" title="analytics uses the calculator to calculate all the required fields for analytics" alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node3" href="$class_model_1_1_data_model.html#a854a5a442fe724e5393e5e74deaaa9c3" title=" " alt="" coords="9,57,189,98"/>
+</map>

@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('requester_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_eaa9838c05feb029f69431d65c5636d2.html">Model</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">requester.h</div>  </div>
@@ -124,18 +144,23 @@ $(function() {
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif // REQUESTER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:5</div></div>
+</div><!-- doc-content -->
+<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:7</div></div>
 <div class="ttc" id="aclass_model_1_1_requester_html_aa8da1fd963de2fffa5945c548b605055"><div class="ttname"><a href="class_model_1_1_requester.html#aa8da1fd963de2fffa5945c548b605055">Model::Requester::Requester</a></div><div class="ttdeci">Requester(QObject *parent=0)</div><div class="ttdoc">Requester Initializes manager, parser and requester objects and makes connection between manager and ...</div><div class="ttdef"><b>Definition:</b> requester.cpp:6</div></div>
 <div class="ttc" id="aclass_model_1_1_requester_html"><div class="ttname"><a href="class_model_1_1_requester.html">Model::Requester</a></div><div class="ttdoc">The Requester class Used to gather data from website and send it to parser.</div><div class="ttdef"><b>Definition:</b> requester.h:28</div></div>
 <div class="ttc" id="aclass_model_1_1_requester_html_af39bf6920252bf182e1af1bc410fd1b4"><div class="ttname"><a href="class_model_1_1_requester.html#af39bf6920252bf182e1af1bc410fd1b4">Model::Requester::~Requester</a></div><div class="ttdeci">~Requester()</div><div class="ttdef"><b>Definition:</b> requester.cpp:21</div></div>
+<div class="ttc" id="arequester_8h_html"><div class="ttname"><a href="requester_8h.html">requester.h</a></div></div>
 <div class="ttc" id="aparser_8h_html"><div class="ttname"><a href="parser_8h.html">parser.h</a></div></div>
 <div class="ttc" id="aclass_model_1_1_requester_html_a7d98f3f8226e03683265d4dd8e788dcc"><div class="ttname"><a href="class_model_1_1_requester.html#a7d98f3f8226e03683265d4dd8e788dcc">Model::Requester::replyFinished</a></div><div class="ttdeci">void replyFinished(QNetworkReply *reply)</div><div class="ttdoc">replyFinished Changes reply format to QString if reply was succesfull</div><div class="ttdef"><b>Definition:</b> requester.cpp:37</div></div>
 <div class="ttc" id="aclass_model_1_1_requester_html_a3248d088aef91fa8df78d21028fde6c3"><div class="ttname"><a href="class_model_1_1_requester.html#a3248d088aef91fa8df78d21028fde6c3">Model::Requester::DoRequest</a></div><div class="ttdeci">QString DoRequest(QMap&lt; QString, QString &gt; config, QString &amp;data)</div><div class="ttdoc">DoRequest Takes parameters from config and calls requestData() method.</div><div class="ttdef"><b>Definition:</b> requester.cpp:27</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_eaa9838c05feb029f69431d65c5636d2.html">Model</a></li><li class="navelem"><a class="el" href="requester_8h.html">requester.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

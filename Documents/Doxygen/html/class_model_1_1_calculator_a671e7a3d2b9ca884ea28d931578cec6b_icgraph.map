@@ -1,0 +1,4 @@
+<map id="Model::Calculator::calcWinnerSpeed" name="Model::Calculator::calcWinnerSpeed">
+<area shape="rect" id="node1" title="calcWinnerSpeed calulates the topspeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" id="node2" href="$class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,5,136,47"/>
+</map>

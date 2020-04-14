@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_result_model.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">ResultModel Member List</div>  </div>
@@ -74,25 +98,29 @@ $(function() {
   <tr><td class="entry"><a class="el" href="class_abstract_list_model.html#a52ab75632979a5e7ff1cacf3067a148d">data</a>(const QModelIndex &amp;index, int role=Qt::DisplayRole) const</td><td class="entry"><a class="el" href="class_abstract_list_model.html">AbstractListModel</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a56cc14836b4443be738861d649186cad">DistanceRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ad84f0aece713cebfed39550e6212aed1">GenderRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab881b7320ed541ba1ac1339480ead712">IdRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00abe7f0081828ad239666a897e7159c1de">NationalityRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a6b9ed17b7cc54026b5b1bb134b534c6f">PlaceMRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a425b3cb7eb61de8fd5ee56b3ac31825a">PlaceNRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a39247b9a8f102951a33dd45dd3104492">PlaceRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_result_model.html#ad53bf9fbba45c23d796ae021905e7c88">ResultModel</a>(QObject *parent=nullptr)</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00">resultRoles</a> enum name</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a3719616798824de7538f1725ab77b8c1">SFNameRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_abstract_list_model.html#ab0328c399ea167081efe3b0ef603c15a">sortModel</a>(QString command)</td><td class="entry"><a class="el" href="class_abstract_list_model.html">AbstractListModel</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab070c71f6839491c9ebf5e3a5c250a78">TeamRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00aa38cf703838c79909a21a3012a5cd279">TimeRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_abstract_list_model.html#a9abe8ca599e29d892af3ed975544581e">updateModel</a>(QString mainTable)</td><td class="entry"><a class="el" href="class_abstract_list_model.html">AbstractListModel</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ac99ce81e07d2732d2f1398009d8e478e">YearRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#a509fbd3903c8c48b501368590cdc02d2">getData</a>(QString row)</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab881b7320ed541ba1ac1339480ead712">IdRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00abe7f0081828ad239666a897e7159c1de">NationalityRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a6b9ed17b7cc54026b5b1bb134b534c6f">PlaceMRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a425b3cb7eb61de8fd5ee56b3ac31825a">PlaceNRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a39247b9a8f102951a33dd45dd3104492">PlaceRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ad53bf9fbba45c23d796ae021905e7c88">ResultModel</a>(QObject *parent=nullptr)</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00">resultRoles</a> enum name</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00a3719616798824de7538f1725ab77b8c1">SFNameRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_abstract_list_model.html#ab0328c399ea167081efe3b0ef603c15a">sortModel</a>(QString command)</td><td class="entry"><a class="el" href="class_abstract_list_model.html">AbstractListModel</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ab070c71f6839491c9ebf5e3a5c250a78">TeamRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00aa38cf703838c79909a21a3012a5cd279">TimeRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_abstract_list_model.html#a9abe8ca599e29d892af3ed975544581e">updateModel</a>(QString mainTable)</td><td class="entry"><a class="el" href="class_abstract_list_model.html">AbstractListModel</a></td><td class="entry"><span class="mlabel">slot</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_result_model.html#ace9f1ffdce942de95958cf4a8826cb00ac99ce81e07d2732d2f1398009d8e478e">YearRole</a> enum value</td><td class="entry"><a class="el" href="class_result_model.html">ResultModel</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

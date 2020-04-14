@@ -1,0 +1,8 @@
+<map id="Model::Calculator::TimeStringToInt" name="Model::Calculator::TimeStringToInt">
+<area shape="rect" id="node1" title="TimeStringToInt turns a string based time to a float." alt="" coords="363,104,493,145"/>
+<area shape="rect" id="node2" href="$class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504" title="calcAverageSpeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" id="node4" href="$class_model_1_1_calculator.html#a671e7a3d2b9ca884ea28d931578cec6b" title="calcWinnerSpeed calulates the topspeed" alt="" coords="184,71,315,112"/>
+<area shape="rect" id="node5" href="$class_model_1_1_calculator.html#a5a75ff605840b543e1cb740f6b5e26c5" title="calculateAnalytics Calculates a analytics results partially" alt="" coords="184,136,315,177"/>
+<area shape="rect" id="node6" href="$class_model_1_1_calculator.html#a4c75c0ec5fb788bdca39da6321dd5ee6" title="getMinMaxResults Gets the best and worst result" alt="" coords="184,201,315,243"/>
+<area shape="rect" id="node3" href="$class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,39,136,80"/>
+</map>

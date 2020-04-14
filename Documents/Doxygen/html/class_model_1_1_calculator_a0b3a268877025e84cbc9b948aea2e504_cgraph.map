@@ -1,0 +1,5 @@
+<map id="Model::Calculator::calcAverageSpeed" name="Model::Calculator::calcAverageSpeed">
+<area shape="rect" id="node1" title="calcAverageSpeed" alt="" coords="5,39,136,80"/>
+<area shape="rect" id="node2" href="$class_model_1_1_calculator.html#a4ab904c76c6496ecdffdb8599d3836b5" title="calcAverageTime Counts the average time based on number of results" alt="" coords="184,5,315,47"/>
+<area shape="rect" id="node3" href="$class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="184,71,315,112"/>
+</map>

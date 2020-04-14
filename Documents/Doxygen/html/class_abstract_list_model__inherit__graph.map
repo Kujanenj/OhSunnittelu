@@ -1,6 +1,7 @@
 <map id="AbstractListModel" name="AbstractListModel">
-<area shape="rect" id="node1" title=" " alt="" coords="60,80,187,107"/>
+<area shape="rect" id="node1" title="The AbstractListModel class is baseclass for all models for displaying SQL." alt="" coords="149,80,276,107"/>
 <area shape="rect" id="node3" href="$class_analytics_model.html" title="The AnalyticsModel class is used to set roles that can be used to create analytics table on qml." alt="" coords="5,155,116,181"/>
-<area shape="rect" id="node4" href="$class_result_model.html" title="The ResultModel class is used to set roles that can be used to create results table on qml." alt="" coords="140,155,235,181"/>
-<area shape="rect" id="node2" title=" " alt="" coords="63,5,184,32"/>
+<area shape="rect" id="node4" href="$class_personal_result_model.html" title="The PersonalModel class is used to set roles that can be used to create results table on qml." alt="" coords="140,155,285,181"/>
+<area shape="rect" id="node5" href="$class_result_model.html" title="The ResultModel class is used to set roles that can be used to create results table on qml." alt="" coords="309,155,404,181"/>
+<area shape="rect" id="node2" title=" " alt="" coords="152,5,273,32"/>
 </map>

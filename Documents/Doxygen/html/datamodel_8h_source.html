@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('datamodel_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_eaa9838c05feb029f69431d65c5636d2.html">Model</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">datamodel.h</div>  </div>
@@ -81,49 +101,71 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_model_1_1_data_model.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_model_1_1_data_model.html">DataModel</a>        </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_model_1_1_data_model.html#af7236428eb6ecc38772ee61a617633dc">DataModel</a>(std::shared_ptr&lt;DataBase&gt; database);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#aca409782947bc575b9f39bf25562e774">doRequest</a>(QMap&lt;QString,QString&gt; parameters);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#ac79e1dbfc76f0484c633e8b9962b1fe1">doParse</a>(QMap&lt;QString,QString&gt; config);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#a35b9ae40121e01dec436308ce5be9952">insertData</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#ac660fa7a193a9e11ee6ddd1af8cb6e3c">insertAnalyticsData</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#acc45fd92dfd9e0e64171609cb12c5ca8">sortDataBase</a>(QString command);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#a69d2bcaa271ec57b91852b8b076fdeaa">analytics</a>(QVector&lt;QString&gt; distances, std::pair&lt;QString, QString&gt; years);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_model_1_1_data_model.html#abae6a2f4a5bb1cb4ccf805ce033c12bf">getAnalyticsVector</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_model_1_1_data_model.html#ab3a07521b8b26e8b056cd6c737de539a">searchDataBase</a>(QString sqlCommand);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    QVector&lt;QString&gt; <a class="code" href="class_model_1_1_data_model.html#a5d4c94a817b0a886753dde02218a5473">getTeamNames</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::shared_ptr&lt;Model::Requester&gt; req;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::shared_ptr&lt;Model::Parser&gt; parser;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::shared_ptr&lt;DataBase&gt; database_;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::shared_ptr&lt;Calculator&gt; calc_;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    QVector&lt;QString&gt; teamNames_;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;     QVector&lt;QVector&lt;QString&gt;&gt; analyticsFULL_; <span class="comment">//insertion vector to analytics</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QString data_=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; listedData_;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif // DATAMODEL_H</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_model_1_1_data_model.html#af7236428eb6ecc38772ee61a617633dc">DataModel</a>(std::shared_ptr&lt;DataBase&gt; database);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#a45647ff636c330db75021629c507d0ce">doRequest</a>(QMap&lt;QString,QString&gt; requesterParameters, QMap&lt;QString,QString&gt; parserParameters);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#aec9b2dddeff6b4e3273d92e31695bb49">insertData</a>(QString table);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#aacd98caf5c60553f4caeff6cb3ef290f">sortDataBase</a>(QString sqlcommand);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;   <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#a51db7067b93c0eaecf09838dd5cca4c9">analytics</a>(QString distance,QString year);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_model_1_1_data_model.html#abae6a2f4a5bb1cb4ccf805ce033c12bf">getAnalyticsVector</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_model_1_1_data_model.html#ab3a07521b8b26e8b056cd6c737de539a">searchDataBase</a>(QString sqlCommand);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QVector&lt;std::pair&lt;QString, float&gt; &gt; <a class="code" href="class_model_1_1_data_model.html#a15a51e2f9c09167132d6f6085bd0a541">getPercanteges</a>(QString sqlCommand, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_model_1_1_data_model.html#a4998719b98ad57dac58e44f9d02cb1a4">timeToFloat</a>(QString time);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    QVector&lt;std::pair&lt;QString,QString&gt;&gt; <a class="code" href="class_model_1_1_data_model.html#a854a5a442fe724e5393e5e74deaaa9c3">getBestTeams</a>(<span class="keywordtype">int</span> amount, QString year, QString distance);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_data_model.html#a46392b03869e32565385a9853283edd5">clearPars</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> doParse(QMap&lt;QString,QString&gt; config);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    std::shared_ptr&lt;Model::Requester&gt; req;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    std::shared_ptr&lt;Model::Parser&gt; parser;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::shared_ptr&lt;DataBase&gt; database_;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::shared_ptr&lt;Calculator&gt; calc_;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    QVector&lt;std::pair&lt;QString,QString&gt;&gt; bestTeams_;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    QVector&lt;QString&gt; teamNames_;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    QVector&lt;std::pair&lt;QString,float&gt;&gt; countries_;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; analyticsFULL_; <span class="comment">//insertion vector to analytics</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    QString data_=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; listedData_;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;};</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;} <span class="comment">// Namespace Model</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif // DATAMODEL_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="aclass_model_1_1_data_model_html_a45647ff636c330db75021629c507d0ce"><div class="ttname"><a href="class_model_1_1_data_model.html#a45647ff636c330db75021629c507d0ce">Model::DataModel::doRequest</a></div><div class="ttdeci">void doRequest(QMap&lt; QString, QString &gt; requesterParameters, QMap&lt; QString, QString &gt; parserParameters)</div><div class="ttdoc">doRequest calls the Requester class to do a html post request</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:14</div></div>
 <div class="ttc" id="acalculator_8h_html"><div class="ttname"><a href="calculator_8h.html">calculator.h</a></div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_af7236428eb6ecc38772ee61a617633dc"><div class="ttname"><a href="class_model_1_1_data_model.html#af7236428eb6ecc38772ee61a617633dc">Model::DataModel::DataModel</a></div><div class="ttdeci">DataModel(std::shared_ptr&lt; DataBase &gt; database)</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:5</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_a35b9ae40121e01dec436308ce5be9952"><div class="ttname"><a href="class_model_1_1_data_model.html#a35b9ae40121e01dec436308ce5be9952">Model::DataModel::insertData</a></div><div class="ttdeci">void insertData()</div><div class="ttdoc">TODO: insertData Nää pitää muuttaa koska vituillaan. Ei oo järkee ettei oo mitää parametrei ja sit nä...</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:24</div></div>
-<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:5</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_a854a5a442fe724e5393e5e74deaaa9c3"><div class="ttname"><a href="class_model_1_1_data_model.html#a854a5a442fe724e5393e5e74deaaa9c3">Model::DataModel::getBestTeams</a></div><div class="ttdeci">QVector&lt; std::pair&lt; QString, QString &gt; &gt; getBestTeams(int amount, QString year, QString distance)</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:180</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_a46392b03869e32565385a9853283edd5"><div class="ttname"><a href="class_model_1_1_data_model.html#a46392b03869e32565385a9853283edd5">Model::DataModel::clearPars</a></div><div class="ttdeci">void clearPars()</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:202</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_af7236428eb6ecc38772ee61a617633dc"><div class="ttname"><a href="class_model_1_1_data_model.html#af7236428eb6ecc38772ee61a617633dc">Model::DataModel::DataModel</a></div><div class="ttdeci">DataModel(std::shared_ptr&lt; DataBase &gt; database)</div><div class="ttdoc">DataModel Constructor for datamodel.</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:5</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_a51db7067b93c0eaecf09838dd5cca4c9"><div class="ttname"><a href="class_model_1_1_data_model.html#a51db7067b93c0eaecf09838dd5cca4c9">Model::DataModel::analytics</a></div><div class="ttdeci">void analytics(QString distance, QString year)</div><div class="ttdoc">analytics uses the calculator to calculate all the required fields for analytics</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:79</div></div>
+<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:7</div></div>
+<div class="ttc" id="adatamodel_8h_html"><div class="ttname"><a href="datamodel_8h.html">datamodel.h</a></div></div>
 <div class="ttc" id="aclass_model_1_1_data_model_html"><div class="ttname"><a href="class_model_1_1_data_model.html">Model::DataModel</a></div><div class="ttdoc">The DataModel class is a facade for all model modules.</div><div class="ttdef"><b>Definition:</b> datamodel.h:13</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_a5d4c94a817b0a886753dde02218a5473"><div class="ttname"><a href="class_model_1_1_data_model.html#a5d4c94a817b0a886753dde02218a5473">Model::DataModel::getTeamNames</a></div><div class="ttdeci">QVector&lt; QString &gt; getTeamNames()</div><div class="ttdoc">getTeamNames returns all unique team names, exculding blanks</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:149</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_ab3a07521b8b26e8b056cd6c737de539a"><div class="ttname"><a href="class_model_1_1_data_model.html#ab3a07521b8b26e8b056cd6c737de539a">Model::DataModel::searchDataBase</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; searchDataBase(QString sqlCommand)</div><div class="ttdoc">searchDataBase calls the database search based on the sql command</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:143</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_abae6a2f4a5bb1cb4ccf805ce033c12bf"><div class="ttname"><a href="class_model_1_1_data_model.html#abae6a2f4a5bb1cb4ccf805ce033c12bf">Model::DataModel::getAnalyticsVector</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; getAnalyticsVector()</div><div class="ttdoc">getAnalyticsVector</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:135</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_a15a51e2f9c09167132d6f6085bd0a541"><div class="ttname"><a href="class_model_1_1_data_model.html#a15a51e2f9c09167132d6f6085bd0a541">Model::DataModel::getPercanteges</a></div><div class="ttdeci">QVector&lt; std::pair&lt; QString, float &gt; &gt; getPercanteges(QString sqlCommand, int index)</div><div class="ttdoc">getPercanteges returns percentages of corrosponding index field</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:169</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_ab3a07521b8b26e8b056cd6c737de539a"><div class="ttname"><a href="class_model_1_1_data_model.html#ab3a07521b8b26e8b056cd6c737de539a">Model::DataModel::searchDataBase</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; searchDataBase(QString sqlCommand)</div><div class="ttdoc">searchDataBase calls the database search based on the sql command</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:164</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_abae6a2f4a5bb1cb4ccf805ce033c12bf"><div class="ttname"><a href="class_model_1_1_data_model.html#abae6a2f4a5bb1cb4ccf805ce033c12bf">Model::DataModel::getAnalyticsVector</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; getAnalyticsVector()</div><div class="ttdoc">getAnalyticsVector</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:159</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_aec9b2dddeff6b4e3273d92e31695bb49"><div class="ttname"><a href="class_model_1_1_data_model.html#aec9b2dddeff6b4e3273d92e31695bb49">Model::DataModel::insertData</a></div><div class="ttdeci">void insertData(QString table)</div><div class="ttdoc">insertData Used to start insertion to different sql tables</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:27</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_aacd98caf5c60553f4caeff6cb3ef290f"><div class="ttname"><a href="class_model_1_1_data_model.html#aacd98caf5c60553f4caeff6cb3ef290f">Model::DataModel::sortDataBase</a></div><div class="ttdeci">void sortDataBase(QString sqlcommand)</div><div class="ttdoc">sortDataBase Calls the DB to sort the database according to the command</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:74</div></div>
 <div class="ttc" id="arequester_8h_html"><div class="ttname"><a href="requester_8h.html">requester.h</a></div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_ac79e1dbfc76f0484c633e8b9962b1fe1"><div class="ttname"><a href="class_model_1_1_data_model.html#ac79e1dbfc76f0484c633e8b9962b1fe1">Model::DataModel::doParse</a></div><div class="ttdeci">void doParse(QMap&lt; QString, QString &gt; config)</div><div class="ttdoc">doParse Calls the parses to parse the html data</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:19</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_acc45fd92dfd9e0e64171609cb12c5ca8"><div class="ttname"><a href="class_model_1_1_data_model.html#acc45fd92dfd9e0e64171609cb12c5ca8">Model::DataModel::sortDataBase</a></div><div class="ttdeci">void sortDataBase(QString command)</div><div class="ttdoc">sortDataBase Calls the DB to sort the database according to the command</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:82</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_ac660fa7a193a9e11ee6ddd1af8cb6e3c"><div class="ttname"><a href="class_model_1_1_data_model.html#ac660fa7a193a9e11ee6ddd1af8cb6e3c">Model::DataModel::insertAnalyticsData</a></div><div class="ttdeci">void insertAnalyticsData()</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:63</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_a69d2bcaa271ec57b91852b8b076fdeaa"><div class="ttname"><a href="class_model_1_1_data_model.html#a69d2bcaa271ec57b91852b8b076fdeaa">Model::DataModel::analytics</a></div><div class="ttdeci">void analytics(QVector&lt; QString &gt; distances, std::pair&lt; QString, QString &gt; years)</div><div class="ttdoc">analytics uses the calculator to calculate all the required fields for analytics</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:88</div></div>
-<div class="ttc" id="aclass_model_1_1_data_model_html_aca409782947bc575b9f39bf25562e774"><div class="ttname"><a href="class_model_1_1_data_model.html#aca409782947bc575b9f39bf25562e774">Model::DataModel::doRequest</a></div><div class="ttdeci">void doRequest(QMap&lt; QString, QString &gt; parameters)</div><div class="ttdoc">doRequest calls the Requester class to do a html post request</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:14</div></div>
+<div class="ttc" id="aclass_model_1_1_data_model_html_a4998719b98ad57dac58e44f9d02cb1a4"><div class="ttname"><a href="class_model_1_1_data_model.html#a4998719b98ad57dac58e44f9d02cb1a4">Model::DataModel::timeToFloat</a></div><div class="ttdeci">float timeToFloat(QString time)</div><div class="ttdoc">timeToFloat</div><div class="ttdef"><b>Definition:</b> datamodel.cpp:175</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_eaa9838c05feb029f69431d65c5636d2.html">Model</a></li><li class="navelem"><a class="el" href="datamodel_8h.html">datamodel.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,5 @@
+<map id="Model::Calculator::calcAverageTime" name="Model::Calculator::calcAverageTime">
+<area shape="rect" id="node1" title="calcAverageTime Counts the average time based on number of results" alt="" coords="363,35,493,76"/>
+<area shape="rect" id="node2" href="$class_model_1_1_calculator.html#a0b3a268877025e84cbc9b948aea2e504" title="calcAverageSpeed" alt="" coords="184,5,315,47"/>
+<area shape="rect" id="node3" href="$class_model_1_1_calculator.html#a838849c37727e050815926abdbe1e72f" title="calculateAnalytics Calculates a part of the analytics vector" alt="" coords="5,35,136,76"/>
+</map>

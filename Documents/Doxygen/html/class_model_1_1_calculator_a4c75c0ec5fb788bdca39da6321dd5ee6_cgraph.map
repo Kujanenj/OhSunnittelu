@@ -1,0 +1,4 @@
+<map id="Model::Calculator::getMinMaxResults" name="Model::Calculator::getMinMaxResults">
+<area shape="rect" id="node1" title="getMinMaxResults Gets the best and worst result" alt="" coords="5,5,136,47"/>
+<area shape="rect" id="node2" href="$class_model_1_1_calculator.html#a4121331941985476c4662de8eab74632" title="TimeStringToInt turns a string based time to a float." alt="" coords="184,5,315,47"/>
+</map>

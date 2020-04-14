@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('parser_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_eaa9838c05feb029f69431d65c5636d2.html">Model</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">parser.h</div>  </div>
@@ -89,41 +109,51 @@ $(function() {
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;   QVector&lt;QVector&lt;QString&gt;&gt; <a class="code" href="class_model_1_1_parser.html#a629c48f3724f7d9a8fa17d04f8f32efe">getListedData</a>();</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;   <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_parser.html#ad28c165e8862989f4c5e2dc79b563ea5">clearListedData</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;   <span class="keywordtype">void</span> readFile();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> parseToTable();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> parseTable();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> formListedData();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;   QVector&lt;QString&gt; <a class="code" href="class_model_1_1_parser.html#a55dc4dc402cf1a162edcaebb9add6f8b">getTeamNames</a>(QString distance);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;   <span class="keywordtype">void</span> <a class="code" href="class_model_1_1_parser.html#a68a0eb3b04f54e0334a1319611be6cb6">clearTeams</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;   <span class="keywordtype">void</span> readFile();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> parseToTable();</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    QString unparsedDataTotal_;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    QMap&lt;QString, QString&gt; config_;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    QString returnMessage_ = <span class="stringliteral">&quot;Parse was successful&quot;</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; listedData_;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif // PARSER_H</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> parseTable();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> formListedData();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    QString unparsedDataTotal_;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    QMap&lt;QString, QString&gt; config_;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    QString returnMessage_ = <span class="stringliteral">&quot;Parse was successful&quot;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    QVector&lt;QVector&lt;QString&gt;&gt; listedData_;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    QVector&lt;std::pair&lt;QString,QString&gt;&gt; valid_teams;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif // PARSER_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <div class="ttc" id="aclass_model_1_1_parser_html_afee4f13dda1185189bd607919c0a9cdb"><div class="ttname"><a href="class_model_1_1_parser.html#afee4f13dda1185189bd607919c0a9cdb">Model::Parser::fullParse</a></div><div class="ttdeci">void fullParse(QMap&lt; QString, QString &gt; config, QString dataToParse)</div><div class="ttdoc">fullParse calls the other methods required for parsing the data</div><div class="ttdef"><b>Definition:</b> parser.cpp:16</div></div>
 <div class="ttc" id="aclass_model_1_1_parser_html_a57dce4e6d6552272f2784cca5e607aea"><div class="ttname"><a href="class_model_1_1_parser.html#a57dce4e6d6552272f2784cca5e607aea">Model::Parser::~Parser</a></div><div class="ttdeci">~Parser()</div><div class="ttdef"><b>Definition:</b> parser.cpp:11</div></div>
-<div class="ttc" id="aclass_model_1_1_parser_html_ad28c165e8862989f4c5e2dc79b563ea5"><div class="ttname"><a href="class_model_1_1_parser.html#ad28c165e8862989f4c5e2dc79b563ea5">Model::Parser::clearListedData</a></div><div class="ttdeci">void clearListedData()</div><div class="ttdoc">clearListedData Used to clear old listedData_ vector</div><div class="ttdef"><b>Definition:</b> parser.cpp:38</div></div>
-<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:5</div></div>
+<div class="ttc" id="aclass_model_1_1_parser_html_ad28c165e8862989f4c5e2dc79b563ea5"><div class="ttname"><a href="class_model_1_1_parser.html#ad28c165e8862989f4c5e2dc79b563ea5">Model::Parser::clearListedData</a></div><div class="ttdeci">void clearListedData()</div><div class="ttdoc">clearListedData Used to clear old listedData_ vector</div><div class="ttdef"><b>Definition:</b> parser.cpp:40</div></div>
+<div class="ttc" id="anamespace_model_html"><div class="ttname"><a href="namespace_model.html">Model</a></div><div class="ttdoc">The Parser class parses the finlandiahiihtoSivu. Modifies dataToParse. Can be provided with a txt fil...</div><div class="ttdef"><b>Definition:</b> calculator.cpp:7</div></div>
+<div class="ttc" id="aclass_model_1_1_parser_html_a55dc4dc402cf1a162edcaebb9add6f8b"><div class="ttname"><a href="class_model_1_1_parser.html#a55dc4dc402cf1a162edcaebb9add6f8b">Model::Parser::getTeamNames</a></div><div class="ttdeci">QVector&lt; QString &gt; getTeamNames(QString distance)</div><div class="ttdoc">getTeamNames</div><div class="ttdef"><b>Definition:</b> parser.cpp:45</div></div>
+<div class="ttc" id="aclass_model_1_1_parser_html_a68a0eb3b04f54e0334a1319611be6cb6"><div class="ttname"><a href="class_model_1_1_parser.html#a68a0eb3b04f54e0334a1319611be6cb6">Model::Parser::clearTeams</a></div><div class="ttdeci">void clearTeams()</div><div class="ttdoc">clearTeams</div><div class="ttdef"><b>Definition:</b> parser.cpp:60</div></div>
 <div class="ttc" id="aclass_model_1_1_parser_html"><div class="ttname"><a href="class_model_1_1_parser.html">Model::Parser</a></div><div class="ttdef"><b>Definition:</b> parser.h:13</div></div>
-<div class="ttc" id="aclass_model_1_1_parser_html_a629c48f3724f7d9a8fa17d04f8f32efe"><div class="ttname"><a href="class_model_1_1_parser.html#a629c48f3724f7d9a8fa17d04f8f32efe">Model::Parser::getListedData</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; getListedData()</div><div class="ttdoc">getListedData</div><div class="ttdef"><b>Definition:</b> parser.cpp:33</div></div>
+<div class="ttc" id="aclass_model_1_1_parser_html_a629c48f3724f7d9a8fa17d04f8f32efe"><div class="ttname"><a href="class_model_1_1_parser.html#a629c48f3724f7d9a8fa17d04f8f32efe">Model::Parser::getListedData</a></div><div class="ttdeci">QVector&lt; QVector&lt; QString &gt; &gt; getListedData()</div><div class="ttdoc">getListedData</div><div class="ttdef"><b>Definition:</b> parser.cpp:35</div></div>
+<div class="ttc" id="aparser_8h_html"><div class="ttname"><a href="parser_8h.html">parser.h</a></div></div>
 <div class="ttc" id="aclass_model_1_1_parser_html_a6425c43d483179f72118bdc3b022792b"><div class="ttname"><a href="class_model_1_1_parser.html#a6425c43d483179f72118bdc3b022792b">Model::Parser::Parser</a></div><div class="ttdeci">Parser()</div><div class="ttdoc">Parser default constructor.</div><div class="ttdef"><b>Definition:</b> parser.cpp:5</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.16
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ee190e1d1cc95032b1e9a7904229ce7.html">Gitin repo</a></li><li class="navelem"><a class="el" href="dir_7c50a3298caecaa55f1a8ab4f80adbcb.html">ohSuunnittelu</a></li><li class="navelem"><a class="el" href="dir_e832cfffa8c408c066d56fa8f8313b8e.html">OhSunnittelu</a></li><li class="navelem"><a class="el" href="dir_0b094060addc20a6ac8630aa0038acae.html">Application</a></li><li class="navelem"><a class="el" href="dir_fad72d41e8b0bd245f626e0ec893304e.html">App</a></li><li class="navelem"><a class="el" href="dir_eaa9838c05feb029f69431d65c5636d2.html">Model</a></li><li class="navelem"><a class="el" href="parser_8h.html">parser.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
+  </ul>
+</div>
 </body>
 </html>
