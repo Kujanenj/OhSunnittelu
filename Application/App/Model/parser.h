@@ -51,7 +51,7 @@ public:
     * \brief getTeamNames
     * \return
     */
-   QVector<QString> getTeamNames(QString distance);
+   QVector<QString> getTeamNames(QString distance, QString year);
    /*!
     * \brief clearTeams
     */
@@ -88,7 +88,7 @@ private:
 
     QVector<QVector<QString>> listedData_;
 
-    QVector<std::pair<QString,QString>> valid_teams;
+    QVector<std::tuple<QString,QString,QString>> valid_teams;
 };
 }
 #endif // PARSER_H

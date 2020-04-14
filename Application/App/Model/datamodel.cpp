@@ -104,7 +104,7 @@ void DataModel::analytics(QString distance,QString year)
 
         QString sqlCommand;
 
-        //loop all years
+        //loop all distances
         for(int i =0; i<distances.size(); i++){
 
 
@@ -116,7 +116,7 @@ void DataModel::analytics(QString distance,QString year)
 
                 if(sqlResults.size()>=3){
                     analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
-                    teamNames_=parser->getTeamNames(distances.at(i));
+                    teamNames_=parser->getTeamNames(distances.at(i),year);
 
                     //Loop teams
                 if(teamNames_.size()==0){
@@ -124,13 +124,16 @@ void DataModel::analytics(QString distance,QString year)
                     analyticsPARTIAL.push_back("-");
 
                 }
-                else{
-                    for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
 
+                else{
+                     qDebug()<<"Team size "<<teamNames_.size();
+                    for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+                        qDebug()<<"Team name ="<<teamNames_.at(it);
                         sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
                                 + year + "%'";
 
                         sqlResults=searchDataBase(sqlCommand);
+                        qDebug()<<sqlResults.size();
                         //qDebug()<<sqlCommand;
                         if(sqlResults.size()!=0){
 
@@ -182,7 +185,7 @@ QVector<std::pair<QString, QString> > DataModel::getBestTeams(int amount, QStrin
     QVector<QVector<QString>> sqlResults;
     QString sqlCommand;
     QVector<std::pair<QString,QString>> teamResults;
-    teamNames_=parser->getTeamNames(distance);
+    teamNames_=parser->getTeamNames(distance,year);
     for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
 
         sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distance+"%' AND year LIKE '%"

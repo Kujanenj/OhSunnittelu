@@ -42,15 +42,15 @@ void Parser::clearListedData()
     listedData_.clear();
 }
 
-QVector<QString> Parser::getTeamNames(QString distance)
+QVector<QString> Parser::getTeamNames(QString distance, QString year)
 {
     QVector<QString> returnTeams;
-
+    std::tuple<QString,QString,QString> placeHolder;
 
     for(auto it = valid_teams.begin(); it != valid_teams.end(); it++) {
 
-           if(it->second==distance){
-               returnTeams.push_back(it->first);
+           if(std::get<1>(*it) == distance && std::get<2>(*it)==year){
+               returnTeams.push_back(std::get<0>(*it));
            }
     }
 
@@ -145,7 +145,7 @@ void Parser::formListedData()
 {
 
 
-    QMap<std::pair<QString,QString>,int> teams;
+    QMap<std::tuple<QString,QString,QString>,int> teams;
     QVector<QString> insertionVector;
     QStringList lista=unparsedDataTotal_.split("$");
     int total_results = 0;
@@ -168,11 +168,11 @@ void Parser::formListedData()
             if(insertionVector.at(11) != "-") {
                 // Check if team exists
 
-                if(teams.contains({insertionVector.at(11),insertionVector.at(1)})) {
-                    teams[{insertionVector.at(11),insertionVector.at(1)}]++;
+                if(teams.contains({insertionVector.at(11),insertionVector.at(1),insertionVector.at(0)})) {
+                    teams[{insertionVector.at(11),insertionVector.at(1),insertionVector.at(0)}]++;
                 }
                 else {
-                    teams[{insertionVector.at(11),insertionVector.at(1)}] = 1;
+                    teams[{insertionVector.at(11),insertionVector.at(1),insertionVector.at(0)}] = 1;
 
                 }
             }
