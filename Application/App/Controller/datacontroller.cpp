@@ -205,8 +205,7 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
     }
     else if (graphtype == "top_5")
     {
-        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year + 5
-            + "' AND place <= 5 ORDER BY distance";
+        QString query = "SELECT * FROM Results WHERE place <= 5 ORDER BY distance";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
         QVector<QString> diff_distances;
         QVector<std::pair<QString, float>> distances;
@@ -284,8 +283,7 @@ QVector<QString> DataController::getGraphTypes(QString graphtype, QString year, 
     }
     else if (graphtype == "top_5")
     {
-        QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year + 5
-            + "' AND place <= 5 ORDER BY distance";
+        QString query = "SELECT * FROM Results WHERE place <= 5 ORDER BY distance";
 
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
 
@@ -309,10 +307,9 @@ QStringList DataController::getYears()
     return years_;
 }
 
-QStringList DataController::getDistances(QString year)
+QStringList DataController::getDistances()
 {
-    QString query = "SELECT * FROM Results WHERE year >= '" + year + "AND year <" + year + 5
-        + "' AND place <= 5 ORDER BY distance";
+    QString query = "SELECT * FROM Results WHERE place <= 5 ORDER BY distance";
 
     QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
 

@@ -67,7 +67,7 @@ public:
      */
     Q_INVOKABLE QStringList getYears();
 
-    Q_INVOKABLE QStringList getDistances(QString year);
+    Q_INVOKABLE QStringList getDistances();
 
     /**
      * @brief updateDropdownDistances
