@@ -1,16 +1,16 @@
-# Ohjelmistojen suunnittelu README
+## Ohjelmistojen suunnittelu README
 
-# Tekijät
+## Tekijät
 Veikko Hiltunen, 283475, veikko.hiltunen@tuni.fi  
 Riku Rainio, 275097, riku.rainio@tuni.fi  
 Jussi Kujanen,  
 Jere-Matias Huttunen,  
 
-# Ympäristö, jolla ohjelmisto toimii
+## Ympäristö, jolla ohjelmisto toimii
 Ohjelmisto on suunniteltu käyttäen C++, QML ja SQL ja JS. Ohjelmisto rakennettiin  
 käyttäen QT Creatoria. Ympäristönä käytämme valmiiksi asennettua QT Creatoria.  
 
-# Ohjelman käynnistys
+## Ohjelman käynnistys
 Ohjelman voi ajaa suoraan QT Creatorista. Jos kaikki toimii normaalisti,
 aukeaa käyttäjälle ohjelman suoritusikkuna. Ohjelman alussa käyttäjä on
 "Search" -nimisellä sivulla. Käyttäjän voi tehdä haun Finlandia hiihdon
@@ -24,5 +24,5 @@ Ohjelma sisältää myös sivut "Analytics", "Charts 1" ja "Charts 2". Nämä
 sivut näyttävät lisätietoa haun tuottamista tuloksista.
 
 
-# Suunnitteludokumentti
+## Suunnitteludokumentti
 Suunnitteludokumentti löytyy täältä:  https://github.com/Kujanenj/OhSunnittelu/blob/develop/Documents/Suunniteludokumentti.md
