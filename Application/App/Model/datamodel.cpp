@@ -20,6 +20,7 @@ void DataModel::doRequest(QMap<QString,QString> requesterParameters, QMap<QStrin
 
 void DataModel::doParse(QMap<QString, QString> config)
 {
+
     parser->fullParse(config,data_);
 }
 
@@ -75,57 +76,85 @@ void DataModel::sortDataBase(QString sqlcommand)
     database_->sortDataBase(sqlcommand);
 }
 
-void DataModel::analytics(QVector<QString> distances, std::pair<QString,QString> years)
+void DataModel::analytics(QString distance,QString year)
 {
-    analyticsFULL_.clear();
-    QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
 
-    QVector<QString> analyticsPARTIAL;
-    QVector<std::pair<QString,QString>> teamResults;
-    std::pair<QString,QString> teamResultsPartial;
-    int startYear=years.first.toInt();
-    int endYear=years.second.toInt();
-    QString sqlCommand;
+    QVector<QString> distances;
 
-    //loop all years
-    for(int yearIndex=startYear; yearIndex<=endYear; yearIndex++){
-        for(int i=0; i<distances.size(); i++){
+    if (distance == "kaikki")
+    {
+        distances.clear();
+        distances = { "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V32",
+            "P20", "P30", "P44", "P60", "P62", "P25", "P32", "P35", "P45", "P52", "P53",
+            "P75", "V30", "V45", "V53", "V75" };
 
-            sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + QString::number(yearIndex) + "%'";
+    }
+    else{
+        distances.append(distance);
+    }
 
-            sqlResults=searchDataBase(sqlCommand);
-            if(sqlResults.size()>=3){
-                analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
-                teamNames_=parser->getTeamNames();
 
-                //Loop teams
-                for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+        qDebug()<<"Start of analtics";
+        analyticsFULL_.clear();
+        QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
 
-                    sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
-                            + QString::number(yearIndex) + "%'";
+        QVector<QString> analyticsPARTIAL;
+        QVector<std::pair<QString,QString>> teamResults;
+        std::pair<QString,QString> teamResultsPartial;
 
-                    sqlResults=searchDataBase(sqlCommand);
+        QString sqlCommand;
 
-                    if(sqlResults.size()!=0){
+        //loop all years
+        for(int i =0; i<distances.size(); i++){
 
-                    teamResultsPartial.first=sqlResults.at(0).at(11);
-                    teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
 
-                    teamResults.push_back(teamResultsPartial);
 
+
+                sqlCommand="SELECT * FROM Results WHERE distance LIKE '%"+distances.at(i) +"%' AND year LIKE '%" + year + "%'";
+
+                sqlResults=searchDataBase(sqlCommand);
+
+                if(sqlResults.size()>=3){
+                    analyticsPARTIAL=calc_->calculateAnalytics(sqlResults);
+                    teamNames_=parser->getTeamNames(distances.at(i));
+
+                    //Loop teams
+                if(teamNames_.size()==0){
+                    qDebug()<<"No teams, i guess it got reset? :D ";
+                    analyticsPARTIAL.push_back("-");
+
+                }
+                else{
+                    for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
+
+                        sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
+                                + year + "%'";
+
+                        sqlResults=searchDataBase(sqlCommand);
+                        //qDebug()<<sqlCommand;
+                        if(sqlResults.size()!=0){
+
+                        teamResultsPartial.first=sqlResults.at(0).at(11);
+                        teamResultsPartial.second=calc_->calcAverageTime(sqlResults);
+
+                        teamResults.push_back(teamResultsPartial);
+
+                        }
                     }
+
+                    analyticsPARTIAL.push_back(calc_->getBestTeams(teamResults,1).at(0).first);
+                    teamResults.clear();
                 }
 
-                analyticsPARTIAL.push_back(calc_->getBestTeams(teamResults,1).at(0).first);
-                teamResults.clear();
-                analyticsFULL_.push_back(analyticsPARTIAL);
-                analyticsPARTIAL.clear();
-            }
-        }
+                    analyticsFULL_.push_back(analyticsPARTIAL);
+
+                    analyticsPARTIAL.clear();
+                }
+
     }
-    qDebug()<<"End of analytics";
-    parser->clearTeams();
-}
+        qDebug()<<"End of analytics";
+
+    }
 
 QVector<QVector<QString>> DataModel::getAnalyticsVector()
 {
@@ -153,6 +182,7 @@ QVector<std::pair<QString, QString> > DataModel::getBestTeams(int amount, QStrin
     QVector<QVector<QString>> sqlResults;
     QString sqlCommand;
     QVector<std::pair<QString,QString>> teamResults;
+    teamNames_=parser->getTeamNames(distance);
     for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
 
         sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distance+"%' AND year LIKE '%"
@@ -167,6 +197,11 @@ QVector<std::pair<QString, QString> > DataModel::getBestTeams(int amount, QStrin
         }
     }
     return(calc_->getBestTeams(teamResults,amount));
+}
+
+void DataModel::clearPars()
+{
+    parser->clearTeams();
 }
 
 } // Namespace Model

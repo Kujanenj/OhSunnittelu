@@ -44,7 +44,7 @@ public:
      * @param distances
      * @param years
      */
-    void analytics(QVector<QString> distances, std::pair<QString, QString> years);
+   void analytics(QString distance,QString year);
 
     /**
      * @brief getAnalyticsVector
@@ -72,6 +72,7 @@ public:
      */
     float timeToFloat(QString time);
     QVector<std::pair<QString,QString>> getBestTeams(int amount, QString year, QString distance);
+    void clearPars();
 private:
     /**
      * @brief doParse Calls the parses to parse the html data

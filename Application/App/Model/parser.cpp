@@ -42,14 +42,24 @@ void Parser::clearListedData()
     listedData_.clear();
 }
 
-QVector<QString> Parser::getTeamNames()
+QVector<QString> Parser::getTeamNames(QString distance)
 {
+    QVector<QString> returnTeams;
 
-    return valid_teams;
+
+    for(auto it = valid_teams.begin(); it != valid_teams.end(); it++) {
+
+           if(it->second==distance){
+               returnTeams.push_back(it->first);
+           }
+    }
+
+    return returnTeams;
 }
 
 void Parser::clearTeams()
 {
+    qDebug()<<"Cleared teams";
     valid_teams.clear();
 }
 
@@ -135,7 +145,7 @@ void Parser::formListedData()
 {
 
 
-    QMap<QString, int> teams;
+    QMap<std::pair<QString,QString>,int> teams;
     QVector<QString> insertionVector;
     QStringList lista=unparsedDataTotal_.split("$");
     int total_results = 0;
@@ -157,11 +167,13 @@ void Parser::formListedData()
 
             if(insertionVector.at(11) != "-") {
                 // Check if team exists
-                if(teams.contains(insertionVector.at(11))) {
-                    teams[insertionVector.at(11)]++;
+
+                if(teams.contains({insertionVector.at(11),insertionVector.at(1)})) {
+                    teams[{insertionVector.at(11),insertionVector.at(1)}]++;
                 }
                 else {
-                    teams[insertionVector.at(11)] = 1;
+                    teams[{insertionVector.at(11),insertionVector.at(1)}] = 1;
+
                 }
             }
             insertionVector.clear();
@@ -170,7 +182,7 @@ void Parser::formListedData()
 
     for(auto it = teams.begin(); it != teams.end(); it++) {
         if(it.value() > 3) {
-            valid_teams.push_back(it.key());
+            valid_teams.push_back({it.key()});
         }
     }
 

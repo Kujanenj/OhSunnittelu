@@ -21,8 +21,13 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     QVector<QString> distances, QString gender, QVector<QString> ages, QString firstName,
     QString lastName, QString place, QString nationality, QString team, QString personalSearch)
 {
+
+    QString year;
+    QString distance;
+    QString age;
     qDebug() << "---------------------------";
     years_.clear();
+    dataModel_->clearPars();
     database_->removeData();
 
     // Changes nationality text to match with all nationalities
@@ -48,31 +53,37 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
     // MULTISEARCH FOR YEAR, DISTANCE, AGESERIES
     for (int i = 0; i <= size; i++)
     {
-        // YEAR
-        QString s;
-        s = QString::number(startYear.toInt() + i);
 
-        years_.append(s);
-        parameters.insert("Vuosi", s);
+        // YEAR
+
+        year = QString::number(startYear.toInt() + i);
+
+        years_.append(year);
+        parameters.insert("Vuosi", year);
 
         // DISTANCES LOOPING
         for (int j = 0; j < distances.size(); j++)
         {
-            QString distance = distances.at(j);
+
+             distance = distances.at(j);
 
             parameters.insert("Matka", distance);
 
             // AGES LOOPING
             for (int k = 0; k < ages.size(); k++)
             {
-                QString age = ages.at(k);
+
+                age = ages.at(k);
 
                 parameters.insert("Ikaluokka", age);
 
                 try
                 {
+
                     dataModel_->doRequest(parameters, parserConfig_);
                     dataModel_->insertData(personalSearch);
+                    dataModel_->analytics(distances.at(j), year);
+                    dataModel_->insertData("Analytics");
                 }
                 catch (QString msg)
                 {
@@ -86,15 +97,9 @@ void DataController::searchButtonClicked(QString startYear, QString endYear,
         if (firstName == "" && lastName == "" && team == "" && place == "" && nationality == "0")
         {
             std::pair<QString, QString> years = { startYear, endYear };
-            if (distances.at(0) == "kaikki")
-            {
-                distances.clear();
-                distances = { "P50", "V50", "P100", "P32", "V20", "V32", "V20jun", "P42", "V32",
-                    "P20", "P30", "P44", "P60", "P62", "P25", "P32", "P35", "P45", "P52", "P53",
-                    "P75", "V30", "V45", "V53", "V75" };
-            }
-            dataModel_->analytics(distances, years);
-            dataModel_->insertData("Analytics");
+
+          //  dataModel_->analytics(distances, years);
+         //   dataModel_->insertData("Analytics");
         }
     }
     catch (...)
