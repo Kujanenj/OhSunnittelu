@@ -106,6 +106,8 @@ Filtterit:
 - Kansallisuus
 - Joukkue
 
+---
+
 - ### Tulokset
 ![Tulokset](https://i.imgur.com/j5n0qtV.png)
 Tulokset sivulla käyttäjä näkee hakemansa tulokset ja pystyy järjestämään tuloksia eri järjestyksiin.
@@ -124,19 +126,27 @@ Mahdolliset järjestystavat:
 - Ikä
 - Joukkue
 
+---
+
 - ### Statistiikat
 ![Analytiikat](https://i.imgur.com/YfNx7An.png)
 Statistiikat sivulta käyttäjä pystyy tarkastelemaan eri vuosien ja matkojen keskiaikoja, keskinopeuksia, osallistujamääriä, nopeimpia ja hitaimpia aikoja, top 3 urheilijat ja matkan parhaan joukkueen. Lisäksi statistiikka sivulla on yksilöhaun tulokset mikäli käyttäjä on suorittanut yksilöhaun.
+
+---
 
 - ### Kaaviot 1
 ![Kaaviot 1](https://i.imgur.com/sj6lH57.png)
 Kaaviot 1 sivulla käyttäjä näkee 4 eri taulukkoa. Ensimmäinen taulukko kuvaa aikaeroa parhaan urheilijan ja 9 hänen jälkeen tulevan välillä. Toinen taulukko oikealla ylhäällä kuvaa parhaita aikoja tietyillä matkoilla naisten ja miesten välillä. Vasemmalla alhaalla on taulukko, jossa käyttäjä pystyy tarkastelemaan urheilijoiden kansallisuus jakaumaa tietyllä matkalla ja vuodella. Oikealla alhaalla on neljäs graafi, joka näyttää osallistujamäärän suhteen tietyille matkoille tietyllä vuodella.
 Kaikkia graafeja pystyy muokkaamaan dynaamisten dropdownboxien avulla.
 
+---
+
 - ### Kaaviot 2
 ![Kaaviot 2](https://i.imgur.com/x0bxXO7.png)
 Kaaviot 2 sivulla ylempi taulukko kuvaa kaikkien vuosien matkojen parhaiden 5 urheilijan keskinopeudet. Alempi taulukko näyttää 10 parhaan joukkueen keskiarvolliset tulokset tietyllä matkalla ja tietyllä vuodella.
 Tässäkin graafeja pystyy muokkaamaan dynaamisten dropdownboxien avulla.
+
+---
 
 ### Muuta
 - Trello
