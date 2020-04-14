@@ -14,7 +14,7 @@ Item {
     }
 
     function comboFunction() {
-        top5averageSpeedChart.title = "Top 5 average speed " + comboBoxSortYears.currentText
+        top5averageSpeedChart.title = "Top 5 average speed "
         top10chart.title = "Top 10 teams " + comboBoxSortDistances.currentText + " in " + comboBoxSortYears.currentText
 
         distances.categories = DataController.getDistances()

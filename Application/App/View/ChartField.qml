@@ -242,9 +242,9 @@ Item {
 
             PieSeries {
                 id: maat
-                PieSlice { label: "Suomi"; value: 84.9 }
-                PieSlice { label: "Ruotsi"; value: 5.1 }
-                PieSlice { label: "Venäjä"; value: 10.0 }
+                PieSlice { label: "Finnish"; value: 84.9 }
+                PieSlice { label: "Sweden"; value: 5.1 }
+                PieSlice { label: "Russian"; value: 10.0 }
             }
         }
         ChartView {
@@ -272,7 +272,6 @@ Item {
             }
         }
     }
-
 }
 
 /*##^##
