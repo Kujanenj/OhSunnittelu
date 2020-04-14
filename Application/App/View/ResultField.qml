@@ -310,6 +310,8 @@ Item {
                 DataController.searchButtonClicked("1974", "2019", distances, "kaikki", ages, anArray[1], anArray[0], anArray[2], "0", "", personalSearch)
                 personalResultModel.updateModel("PersonalResults")
                 bar.currentIndex = 2
+                chartButton1.enabled = false
+                chartButton2.enabled = false
             }
         }
     }

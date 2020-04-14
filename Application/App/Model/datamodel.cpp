@@ -93,8 +93,6 @@ void DataModel::analytics(QString distance,QString year)
         distances.append(distance);
     }
 
-
-        qDebug()<<"Start of analtics";
         analyticsFULL_.clear();
         QVector<QVector<QString>> sqlResults; //<Distance<muut<result>>
 
@@ -120,21 +118,16 @@ void DataModel::analytics(QString distance,QString year)
 
                     //Loop teams
                 if(teamNames_.size()==0){
-                    qDebug()<<"No teams, i guess it got reset? :D ";
                     analyticsPARTIAL.push_back("-");
 
                 }
 
                 else{
-                     qDebug()<<"Team size "<<teamNames_.size();
                     for(int it=0; it<teamNames_.size(); it++){ //create a vec of all teams and their average times <Team,time>
-                        qDebug()<<"Team name ="<<teamNames_.at(it);
                         sqlCommand="SELECT * FROM Results WHERE team LIKE '%"+teamNames_.at(it)+"%' AND distance LIKE '%"+distances.at(i)+"%' AND year LIKE '%"
                                 + year + "%'";
 
                         sqlResults=searchDataBase(sqlCommand);
-                        qDebug()<<sqlResults.size();
-                        //qDebug()<<sqlCommand;
                         if(sqlResults.size()!=0){
 
                         teamResultsPartial.first=sqlResults.at(0).at(11);

@@ -161,12 +161,13 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         QString query = "SELECT * FROM Results WHERE distance = '" + distance
             + "' AND place = 1 ORDER BY year";
         QVector<QVector<QString>> results = dataModel_->searchDataBase(query);
-        int last = getYears().at(0).toInt();
+        int last = getYears().at(0).toInt() - 1;
         for (int i = 0; i < results.size(); i++)
         {
             while (last + 1 < results.at(i).at(0).toInt())
             {
-                values.append(0);
+                // values.append(0);
+                values.append(1);
                 ++last;
             }
             float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600;
@@ -185,7 +186,8 @@ QVector<int> DataController::getGraphValues(QString graphtype, QString year, QSt
         {
             while (last + 1 < results.at(i).at(0).toInt())
             {
-                values.append(0);
+                // values.append(0);
+                values.append(1);
                 ++last;
             }
             float to_insert = (dataModel_->timeToFloat(results.at(i).at(2))) / 3600;

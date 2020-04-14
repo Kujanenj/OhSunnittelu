@@ -63,6 +63,7 @@ Item {
         while(naiset.at(0)){
             naiset.remove(0)
         }
+
         for(i = 0; i < matkan_parhaat_m_values.length; i++){
             miehet.append(matkan_parhaat_m_values[i]/100)
         }

@@ -28,7 +28,6 @@ Item {
 
         var bestTeams = DataController.getTopTeams(comboBoxSortYears.currentText, comboBoxSortDistances.currentText)
 
-        console.log(bestTeams)
         teams.categories = bestTeams
         var averageTimes = DataController.getGraphValues("Teams", "2019", "P50")
         while(averageTimeValues.at(0)){
